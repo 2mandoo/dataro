@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.data.ro.member.MemberMapper">
+
+	<insert id="insert" parameterType="project.data.ro.member.MemberVO">
+			INSERT INTO pmember (
+				id, nickname, pwd, email, m_filename_org, m_filename_server, regdate
+			) VALUES (
+				#{id}, #{nickname}, md5(#{pwd}), #{email}, #{m_filename_org}, #{m_filename_server}, NOW()
+			)
+	</insert>
+	
+	
+	<!-- 아이디 중복체크 -->
+	<select id="checkId" resultType="int" parameterType="project.data.ro.member.MemberVO">
+		select count(*) from pmember where id = #{id}
+	</select>
+	
+	
+	<!-- 이메일 중복체크 -->
+	<select id="checkEmail" resultType="int" parameterType="project.data.ro.member.MemberVO">
+		select count(*) from pmember where email = #{email}
+	</select>
+	
+	
+	<!-- 로그인 할 때, 아이디 패스워드 확인용 -->
+	<select id="checkIdPw" resultType="project.data.ro.member.MemberVO" parameterType="project.data.ro.member.MemberVO">
+		select * from pmember where id = #{id} and pwd = md5(#{pwd})
+	</select>
+	
+	
+	<!-- 아이디로 해당하는 개인정보 가져오기 -->
+	<select id="myInfo" resultType="project.data.ro.member.MemberVO">
+		select * from pmember where id = #{id}
+	</select>
+	
+	
+	<!-- 회원번호로 해당하는 개인정보 가져오기 -->
+	<select id="myInfo2" resultType="project.data.ro.member.MemberVO">
+		select * from pmember where member_no = #{member_no}
+	</select>
+	
+	
+	<update id="editUserInfo" parameterType="project.data.ro.member.MemberVO">
+		update pmember set
+			nickname = #{nickname}
+			, pwd = md5(#{pwd})
+			, email = #{email}
+			<if test="m_filename_org != null">
+			, m_filename_org = #{m_filename_org}
+			, m_filename_server = #{m_filename_server}
+			</if>
+		where id = #{id}
+	</update> 
+	
+	
+	<select id="findId" parameterType="project.data.ro.member.MemberVO" resultType="project.data.ro.member.MemberVO">
+		select * from pmember 
+		where email=#{email} and nickname=#{nickname}
+	</select>
+	
+	
+	<select id="findPwd" parameterType="project.data.ro.member.MemberVO" resultType="project.data.ro.member.MemberVO">
+		select * from pmember 
+		where id=#{id} and email=#{email}
+	</select>
+	
+	
+	<!-- 조건에 맞으면(사실 조건은 필요없음) 비밀번호 업데이트 -->
+	<update id="updateTempPwd" parameterType="project.data.ro.member.MemberVO">
+		update pmember set pwd = md5(#{pwd}) where id=#{id} and email=#{email}
+	</update>
+	
+	
+	<delete id="deleteId" parameterType="project.data.ro.member.MemberVO">
+		delete from pmember where id = #{id}
+	</delete>
+
+
+</mapper>

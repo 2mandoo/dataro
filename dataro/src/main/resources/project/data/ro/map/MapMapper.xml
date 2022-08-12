@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.data.ro.map.MapMapper">
+
+	<insert id="insert" parameterType="project.data.ro.map.MapVO">
+		INSERT INTO  maptest 
+		( boardno ,
+		 address_name ,
+		 category_group_code ,
+		 categoy_group_name ,
+		 category_name ,
+		 id ,
+		 phone ,
+		 place_name ,
+		 place_url ,
+		 road_address_name ,
+		 x ,
+		 y )
+		VALUES
+		(#{boardno  } ,
+		#{address_name  } ,
+		#{category_group_code  } ,
+		#{categoy_group_name  } ,
+		#{category_name  } ,
+		#{id  } ,
+		#{phone  } ,
+		#{place_name  } ,
+		#{place_url  } ,
+		#{road_address_name  } ,
+		#{x  } ,
+		#{y  } );
+
+	</insert>
+	
+	<select id="list"  resultType="project.data.ro.board.BoardVO">
+		SELECT * FROM maptest
+		
+	</select>
+</mapper>

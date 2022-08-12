@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.data.ro.board.BoardMapper">
+
+
+	<sql id="Sql">
+		<if test="stype != null and stype != ''">
+			<if test="stype != 'all'">
+				and (${stype} LIKE '%${sword}%')
+			</if>
+			<if test="stype == 'all'">
+	    		and (title LIKE '%${sword}%' OR content LIKE '%${sword}%')
+	    	</if>
+		</if>
+	</sql>
+	
+
+	<select id="view" parameterType="int" resultType="project.data.ro.board.BoardVO">
+		SELECT * FROM pboard WHERE board_no=#{board_no} 
+	</select>
+	
+	
+	<update id="updateViewcount" parameterType="int">
+		UPDATE pboard SET viewcount = viewcount+1 WHERE board_no=#{board_no} 
+	</update>
+	
+	
+	<!-- 내가 쓴 글 -->
+	<select id="myList1" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.board.BoardVO">
+		SELECT * FROM pboard
+		where member_no=#{member_no}
+		and (title like '%${sword}%') 
+		ORDER BY writedate DESC
+		LIMIT  ${startIdx},${pageRow}
+	</select>
+	<select id="count1" parameterType="project.data.ro.board.BoardVO" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM pboard 
+		where member_no=#{member_no}
+		and (title like '%${sword}%') 
+	</select>
+	
+	 
+ 	<select id="myList2" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.board.BoardVO">
+		select r.member_no, r.board_no, b.title, r.board_name, r.content, r.reply_writedate 
+		from preply r join pboard b 
+		on r.board_no = b.board_no
+		where r.member_no = #{member_no}
+					and (r.content LIKE '%${sword}%')
+		ORDER BY reply_writedate DESC
+		LIMIT  ${startIdx},${pageRow}
+	</select>
+	<select id="count2" parameterType="project.data.ro.board.BoardVO" resultType="java.lang.Integer">
+		SELECT COUNT(*) 
+		from preply r join pboard b 
+		on r.board_no = b.board_no
+		where r.member_no = #{member_no}
+		and (r.content LIKE '%${sword}%')
+	</select> 
+	
+	
+	<!-- 좋아요 누른 게시물 -->
+	<select id="myList3" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.board.BoardVO">
+		select l.board_name, l.board_no, b.title, b.viewcount
+		from plike l join pboard b 
+		on l.board_name=b.board_name and l.board_no=b.board_no 
+		where l.member_no=#{member_no} 
+		and (title like '%${sword}%')
+		ORDER BY viewcount DESC 
+		LIMIT  ${startIdx},${pageRow}
+	</select>
+	<select id="count3" parameterType="project.data.ro.board.BoardVO" resultType="java.lang.Integer">
+		SELECT COUNT(*) 
+		from plike l join pboard b 
+		on l.board_name=b.board_name and l.board_no=b.board_no 
+		where l.member_no=#{member_no} 
+		and (title like '%${sword}%')
+	</select> 
+	
+	
+	<!-- 내가 받은 쪽지 -->
+	<select id="myList4" parameterType="project.data.ro.message.MessageVO" resultType="project.data.ro.message.MessageVO">
+		select 
+    		m.nickname,
+    		m.id,
+    		me.message_content, 
+    		me.senddate 
+		from pmessage me join pmember m  
+		on m.member_no = me.send_member_no where receive_member_no=#{receive_member_no} 
+		<if test="stype != null and stype != ''">
+			<if test="stype != 'all'">
+				and (${stype} LIKE '%${sword}%')
+			</if>
+			<if test="stype == 'all'">
+	    		and (m.nickname LIKE '%${sword}%' OR me.message_content LIKE '%${sword}%')
+	    	</if>
+		</if> 
+		ORDER BY me.senddate DESC 
+		LIMIT  ${startIdx},${pageRow};
+	</select>
+	<select id="count4" parameterType="project.data.ro.message.MessageVO" resultType="java.lang.Integer">
+		SELECT COUNT(*) 
+		from pmessage me join pmember m 
+		on m.member_no = me.send_member_no where receive_member_no=#{receive_member_no} 
+		<if test="stype != null and stype != ''">
+			<if test="stype != 'all'">
+				and (${stype} LIKE '%${sword}%')
+			</if>
+			<if test="stype == 'all'">
+	    		and (m.nickname LIKE '%${sword}%' OR me.message_content LIKE '%${sword}%')
+	    	</if>
+		</if>
+	</select>
+	
+	
+	<!-- 내가 보낸 쪽지 -->
+	<select id="myList5" parameterType="project.data.ro.message.MessageVO" resultType="project.data.ro.message.MessageVO">
+		select 
+    		m.nickname,
+    		m.id,
+    		me.message_content, 
+    		me.senddate 
+		from pmessage me join pmember m  
+		on m.member_no = me.receive_member_no where send_member_no=#{send_member_no} 
+		<if test="stype != null and stype != ''">
+			<if test="stype != 'all'">
+				and (${stype} LIKE '%${sword}%')
+			</if>
+			<if test="stype == 'all'">
+	    		and (m.nickname LIKE '%${sword}%' OR me.message_content LIKE '%${sword}%')
+	    	</if>
+		</if> 
+		ORDER BY me.senddate DESC 
+		LIMIT  ${startIdx},${pageRow};
+	</select>
+	<select id="count5" parameterType="project.data.ro.message.MessageVO" resultType="java.lang.Integer">
+		SELECT COUNT(*) 
+		from pmessage me join pmember m  
+		on m.member_no = me.receive_member_no where send_member_no=#{send_member_no} 
+		<if test="stype != null and stype != ''">
+			<if test="stype != 'all'">
+				and (${stype} LIKE '%${sword}%')
+			</if>
+			<if test="stype == 'all'">
+	    		and (m.nickname LIKE '%${sword}%' OR me.message_content LIKE '%${sword}%')
+	    	</if>
+		</if> 
+	</select> 
+	
+	<!-- 내가 참여한 채팅방 -->
+	<select id="myList6" parameterType="project.data.ro.room.RoomVO" resultType="project.data.ro.room.RoomVO">
+		select p.board_name, p.room_no, p.room_title, p.roommaker_id, p.room_startdate
+		from proom p, proommember pr 
+		where p.room_no = pr.room_no 
+		and pr.room_participant_no = #{room_participant_no};
+	</select>
+	
+	
+	
+	<!-- main from 호윤 -->
+	<select id="list" resultType="project.data.ro.board.BoardVO"> 
+		select 
+			*
+		    , (select count(*) from plike l where b.board_no = l.board_no) as likecount
+		    , (select count(*) from pdislike dl where b.board_no = dl.board_no) as dislikecount
+		    , (select group_concat(hashtag_name) from pcategory c left outer join phashtag  h on c.hashtag_no = h.hashtag_no where c.board_no = b.board_no) as hashtag_name
+		    from pboard b
+			<where>
+				board_name = '여행코스'
+				<if test ="stype != null or sword != null">
+					<if test ="stype == 'title'">
+					  and title like '%${sword}%'
+					</if>
+					<if test = "stype == 'content'">
+					  and content like '%${sword}%'
+					</if>
+				</if>
+			</where>
+	</select>
+	
+	
+	
+	<!-- 글쓰기 from 진경 -->
+	<insert id="insert" parameterType="project.data.ro.board.BoardVO">
+		INSERT 
+			INTO pboard(board_name,id,member_no,title,viewcount,writedate,updatedate)
+		VALUES (#{board_name},#{id},#{member_no},#{title},#{viewcount},NOW(),NOW())
+		<selectKey resultType="int" keyProperty="board_no" order ="AFTER"> 
+				SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertCourse" parameterType="project.data.ro.board.BoardVO">
+		INSERT 
+			INTO pboardcourse(board_name,board_no,content, course_no)
+		VALUES (#{board_name},#{board_no},#{content},#{course_no})
+
+	</insert>
+	
+</mapper>

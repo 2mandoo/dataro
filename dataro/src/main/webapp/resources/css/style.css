@@ -1,7 +1,8 @@
 @charset "UTF-8";
 /*common*/
 #wrap{text-align: center;}
-#wrap .content{display: inline-block;width: 1020px;}
+#wrap .content{display: inline-block;width: 1200px;}
+/*여행코스 글쓰기*/
 .tv_write form{display: inline-block;width: 100%;}
 .tv_write .title{border-bottom: 1px solid #eee;padding:40px 0}
 .tv_write .title .title_top{display: flex;justify-content: space-between;align-items: center}
@@ -70,6 +71,9 @@
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 
+/*모임방 채팅*/
+.chat_list li{text-align:left}
+.chat_list li.me{text-align:right}
 
 /* header */
 header .inner{margin:0 auto;width: 1020px;display: flex;justify-content: space-between;}

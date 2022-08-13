@@ -16,6 +16,7 @@ tr,td{border:1px solid #000}
 </head>
 <body>
     <div id="wrap">
+     <span>tnwjd</span>
         <div class="content room_view">
         	<table border="1" style="border:1px solid #000">
         		<tr><td>${roomVO.room_title }</td></tr>

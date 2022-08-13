@@ -7,7 +7,8 @@
 .tv_write .title{border-bottom: 1px solid #eee;padding:40px 0}
 .tv_write .title .title_top{display: flex;justify-content: space-between;align-items: center}
 .tv_write .title .user{display: inline-block;vertical-align: middle;margin:0 20px;}
-.tv_write .title .user .user_img{display: inline-block;width: 80px;height: 80px;background: gray;vertical-align: middle;border-radius:50px;margin-right:15px;}
+.tv_write .title .user .user_img{display: inline-block;width: 80px;height: 80px;background: gray;vertical-align: middle;border-radius:50px;margin-right:15px}
+.tv_write .title .user .user_img img{width:100%}
 .tv_write .title .user p{display: inline-block;font-weight: 500;font-size: 27px;vertical-align: middle;}
 .tv_write .title .title_text{width: 500px;height:60px;}
 .tv_write .title .hash_wrap{display:inline-block;width:100%}
@@ -18,7 +19,7 @@
 .tv_write .cnt_detail{display:inline-block;width:100%;height:500px;padding:40px 0}
 .tv_write .map{width:500px;height:100%;float:left;background:#eee}
 .tv_write .write_detail{background:#eee;width:100%;height:500px;padding:20px;overflow-x: scroll;}
-.tv_write .write_detail .scroll{width:2000px}
+.tv_write .write_detail .scroll{width:2080px}
 .tv_write .write_detail .set{padding:20px;background:#fff;width:400px;float:left;margin-right:15px}
 .tv_write .write_detail #courseList{float:initial;overflow:hidden}
 .tv_write .write_detail #courseList li{display:inline-block;float:left;width:400px;background:#fff;padding:15px;margin-right:15px;height:80px}

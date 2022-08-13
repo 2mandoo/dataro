@@ -1,8 +1,8 @@
 // ^^ 코스 주소를 담을 배열, 인덱스
 var courseArr = [],
    courseIdx = 0,
-   courseList = document.getElementById('courseList');
-
+   courseList = document.getElementById('courseList'),
+   count=0;
 // ^^ java로 보내기
 function send(courseArr){
    $.ajax({
@@ -123,14 +123,22 @@ function displayPlaces(places) {
             });
 
             // ^^ 코스 추가
+
             kakao.maps.event.addListener(marker, 'click', function() {
-	//			String a[]={place.place_name,place.address_name,place.phone}
-                if(confirm('코스 추가?')) {
-                   courseArr.push(place);
-                    writebox(courseIdx++,place);
-                     
-                   //courseList.appendChild(getListItem(courseIdx++, place));
-                }
+
+				if(count<6){
+					//			String a[]={place.place_name,place.address_name,place.phone}
+	                if(confirm('코스 추가?')) {
+	                   courseArr.push(place);
+	                    writebox(courseIdx++,place);
+	                   count++;
+	                   //courseList.appendChild(getListItem(courseIdx++, place));
+	                   	console.log(count)
+	                }
+				}else{
+					alert("코스추가끝")
+				}
+
             });
 
             itemEl.onmouseover =  function () {

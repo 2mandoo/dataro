@@ -21,8 +21,8 @@
                 <div class="title">
                 	<div class="title_top">
 	                    <span class="user">
-	                        <div class="user_img"></div>
-	                        <p>id</p>
+	                        <div class="user_img"><img src="/ro/upload/${loginInfo.m_filename_server}"></div>
+	                        <p>${loginInfo.nickname }</p>
 	                    </span>
 	                    <input type="text" name="title" id="title" class="title_text" value="string">
 	                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">

@@ -176,7 +176,7 @@ $(function(){
 		<img src="/ro/img/back.png" onclick="location.href='/ro/board/main.do'" id="backBtn">
 		<img src="/ro/img/icon6.png" id="setbtn" ><br>
 		<h1>my page</h1>
-			<img src ="/ro/upload/${loginInfo.m_filename_server}"  id="idImg" >
+			<img src ="/ro/img/${loginInfo.m_filename_server}"  id="idImg" >
 			<h1 id="nic">${loginInfo.nickname}</h1>
 			<a href="/ro/member/logout" id="lo">로그아웃</a>
 			<input type="hidden" value="${loginInfo.member_no}" name="member_no" id="no"> 

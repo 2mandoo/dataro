@@ -52,7 +52,7 @@ $(function(){
 	            	</a> 
             	</c:when>
             	<c:otherwise>
-		            <img src ="/ro/upload/${loginInfo.m_filename_server}" width="50px" id="idImg" style="border-radius:30px;">
+		            <img src ="/ro/img/${loginInfo.m_filename_server}" width="50px" id="idImg" style="border-radius:30px;">
             	</c:otherwise>
 			</c:choose>            
             <a href="#">

@@ -27,7 +27,8 @@ import project.data.ro.util.UtilService;
 @Slf4j
 @RequestMapping("/board")
 public class BoardController {
-
+	
+	// @@ 정길 커밋 ㅋ
 	@Autowired
 	BoardService service;
 	

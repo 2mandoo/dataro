@@ -54,7 +54,7 @@
       <property name="maxUploadSize" value="104857560"/>
       <!-- 1024*1024*2bytes 2MB -->
       <property name="maxUploadSizePerFile" value="2097152"/>
-      <property name="uploadTempDir" value="file:/C:/kdigital/upload/tmp"/>
+      <!-- <property name="uploadTempDir" value="file:/C:/kdigital/upload/tmp"/> -->
       <property name="maxInMemorySize" value="10485756"/>
    </bean>
    

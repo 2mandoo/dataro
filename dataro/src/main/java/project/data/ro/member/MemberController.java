@@ -75,7 +75,7 @@ public class MemberController {
 			String ext = org.substring(org.lastIndexOf(".")); // 확장자
 			String real = new Date().getTime()+ext;
 			// 파일저장
-			String path = req.getRealPath("/upload/");
+			String path = req.getRealPath("/img/");
 			try {
 			filename.transferTo(new File(path+real));
 			} catch (Exception e) {}
@@ -197,7 +197,7 @@ public class MemberController {
 			String ext = org.substring(org.lastIndexOf(".")); // 확장자
 			String real = new Date().getTime()+ext;
 			// 파일저장
-			String path = req.getRealPath("/upload/");
+			String path = req.getRealPath("/img/");
 			try {
 			filename.transferTo(new File(path+real));
 			} catch (Exception e) {}

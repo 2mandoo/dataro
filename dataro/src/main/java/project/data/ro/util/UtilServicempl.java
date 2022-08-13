@@ -22,6 +22,7 @@ public class UtilServicempl implements UtilService {
 //	@Autowired
 //	BoardVO bvo;
 	
+	//해쉬태그등록
 	@Override
 	public boolean insert(CategoryVO cvo,BoardVO bvo,@RequestParam List<Integer> hashtag_no) {
 		for(int hashtag:hashtag_no) {
@@ -32,13 +33,13 @@ public class UtilServicempl implements UtilService {
 		return true;
 	}
 	
+	//파일업로드
 	@Override
 	public boolean fileupload(FileVO fvo, @RequestParam MultipartFile[] filename, HttpServletRequest req,BoardVO bvo) {
 		int a = 1;
 		for(MultipartFile files :filename) {
 			a++;
 			if(!files.isEmpty()) {
-				
 				String org = files.getOriginalFilename();
 				String ext=org.substring(org.lastIndexOf('.'));
 				String sever = new Date().getTime()+ext;
@@ -54,7 +55,6 @@ public class UtilServicempl implements UtilService {
 					fmapper.fileupload(fvo);
 			}
 		}
-
 		return true;
 	}
 

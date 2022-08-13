@@ -8,7 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ReplyVO {
-   
    private String board_name;
    private int board_no;
    private int room_no;

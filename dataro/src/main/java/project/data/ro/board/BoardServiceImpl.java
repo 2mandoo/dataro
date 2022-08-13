@@ -18,6 +18,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	BoardMapper mapper;
 	
+	//여행코스글쓰기(for문-코스등록)
 	@Override
 	public boolean insert(BoardVO bvo) {
 		mapper.insert(bvo);

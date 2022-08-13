@@ -39,16 +39,17 @@ public class BoardController {
 	UtilService uservice;
 	
 	
+	//여행코스 글쓰기화면
 	@GetMapping("/travelWrite.do")
 	public String write() {
 		return "travelboard/write";
 	}
-	
 	// 여행코스 글쓰기 from 진콩
 	@PostMapping("/insert.do")
 	public String insert(BoardVO bvo,CategoryVO cvo,@RequestParam List<Integer> hashtag_no,FileVO fvo,@RequestParam MultipartFile[] filename, HttpServletRequest req) {
 		service.insert(bvo);
 		uservice.insert(cvo,bvo,hashtag_no);
+		uservice.fileupload(fvo, filename, req,bvo);
 		return "travelboard/write";
 	}
 	

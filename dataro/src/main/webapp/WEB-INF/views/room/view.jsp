@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>모임방 상세페이지</title>
-<link rel="stylesheet" href="/ro/css/reset.css"/>
-<link rel="stylesheet" href="/ro/css/style.css"/>
+<link rel="stylesheet" href="/ro/resources/css/reset.css"/>
+<link rel="stylesheet" href="/ro/resources/css/style.css"/>
 <style>
 tr,td{border:1px solid #000}
 </style>
@@ -22,6 +22,7 @@ tr,td{border:1px solid #000}
         	</table>
         	<form action="chatWrite" method="post">
         		<input type="hidden" name="room_no" value="${view.room_no }">
+        		<input type="hidden" name="member_no" value="${loginInfo.member_no }">
         		<input type="text" name="content" value="댓글을 입력하세요">
         		<input type="submit">
         	</form>

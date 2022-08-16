@@ -8,15 +8,15 @@
 <head>
 <meta charset="UTF-8">
 <title>모임방 상세페이지</title>
-<link rel="stylesheet" href="/ro/css/reset.css"/>
-<link rel="stylesheet" href="/ro/css/style.css"/>
+<link rel="stylesheet" href="/ro/resources/css/reset.css"/>
+<link rel="stylesheet" href="/ro/resources/css/style.css"/>
 <style>
 tr,td{border:1px solid #000}
 </style>
 </head>
 <body>
     <div id="wrap">
-     <span>tnwjd</span>
+    <!-- 주석 -->
         <div class="content room_view">
         	<table border="1" style="border:1px solid #000">
         		<tr><td>${roomVO.room_title }</td></tr>

@@ -5,7 +5,7 @@
 	
 	<insert id="fileupload" parameterType="project.data.ro.util.FileVO" >
 		insert into pfile(board_name,board_no,filename_org,filename_server,course_no)
-		VALUES ('자유게시판',#{board_no},#{filename_org},#{filename_server},#{course_no});
+		VALUES ('여행게시판',#{board_no},#{filename_org},#{filename_server},#{course_no});
 	</insert>
 	
 

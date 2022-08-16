@@ -21,13 +21,18 @@
                 <div class="title">
                 	<div class="title_top">
 	                    <span class="user">
-	                        <div class="user_img"></div>
-	                        <p>id</p>
+	                        <div class="user_img"><img src="/ro/img/${loginInfo.m_filename_server}"></div>
+	                        <p>${loginInfo.nickname }</p>
 	                    </span>
 	                    <input type="text" name="title" id="title" class="title_text" value="string">
 	                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
                     </div>
                     <div class="hash">
+                    		<% String[] hash ={"자전거 코스","드라이브 코스","뚜벅이 코스","가족과함께","연인과함께","친구과함께","자연","반려동물","레포츠","1박2일","당일치기","축제","식도락","역사" }; %>
+                    		<c:forEach var="hash" items="${hash}" varStatus="status">
+                    			<label><input type="checkbox" id="hash1" name="hashtag_no" value="${status.count}">#${hash}</label>
+                    		</c:forEach>
+                    		<!-- 
 	                    	<label><input type="checkbox" id="hash1" name="hashtag_no" value="1">#자전거 코스</label>
 	                    	<label><input type="checkbox" id="hash2" name="hashtag_no" value="2">#드라이브 코스</label>
 	                    	<label><input type="checkbox" id="hash3" name="hashtag_no" value="3">#뚜벅이 코스</label>
@@ -42,6 +47,7 @@
 	                    	<label><input type="checkbox" id="hash12" name="hashtag_no" value="12">#축제</label>
 	                    	<label><input type="checkbox" id="hash13" name="hashtag_no" value="13">#식도락</label>
 	                    	<label><input type="checkbox" id="hash14" name="hashtag_no" value="14">#역사</label>
+	                    	 -->
                     </div>
                 </div>
                 <!--//제목-->
@@ -112,9 +118,11 @@
 		}
 	})
 	
+
 	function writebox(index,places){
 		console.log(places)
 		var html ='<div class="set">'
+			html +='<span class="jk"></span>'
 			html +='<div class="map_list">'
 			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
 					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';
@@ -131,13 +139,13 @@
 	        html +='        <div class="pic">'
             html +='           <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
             pic++;
-	        html +='       	<img src="/ro/img/no-image.jpg">'
-	        html +='       	<span class="delete"><i class="fa-solid fa-circle-minus"></i></span>'
+	        html +='       		<img src="/ro/img/no-image.jpg">'
+        	html +='       		<span class="delete" ><i class="fa-solid fa-circle-minus"></i></span>'
 	        html +='     	</div>'
 	        html +='   	 	<div class="pic">'
-            html +='           <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
+            html +='            <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
             html +='       		<img src="/ro/img/no-image.jpg">'
-	        html +='        	<span class="delete"><i class="fa-solid fa-circle-minus"></i></span>'
+            html +='        	<span class="delete" ><i class="fa-solid fa-circle-minus"></i></span>'
 	        html +='      	</div>'
 	        html +='    </div>'
 		    html +='    <span class="course_delete">코스삭제</span>'
@@ -162,25 +170,20 @@
 		
 	};
 	//사진삭제
-	$(".pic .delete").click(function(){
-		alert();
+
+	$(document).on("click",".delete",function(){
 		$(this).prev('img').attr("src","/ro/img/no-image.jpg");
 		$(this).siblings('input').val("");
-	});
+	})
 
-	
+
 	$(document).on("click",".course_delete",function(){
-	var idx = $(this).parent("div").index()
+	idx = $(this).parent("div").index()
         if(confirm('코스 삭제?')) {
       	  $(this).parent("div").remove();
             courseIdx=0;
              courseArr.splice(i,1);
-            displayCouses(courseArr);
-             removeAllChildNods(courseList);
-             for(var i=0; i<courseArr.length; i++){
-                 courseList.appendChild(getListItem(courseIdx++, courseArr[i]));
-
-             }
+           
            
          }
 

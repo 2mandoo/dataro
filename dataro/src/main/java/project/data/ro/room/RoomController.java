@@ -40,10 +40,11 @@ public class RoomController {
 	}
 	//모임방채팅글쓰기
 	@RequestMapping("/chatWrite")
-	public String chatWrite(ReplyVO vo,@RequestParam int room_no) {
-		vo.setMember_no(5);
+	public String chatWrite(ReplyVO vo) {
 		rpservice.insert(vo);
-		System.out.println("*************방번호"+room_no);
-		return "redirect:/room/view?room_no="+room_no+"&member_no="+1;
+		
+		System.out.println("*************방번호"+vo.getRoom_no());
+		
+		return "redirect:/room/view?room_no="+vo.getRoom_no()+"&member_no="+1;
 	}
 }

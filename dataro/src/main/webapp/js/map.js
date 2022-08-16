@@ -1,8 +1,8 @@
 // ^^ 코스 주소를 담을 배열, 인덱스
 var courseArr = [],
    courseIdx = 0,
-   courseList = document.getElementById('courseList');
-
+   courseList = document.getElementById('courseList'),
+   count=0;
 // ^^ java로 보내기
 function send(courseArr){
    $.ajax({
@@ -123,16 +123,21 @@ function displayPlaces(places) {
             });
 
             // ^^ 코스 추가
-            kakao.maps.event.addListener(marker, 'click', function() {
-	//			String a[]={place.place_name,place.address_name,place.phone}
-                if(confirm('코스 추가?')) {
-                   courseArr.push(place);
-                    writebox(courseIdx++,place);
-                     
-                   //courseList.appendChild(getListItem(courseIdx++, place));
-                }
-            });
-
+				
+	            kakao.maps.event.addListener(marker, 'click', function() {
+				if(count<5){
+						//			String a[]={place.place_name,place.address_name,place.phone}
+		                if(confirm('코스 추가?')) {
+		                   courseArr.push(place);
+		                    writebox(courseIdx++,place);
+		                    count++;
+		                   //courseList.appendChild(getListItem(courseIdx++, place));
+		                }
+				}else{
+						alert("코스는 최대5개까지 등록 가능합니다.")							
+						}
+	            });
+			
             itemEl.onmouseover =  function () {
                 displayInfowindow(marker, place.place_name);
             };

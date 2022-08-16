@@ -65,9 +65,7 @@
 			            </div>
                      </div>
                     <div class="write_detail">
-                    	<div class="scroll">
-	                       	
-                        </div>
+                    	<div class="scroll"></div>
                     </div>
                  <!--//지도,글쓰기-->
 				 <a href="javascript:displayCouses(courseArr);">마커표시</a>
@@ -88,21 +86,9 @@
 
 	var i = 1;
 	var pic =1;
+
 	$(function(){
 
-	//사진추가
-		/*
-		var count=0;
-		$('.pic_wrap .plus').click(function(){
-			if(count<2){
-				count++;
-				$('.pic_wrap').append("<div class='pic'>"+($('.pic').html())+"</div>");
-				console.log(count)
-			}else{
-				$('.pic_wrap .plus').hide();
-			}
-		
-		})*/
 	})			
 	
 	//체크박스on
@@ -114,7 +100,7 @@
 	
 
 	function writebox(index,places){
-		console.log(places)
+		
 		var html ='<div class="set">'
 			html +='<span class="jk"></span>'
 			html +='<div class="map_list">'
@@ -157,12 +143,11 @@
 				var reader = new FileReader();
 				reader.onload = function(e){
 				    $('.'+className+'').next('img').attr("src", e.target.result);
-
 				}
 				   reader.readAsDataURL(input.files[0]);
 			};
-		
 	};
+	
 	//사진삭제
 	$(".pic .delete").click(function(){
 		alert();
@@ -170,22 +155,14 @@
 		$(this).siblings('input').val("");
 	});
 
-
+	// 글쓰기+사진+코스 삭제
 	$(document).on("click",".course_delete",function(){
-	idx = $(this).parent("div").index()
+		var idx = $(this).parent("div").index()
         if(confirm('코스 삭제?')) {
-      	  $(this).parent("div").remove();
+      		$(this).parent("div").remove();
             courseIdx=0;
-             courseArr.splice(i,1);
-            displayCouses(courseArr);
-             removeAllChildNods(courseList);
-             for(var i=0; i<courseArr.length; i++){
-                 courseList.appendChild(getListItem(courseIdx++, courseArr[i]));
-
-             }
-           
-         }
-
+            courseArr.splice(idx,1);
+        }
 	})
 </script>
 

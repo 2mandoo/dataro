@@ -1,9 +1,9 @@
 // ^^ 코스 주소를 담을 배열, 인덱스
 var courseArr = [],
    courseIdx = 0,
-   courseList = document.getElementById('courseList'),
    count=0;
-// ^^ java로 보내기
+   
+// ^^ java 컨트롤러로 코스주소들 보내기
 function send(courseArr){
    $.ajax({
       url : "print.do",
@@ -19,10 +19,8 @@ function send(courseArr){
       error: function(){
          console.log("에러");
       }
-      
    })
 };
-
 
 // 마커를 담을 배열입니다
 var markers = [];
@@ -86,11 +84,10 @@ function placesSearchCB(data, status, pagination) {
 // 검색 결과 목록과 마커를 표출하는 함수입니다
 function displayPlaces(places) {
    
-    var listEl = document.getElementById('placesList'), 
-       menuEl = document.getElementById('menu_wrap'),
-       fragment = document.createDocumentFragment(), 
-       bounds = new kakao.maps.LatLngBounds(), 
-       listStr = '';
+    var listEl = document.getElementById('placesList'),   // 지도 오른쪽에 지도검색결과 리스트 출력하는곳
+    	menuEl = document.getElementById('menu_wrap'),
+    	fragment = document.createDocumentFragment(), 
+    	bounds = new kakao.maps.LatLngBounds();
     
     menuEl.style.display = "";
     
@@ -106,6 +103,7 @@ function displayPlaces(places) {
         var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
             marker = addMarker(placePosition, i), 
             itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
+        
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
@@ -123,26 +121,17 @@ function displayPlaces(places) {
             });
 
             // ^^ 코스 추가
-				
-	            kakao.maps.event.addListener(marker, 'click', function() {
+            kakao.maps.event.addListener(marker, 'click', function() {
 				if(count<5){
-						//			String a[]={place.place_name,place.address_name,place.phone}
-		                if(confirm('코스 추가?')) {
-		                   courseArr.push(place);
-		                    writebox(courseIdx++,place);
-		                    count++;
-		                   //courseList.appendChild(getListItem(courseIdx++, place));
-		                }
-		                //코스의 순서작성하는중
-		                var i=$(".scroll > div").length
-						for(var j=1;j<i;j++){
-							$(".jk").html(j)
-							console.log("갯수"+j)
-						}
+		        	if(confirm('코스 추가?')) {
+		                courseArr.push(place);
+		                writebox(courseIdx++,place);
+		                count++;
+		            }
 				}else{
 						alert("코스는 최대5개까지 등록 가능합니다.")							
-						}
-	            });
+				}
+            });
 			
             itemEl.onmouseover =  function () {
                 displayInfowindow(marker, place.place_name);
@@ -170,27 +159,25 @@ function displayPlaces(places) {
     map.setBounds(bounds);
 }
 
-
-
 //^^ 코스에 담은거 마커로 지도에 표시
 function displayCouses(places){
-   
 
    var listEl = document.getElementById('placesList'), 
        menuEl = document.getElementById('menu_wrap'),
        fragment = document.createDocumentFragment(), 
        bounds = new kakao.maps.LatLngBounds(); 
-      // listStr = '';
    
-   
+   //검색결과 메뉴 안보이게 하기
+   menuEl.style.display = "";
+
    // 검색 결과 목록에 추가된 항목들을 제거합니다
    removeAllChildNods(listEl);
 
    // 지도에 표시되고 있는 마커를 제거합니다
    removeMarker();
    
-   //검색결과 메뉴 안보이게 하기
-   menuEl.style.display = "none";
+   // ^^ 패이징한거 삭제
+   document.getElementById('pagination').innerText="";
    
    for ( var i=0; i<places.length; i++ ) {
 
@@ -215,18 +202,15 @@ function displayCouses(places){
                infowindow.close();
            });
    
-            // ^^ 코스 삭제
+           // ^^ 코스 삭제
            kakao.maps.event.addListener(marker, 'click', function() {
+                /* 삭제를 글쓰키칸에서 하게 만들자.
                 if(confirm('코스 삭제?')) {
-                   courseIdx=0;
-                    courseArr.splice(i,1);
-                   displayCouses(courseArr);
-                    removeAllChildNods(courseList);
-                    for(var i=0; i<courseArr.length; i++){
-                        courseList.appendChild(getListItem(courseIdx++, courseArr[i]));
-
-                    }
+                	courseIdx=0;
+                	courseArr.splice(i,1);
+                	displayCouses(courseArr);
                 }
+                */
            });
    
            itemEl.onmouseover =  function () {
@@ -243,8 +227,14 @@ function displayCouses(places){
            };
    
        })(marker, places[i], i);
-       
-   }
+        
+        fragment.appendChild(itemEl);
+    }
+
+    // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
+    listEl.appendChild(fragment);
+    menuEl.scrollTop = 0;
+
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     map.setBounds(bounds);
 }
@@ -312,7 +302,7 @@ function displayPagination(pagination) {
     while (paginationEl.hasChildNodes()) {
         paginationEl.removeChild (paginationEl.lastChild);
     }
-
+	
     for (i=1; i<=pagination.last; i++) {
         var el = document.createElement('a');
         el.href = "#";

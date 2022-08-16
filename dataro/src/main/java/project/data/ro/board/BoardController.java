@@ -134,7 +134,7 @@ public class BoardController {
 	}
 	
 	
-	// main from 호윤
+	// main from 호윤 + 정길
 	@GetMapping("/main.do")
 	public String mainGet(Model model, BoardVO vo, MessageVO mvo, HttpSession sess) {
 		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");

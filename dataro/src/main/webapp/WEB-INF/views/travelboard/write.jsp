@@ -135,6 +135,7 @@
 			$('.scroll').append(html);
 			 
 	}
+	// 됐나?
 
 	//사진미리보기
 	function readInputFile(input){

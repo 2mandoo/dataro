@@ -9,7 +9,7 @@
 				<c:if test="${loginInfo.member_no ne chat.member_no}">
 					<span>${chat.member_no }</span>
 					<span>${chat.member_id }</span>
-				</c:if>
+				</c:if><!-- 야호 -->
 				<span>${chat.content}</span>
 				<span>${chat.reply_writedate}</span>
 			</li>

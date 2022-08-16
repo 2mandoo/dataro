@@ -25,7 +25,7 @@ function myList() {
 	var stype= $('#stype').val();
 	var sword= $('#sword').val();
 	$.ajax({
-			url : '/ro/board/myList4',
+		url : '/ro/board/myList4',
 		type : 'post',
 		data : {
 			stype : stype,

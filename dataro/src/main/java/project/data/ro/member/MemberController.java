@@ -277,10 +277,13 @@ public class MemberController {
 	}
 	
 	
-	@PostMapping("/alarm")
-	public String alarm(MessageVO vo, Model model) {
+	@RequestMapping("/alarm")
+	public String alarm(MessageVO vo, Model model, HttpSession sess) {
+		MemberVO vo1 = (MemberVO)sess.getAttribute("loginInfo");
+		int num = vo1.getMember_no();
+		vo.setReceive_member_no(num);
 		model.addAttribute("list", service.unreadMsgContent(vo));
-		return "board/ararm";
+		return "board/alarm";
 	}
 	
 }

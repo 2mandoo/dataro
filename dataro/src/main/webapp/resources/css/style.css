@@ -104,7 +104,7 @@ header .inner #theNumberOfMsg{position:relative; bottom:10px; right:5px;}
 
 .modal-content{
     background-color: #fff;
-    width: 400px;
+    width: 800px;
     border-radius: 10px;
     position: absolute;
     top: 50%;

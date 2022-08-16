@@ -83,8 +83,10 @@
 	</select>
 	<!-- 읽지않은 쪽지내용 -->
 	<select id="unreadMsgContent" parameterType="project.data.ro.message.MessageVO" resultType="project.data.ro.message.MessageVO">
-		select send_member_no, message_content from pmessage p where receive_member_no=#{receive_member_no} and readdate is null;	
+		select * from pmessage p where receive_member_no=#{receive_member_no} and readdate is null;	
 	</select>
+	
+	
 	
 
 </mapper>

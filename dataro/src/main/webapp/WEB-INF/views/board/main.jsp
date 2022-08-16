@@ -30,7 +30,7 @@ $(function(){
 	
 	$('#alarmForUser').click(function(){
 		$.ajax({
-			url : '/ro/board/myList1',
+			url : '/ro/member/alarm',
 			type : 'post',
 			data : {},
 			success : function(e) {

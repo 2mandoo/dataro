@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import project.data.ro.message.MessageVO;
 import project.data.ro.util.SendMail;
 
 @Slf4j
@@ -88,6 +89,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO myInfo2(int no) {
 		return mapper.myInfo2(no);
+	}
+
+	@Override
+	public int alarmForMessage(MessageVO vo) {
+		return mapper.alarmForMessage(vo);
 	}
 	
 }

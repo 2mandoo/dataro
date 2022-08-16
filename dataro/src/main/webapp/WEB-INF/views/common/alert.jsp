@@ -9,4 +9,5 @@
 	<c:if test="${empty url}">
 	history.back();
 	</c:if>
+	${alarmForMsg}
 </script>

@@ -22,10 +22,38 @@
 	} */
 	
 $(function(){
+/* 	console.log("${loginInfo}");
+	if (${!empty loginInfo }){
+		
+		alert(1);
+		theNumberOfMessages();
+	} */
+	
 	$('#idImg').click(function(){
 		location.href="/ro/member/myPage";
-	})
+	});
 });
+	
+/* function theNumberOfMessages(){
+	$.ajax({
+		url : '/ro/board/main.do',
+		type : 'get',
+		data : {},
+		success : function(e) {
+			alert(1);
+			$('#areaForMsg').html(e);
+		},
+		error : function(e){
+			alert(`error`);
+		}
+	});
+}  */
+
+
+
+
+
+
 </script>
 </head>
 <body>
@@ -56,7 +84,9 @@ $(function(){
             	</c:otherwise>
 			</c:choose>            
             <a href="#">
+            	<span id="areaForMsg"></span>
             	<img src ="/ro/img/alarm.png" width="50px">
+            	<span id="theNumberOfMsg"> ${theNumberOfMsg }</span>
             </a>
             <a href="/ro/board/travelWrite.do">
             	<img src ="/ro/img/write.png" width="50px">

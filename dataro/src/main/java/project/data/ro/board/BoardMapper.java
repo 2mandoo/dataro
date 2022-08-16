@@ -27,12 +27,18 @@ public interface BoardMapper {
 	List<MessageVO> myList5(MessageVO vo);
 	List<RoomVO> myList6(RoomVO vo);
 	
+	
 	// main 
 	List<BoardVO> list(BoardVO vo);
+	
 	
 	// write
 	int insert(BoardVO vo);
 	int insertCourse(BoardVO vo);
+	
+
+	
+	
 	
 
 	

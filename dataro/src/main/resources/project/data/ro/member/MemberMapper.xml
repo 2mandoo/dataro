@@ -75,6 +75,14 @@
 	<delete id="deleteId" parameterType="project.data.ro.member.MemberVO">
 		delete from pmember where id = #{id}
 	</delete>
+	
 
+		<!-- 안 읽은 쪽지갯수 -->
+	<select id="alarmForMessage" parameterType="project.data.ro.message.MessageVO" resultType="int">
+		select count(*) from pmessage p where receive_member_no=#{receive_member_no} and readdate is null
+	</select>
+	
+	
+	
 
 </mapper>

@@ -78,6 +78,8 @@
 /* header */
 header .inner{margin:0 auto;width: 1020px;display: flex;justify-content: space-between;}
 header ul li{display: inline-block;}
+header .inner #theNumberOfMsg{position:relative; bottom:10px;}
+
 
 /* main */
 .main .cnt_set{width:33.3%; display: inline-block; float: left; margin-top: 2cm;}

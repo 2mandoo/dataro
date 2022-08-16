@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.extern.slf4j.Slf4j;
 import project.data.ro.board.BoardService;
 import project.data.ro.board.BoardVO;
+import project.data.ro.message.MessageVO;
 
 @Controller
 @Slf4j
@@ -30,7 +31,7 @@ public class MemberController {
 	
 	@Autowired
 	BoardService bService;
-	
+
 	@GetMapping("/register")
 	public void insert() {}
 	
@@ -130,7 +131,7 @@ public class MemberController {
 	public void login() {}
 	
 	@PostMapping("/login")
-	public String login(MemberVO vo, HttpSession sess, Model model) {
+	public String login(MemberVO vo, HttpSession sess, Model model, MessageVO mvo) {
 		if(service.loginCheck(vo, sess)) {
 			MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
 			model.addAttribute("msg",  vo1.getNickname() + " 님 안녕하세요 : ) ");
@@ -210,7 +211,7 @@ public class MemberController {
 		vo.setEmail(email);
 		if (service.editUserInfo(vo)) {
 			model.addAttribute("msg",  "회원정보 수정이 완료되었습니다.");
-			model.addAttribute("url", "main");
+			model.addAttribute("url", "/ro/board/main.do");
 			sess.setAttribute("loginInfo", vo); // 세션에 바뀐 값 덮어쓰기.
 			return "common/alert";
 		} else {
@@ -274,5 +275,8 @@ public class MemberController {
 		model.addAttribute("data", bService.index(vo));
 		return "board/index";
 	}
+	
+	
+	
 	
 }

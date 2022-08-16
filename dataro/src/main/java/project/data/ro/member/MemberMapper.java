@@ -1,5 +1,7 @@
 package project.data.ro.member;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import project.data.ro.message.MessageVO;
@@ -20,5 +22,6 @@ public interface MemberMapper {
 	
 	
 	int alarmForMessage(MessageVO vo);
+	List<MessageVO> unreadMsgContent(MessageVO vo);
 	
 }

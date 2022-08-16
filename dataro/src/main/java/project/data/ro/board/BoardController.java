@@ -134,7 +134,7 @@ public class BoardController {
 	}
 	
 	
-	// main from 호윤 + 정길
+	// main 
 	@GetMapping("/main.do")
 	public String mainGet(Model model, BoardVO vo, MessageVO mvo, HttpSession sess) {
 		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
@@ -144,7 +144,7 @@ public class BoardController {
 			mvo.setReceive_member_no(num);
 			int num2 = mService.alarmForMessage(mvo);
 			String result = String.valueOf(num2); 
-			model.addAttribute("theNumberOfMsg", result);
+			model.addAttribute("UnreadMsgs", result);
 			return "board/main";
 		}
 		return "board/main";

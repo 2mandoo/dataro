@@ -277,6 +277,10 @@ public class MemberController {
 	}
 	
 	
-	
+	@PostMapping("/alarm")
+	public String alarm(MessageVO vo, Model model) {
+		model.addAttribute("list", service.unreadMsgContent(vo));
+		return "board/ararm";
+	}
 	
 }

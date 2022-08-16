@@ -1,5 +1,7 @@
 package project.data.ro.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
@@ -95,5 +97,12 @@ public class MemberServiceImpl implements MemberService {
 	public int alarmForMessage(MessageVO vo) {
 		return mapper.alarmForMessage(vo);
 	}
+
+	@Override
+	public List<MessageVO> unreadMsgContent(MessageVO vo) {
+		return mapper.unreadMsgContent(vo);
+	}
+
+	
 	
 }

@@ -1,5 +1,7 @@
 package project.data.ro.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import project.data.ro.message.MessageVO;
@@ -17,6 +19,8 @@ public interface MemberService {
 	int deleteId(MemberVO vo);
 	
 	int alarmForMessage(MessageVO vo);
+	List<MessageVO> unreadMsgContent(MessageVO vo);
+
 
 
 }

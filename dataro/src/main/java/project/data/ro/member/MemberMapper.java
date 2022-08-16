@@ -1,6 +1,10 @@
 package project.data.ro.member;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
+
+import project.data.ro.message.MessageVO;
 
 @Mapper
 public interface MemberMapper {
@@ -15,4 +19,9 @@ public interface MemberMapper {
 	MemberVO findPwd(MemberVO vo);
 	int updateTempPwd(MemberVO vo); 
 	int deleteId(MemberVO vo);
+	
+	
+	int alarmForMessage(MessageVO vo);
+	List<MessageVO> unreadMsgContent(MessageVO vo);
+	
 }

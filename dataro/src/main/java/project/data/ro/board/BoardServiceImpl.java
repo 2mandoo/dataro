@@ -205,4 +205,6 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.list(vo);
 	}
 
+
+
 }

@@ -28,7 +28,6 @@ import project.data.ro.util.UtilService;
 @RequestMapping("/board")
 public class BoardController {
 	
-	// @@ 정길 커밋 ㅋ
 	@Autowired
 	BoardService service;
 	
@@ -38,6 +37,10 @@ public class BoardController {
 	@Autowired
 	UtilService uservice;
 	
+	
+	
+	
+
 	
 	//여행코스 글쓰기화면
 	@GetMapping("/travelWrite.do")
@@ -131,10 +134,19 @@ public class BoardController {
 	}
 	
 	
-	// main from 호윤
+	// main 
 	@GetMapping("/main.do")
-	public String mainGet(Model model, BoardVO vo) {
+	public String mainGet(Model model, BoardVO vo, MessageVO mvo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
 		model.addAttribute("list",service.list(vo));
+		if (vo1 != null) {
+			int num = vo1.getMember_no();
+			mvo.setReceive_member_no(num);
+			int num2 = mService.alarmForMessage(mvo);
+			String result = String.valueOf(num2); 
+			model.addAttribute("UnreadMsgs", result);
+			return "board/main";
+		}
 		return "board/main";
 	}
 	

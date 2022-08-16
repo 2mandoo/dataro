@@ -28,6 +28,9 @@ public interface BoardService {
 	// write
 	boolean insert(BoardVO bvo);
 	
+	
+
+	
 
 
 }

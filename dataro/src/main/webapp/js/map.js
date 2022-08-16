@@ -133,12 +133,6 @@ function displayPlaces(places) {
 		                    count++;
 		                   //courseList.appendChild(getListItem(courseIdx++, place));
 		                }
-		                //코스의 순서작성하는중
-		                var i=$(".scroll > div").length
-						for(var j=1;j<i;j++){
-							$(".jk").html(j)
-							console.log("갯수"+j)
-						}
 				}else{
 						alert("코스는 최대5개까지 등록 가능합니다.")							
 						}

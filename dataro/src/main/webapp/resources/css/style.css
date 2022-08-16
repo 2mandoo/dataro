@@ -4,15 +4,14 @@
 #wrap .content{display: inline-block;width: 1200px;}
 /*여행코스 글쓰기*/
 .tv_write form{display: inline-block;width: 100%;}
-.tv_write .title{border-bottom: 1px solid #eee;padding:40px 0}
+.tv_write .title{border-bottom: 1px solid #eee;padding:40px 0;display: flex;}
 .tv_write .title .title_top{display: flex;justify-content: space-between;align-items: center}
-.tv_write .title .user{display: inline-block;vertical-align: middle;margin:0 20px;}
-.tv_write .title .user .user_img{display: inline-block;width: 80px;height: 80px;background: gray;vertical-align: middle;border-radius:50px;margin-right:15px}
+.tv_write .title .user{display: inline-block;margin:0 20px;text-align: center;}
+.tv_write .title .user .user_img{display: inline-block;width: 80px;height: 80px;background: gray;vertical-align: middle;border-radius:50px}
 .tv_write .title .user .user_img img{width:100%}
-.tv_write .title .user p{display: inline-block;font-weight: 500;font-size: 27px;vertical-align: middle;}
+.tv_write .title .user p{font-weight: 500;font-size:20px}
 .tv_write .title .title_text{width: 500px;height:60px;}
-.tv_write .title .hash_wrap{display:inline-block;width:100%}
-.tv_write .title .hash{display:inline-block;width:100%}
+.tv_write .title .hash{display:inline-block}
 .tv_write .title .hash input[type=checkbox]{opacity:0}
 .tv_write .title .hash label{display:inline-block;border:1px solid #eee;padding:10px 12px 10px 0px;border-radius:50px;margin:0 5px 10px 5px}
 .tv_write .title .hash label.on{background:#eee}

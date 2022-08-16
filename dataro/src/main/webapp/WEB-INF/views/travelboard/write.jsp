@@ -21,7 +21,7 @@
                 <div class="title">
                 	<div class="title_top">
 	                    <span class="user">
-	                        <div class="user_img"><img src="/ro/upload/${loginInfo.m_filename_server}"></div>
+	                        <div class="user_img"><img src="/ro/img/${loginInfo.m_filename_server}"></div>
 	                        <p>${loginInfo.nickname }</p>
 	                    </span>
 	                    <input type="text" name="title" id="title" class="title_text" value="string">
@@ -112,9 +112,11 @@
 		}
 	})
 	
+
 	function writebox(index,places){
 		console.log(places)
 		var html ='<div class="set">'
+			html +='<span class="jk"></span>'
 			html +='<div class="map_list">'
 			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
 					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';
@@ -168,9 +170,9 @@
 		$(this).siblings('input').val("");
 	});
 
-	
+
 	$(document).on("click",".course_delete",function(){
-	var idx = $(this).parent("div").index()
+	idx = $(this).parent("div").index()
         if(confirm('코스 삭제?')) {
       	  $(this).parent("div").remove();
             courseIdx=0;

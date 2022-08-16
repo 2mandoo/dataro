@@ -123,24 +123,27 @@ function displayPlaces(places) {
             });
 
             // ^^ 코스 추가
-
-            kakao.maps.event.addListener(marker, 'click', function() {
-
-				if(count<6){
-					//			String a[]={place.place_name,place.address_name,place.phone}
-	                if(confirm('코스 추가?')) {
-	                   courseArr.push(place);
-	                    writebox(courseIdx++,place);
-	                   count++;
-	                   //courseList.appendChild(getListItem(courseIdx++, place));
-	                   	console.log(count)
-	                }
+				
+	            kakao.maps.event.addListener(marker, 'click', function() {
+				if(count<5){
+						//			String a[]={place.place_name,place.address_name,place.phone}
+		                if(confirm('코스 추가?')) {
+		                   courseArr.push(place);
+		                    writebox(courseIdx++,place);
+		                    count++;
+		                   //courseList.appendChild(getListItem(courseIdx++, place));
+		                }
+		                //코스의 순서작성하는중
+		                var i=$(".scroll > div").length
+						for(var j=1;j<i;j++){
+							$(".jk").html(j)
+							console.log("갯수"+j)
+						}
 				}else{
-					alert("코스추가끝")
-				}
-
-            });
-
+						alert("코스는 최대5개까지 등록 가능합니다.")							
+						}
+	            });
+			
             itemEl.onmouseover =  function () {
                 displayInfowindow(marker, place.place_name);
             };

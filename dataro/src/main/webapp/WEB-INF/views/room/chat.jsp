@@ -3,24 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="chat_list" style="board:1px solid red">
-	<table>
-		<colgroup>
-			<col width="200px">
-			<col width="*">
-			<col width="100px">
-			<col width="100px">
-			<col width="100px">
-		</colgroup>
+	<ul>
 		<c:forEach var="chat" items="${list}">
-			<tr>
-				<td>${chat.member_id }</td>
-				<td>
-					${chat.content}
-				</td>
-				<td>${chat.reply_writedate}</td>
-				<td><a href="javascript:chatUpdate(${chat.member_no })"></a>수정</td>
-				<td>삭제</td>
-			</tr>
+			<li <c:if test="${loginInfo.member_no eq chat.member_no}">class="me"</c:if>>
+				<c:if test="${loginInfo.member_no ne chat.member_no}">
+					<span>${chat.member_no }</span>
+					<span>${chat.member_id }</span>
+				</c:if>
+				<span>${chat.content}</span>
+				<span>${chat.reply_writedate}</span>
+			</li>
 		</c:forEach>
-	</table>
+	</ul>
 </div>

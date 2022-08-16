@@ -37,19 +37,23 @@ public class BoardController {
 	@Autowired
 	UtilService uservice;
 	
-	
-	
-	
-
-	
 	//여행코스 글쓰기화면
 	@GetMapping("/travelWrite.do")
 	public String write() {
 		return "travelboard/write";
 	}
+	
 	// 여행코스 글쓰기 from 진콩
 	@PostMapping("/insert.do")
-	public String insert(BoardVO bvo,CategoryVO cvo,@RequestParam List<Integer> hashtag_no,FileVO fvo,@RequestParam MultipartFile[] filename, HttpServletRequest req) {
+	public String insert(BoardVO bvo,CategoryVO cvo,@RequestParam List<Integer> hashtag_no,
+				FileVO fvo,@RequestParam MultipartFile[] filename, HttpServletRequest req) {
+		
+//		System.out.println("+=+=+=bvo==" + bvo);
+//		System.out.println("+=+=+=cvo==" + cvo);
+//		System.out.println("+=+=+=fvo==" + fvo);
+//		System.out.println("+=+=+=hashtag_no==" + hashtag_no);
+//		System.out.println("+=+=+=filename==" + filename);
+		
 		service.insert(bvo);
 		uservice.insert(cvo,bvo,hashtag_no);
 		uservice.fileupload(fvo, filename, req,bvo);

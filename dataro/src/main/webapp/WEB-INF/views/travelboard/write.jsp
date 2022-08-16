@@ -24,15 +24,16 @@
 	                        <div class="user_img"><img src="/ro/img/${loginInfo.m_filename_server}"></div>
 	                        <p>${loginInfo.nickname }</p>
 	                    </span>
-	                    <input type="text" name="title" id="title" class="title_text" value="string">
+	                    <input type="text" name="title" id="title" class="title_text" value="제목적자~~">
 	                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
                     </div>
                     <div class="hash">
-                    		<% String[] hash ={"자전거 코스","드라이브 코스","뚜벅이 코스","가족과함께","연인과함께","친구과함께","자연","반려동물","레포츠","1박2일","당일치기","축제","식도락","역사" }; %>
+                    		<!--
                     		<c:forEach var="hash" items="${hash}" varStatus="status">
                     			<label><input type="checkbox" id="hash1" name="hashtag_no" value="${status.count}">#${hash}</label>
                     		</c:forEach>
-                    		<!-- 
+                    		-->
+                    		<input type="hidden" name="hashtag_no" value="0">
 	                    	<label><input type="checkbox" id="hash1" name="hashtag_no" value="1">#자전거 코스</label>
 	                    	<label><input type="checkbox" id="hash2" name="hashtag_no" value="2">#드라이브 코스</label>
 	                    	<label><input type="checkbox" id="hash3" name="hashtag_no" value="3">#뚜벅이 코스</label>
@@ -47,7 +48,7 @@
 	                    	<label><input type="checkbox" id="hash12" name="hashtag_no" value="12">#축제</label>
 	                    	<label><input type="checkbox" id="hash13" name="hashtag_no" value="13">#식도락</label>
 	                    	<label><input type="checkbox" id="hash14" name="hashtag_no" value="14">#역사</label>
-	                    	 -->
+	                    	 
                     </div>
                 </div>
                 <!--//제목-->
@@ -66,7 +67,8 @@
                     <!-- //지도 -->
                     <div class="seracLocation">
                       	<div>
-			                 <input type="text" value="종각역" id="keyword" size="15"> 
+                      		<!-- 엔터로 검색가능하게 바꿈 -->
+			                 <input type="text" value="종각역 맛집" id="keyword" onkeyup="enterkey()" size="15"> 
 			                 <a onclick="jacascript:searchPlaces()"><i class="fa-solid fa-magnifying-glass"></i></a>
 			            </div>
                      </div>
@@ -90,7 +92,6 @@
 		AH.submit();
 	};
 
-	var i = 1;
 	var pic =1;
 
 	$(function(){
@@ -137,7 +138,6 @@
 		    html +='    <span class="course_delete">코스삭제</span>'
 	        html +='</div>'
 	        pic++;
-			i++;
 			$('.scroll').append(html);
 			 
 	}
@@ -156,7 +156,6 @@
 	};
 	
 	//사진삭제
-
 	$(document).on("click",".delete",function(){
 		$(this).prev('img').attr("src","/ro/img/no-image.jpg");
 		$(this).siblings('input').val("");
@@ -169,6 +168,8 @@
       		$(this).parent("div").remove();
             courseIdx=0;
             courseArr.splice(idx,1);
+            count--;
+            console.log(count);
         }
 	})
 </script>

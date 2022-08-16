@@ -3,7 +3,7 @@
 <mapper namespace="project.data.ro.map.MapMapper">
 
 	<insert id="insert" parameterType="project.data.ro.map.MapVO">
-		INSERT INTO  maptest 
+		INSERT INTO  pmap 
 		( boardno ,
 		 address_name ,
 		 category_group_code ,
@@ -33,7 +33,7 @@
 	</insert>
 	
 	<select id="list"  resultType="project.data.ro.board.BoardVO">
-		SELECT * FROM maptest
+		SELECT * FROM pmap
 		
 	</select>
 </mapper>

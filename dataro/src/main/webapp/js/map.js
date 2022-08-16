@@ -1,25 +1,25 @@
 // ^^ 코스 주소를 담을 배열, 인덱스
 var courseArr = [],
-   courseIdx = 0,
-   count=0;
+	courseIdx = 0,
+	count=0;
    
 // ^^ java 컨트롤러로 코스주소들 보내기
 function send(courseArr){
-   $.ajax({
-      url : "print.do",
-      type : "post",
-      data: {
-         'json' : JSON.stringify(courseArr)
-      },
-      dataType: 'json',
-      success : function(res){
-         console.log(res);
-         console.log(typeof res);
-      },
-      error: function(){
-         console.log("에러");
-      }
-   })
+	$.ajax({
+		url : "../map/print.do",
+		type : "post",
+		data: {
+			'json' : JSON.stringify(courseArr)
+		},
+		dataType: 'json',
+		success : function(res){
+			console.log(res);
+			console.log(typeof res);
+		},
+		error: function(){
+			console.log("에러");
+		}
+	})
 };
 
 // 마커를 담을 배열입니다
@@ -27,9 +27,9 @@ var markers = [];
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
+		center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+		level: 3 // 지도의 확대 레벨
+	};  
 
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -55,6 +55,14 @@ function searchPlaces() {
 
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     ps.keywordSearch( keyword, placesSearchCB); 
+}
+
+
+//^^ 엔터키가 눌렸을 때 검색
+function enterkey() {
+	if (window.event.keyCode == 13) {
+    	searchPlaces();
+    }
 }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -141,9 +149,14 @@ function displayPlaces(places) {
                 infowindow.close();
             };
 
-            // ^^ 클릭시 지도이동 넣을곳
+            // ^^ 클릭시 지도이동
             itemEl.onmousedown = function(){
-                console.log(marker);
+                // 이동할 위도 경도 위치를 생성합니다 
+                var moveLatLon = new kakao.maps.LatLng(place.y, place.x);
+                
+                // 지도 중심을 부드럽게 이동시킵니다
+                // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+                map.panTo(moveLatLon);
             };
 
         })(marker, places[i]);
@@ -176,7 +189,7 @@ function displayCouses(places){
    // 지도에 표시되고 있는 마커를 제거합니다
    removeMarker();
    
-   // ^^ 패이징한거 삭제
+   // ^^ 페이징한거 안보이게
    document.getElementById('pagination').innerText="";
    
    for ( var i=0; i<places.length; i++ ) {
@@ -221,9 +234,14 @@ function displayCouses(places){
                infowindow.close();
            };
    
-           // ^^ 클릭시 지도이동 넣을곳
+           // ^^ 클릭시 지도이동
            itemEl.onmousedown = function(){
-                console.log(marker);
+                // 이동할 위도 경도 위치를 생성합니다 
+                var moveLatLon = new kakao.maps.LatLng(place.y, place.x);
+                
+                // 지도 중심을 부드럽게 이동시킵니다
+                // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+                map.panTo(moveLatLon);
            };
    
        })(marker, places[i], i);

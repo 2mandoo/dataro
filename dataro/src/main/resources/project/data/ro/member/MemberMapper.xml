@@ -29,6 +29,8 @@
 	</select>
 	
 	
+	
+	
 	<!-- 아이디로 해당하는 개인정보 가져오기 -->
 	<select id="myInfo" resultType="project.data.ro.member.MemberVO">
 		select * from pmember where id = #{id}

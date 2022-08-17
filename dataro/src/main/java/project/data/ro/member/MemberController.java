@@ -276,7 +276,7 @@ public class MemberController {
 		return "board/index";
 	}
 	
-	// s
+	
 	@PostMapping("/alarm")
 	public String alarm(MessageVO vo, Model model, HttpSession sess) {
 		MemberVO vo1 = (MemberVO)sess.getAttribute("loginInfo");

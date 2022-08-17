@@ -15,6 +15,21 @@ $(function (){
 		$(this).find('.readImg').toggle();
 		$(this).find('.unreadImg').toggle();
 	});
+	
+	$('#btn').click(function(){
+		$.ajax({
+			url:"/ro/board/myList1",
+			type:'post',
+			data:{
+				page: page,
+				sword : sword,
+				stype: stype
+			},
+			success : function(res){
+				$("#area").html(res);
+			}
+		})
+	})
 });
 </script>
 </head>
@@ -45,7 +60,7 @@ $(function (){
 		</tr>
 		</c:forEach>
 	<tr><td>&nbsp</td></tr>
-	<tr><td colspan="3"><input type="button" value="읽음처리하기"></td></tr>
+	<tr><td colspan="3"><input type="button" value="읽음처리하기" id="btn"></td></tr>
 	</table>
 </div>
 </body>

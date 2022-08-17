@@ -9,8 +9,8 @@ y.jpeg" width="30px">댓글(${reply.totalCount })</strong>  |  ${replyVO.page }/
    <table class="list">
        <colgroup>
            <col width="80px" />
-           <col width="*" />
            <col width="100px" />
+           <col width="*" />
            <col width="200px" />
        </colgroup>
        <tbody>
@@ -21,9 +21,12 @@ y.jpeg" width="30px">댓글(${reply.totalCount })</strong>  |  ${replyVO.page }/
        </c:if>
 
        <c:if test="${!empty reply.list}">
-       <c:forEach var="vo" items="${reply.list }" >
+       <c:forEach var="vo" items="${reply.list }" varStatus="idx" >
 	           <tr>
-	               <td>${vo.reply_no }</td>
+	               <td>${reply.pagingCount-(10*(replyVO.page-1))-idx.index }</td>
+	               <td class="writer">
+	                   ${vo.member_id }
+	               </td>
 	               <td class="txt_l" style="text-align:left">
 	                   <%-- ${vo.content } <c:if test="${loginInfo.member_no==vo.member_no }"><a href="javascript:commentDel(${vo.reply_no });">[삭제]</a></c:if> --%>
 	                   ${vo.content }
@@ -36,9 +39,6 @@ y.jpeg" width="30px">댓글(${reply.totalCount })</strong>  |  ${replyVO.page }/
 					   </form>
 						    <div id="replyList${vo.gno }"></div>
 					   </div>
-	               </td>
-	               <td class="writer">
-	                   ${vo.member_id }
 	               </td>
 	               <td class="date"><fmt:formatDate value="${vo.reply_writedate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 	           </tr>
@@ -60,11 +60,13 @@ y.jpeg" width="30px">댓글(${reply.totalCount })</strong>  |  ${replyVO.page }/
       	 <a href="javascript:getComment(${reply.endPage+1 });">></a>
        </c:if>
        </ul> 
+       <!-- 댓글 수정한 후 해당 페이지 불러오기 위해 page를 hidden으로 넘김 -->
+       <input type="hidden" id="page" value="${page }">
    </div>
 	<!-- 모달 -->
 	<div class="modal">
    		<div class="modal-content">
-			<a class="btn-close" href="#none">X</a>
+			<a class="btn-close" href="javascript:">X</a>
 			<h3>Edit Reply</h3>
 			<label>Reply</label> <input type="text" id="replyUpdate" placeholder="New Reply">
 			<input type="hidden" id="modal_rno" value="">
@@ -76,6 +78,7 @@ y.jpeg" width="30px">댓글(${reply.totalCount })</strong>  |  ${replyVO.page }/
 
 	$('.btn-close').click(function(){
 		$('.modal').fadeOut();
+		$("#replyUpdate").val('');
 	})
 
 	$('.replyList').click(function(){

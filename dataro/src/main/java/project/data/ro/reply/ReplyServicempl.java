@@ -55,6 +55,7 @@ public class ReplyServicempl implements ReplyService {
 		
 		Map map = new HashMap();
 		map.put("totalCount", totalCount);
+		map.put("pagingCount", pagingCount);
 		map.put("totalPage", totalPage);
 		map.put("startPage", startPage);
 		map.put("endPage", endPage);

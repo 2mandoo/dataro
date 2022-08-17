@@ -40,4 +40,6 @@ public class BoardVO {
 	// 내용여러개
 	private String[] contents;
 	private int course_no;
+	
+	private int login_member_no;
 }

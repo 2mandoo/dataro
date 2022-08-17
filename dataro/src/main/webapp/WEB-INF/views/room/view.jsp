@@ -49,17 +49,9 @@ function getchat(){
 			$("#chatArea").html(res)
 		}
 	})
+	setTimeout(getchat,1000)
 }
 
-function chatUpdate(){
-	
-	$.ajax({
-		url:"ro/room/chatUpdate",
-		success:function(res){
-			$("#chatArea").html(res)
-		}
-	})
-}
 </script>
 
 </body>

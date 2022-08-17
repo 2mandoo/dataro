@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.*"%>
 <%
-String saveDirectory = application.getRealPath("/img"); // 실제 파일이 저장된 경로
+String saveDirectory = application.getRealPath("/upload"); // 실제 파일이 저장된 경로
 String saveFilename = request.getParameter("sName"); // 실제 서버에 저장된 파일명
 String originalFilename = request.getParameter("oName"); // 사용자가 첨부한 원본파일명
 

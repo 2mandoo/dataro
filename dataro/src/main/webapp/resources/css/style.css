@@ -71,6 +71,7 @@
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 
+
 /*모임방상세보기,채팅*/
 .room_view{background:#d6e2f9;padding: 40px;}
 .room_view article{background: #fff;border-radius: 15px;padding: 15px 30px;}
@@ -82,6 +83,21 @@
 .chat_list li{text-align:left;background: #fff;border-radius: 15px;padding:15px;margin-bottom:13px;font-size: 16px;}
 .chat_list li.me{text-align:right;background: #fff4d5;}
 .chat_list li .date{font-size: 14px;color: #777}
+
+/* 지도 마커라인긋기 */
+.dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
+.dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
+.dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
+.number {font-weight:bold;color:#ee6152;}
+.dotOverlay:after {content:'';position:absolute;margin-left:-6px;left:50%;bottom:-8px;width:11px;height:8px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')}
+.distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
+.distanceInfo .label {display:inline-block;width:50px;}
+.distanceInfo:after {content:none;}
+
+
+/*모임방 채팅*/
+.chat_list li{text-align:left}
+.chat_list li.me{text-align:right}
 
 /* header */
 header .inner{margin:0 auto;width: 1020px;display: flex;justify-content: space-between;}

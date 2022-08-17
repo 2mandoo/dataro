@@ -8,34 +8,35 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-/* dd */
+
+
 $(function (){
-	$('.readImg').hide();
-	
-	$('.imgClass').click(function(){
-		$(this).find('.readImg').toggle();
-		$(this).find('.unreadImg').toggle();
-	});
-	
-	$('#btn').click(function(){
+
+	$("#btn").click(function(){
+		console.log($("#messageFrm").serialize());
 		$.ajax({
-			url:"/ro/board/myList1",
-			type:'post',
-			data:{
-				page: page,
-				sword : sword,
-				stype: stype
+ 			url : '/ro/member/readProcess',
+			type : 'post',
+			data : $("#messageFrm").serialize(),
+			success : function(e) {
+				alert("읽음 처리가 완료되었습니다.");
 			},
-			success : function(res){
-				$("#area").html(res);
+			error : function(e){
+				alert(`error`);
 			}
-		})
-	});
+ 		});
+	}); 
+	
+	
+	
+
 });
+
 </script>
 </head>
 <body>
 <div style="display:inline-block; height:200px; overflow-y:scroll;">
+<form id="messageFrm">
 	<table>
 		<colgroup>
 	        <col width="100px" />
@@ -52,17 +53,13 @@ $(function (){
 		<tr>
 			<td>${vo.send_member_no}</td>
 			<td>${vo.message_content}</td>
-			<td>
-				<a class="imgClass">
-					<img src="/ro/img/unread.png" width="20px" class="unreadImg">
-					<img src="/ro/img/read.png" width="20px" class="readImg">
-				</a>
-			</td>
+			<td><input type="checkbox" class="selected" name="message_no" value="${vo.message_no }"></td>
 		</tr>
 		</c:forEach>
 	<tr><td>&nbsp</td></tr>
 	<tr><td colspan="3"><input type="button" value="읽음처리하기" id="btn"></td></tr>
 	</table>
+</form>
 </div>
 </body>
 </html>

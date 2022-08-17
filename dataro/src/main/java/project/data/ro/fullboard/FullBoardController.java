@@ -62,7 +62,6 @@ public class FullBoardController {
 			return "common/alert";
 		}
 	}
-	
 	//등록
 	@RequestMapping("/fullboard/insert.do")
 	public String insert(FullBoardVO vo,
@@ -71,7 +70,6 @@ public class FullBoardController {
 		service.fileUpload(vo, filename, re);
 		return "redirect:/fullboard/fullmain.do";
 	}
-	
 	//수정처리폼
 	@RequestMapping("/fullboard/update.do")
 		public String update(FullBoardVO vo, Model model) {

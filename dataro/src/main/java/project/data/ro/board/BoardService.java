@@ -31,8 +31,19 @@ public interface BoardService {
 	List<HashTagVO> hash();
 	
 	
-
-	
+	//정현
+	//상세
+	Map view(BoardVO vo);
+	//게시글 좋아요
+	int clickBoardLike(BoardVO vo);
+	//게시글 싫어요
+	void clickDislike(BoardVO vo);
+	//댓글 좋아요
+	void clickReplyLike(BoardVO vo);
+	int likeCheck(BoardVO vo);
+	int dislikeCheck(BoardVO vo);
+	void likeBack(BoardVO vo);
+	void dislikeBack(BoardVO vo);
 
 
 }

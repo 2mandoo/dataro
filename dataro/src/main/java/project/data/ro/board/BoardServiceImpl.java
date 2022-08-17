@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import project.data.ro.message.MessageVO;
+import project.data.ro.room.RoomMapper;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.HashTagVO;
 
@@ -18,6 +20,8 @@ import project.data.ro.util.HashTagVO;
 public class BoardServiceImpl implements BoardService {
 	
 	BoardMapper mapper;
+	
+	RoomMapper rmapper;
 	
 	//여행코스글쓰기(for문-코스등록)
 	@Override
@@ -209,6 +213,56 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<HashTagVO> hash() {
 		return mapper.hash();
+	}
+	
+	//정현
+	//게시글 상세보기
+	@Override
+	public Map view(BoardVO vo) {
+		Map map = new HashMap();
+		
+		mapper.updateViewcount2(vo); //조회수 증가 후
+		vo.setLogin_member_no(5);
+		map.put("roomList", rmapper.list2(vo));
+		map.put("categoryList", mapper.categoryList(vo));
+		map.put("board", mapper.view2(vo));
+		return map;
+	}
+
+	@Override
+	public int clickBoardLike(BoardVO vo) {
+		return mapper.clickBoardLike(vo);
+		
+	}
+
+	@Override
+	public void clickDislike(BoardVO vo) {
+		mapper.clickDislike(vo);
+	}
+
+	@Override
+	public void clickReplyLike(BoardVO vo) {
+		mapper.clickReplyLike(vo);
+	}
+
+	@Override
+	public int likeCheck(BoardVO vo) {
+		return mapper.likeCheck(vo);
+	}
+
+	@Override
+	public void likeBack(BoardVO vo) {
+		mapper.likeBack(vo);
+	}
+
+	@Override
+	public int dislikeCheck(BoardVO vo) {
+		return mapper.dislikeCheck(vo);
+	}
+
+	@Override
+	public void dislikeBack(BoardVO vo) {
+		mapper.dislikeBack(vo);
 	}
 
 }

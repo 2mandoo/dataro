@@ -17,7 +17,7 @@ try {
 		originalFilename = new String(originalFilename.getBytes("KSC5601"), "ISO-8859-1");
 	}
 	
-	// 브라우저 헤더정보 저장
+	// 브라우저 헤더정보 저장///
 	response.reset();
 	response.setContentType("application/octet-stream");
 	response.setHeader("Content-Disposition", "attachment; filename=\""+originalFilename+"\"");

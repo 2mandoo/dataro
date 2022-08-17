@@ -1,9 +1,14 @@
 package project.data.ro.room;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import project.data.ro.member.MemberVO;
 import project.data.ro.reply.ReplyService;
@@ -45,4 +50,68 @@ public class RoomController {
 		
 		return "redirect:/room/view?room_no="+vo.getRoom_no()+"&member_no="+1;
 	}
+	
+	//정현
+	@GetMapping("/write.do")
+	public String mkRoom(RoomVO vo) {
+		vo.setBoard_name("main");
+		vo.setBoard_no(987697);
+		vo.setRoommaker_id("test2");
+		return "room/make";
+	}
+	
+	@PostMapping("/write.do")
+	public String writeRoom(RoomVO vo) {
+		System.out.println(vo);
+		rservice.makeRoom(vo);
+		
+		return "redirect:/board/view.do";
+	}
+	
+	@GetMapping("/room.do")
+	public String enterRoom(RoomVO vo, HttpSession sess) {
+		/*
+		 * MemberVO mvo = (MemberVO)sess.getAttribute("loginInfo");
+		 * vo.setRoom_participant_no(mvo.getMember_no());
+		 */
+		vo.setRoom_participant_no(5);
+		// no=[ ] 로 파라미터 넘어오니 받고 session에 있는 로그인 정보 를 이용해서 디비에 참여자 추가시켜야함.
+		int r = rservice.checkRoom(vo);
+		if(r==0) {rservice.enterRoom(vo);}
+		// if문으로 proom 디비로 로그인정보가  방넘버 만든이랑 같으면 proommember 디비에 넣지 말고 바로 리턴시켜주면 됨.
+		return "room/room";
+	}
+	@PostMapping("/room.do")
+	@ResponseBody
+	public Integer roomCheck(RoomVO vo, HttpSession sess) {
+		/*
+		 * MemberVO mvo = (MemberVO)sess.getAttribute("loginInfo");
+		 * vo.setRoom_participant_no(mvo.getMember_no());
+		 */
+		vo.setRoom_participant_no(5);
+		// no=[ ] 로 파라미터 넘어오니 받고 session에 있는 로그인 정보 를 이용해서 디비에 참여자 추가시켜야함.
+		int r = rservice.checkRoom(vo);
+		
+		return r;
+	}
+	
+	
+	
+	
+	@GetMapping("/pwdForm.do")
+	public String pwdForm(RoomVO vo) {
+		return "room/pwdCheck";
+	}
+	
+	@PostMapping("/pwdCheck.do")
+	public String pwdCheck(RoomVO vo) {
+		int r = rservice.pwdCheck(vo);
+		if(r == 1) {
+			return "redirect:/room/room.do?room_no="+vo.getRoom_no();
+		} else {
+			return "redirect:/board/view.do";
+		}
+		
+	}
+	
 }

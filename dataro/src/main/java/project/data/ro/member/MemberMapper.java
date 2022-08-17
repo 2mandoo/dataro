@@ -23,5 +23,6 @@ public interface MemberMapper {
 	
 	int alarmForMessage(MessageVO vo);
 	List<MessageVO> unreadMsgContent(MessageVO vo);
+	int readUpdate(MessageVO vo);
 	
 }

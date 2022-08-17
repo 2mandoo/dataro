@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/ro/resources/fonts/icomoon/style.css">
   <link rel="stylesheet" href="/ro/resources/css/owl.carousel.min.css">
   <link rel="stylesheet" href="/ro/resources/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/ro/resources/css/style.css">
   <link rel="stylesheet" href="/ro/resources/css/style2.css">
   <script src="/ro/js/jquery-3.3.1.min.js"></script>
   <script src="/ro/js/popper.min.js"></script>
@@ -22,7 +23,6 @@
  /*   		<c:if test="${empty loginInfo}">
   			alert('로그인 후 작성가능합니다!!');
   		</c:if> */
-  		console.log(1);
 	<c:if test="${empty loginInfo}">
   			location.href='write.do';
   		</c:if>
@@ -31,8 +31,8 @@
     <title>FULL DATARO</title>
   </head>
   <body>
-  <div class="content main">
-    <div class="container">
+  <div id="wrap">
+    <div class="content">
       <h2 class="mb-5">DATARO 게시판</h2>
       <div class="table-responsive">
         <table class="table table-striped custom-table">

@@ -31,7 +31,7 @@ public class RoomServicempl implements RoomService {
 		rmapper.enterRoom(vo);
 		return 1;
 	}
-
+ 
 	@Override
 	public List<RoomVO> list2(BoardVO vo) {
 		return rmapper.list2(vo);

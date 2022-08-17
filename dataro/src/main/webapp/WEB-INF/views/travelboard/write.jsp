@@ -50,14 +50,13 @@
                     <!-- //지도 -->
                     <div class="seracLocation">
                       	<div>
-			                 <input type="text" value="종각역" id="keyword" size="15"> 
+                      		<!-- 엔터로 검색가능하게 바꿈 -->
+			                 <input type="text" value="종각역 맛집" id="keyword" onkeyup="enterkey()" size="15"> 
 			                 <a onclick="jacascript:searchPlaces()"><i class="fa-solid fa-magnifying-glass"></i></a>
 			            </div>
                      </div>
                     <div class="write_detail">
-                    	<div class="scroll">
-	                       	
-                        </div>
+                    	<div class="scroll"></div>
                     </div>
                  <!--//지도,글쓰기-->
 				 <a href="javascript:displayCouses(courseArr);">마커표시</a>
@@ -76,23 +75,10 @@
 		AH.submit();
 	};
 
-	var i = 1;
 	var pic =1;
+
 	$(function(){
 
-	//사진추가
-		/*
-		var count=0;
-		$('.pic_wrap .plus').click(function(){
-			if(count<2){
-				count++;
-				$('.pic_wrap').append("<div class='pic'>"+($('.pic').html())+"</div>");
-				console.log(count)
-			}else{
-				$('.pic_wrap .plus').hide();
-			}
-		
-		})*/
 	})			
 	
 	//체크박스on
@@ -104,7 +90,7 @@
 	
 
 	function writebox(index,places){
-		console.log(places)
+		
 		var html ='<div class="set">'
 			html +='<span class="jk"></span>'
 			html +='<div class="map_list">'
@@ -135,10 +121,10 @@
 		    html +='    <span class="course_delete">코스삭제</span>'
 	        html +='</div>'
 	        pic++;
-			i++;
 			$('.scroll').append(html);
-			
+			 
 	}
+	// 됐나?
 
 	//사진미리보기
 	function readInputFile(input){
@@ -147,30 +133,27 @@
 				var reader = new FileReader();
 				reader.onload = function(e){
 				    $('.'+className+'').next('img').attr("src", e.target.result);
-
 				}
 				   reader.readAsDataURL(input.files[0]);
 			};
-		
 	};
+	
 	//사진삭제
-
 	$(document).on("click",".delete",function(){
 		$(this).prev('img').attr("src","/ro/img/no-image.jpg");
 		$(this).siblings('input').val("");
 	})
 
-
+	// 글쓰기+사진+코스 삭제
 	$(document).on("click",".course_delete",function(){
-	idx = $(this).parent("div").index()
+		var idx = $(this).parent("div").index()
         if(confirm('코스 삭제?')) {
-      	  $(this).parent("div").remove();
+      		$(this).parent("div").remove();
             courseIdx=0;
-             courseArr.splice(i,1);
-           
-           
-         }
-
+            courseArr.splice(idx,1);
+            count--;
+            console.log(count);
+        }
 	})
 </script>
 

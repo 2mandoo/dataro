@@ -206,9 +206,13 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.list(vo);
 	}
 
+<<<<<<< HEAD
 	@Override
 	public List<HashTagVO> hash() {
 		return mapper.hash();
 	}
+=======
+
+>>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
 
 }

@@ -51,7 +51,7 @@ function myList() {
 		error : function(e){
 			alert(`error`);
 		}
-		});
+	});
 	return false;
 }
 </script>

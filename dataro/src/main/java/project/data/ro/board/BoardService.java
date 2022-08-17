@@ -30,6 +30,9 @@ public interface BoardService {
 	boolean insert(BoardVO bvo);
 	List<HashTagVO> hash();
 	
+	
+
+	
 
 
 }

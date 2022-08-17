@@ -29,7 +29,6 @@ import project.data.ro.util.UtilService;
 @RequestMapping("/board")
 public class BoardController {
 	
-	// @@ 정길 커밋 ㅋ
 	@Autowired
 	BoardService service;
 	
@@ -38,7 +37,10 @@ public class BoardController {
 
 	@Autowired
 	UtilService uservice;
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
 	
 	//여행코스 글쓰기화면
 	@GetMapping("/travelWrite.do")
@@ -46,9 +48,12 @@ public class BoardController {
 		model.addAttribute("hash",service.hash());
 		return "travelboard/write";
 	}
+	
 	// 여행코스 글쓰기 from 진콩
 	@PostMapping("/insert.do")
-	public String insert(BoardVO bvo,CategoryVO cvo,@RequestParam List<Integer> hashtag_no,FileVO fvo,@RequestParam MultipartFile[] filename, HttpServletRequest req) {
+	public String insert(BoardVO bvo,CategoryVO cvo,@RequestParam List<Integer> hashtag_no,
+				FileVO fvo,@RequestParam MultipartFile[] filename, HttpServletRequest req) {
+
 		service.insert(bvo);
 		uservice.insert(cvo,bvo,hashtag_no);
 		uservice.fileupload(fvo, filename, req,bvo);
@@ -133,10 +138,19 @@ public class BoardController {
 	}
 	
 	
-	// main from 호윤
+	// main 
 	@GetMapping("/main.do")
-	public String mainGet(Model model, BoardVO vo) {
+	public String mainGet(Model model, BoardVO vo, MessageVO mvo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
 		model.addAttribute("list",service.list(vo));
+		if (vo1 != null) {
+			int num = vo1.getMember_no();
+			mvo.setReceive_member_no(num);
+			int num2 = mService.alarmForMessage(mvo);
+			String result = String.valueOf(num2); 
+			model.addAttribute("UnreadMsgs", result);
+			return "board/main";
+		}
 		return "board/main";
 	}
 	

@@ -258,7 +258,7 @@ public class MemberController {
 		if (service.loginCheck(vo, sess)) {
 			service.deleteId(vo);
 			model.addAttribute("msg",  "계정 삭제가 완료되었습니다.");
-			model.addAttribute("url", "main");
+			model.addAttribute("url", "/ro/board/main.do");
 			sess.invalidate();
 			return "common/alert";
 		} else {
@@ -277,7 +277,7 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping("/alarm")
+	@PostMapping("/alarm")
 	public String alarm(MessageVO vo, Model model, HttpSession sess) {
 		MemberVO vo1 = (MemberVO)sess.getAttribute("loginInfo");
 		int num = vo1.getMember_no();
@@ -285,5 +285,25 @@ public class MemberController {
 		model.addAttribute("list", service.unreadMsgContent(vo));
 		return "board/alarm";
 	}
+	
+	
+	@PostMapping("/readProcess")
+	public String readProcess(MessageVO vo,  HttpSession sess, Model model, HttpServletRequest req) {
+		MemberVO vo1 = (MemberVO)sess.getAttribute("loginInfo");
+		String[] message_noArr = req.getParameterValues("message_no");
+		for (int i=0; i<message_noArr.length; i++) {
+			int message_no = Integer.parseInt(message_noArr[i]);
+			int num = vo1.getMember_no();
+			vo.setReceive_member_no(num);
+			vo.setMessage_no(message_no);
+			service.readUpdate(vo);
+		}
+		model.addAttribute("msg",  "읽음처리가 완료되었습니다.");
+		model.addAttribute("url", "/ro/board/main.do");
+		return "common/alert";
+	}
+	
+	
+	
 	
 }

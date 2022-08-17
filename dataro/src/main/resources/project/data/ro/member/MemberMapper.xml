@@ -88,6 +88,10 @@
 		select * from pmessage p where receive_member_no=#{receive_member_no} and readdate is null;	
 	</select>
 	
+	<update id="readUpdate" parameterType="project.data.ro.message.MessageVO">
+		UPDATE `pmessage` SET `readdate` = now() WHERE message_no = #{message_no} and receive_member_no=#{receive_member_no}
+	</update>
+	
 	
 	
 

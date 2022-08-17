@@ -20,6 +20,8 @@ public interface MemberService {
 	
 	int alarmForMessage(MessageVO vo);
 	List<MessageVO> unreadMsgContent(MessageVO vo);
+	int readUpdate(MessageVO vo);
+
 
 
 

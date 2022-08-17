@@ -8,34 +8,36 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-/* dd */
 $(function (){
-	$('.readImg').hide();
-	
-	$('.imgClass').click(function(){
-		$(this).find('.readImg').toggle();
-		$(this).find('.unreadImg').toggle();
-	});
-	
-	$('#btn').click(function(){
-		$.ajax({
-			url:"/ro/board/myList1",
-			type:'post',
-			data:{
-				page: page,
-				sword : sword,
-				stype: stype
-			},
-			success : function(res){
-				$("#area").html(res);
-			}
-		})
-	});
+	$("#btn").click(function(){
+		console.log($("#messageFrm").serialize());
+		aj();
+		location.reload();
+	}); 
+	if (${empty list }) {
+		$('#btn').hide();
+	}
 });
+
+function aj(){
+	$.ajax({
+		url : '/ro/member/readProcess',
+		type : 'post',
+		data : $("#messageFrm").serialize(),
+		success : function(e) {
+			alert("읽음 처리가 완료되었습니다.");
+		},
+		error : function(e){
+			alert(`error`);
+		}
+	});
+};
+
 </script>
 </head>
 <body>
 <div style="display:inline-block; height:200px; overflow-y:scroll;">
+<form id="messageFrm">
 	<table>
 		<colgroup>
 	        <col width="100px" />
@@ -48,21 +50,26 @@ $(function (){
 			<td>읽음여부</td>
 		</tr>
 		<tr><td>&nbsp</td></tr>
-		<c:forEach var="vo" items="${list }" >
-		<tr>
-			<td>${vo.send_member_no}</td>
-			<td>${vo.message_content}</td>
-			<td>
-				<a class="imgClass">
-					<img src="/ro/img/unread.png" width="20px" class="unreadImg">
-					<img src="/ro/img/read.png" width="20px" class="readImg">
-				</a>
-			</td>
-		</tr>
-		</c:forEach>
+		<c:choose>
+		<c:when test="${empty list }">
+			<tr>
+				<td colspan="3">받은 쪽지가 없습니다.</td>
+			</tr>
+		</c:when>
+			<c:otherwise>
+				<c:forEach var="vo" items="${list }" >
+					<tr>
+						<td>${vo.send_member_no}</td>
+						<td>${vo.message_content}</td>
+						<td><input type="checkbox" class="selected" name="message_no" value="${vo.message_no }"></td>
+					</tr>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 	<tr><td>&nbsp</td></tr>
 	<tr><td colspan="3"><input type="button" value="읽음처리하기" id="btn"></td></tr>
 	</table>
+</form>
 </div>
 </body>
 </html>

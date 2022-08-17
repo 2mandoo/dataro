@@ -16,7 +16,7 @@
 	</insert>
 	
 	<select id="view" parameterType="project.data.ro.fullboard.FullBoardVO" resultType="project.data.ro.fullboard.FullBoardVO"> <!-- 하나의 객체 -->  <!-- parameterType="int" --> 
-		<!--select *,
+<!-- 			select *,
 			(select filename_org from pfile where board_no=pboard.board_no) as filename_org,
 			(select filename_server from pfile where board_no=pboard.board_no) as filename_server
 			from  pboard 

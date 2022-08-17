@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.data.ro.reply.ReplyMapper">
+
 	<insert id="insert" parameterType="project.data.ro.reply.ReplyVO">
 		insert into preply(board_no,room_no,reply_no,member_id,member_no,content,reply_writedate)
 		values (#{board_no},#{room_no}, #{reply_no}, #{member_id},#{member_no}, #{content}, NOW())
@@ -15,4 +16,108 @@
 	<delete id="delete">
 		delete * from preply where reply_no=#{reply_no} and member_no = #{member_no};
 	</delete>
+	
+	
+	<!-- 정현 -->
+	<!-- 댓글 목록 가져오기 -->
+	<select id="list2" parameterType="project.data.ro.reply.ReplyVO" resultType="project.data.ro.reply.ReplyVO">
+		SELECT a.*, b.replycount 
+		FROM 
+			(SELECT * FROM preply WHERE board_name = #{board_name} AND board_no = #{board_no} AND ono = 0
+			<if test="room_no != 0">
+			AND room_no = #{room_no}
+			</if> 
+			<if test="room_no == 0">
+			AND room_no = 0
+			</if> 
+			) a
+		LEFT OUTER JOIN
+			(SELECT gno, count(*) replycount FROM preply WHERE ono != 0 and board_name = #{board_name} AND board_no = #{board_no}
+		    <if test="room_no != 0">
+			AND room_no = #{room_no}
+			</if> 
+		    <if test="room_no == 0">
+			AND room_no = 0
+			</if> 
+			GROUP BY gno) b
+		ON a.gno=b.gno 
+		ORDER BY gno DESC, reply_likecount DESC, reply_writedate DESC
+		LIMIT ${startIdx}, ${pageRow}
+	</select>
+
+	
+	<!-- 답글 목록 가져오기 -->
+	<select id="replyList" parameterType="project.data.ro.reply.ReplyVO" resultType="project.data.ro.reply.ReplyVO">
+		SELECT *
+		FROM preply
+		WHERE board_name = #{board_name} AND board_no = #{board_no} AND gno = #{gno} AND ono > 0
+		ORDER BY gno DESC, reply_likecount DESC, reply_writedate DESC
+		LIMIT ${startIdx}, ${pageRow}
+	</select>
+
+	<!-- 댓글(댓글+답글) 총 개수 -->
+	<select id="count" resultType="int" parameterType="project.data.ro.reply.ReplyVO">
+		SELECT COUNT(*) FROM preply WHERE board_name = #{board_name} AND board_no = #{board_no}
+		<if test="room_no != 0">
+		AND room_no = #{room_no}
+		</if>  
+		<if test="room_no == 0">
+		AND room_no = 0
+		</if>  
+	</select>
+	
+	<!-- 댓글 ono = 0 총 개수 (답글이 아닌 원댓글)-->
+	<select id="pagingCount" resultType="int" parameterType="project.data.ro.reply.ReplyVO">
+		SELECT COUNT(*) FROM preply WHERE board_name = #{board_name} AND board_no = #{board_no} AND ono = 0
+		<if test="room_no != 0">
+		AND room_no = #{room_no}
+		</if>  
+		<if test="room_no == 0">
+		AND room_no = 0
+		</if>  
+	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="delete2" parameterType="int">
+		DELETE FROM preply WHERE reply_no = #{reply_no}
+	</delete>
+
+	<!-- 댓글 작성 -->
+	<insert id="insert2" parameterType="project.data.ro.reply.ReplyVO">
+		INSERT INTO preply (
+			board_name, board_no, room_no, member_id, content, member_no, reply_likecount, reply_writedate
+		) VALUES (
+			#{board_name}, #{board_no}, #{room_no}, #{member_id}, #{content}, #{member_no}, 0, NOW()
+		)
+		<selectKey keyProperty="reply_no" resultType="int" order="AFTER">
+		 SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<!-- gno를 reply_no로 업데이트 -->
+	<update id="gnoUpdate" parameterType="int">
+		UPDATE preply SET gno = #{gno} WHERE reply_no = #{gno}
+	</update>
+	
+	<!-- 답글 달 때, 부모의 gno와 같고, 부모의 ono보다 큰 ono를 ono+1로 업뎃 -->
+	<update id="onoUpdate" parameterType="project.data.ro.reply.ReplyVO">
+		UPDATE preply SET ono = ono+1 WHERE gno = #{gno} AND ono > #{ono}	
+	</update>
+	
+	<!-- 댓글에 답글달기 -->
+	<insert id="reply" parameterType="project.data.ro.reply.ReplyVO">
+		INSERT INTO preply (
+			board_name, board_no, room_no, member_id, content, member_no, reply_likecount, reply_writedate, gno, ono
+		) VALUES (
+			#{board_name}, #{board_no}, #{room_no}, #{member_id}, #{content}, #{member_no}, 0, NOW(), #{gno}, #{ono}
+		)
+	</insert>
+	
+	<!-- 댓글 수정 -->
+	<update id="update2" parameterType="project.data.ro.reply.ReplyVO">
+		UPDATE preply SET 
+			content = #{content}
+			, reply_updatedate = now()
+		WHERE reply_no = #{reply_no}
+	</update>
 </mapper>

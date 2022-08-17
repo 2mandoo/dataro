@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.slf4j.Slf4j;
+import project.data.ro.map.MapMapper;
 import project.data.ro.member.MemberService;
 import project.data.ro.member.MemberVO;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryVO;
 import project.data.ro.util.FileVO;
+import project.data.ro.util.HashTagVO;
 import project.data.ro.util.UtilService;
 
 @Controller
@@ -28,7 +30,6 @@ import project.data.ro.util.UtilService;
 @RequestMapping("/board")
 public class BoardController {
 	
-	// @@ 정길 커밋 ㅋ
 	@Autowired
 	BoardService service;
 	
@@ -38,19 +39,25 @@ public class BoardController {
 	@Autowired
 	UtilService uservice;
 	
-	
+	@Autowired
+	MapMapper mapper;
+
 	//여행코스 글쓰기화면
 	@GetMapping("/travelWrite.do")
-	public String write() {
+	public String write(Model model) {
+		model.addAttribute("hash",service.hash());
 		return "travelboard/write";
 	}
+	
 	// 여행코스 글쓰기 from 진콩
 	@PostMapping("/insert.do")
-	public String insert(BoardVO bvo,CategoryVO cvo,@RequestParam List<Integer> hashtag_no,FileVO fvo,@RequestParam MultipartFile[] filename, HttpServletRequest req) {
+	public String insert(BoardVO bvo,CategoryVO cvo,@RequestParam List<Integer> hashtag_no,
+				FileVO fvo,@RequestParam MultipartFile[] filename, HttpServletRequest req) {
 		service.insert(bvo);
 		uservice.insert(cvo,bvo,hashtag_no);
 		uservice.fileupload(fvo, filename, req,bvo);
-		return "travelboard/write";
+		mapper.update(bvo);
+		return "redirect:/board/travelWrite.do";
 	}
 	
 	// 마이페이지 내가 쓴 게시물 상세보기
@@ -131,11 +138,20 @@ public class BoardController {
 	}
 	
 	
-	// main from 호윤
+	// main 
 	@GetMapping("/main.do")
-	public String mainGet(Model model, BoardVO vo) {
+	public String mainGet(Model model, BoardVO vo, MessageVO mvo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
 		model.addAttribute("list",service.list(vo));
-		return "board/main";
+		if (vo1 != null) {
+			int num = vo1.getMember_no();
+			mvo.setReceive_member_no(num);
+			int num2 = mService.alarmForMessage(mvo);
+			String result = String.valueOf(num2); 
+			model.addAttribute("UnreadMsgs", result);
+			return "board/main";
+		}
+		return "board/main";//
 	}
 	
 }

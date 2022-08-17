@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
+import project.data.ro.util.HashTagVO;
 
 @Slf4j
 @Service
@@ -29,12 +30,12 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return true;
 	}
-
+	//여행코스글수정
 	@Override
 	public boolean update(BoardVO vo) {
 		return mapper.update(vo) > 0 ? true : false;
 	}
-
+	//여행코스글삭제
 	@Override
 	public boolean delete(int no) {
 		return mapper.delete(no) > 0 ? true : false;
@@ -203,6 +204,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> list(BoardVO vo) {
 		return mapper.list(vo);
+	}
+
+	@Override
+	public List<HashTagVO> hash() {
+		return mapper.hash();
 	}
 
 }

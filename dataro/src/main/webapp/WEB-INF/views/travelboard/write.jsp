@@ -17,6 +17,7 @@
     <div id="wrap">
         <div class="content tv_write">
             <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="member_no" value=${loginInfo.member_no }>
                 <!--제목-->
                 <div class="title">
                 	<div class="title_top">
@@ -24,24 +25,13 @@
 	                        <div class="user_img"><img src="/ro/img/${loginInfo.m_filename_server}"></div>
 	                        <p>${loginInfo.nickname }</p>
 	                    </span>
-	                    <input type="text" name="title" id="title" class="title_text" value="string">
+	                    <input type="text" name="title" id="title" class="title_text" value="코스 타이틀">
 	                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
                     </div>
                     <div class="hash">
-	                    	<label><input type="checkbox" id="hash1" name="hashtag_no" value="1">#자전거 코스</label>
-	                    	<label><input type="checkbox" id="hash2" name="hashtag_no" value="2">#드라이브 코스</label>
-	                    	<label><input type="checkbox" id="hash3" name="hashtag_no" value="3">#뚜벅이 코스</label>
-	                    	<label><input type="checkbox" id="hash4" name="hashtag_no" value="4">#가족과함께</label>
-	                    	<label><input type="checkbox" id="hash5" name="hashtag_no" value="5">#연인과함께</label>
-	                    	<label><input type="checkbox" id="hash6" name="hashtag_no" value="6">#친구과함께</label>
-	                    	<label><input type="checkbox" id="hash7" name="hashtag_no" value="7">#자연</label>
-	                    	<label><input type="checkbox" id="hash8" name="hashtag_no" value="8">#반려동물</label>
-	                    	<label><input type="checkbox" id="hash9" name="hashtag_no" value="9">#레포츠</label>
-	                    	<label><input type="checkbox" id="hash10" name="hashtag_no" value="10">#1박2일</label>
-	                    	<label><input type="checkbox" id="hash11" name="hashtag_no" value="11">#당일치기</label>
-	                    	<label><input type="checkbox" id="hash12" name="hashtag_no" value="12">#축제</label>
-	                    	<label><input type="checkbox" id="hash13" name="hashtag_no" value="13">#식도락</label>
-	                    	<label><input type="checkbox" id="hash14" name="hashtag_no" value="14">#역사</label>
+                   		<c:forEach var="hash" items="${hash}">
+                   			<label><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
+                   		</c:forEach>
                     </div>
                 </div>
                 <!--//제목-->
@@ -60,14 +50,13 @@
                     <!-- //지도 -->
                     <div class="seracLocation">
                       	<div>
-			                 <input type="text" value="종각역" id="keyword" size="15"> 
+                      		<!-- 엔터로 검색가능하게 바꿈 -->
+			                 <input type="text" value="종각역 맛집" id="keyword" onkeyup="enterkey()" size="15"> 
 			                 <a onclick="jacascript:searchPlaces()"><i class="fa-solid fa-magnifying-glass"></i></a>
 			            </div>
                      </div>
                     <div class="write_detail">
-                    	<div class="scroll">
-	                       	
-                        </div>
+                    	<div class="scroll"></div>
                     </div>
                  <!--//지도,글쓰기-->
 				 <a href="javascript:displayCouses(courseArr);">마커표시</a>
@@ -86,23 +75,10 @@
 		AH.submit();
 	};
 
-	var i = 1;
 	var pic =1;
+
 	$(function(){
 
-	//사진추가
-		/*
-		var count=0;
-		$('.pic_wrap .plus').click(function(){
-			if(count<2){
-				count++;
-				$('.pic_wrap').append("<div class='pic'>"+($('.pic').html())+"</div>");
-				console.log(count)
-			}else{
-				$('.pic_wrap .plus').hide();
-			}
-		
-		})*/
 	})			
 	
 	//체크박스on
@@ -114,7 +90,7 @@
 	
 
 	function writebox(index,places){
-		console.log(places)
+		
 		var html ='<div class="set">'
 			html +='<span class="jk"></span>'
 			html +='<div class="map_list">'
@@ -133,22 +109,22 @@
 	        html +='        <div class="pic">'
             html +='           <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
             pic++;
-	        html +='       	<img src="/ro/img/no-image.jpg">'
-	        html +='       	<span class="delete"><i class="fa-solid fa-circle-minus"></i></span>'
+	        html +='       		<img src="/ro/img/no-image.jpg">'
+        	html +='       		<span class="delete" ><i class="fa-solid fa-circle-minus"></i></span>'
 	        html +='     	</div>'
 	        html +='   	 	<div class="pic">'
-            html +='           <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
+            html +='            <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
             html +='       		<img src="/ro/img/no-image.jpg">'
-	        html +='        	<span class="delete"><i class="fa-solid fa-circle-minus"></i></span>'
+            html +='        	<span class="delete" ><i class="fa-solid fa-circle-minus"></i></span>'
 	        html +='      	</div>'
 	        html +='    </div>'
 		    html +='    <span class="course_delete">코스삭제</span>'
 	        html +='</div>'
 	        pic++;
-			i++;
 			$('.scroll').append(html);
-			
+			 
 	}
+	// 됐나?
 
 	//사진미리보기
 	function readInputFile(input){
@@ -157,35 +133,27 @@
 				var reader = new FileReader();
 				reader.onload = function(e){
 				    $('.'+className+'').next('img').attr("src", e.target.result);
-
 				}
 				   reader.readAsDataURL(input.files[0]);
 			};
-		
 	};
+	
 	//사진삭제
-	$(".pic .delete").click(function(){
-		alert();
+	$(document).on("click",".delete",function(){
 		$(this).prev('img').attr("src","/ro/img/no-image.jpg");
 		$(this).siblings('input').val("");
-	});
+	})
 
-
+	// 글쓰기+사진+코스 삭제
 	$(document).on("click",".course_delete",function(){
-	idx = $(this).parent("div").index()
+		var idx = $(this).parent("div").index()
         if(confirm('코스 삭제?')) {
-      	  $(this).parent("div").remove();
+      		$(this).parent("div").remove();
             courseIdx=0;
-             courseArr.splice(i,1);
-            displayCouses(courseArr);
-             removeAllChildNods(courseList);
-             for(var i=0; i<courseArr.length; i++){
-                 courseList.appendChild(getListItem(courseIdx++, courseArr[i]));
-
-             }
-           
-         }
-
+            courseArr.splice(idx,1);
+            count--;
+            console.log(count);
+        }
 	})
 </script>
 

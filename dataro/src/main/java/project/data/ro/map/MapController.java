@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import project.data.ro.board.BoardVO;
 
 @Controller
+@RequestMapping("/map")
 public class MapController {
    
    @Autowired

@@ -4,15 +4,14 @@
 #wrap .content{display: inline-block;width: 1200px;}
 /*여행코스 글쓰기*/
 .tv_write form{display: inline-block;width: 100%;}
-.tv_write .title{border-bottom: 1px solid #eee;padding:40px 0}
+.tv_write .title{border-bottom: 1px solid #eee;padding:40px 0;display: flex;}
 .tv_write .title .title_top{display: flex;justify-content: space-between;align-items: center}
-.tv_write .title .user{display: inline-block;vertical-align: middle;margin:0 20px;}
-.tv_write .title .user .user_img{display: inline-block;width: 80px;height: 80px;background: gray;vertical-align: middle;border-radius:50px;margin-right:15px}
+.tv_write .title .user{display: inline-block;margin:0 20px;text-align: center;}
+.tv_write .title .user .user_img{display: inline-block;width: 80px;height: 80px;background: gray;vertical-align: middle;border-radius:50px}
 .tv_write .title .user .user_img img{width:100%}
-.tv_write .title .user p{display: inline-block;font-weight: 500;font-size: 27px;vertical-align: middle;}
+.tv_write .title .user p{font-weight: 500;font-size:20px}
 .tv_write .title .title_text{width: 500px;height:60px;}
-.tv_write .title .hash_wrap{display:inline-block;width:100%}
-.tv_write .title .hash{display:inline-block;width:100%}
+.tv_write .title .hash{display:inline-block}
 .tv_write .title .hash input[type=checkbox]{opacity:0}
 .tv_write .title .hash label{display:inline-block;border:1px solid #eee;padding:10px 12px 10px 0px;border-radius:50px;margin:0 5px 10px 5px}
 .tv_write .title .hash label.on{background:#eee}
@@ -72,6 +71,30 @@
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 
+
+/*모임방상세보기,채팅*/
+.room_view{background:#d6e2f9;padding: 40px;}
+.room_view article{background: #fff;border-radius: 15px;padding: 15px 30px;}
+.room_view h3{margin: 20px 0;font-size: 40px;font-weight: 400;}
+.room_view .cnt{text-align: left;min-height: 100px;}
+.room_view form{display: inline-block;width: 100%;background: #eee;padding:15px 30px;margin-top:15px;}
+.room_view form input[type='text']{width: 70%;float: left;}
+.room_view form input[type='submit']{width: 25%;float: right;}
+.chat_list li{text-align:left;background: #fff;border-radius: 15px;padding:15px;margin-bottom:13px;font-size: 16px;}
+.chat_list li.me{text-align:right;background: #fff4d5;}
+.chat_list li .date{font-size: 14px;color: #777}
+
+/* 지도 마커라인긋기 */
+.dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
+.dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
+.dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
+.number {font-weight:bold;color:#ee6152;}
+.dotOverlay:after {content:'';position:absolute;margin-left:-6px;left:50%;bottom:-8px;width:11px;height:8px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')}
+.distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
+.distanceInfo .label {display:inline-block;width:50px;}
+.distanceInfo:after {content:none;}
+
+
 /*모임방 채팅*/
 .chat_list li{text-align:left}
 .chat_list li.me{text-align:right}
@@ -79,6 +102,8 @@
 /* header */
 header .inner{margin:0 auto;width: 1020px;display: flex;justify-content: space-between;}
 header ul li{display: inline-block;}
+header .inner #theNumberOfMsg{position:relative; bottom:10px; right:5px;}
+
 
 /* main */
 .main .cnt_set{width:33.3%; display: inline-block; float: left; margin-top: 2cm;}
@@ -90,3 +115,40 @@ header ul li{display: inline-block;}
 .main .cnt_set .img_area ul li span{display: block;}
 
 
+/* 모달ㅋ */
+.modal {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.4);
+    top:0;
+    left: 0;
+    height: 100vh;
+    width:100%;
+    display: none;
+}
+
+.modal-content{
+    background-color: #fff;
+    width: 800px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+.btn-close{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.btn-guide {
+    background-color: blueviolet;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 7px;
+    display: block;
+}

@@ -195,29 +195,10 @@
 		VALUES (#{board_name},#{board_no},#{content},#{course_no})
 
 	</insert>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+	<select id="hash"  resultType="project.data.ro.util.HashTagVO">
+		select * from phashtag order by hashtag_no
+	</select>
+
 </mapper>

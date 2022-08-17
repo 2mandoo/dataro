@@ -1,11 +1,14 @@
 package project.data.ro.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import project.data.ro.message.MessageVO;
 import project.data.ro.util.SendMail;
 
 @Slf4j
@@ -89,5 +92,17 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO myInfo2(int no) {
 		return mapper.myInfo2(no);
 	}
+
+	@Override
+	public int alarmForMessage(MessageVO vo) {
+		return mapper.alarmForMessage(vo);
+	}
+
+	@Override
+	public List<MessageVO> unreadMsgContent(MessageVO vo) {
+		return mapper.unreadMsgContent(vo);
+	}
+
+	
 	
 }

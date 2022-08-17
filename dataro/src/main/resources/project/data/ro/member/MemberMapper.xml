@@ -29,6 +29,8 @@
 	</select>
 	
 	
+	
+	
 	<!-- 아이디로 해당하는 개인정보 가져오기 -->
 	<select id="myInfo" resultType="project.data.ro.member.MemberVO">
 		select * from pmember where id = #{id}
@@ -75,6 +77,18 @@
 	<delete id="deleteId" parameterType="project.data.ro.member.MemberVO">
 		delete from pmember where id = #{id}
 	</delete>
+	
 
+	<!-- 읽지않은 쪽지갯수 -->
+	<select id="alarmForMessage" parameterType="project.data.ro.message.MessageVO" resultType="int">
+		select count(*) from pmessage p where receive_member_no=#{receive_member_no} and readdate is null
+	</select>
+	<!-- 읽지않은 쪽지내용 -->
+	<select id="unreadMsgContent" parameterType="project.data.ro.message.MessageVO" resultType="project.data.ro.message.MessageVO">
+		select * from pmessage p where receive_member_no=#{receive_member_no} and readdate is null;	
+	</select>
+	
+	
+	
 
 </mapper>

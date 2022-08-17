@@ -22,17 +22,48 @@
 	} */
 	
 $(function(){
+	
 	$('#idImg').click(function(){
 		location.href="/ro/member/myPage";
-	})
+	});
+	
+	
+	$('#alarmForUser').click(function(){
+		$.ajax({
+			url : '/ro/member/alarm',
+			type : 'post',
+			data : {},
+			success : function(e) {
+				$("#areaForUser").html(e);
+			},
+			error : function(e){
+				alert(`error`);
+			}
+		});
+		
+		$('.modal').fadeIn();
+	});
+	
+	
+	$('.btn-close').click(function(){
+		$('.modal').fadeOut();
+	});	
+	
+	
+	
+	
 });
+	
+
+
+
 </script>
 </head>
 <body>
-  <div id="wrap">
-    	<header>
-        <div class="inner">
-         	<h1>로고</h1>
+<div id="wrap">
+    <header>
+      <div class="inner">
+         	<h1>DaTaRo</h1>
 	        <form id="frm" action="main.do" > 
 			<select id="form" name="stype" class="dSelect" title="검색분류 선택">
 			<option value="title" >제목</option> 
@@ -52,11 +83,14 @@ $(function(){
 	            	</a> 
             	</c:when>
             	<c:otherwise>
+            		<a href="#">
 		            <img src ="/ro/img/${loginInfo.m_filename_server}" width="50px" id="idImg" style="border-radius:30px;">
+		            </a>
             	</c:otherwise>
 			</c:choose>            
-            <a href="#">
+            <a href="#" id="alarmForUser">
             	<img src ="/ro/img/alarm.png" width="50px">
+            	<span id="theNumberOfMsg"> ${UnreadMsgs }</span>
             </a>
             <a href="/ro/board/travelWrite.do">
             	<img src ="/ro/img/write.png" width="50px">
@@ -104,7 +138,14 @@ $(function(){
           </ul>
       </div>
       </c:forEach>
-  	</div>
   </div>
+  	<div class="modal">
+		<div class="modal-content">
+			<a class="btn-close" href="#none">X</a>
+			<div id="areaForUser"></div>
+		</div>
+	</div>
+</div>
+
 </body>
 </html>

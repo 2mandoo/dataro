@@ -1,6 +1,10 @@
 package project.data.ro.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
+import project.data.ro.message.MessageVO;
 
 public interface MemberService {
 	boolean register(MemberVO vo);
@@ -13,5 +17,10 @@ public interface MemberService {
 	MemberVO findId(MemberVO vo);
 	MemberVO findPwd(MemberVO vo);
 	int deleteId(MemberVO vo);
+	
+	int alarmForMessage(MessageVO vo);
+	List<MessageVO> unreadMsgContent(MessageVO vo);
+
+
 
 }

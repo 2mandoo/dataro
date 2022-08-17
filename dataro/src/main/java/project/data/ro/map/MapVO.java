@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class MapVO {
-	private int boardno;
+	private int board_no;
 	private String address_name;
 	private String category_group_code;
 	private String categoy_group_name;

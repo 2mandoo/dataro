@@ -3,8 +3,8 @@
 <mapper namespace="project.data.ro.map.MapMapper">
 
 	<insert id="insert" parameterType="project.data.ro.map.MapVO">
-		INSERT INTO  maptest 
-		( boardno ,
+		INSERT INTO  pmap 
+		( board_no ,
 		 address_name ,
 		 category_group_code ,
 		 categoy_group_name ,
@@ -17,7 +17,7 @@
 		 x ,
 		 y )
 		VALUES
-		(#{boardno  } ,
+		(#{board_no  } ,
 		#{address_name  } ,
 		#{category_group_code  } ,
 		#{categoy_group_name  } ,
@@ -32,8 +32,12 @@
 
 	</insert>
 	
-	<select id="list"  resultType="project.data.ro.board.BoardVO">
-		SELECT * FROM maptest
-		
+	<select id="list" resultType="project.data.ro.board.BoardVO">
+		SELECT * FROM pmap
 	</select>
+	
+	<!-- 지도 board_no추가 -->
+	<update id="update" parameterType="project.data.ro.board.BoardVO">
+		UPDATE pmap set board_no = #{board_no} where board_no=0
+	</update>
 </mapper>

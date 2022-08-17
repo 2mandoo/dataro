@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.data.ro.fullboard.FullBoardMapper">
+	
+	<insert id = "insert" parameterType="project.data.ro.fullboard.FullBoardVO"> <!--course_no 일단 뻄 -->
+		insert into pboard(board_name,board_no,id,member_no,title,viewcount,writedate,updatedate)
+		values (#{board_name},#{board_no},id,#{member_no},#{title},#{viewcount},NOW(),NOW())
+		<selectKey keyProperty="board_no" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<insert id="fileUpload" parameterType="project.data.ro.fullboard.FullBoardVO" >
+		insert into pfile(board_name,board_no,filename_org,filename_server)
+		VALUES ('여행게시판',#{board_no},#{filename_org},#{filename_server})
+	</insert>
+	
+	<select id="view" parameterType="project.data.ro.fullboard.FullBoardVO" resultType="project.data.ro.fullboard.FullBoardVO"> <!-- 하나의 객체 -->  <!-- parameterType="int" --> 
+		<!--select *,
+			(select filename_org from pfile where board_no=pboard.board_no) as filename_org,
+			(select filename_server from pfile where board_no=pboard.board_no) as filename_server
+			from  pboard 
+			where board_no = #{board_no} and board_name = '여행게시판' -->
+		select * 
+		from pboard A inner join pfile B 
+		on A.board_no = B.board_no
+		where A.board_no = #{board_no} and A.board_name = '여행게시판';
+	</select>
+
+	
+	<select id="list" resultType="project.data.ro.fullboard.FullBoardVO"> <!-- 하나의 객체, parapmeterType이 없어도 실행됨 -->
+	select * from pboard <!-- 조건 추가해서 쿼리 작성해야함 -->
+		<where>
+			board_name = '여행게시판'
+			<if test ="stype != null or sword != null">
+				<if test ="stype == 'title'">
+				  and title like '%${sword}%'
+				</if>
+				<if test = "stype == 'content'">
+				  and content like '%${sword}%'
+				</if>
+			</if>
+		</where>
+		ORDER BY writedate DESC
+		LIMIT  ${startIdx},${pageRow};
+	</select>
+	
+	<select id="count" parameterType="project.data.ro.fullboard.FullBoardVO" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM pboard
+	</select>
+	
+	
+	<update id="viewcountupdate" parameterType="project.data.ro.fullboard.FullBoardVO">
+	  UPDATE pboard SET viewcount = viewcount + 1 WHERE board_no = #{board_no} and board_name = '여행게시판' <!-- 텍스트로 하지 말 것 -->
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM pboard WHERE board_no=#{board_no} 
+	</delete>
+	
+	<update id="update" parameterType="project.data.ro.fullboard.FullBoardVO">
+		UPDATE pboard SET
+			title = #{title}
+<!-- 			, content = #{content} -->
+			<if test="filename_org != null">
+			, filename_org = #{filename_org}
+			, filename_server = #{filename_server}
+			</if>
+			<if test ="content == null">
+			select * from pboard b inner join pboardcourse p
+			on b.board_no = p.board_no and b.board_name = p.board_name
+			where content = #{content}
+			</if>
+		WHERE board_no = #{board_no}
+	</update>
+</mapper>

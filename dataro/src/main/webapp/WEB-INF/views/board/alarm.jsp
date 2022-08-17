@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
+/* dd */
 $(function (){
 	$('.readImg').hide();
 	
@@ -29,7 +30,7 @@ $(function (){
 				$("#area").html(res);
 			}
 		})
-	})
+	});
 });
 </script>
 </head>

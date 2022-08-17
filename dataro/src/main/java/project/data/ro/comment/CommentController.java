@@ -21,6 +21,7 @@ public class CommentController {
 		model.addAttribute("result", service.insert(vo));
 		return "common/result";
 	}
+	
 	@GetMapping("/comment/delete.do")
 	public String delete(CommentVO vo, Model model) {
 		model.addAttribute("result", service.delete(vo));

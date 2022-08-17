@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface FullBoardService {
 	
 	
-	Map index(FullBoardVO vo); //목록게시판
+	Map index(FullBoardVO vo); //목록
 	
 	int insert(FullBoardVO vo); //등록
 	

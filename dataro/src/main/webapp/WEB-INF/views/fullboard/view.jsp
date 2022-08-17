@@ -12,19 +12,16 @@
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<link rel="stylesheet" href="/ro/resources/fonts/icomoon/style.css">
-<link rel="stylesheet" href="/ro/resources/css/owl.carousel.min.css">
-<link rel="stylesheet" href="/ro/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/ro/resources/css/style2.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>게시판 상세</title>
 <script>
-  	function remove(board_no) {
+ 	function remove(board_no) {
   		if (confirm('삭제하시겠습니까?')) {
   			location.href='delete.do?board_no='+board_no;
   		}
   	}
-	function getComment(page) {
+	function getComment() {
 		console.log(1);
 		
 		$.ajax({
@@ -38,7 +35,6 @@
 				console.log(1111111111111111);
 			}
 		});
-		console.log(10);
 	}
 	$(function(){
 		getComment(1);
@@ -56,7 +52,6 @@
     				if (res.trim() == "1") {
     					alert('정상적으로 댓글이 등록되었습니다.');
     					$("#contents").val('');
-    					getComment(1);
     				}
     			}
     		});
@@ -85,7 +80,7 @@
                     <div class="view">
                         <div class="title">
                             <dl>
-                                <dt>${view.title} </dt>
+                                <dt>${view.title}</dt>
                                 <dd class="date">게시일 : ${view.writedate} </dd>
                             </dl>
                         </div>

@@ -21,7 +21,7 @@
                             <tr>
                                 <td>${vo.reply_no}</td>
                                 <td class="txt_l" style="text-align:left;">
-                                    ${vo.content }  <c:if test="${loginInfo.no == vo.reply_no }"><a href="javascript:commentDel(${vo.reply_no });">[삭제]</a></c:if>
+                                    ${vo.content}  <c:if test="${loginInfo.no == vo.reply_no }"><a href="javascript:commentDel(${vo.reply_no });">[삭제]</a></c:if>
                                 </td>
                                 <td class="writer">
                                     ${vo.member_name }

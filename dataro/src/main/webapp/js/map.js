@@ -441,7 +441,7 @@ function showDistance(content, position) {
 		});      
 	}
 }
-
+ 
 // 마우스 우클릭 하여 선 그리기가 종료됐을 때 호출하여 
 // 그려진 선의 총거리 정보와 거리에 대한 도보, 자전거 시간을 계산하여
 // HTML Content를 만들어 리턴하는 함수입니다

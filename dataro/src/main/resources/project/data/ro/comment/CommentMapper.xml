@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.data.ro.comment.CommentMapper">
+
+	<insert id="insert" parameterType="project.data.ro.comment.CommentVO">
+		INSERT INTO preply (
+			content, member_no, board_no, reply_writedate , reply_no, board_name
+		) VALUES (
+			#{content}, #{member_no}, #{board_no},NOW(),#{reply_no},#{board_name}
+		)
+	</insert>
+	
+	<select id="count" parameterType="project.data.ro.comment.CommentVO" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM preply
+		WHERE board_no = #{board_no} AND board_name = #{board_name}
+	</select>
+	
+	<select id="list" parameterType="project.data.ro.comment.CommentVO" resultType="project.data.ro.comment.CommentVO">
+		SELECT *
+		<!-- 	,(SELECT name FROM pmember WHERE board_no=preply.reply_no) AS member_name -->
+		FROM preply
+		WHERE board_no = #{board_no} AND board_name = #{board_name}
+		ORDER BY reply_writedate DESC
+		LIMIT  ${startIdx},${pageRow};
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM preply WHERE board_no=#{board_no} 
+	</delete>
+	
+	
+	
+	
+	
+	
+</mapper>

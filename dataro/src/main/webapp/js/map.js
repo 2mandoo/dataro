@@ -1,3 +1,6 @@
+// ^^ 마커보기 눌렀는지 아닌지
+var markerShow = false;
+
 // ^^ 코스 주소를 담을 배열, 인덱스
 var courseArr = [],
 	courseIdx = 0,
@@ -45,7 +48,8 @@ searchPlaces();
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
-
+	markerShow = false;
+	
 	var keyword = document.getElementById('keyword').value;
 
 	if (!keyword.replace(/^\s+|\s+$/g, '')) {
@@ -100,6 +104,15 @@ function displayPlaces(places) {
 	// 지도에 표시되고 있는 마커를 제거합니다
 	removeMarker();
     
+    // 지도 위에 선이 표시되고 있다면 지도에서 제거합니다
+	deleteMarkerLine();
+	
+	// 지도 위에 커스텀오버레이가 표시되고 있다면 지도에서 제거합니다
+	deleteDistnce();
+	
+	// 지도 위에 선을 그리기 위해 클릭한 지점과 해당 지점의 거리정보가 표시되고 있다면 지도에서 제거합니다
+	deleteCircleDot();
+	
 	for ( var i=0; i<places.length; i++ ) {
 
 		// 마커를 생성하고 지도에 표시합니다
@@ -294,6 +307,8 @@ function displayCouses(places){
 		
 	// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 	map.setBounds(bounds);
+	
+	markerShow = true;
 }
 
 // 검색결과 항목을 Element로 반환하는 함수입니다
@@ -514,7 +529,6 @@ function displayCircleDot(position, distance) {
 	dots.push({circle:circleOverlay, distance: distanceOverlay});
 }
 
-
 // 클릭으로 그려진 선을 지도에서 제거하는 함수입니다
 function deleteMarkerLine() {
 	if (markerLine) {
@@ -540,7 +554,6 @@ function deleteCircleDot() {
 		if (dots[i].circle) { 
 			dots[i].circle.setMap(null);
 		}
-		
 		if (dots[i].distance) {
 			dots[i].distance.setMap(null);
 		}

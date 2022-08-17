@@ -154,7 +154,7 @@ public class BoardController {
 			model.addAttribute("UnreadMsgs", result);
 			return "board/main";
 		}
-		return "board/main";//
+		return "board/main";
 	}
 	
 	//정현

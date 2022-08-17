@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-
     <div id="wrap">
         <div class="content tv_write">
             <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data">
@@ -146,13 +145,18 @@
 
 	// 글쓰기+사진+코스 삭제
 	$(document).on("click",".course_delete",function(){
-		var idx = $(this).parent("div").index()
+		var idx = $(this).parent("div").index();
         if(confirm('코스 삭제?')) {
       		$(this).parent("div").remove();
             courseIdx=0;
             courseArr.splice(idx,1);
             count--;
-            console.log(count);
+            
+            if(markerShow){
+            	displayCouses(courseArr);
+            }else{
+            	searchPlaces();
+            }
         }
 	})
 </script>

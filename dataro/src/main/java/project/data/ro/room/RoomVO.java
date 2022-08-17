@@ -14,9 +14,15 @@ public class RoomVO {
 	private String roommaker_id;
 	private String room_title;
 	private String room_content;
-	private Timestamp room_startdate;
-	private Timestamp room_enddate;
+	private String room_startdate;
+	private String room_enddate;
 	private int room_participant_no;
 	private int member_no;
+	
+	private Timestamp room_makedate;
+	private String room_pwd;
+	
+	//방 참여자 수
+	private int room_participant_count;
   
 }

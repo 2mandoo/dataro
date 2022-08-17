@@ -44,7 +44,7 @@ public class FullBoardController {
 	}
 	
 	//수정폼
-	@RequestMapping("fullboard/modify.do")
+	@RequestMapping("fullboard/modify.do")//
 	public String modify(FullBoardVO vo, Model model) {
 		model.addAttribute("modify",service.modify(vo));
 		return "fullboard/modify";

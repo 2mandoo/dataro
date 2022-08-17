@@ -92,15 +92,23 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO myInfo2(int no) {
 		return mapper.myInfo2(no);
 	}
-
+	
+	// 읽지 않은 쪽지 숫자
 	@Override
 	public int alarmForMessage(MessageVO vo) {
 		return mapper.alarmForMessage(vo);
 	}
-
+	
+	// 읽지 않은 쪽지
 	@Override
 	public List<MessageVO> unreadMsgContent(MessageVO vo) {
 		return mapper.unreadMsgContent(vo);
+	}
+
+	// 쪽지 읽음처리
+	@Override
+	public int readUpdate(MessageVO vo) {
+		return mapper.readUpdate(vo);
 	}
 
 	

@@ -3,11 +3,9 @@ package project.data.ro.room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import project.data.ro.member.MemberVO;
 import project.data.ro.reply.ReplyService;
 import project.data.ro.reply.ReplyVO;
 
@@ -34,7 +32,7 @@ public class RoomController {
 	}
 	//모임방채팅리스트
 	@RequestMapping("/chatlist")
-	public String chatlist(ReplyVO vo,Model model) {
+	public String chatlist(ReplyVO vo,Model model,MemberVO mvo) {
 		model.addAttribute("list",rpservice.list(vo));
 		return "room/chat";
 	}

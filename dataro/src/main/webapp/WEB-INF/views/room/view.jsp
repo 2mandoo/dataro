@@ -16,11 +16,11 @@ tr,td{border:1px solid #000}
 <body>
     <div id="wrap">
         <div class="content room_view">
-        	<table border="1" style="border:1px solid #000">
-        		<tr><td>${view.room_title }</td></tr>
-        		<tr><td>${view.room_content }</td></tr>
-        	</table>
-        	<form action="chatWrite" method="post">
+        	<article>
+	        	<h3>${view.room_title }</h3>
+	        	<div class="cnt">${view.room_content }</div>
+        	</article>
+   		     <form action="chatWrite" method="post">
         		<input type="hidden" name="room_no" value="${view.room_no }">
         		<input type="hidden" name="member_no" value="${loginInfo.member_no }">
         		<input type="text" name="content" value="댓글을 입력하세요">

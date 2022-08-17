@@ -30,12 +30,12 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return true;
 	}
-
+	//여행코스글수정
 	@Override
 	public boolean update(BoardVO vo) {
 		return mapper.update(vo) > 0 ? true : false;
 	}
-
+	//여행코스글삭제
 	@Override
 	public boolean delete(int no) {
 		return mapper.delete(no) > 0 ? true : false;

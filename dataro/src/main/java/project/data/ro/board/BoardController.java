@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.slf4j.Slf4j;
+import project.data.ro.map.MapMapper;
 import project.data.ro.member.MemberService;
 import project.data.ro.member.MemberVO;
 import project.data.ro.message.MessageVO;
@@ -37,6 +38,9 @@ public class BoardController {
 
 	@Autowired
 	UtilService uservice;
+	
+	@Autowired
+	MapMapper mapper;
 
 	//여행코스 글쓰기화면
 	@GetMapping("/travelWrite.do")
@@ -49,11 +53,11 @@ public class BoardController {
 	@PostMapping("/insert.do")
 	public String insert(BoardVO bvo,CategoryVO cvo,@RequestParam List<Integer> hashtag_no,
 				FileVO fvo,@RequestParam MultipartFile[] filename, HttpServletRequest req) {
-
 		service.insert(bvo);
 		uservice.insert(cvo,bvo,hashtag_no);
 		uservice.fileupload(fvo, filename, req,bvo);
-		return "travelboard/write";
+		mapper.update(bvo);
+		return "redirect:/board/travelWrite.do";
 	}
 	
 	// 마이페이지 내가 쓴 게시물 상세보기
@@ -147,7 +151,7 @@ public class BoardController {
 			model.addAttribute("UnreadMsgs", result);
 			return "board/main";
 		}
-		return "board/main";
+		return "board/main";//
 	}
 	
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,8 @@
 </head>
 <style>
 table, td, th {
-  border : 1px solid black;
+  border : none;
+  text-align:center;
 };
 
 * {
@@ -365,7 +367,8 @@ ${test222}
     	function commentEdit(){
     		var reply_no = $("#modal_rno").val();
     		var content = $("#replyUpdate").val();
-    		console.log(content);
+    		var page = $("#page").val();
+    		console.log(page);
       		if(confirm("댓글을 수정하시겠습니까?")){
     			$.ajax({
     				url : '/ro/reply/update.do',
@@ -375,7 +378,8 @@ ${test222}
     				},
     				success : function(){
     						alert('댓글이 정상적으로 수정되었습니다.');
-    						getComment(1);
+    						getComment(page);
+    						
     				}
     						
     			})

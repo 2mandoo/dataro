@@ -38,12 +38,4 @@ public interface BoardMapper {
 	int insertCourse(BoardVO vo);
 	List<HashTagVO> hash();
 
-<<<<<<< HEAD
-=======
-	
-	
-	
-
-	
->>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
 }

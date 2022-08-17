@@ -37,11 +37,7 @@ public class BoardController {
 
 	@Autowired
 	UtilService uservice;
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
-	
 	//여행코스 글쓰기화면
 	@GetMapping("/travelWrite.do")
 	public String write(Model model) {

@@ -297,8 +297,10 @@ public class MemberController {
 			vo.setMessage_no(message_no);
 			service.readUpdate(vo);
 		}
-		model.addAttribute("msg",  "읽음처리가 완료되었습니다.");
-		model.addAttribute("url", "/ro/board/main.do");
+		/*
+		 * model.addAttribute("msg", "읽음처리가 완료되었습니다."); model.addAttribute("url",
+		 * "/ro/board/main.do");
+		 */
 		return "common/alert";
 	}
 	

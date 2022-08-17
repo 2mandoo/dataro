@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
+import project.data.ro.util.HashTagVO;
 
 @Slf4j
 @Service
@@ -203,6 +204,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> list(BoardVO vo) {
 		return mapper.list(vo);
+	}
+
+	@Override
+	public List<HashTagVO> hash() {
+		return mapper.hash();
 	}
 
 }

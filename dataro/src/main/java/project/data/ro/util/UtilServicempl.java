@@ -19,9 +19,7 @@ public class UtilServicempl implements UtilService {
 	CategoryMapper cmapper;
 	@Autowired
 	FileMapper fmapper;
-//	@Autowired
-//	BoardVO bvo;
-	
+
 	//해쉬태그등록
 	@Override
 	public boolean insert(CategoryVO cvo,BoardVO bvo,@RequestParam List<Integer> hashtag_no) {

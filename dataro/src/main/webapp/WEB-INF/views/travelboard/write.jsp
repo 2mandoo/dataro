@@ -17,6 +17,7 @@
     <div id="wrap">
         <div class="content tv_write">
             <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="member_no" value=${loginInfo.member_no }>
                 <!--제목-->
                 <div class="title">
                 	<div class="title_top">
@@ -24,30 +25,13 @@
 	                        <div class="user_img"><img src="/ro/img/${loginInfo.m_filename_server}"></div>
 	                        <p>${loginInfo.nickname }</p>
 	                    </span>
-	                    <input type="text" name="title" id="title" class="title_text" value="string">
+	                    <input type="text" name="title" id="title" class="title_text" value="코스 타이틀">
 	                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
                     </div>
                     <div class="hash">
-                    		<% String[] hash ={"자전거 코스","드라이브 코스","뚜벅이 코스","가족과함께","연인과함께","친구과함께","자연","반려동물","레포츠","1박2일","당일치기","축제","식도락","역사" }; %>
-                    		<c:forEach var="hash" items="${hash}" varStatus="status">
-                    			<label><input type="checkbox" id="hash1" name="hashtag_no" value="${status.count}">#${hash}</label>
-                    		</c:forEach>
-                    		<!-- 
-	                    	<label><input type="checkbox" id="hash1" name="hashtag_no" value="1">#자전거 코스</label>
-	                    	<label><input type="checkbox" id="hash2" name="hashtag_no" value="2">#드라이브 코스</label>
-	                    	<label><input type="checkbox" id="hash3" name="hashtag_no" value="3">#뚜벅이 코스</label>
-	                    	<label><input type="checkbox" id="hash4" name="hashtag_no" value="4">#가족과함께</label>
-	                    	<label><input type="checkbox" id="hash5" name="hashtag_no" value="5">#연인과함께</label>
-	                    	<label><input type="checkbox" id="hash6" name="hashtag_no" value="6">#친구과함께</label>
-	                    	<label><input type="checkbox" id="hash7" name="hashtag_no" value="7">#자연</label>
-	                    	<label><input type="checkbox" id="hash8" name="hashtag_no" value="8">#반려동물</label>
-	                    	<label><input type="checkbox" id="hash9" name="hashtag_no" value="9">#레포츠</label>
-	                    	<label><input type="checkbox" id="hash10" name="hashtag_no" value="10">#1박2일</label>
-	                    	<label><input type="checkbox" id="hash11" name="hashtag_no" value="11">#당일치기</label>
-	                    	<label><input type="checkbox" id="hash12" name="hashtag_no" value="12">#축제</label>
-	                    	<label><input type="checkbox" id="hash13" name="hashtag_no" value="13">#식도락</label>
-	                    	<label><input type="checkbox" id="hash14" name="hashtag_no" value="14">#역사</label>
-	                    	 -->
+                   		<c:forEach var="hash" items="${hash}">
+                   			<label><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
+                   		</c:forEach>
                     </div>
                 </div>
                 <!--//제목-->

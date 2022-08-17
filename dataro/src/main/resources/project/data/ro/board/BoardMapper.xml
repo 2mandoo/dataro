@@ -196,4 +196,8 @@
 
 	</insert>
 	
+	<select id="hash"  resultType="project.data.ro.util.HashTagVO">
+		select * from phashtag order by hashtag_no
+	</select>
+	
 </mapper>

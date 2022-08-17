@@ -3,8 +3,8 @@
 <mapper namespace="project.data.ro.util.CategoryMapper">
 
  	<insert id="insert" parameterType="project.data.ro.util.CategoryVO" >
-		insert into pcategory(hashtag_no,board_no,board_name)
-		VALUES (#{hashtag_no},#{board_no},#{board_name});
+		insert into pcategory(hashtag_no,board_name,board_no)
+		VALUES (#{hashtag_no},#{board_name},#{board_no});
 	</insert>
 
 </mapper>

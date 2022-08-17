@@ -21,6 +21,7 @@ import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryVO;
 import project.data.ro.util.FileVO;
+import project.data.ro.util.HashTagVO;
 import project.data.ro.util.UtilService;
 
 @Controller
@@ -37,11 +38,12 @@ public class BoardController {
 
 	@Autowired
 	UtilService uservice;
-	
+
 	
 	//여행코스 글쓰기화면
 	@GetMapping("/travelWrite.do")
-	public String write() {
+	public String write(Model model) {
+		model.addAttribute("hash",service.hash());
 		return "travelboard/write";
 	}
 	// 여행코스 글쓰기 from 진콩

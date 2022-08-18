@@ -1,0 +1,14 @@
+/*common*/
+#wrap{text-align: center;}
+#wrap .content{display: inline-block;width: 1200px;}
+
+ .content{width: 1020px;margin:0 auto;}
+ .view .title{width: 150px;display:block; border: 1px black solid; margin:0 auto; line-height: 80px;}
+ .view .user{display: inline-block;}
+ .view .user .user_img img{display: inline-block;border:1px solid black;width: 50px;height: 50px;border-radius: 50px;}
+ .view .user span{vertical-align: middle;}
+ .view #count{float: right; display:inline-block; padding-top: 35px;}
+ .view .category{height: 100px;  margin:10px 0;}
+ .view .map{height: 200px; margin:10px 0;}
+ .view .course{height: 300px; margin:10px 0;}
+ .view .reply{height: 100px; margin:10px 0;}

@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 
 public class SendMail {
 	
-	// 매개변수 : 발신자, 수신자, 제목, 내용
+	// 매개변수 : 발신자, 수신자, 제목, 내용 
 	public static void sendMail(String from, String to, String subject, String content) {
 		// 1. 메일서버 정보 설정(property)
 		Properties prop = System.getProperties();

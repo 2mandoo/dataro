@@ -65,11 +65,13 @@ public class UtilServicempl implements UtilService {
 		category.put("region", cmapper.regionSelect());
 		return category;
 	}
-
+	//지역 리스트로 받아서 map에 담기
 	@Override
 	public Map regionDetail(String rs) {
-		Map regionDetail =   cmapper.regionDetail(rs);
-		System.out.println("뀨"+regionDetail.get("region_name"));
+		List<String> regionDetailList =cmapper.regionDetail(rs);
+		System.out.println("뀨"+regionDetailList);
+		Map regionDetail = new HashMap();
+		regionDetail.put("regionDetailList", regionDetailList);
 		return regionDetail;
 		
 	}

@@ -15,5 +15,5 @@ public interface CategoryMapper {
 	//지역 출력
 	List<CategoryVO> regionSelect();
 	//지역 대분류 db전송후 소분류 가져오기
-	Map regionDetail(String rs);
+	List<String> regionDetail(String rs);
 }

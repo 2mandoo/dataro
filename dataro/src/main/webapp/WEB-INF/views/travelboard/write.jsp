@@ -35,7 +35,7 @@
                     		</c:forEach>
                     	</select>
                     	<div class="region_detail">
-                    		
+                    
                     	</div>
                     </div>
                     <div class="hash">
@@ -187,7 +187,7 @@
 				rs:region_name
 			},
 			success:function(res){
-			 console.log(res);
+			 $('.region_detail').html(res)
 			}
 		})
 

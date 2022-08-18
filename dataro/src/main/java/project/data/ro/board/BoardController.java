@@ -74,8 +74,10 @@ public class BoardController {
 	@ResponseBody
 	public Map regionDatail(String rs) {
 		System.out.println("실험"+rs);
-		
-		return uservice.regionDetail(rs);
+		System.out.println("결과"+uservice.regionDetail(rs));
+		Map a = new HashMap();
+		a.put("aaa", a);
+		return a;
 	}
 	
 	////////////////////////////////진경끝////////////////////////////////////////

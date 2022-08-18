@@ -78,7 +78,7 @@ public class MemberController {
 			// 파일저장
 			String path = req.getRealPath("/img/");
 			try {
-			filename.transferTo(new File(path+real));
+				filename.transferTo(new File(path+real));
 			} catch (Exception e) {}
 			
 			vo.setM_filename_org(org);
@@ -286,6 +286,7 @@ public class MemberController {
 		return "board/alarm";
 	}
 	
+	
 	@PostMapping("/readProcess")
 	public String readProcess(MessageVO vo,  HttpSession sess, Model model, HttpServletRequest req) {
 		MemberVO vo1 = (MemberVO)sess.getAttribute("loginInfo");
@@ -297,10 +298,8 @@ public class MemberController {
 			vo.setMessage_no(message_no);
 			service.readUpdate(vo);
 		}
-		/*
-		 * model.addAttribute("msg", "읽음처리가 완료되었습니다."); model.addAttribute("url",
-		 * "/ro/board/main.do");
-		 */
+		model.addAttribute("msg",  "읽음처리가 완료되었습니다.");
+		model.addAttribute("url", "/ro/board/main.do");
 		return "common/alert";
 	}
 	

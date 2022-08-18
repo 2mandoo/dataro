@@ -1,6 +1,8 @@
 package project.data.ro.board;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.slf4j.Slf4j;
@@ -151,7 +154,49 @@ public class BoardController {
 			model.addAttribute("UnreadMsgs", result);
 			return "board/main";
 		}
-		return "board/main";//
+		return "board/main";
+	}
+	
+	//정현
+	@GetMapping("/view.do")
+	public String view(BoardVO vo, RoomVO rvo, Model model) {
+		int a =8;
+		model.addAttribute("test222", a);
+		
+		vo.setBoard_name("main");
+		vo.setBoard_no(987697);
+		vo.setMember_no(a);
+		Map map = new HashMap();
+		map = service.view(vo);
+		model.addAttribute("data", map);
+		return "board/view3";
+	}
+	
+	@PostMapping("/initBoardLike.do")
+	@ResponseBody
+	public Integer boardLike(BoardVO vo, Integer likeCheck) {
+		//
+		if(likeCheck==0) {
+			service.clickBoardLike(vo);
+			return 1;
+		} else if(likeCheck > 0) {
+			service.likeBack(vo);
+			return 0;
+		}
+		return service.likeCheck(vo);
+	}
+	
+	@PostMapping("/clickDislike.do")
+	@ResponseBody
+	public Integer boardDislike(BoardVO vo, Integer dislikeCheck) {
+		if(dislikeCheck==0) {
+			service.clickDislike(vo);
+			return 1;
+		} else if(dislikeCheck > 0) {
+			service.dislikeBack(vo);
+			return 0;
+		}
+		return service.dislikeCheck(vo);
 	}
 	
 }

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<div class="chat_list" style="board:1px solid red">
+<div class="chat_list">
 	<ul>
 		<c:forEach var="chat" items="${list}">
 			<li <c:if test="${loginInfo.member_no eq chat.member_no}">class="me"</c:if>>

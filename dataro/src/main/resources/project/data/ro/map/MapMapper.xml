@@ -4,38 +4,40 @@
 
 	<insert id="insert" parameterType="project.data.ro.map.MapVO">
 		INSERT INTO  pmap 
-		( board_no ,
-		 address_name ,
-		 category_group_code ,
-		 categoy_group_name ,
-		 category_name ,
-		 id ,
-		 phone ,
-		 place_name ,
-		 place_url ,
-		 road_address_name ,
-		 x ,
-		 y )
+			( board_no ,
+			 address_name ,
+			 category_group_code ,
+			 categoy_group_name ,
+			 category_name ,
+			 id ,
+			 phone ,
+			 place_name ,
+			 place_url ,
+			 road_address_name ,
+			 x ,
+			 y ,
+			 course_no )
 		VALUES
-		(#{board_no  } ,
-		#{address_name  } ,
-		#{category_group_code  } ,
-		#{categoy_group_name  } ,
-		#{category_name  } ,
-		#{id  } ,
-		#{phone  } ,
-		#{place_name  } ,
-		#{place_url  } ,
-		#{road_address_name  } ,
-		#{x  } ,
-		#{y  } );
+			(#{board_no  } ,
+			#{address_name  } ,
+			#{category_group_code  } ,
+			#{categoy_group_name  } ,
+			#{category_name  } ,
+			#{id  } ,
+			#{phone  } ,
+			#{place_name  } ,
+			#{place_url  } ,
+			#{road_address_name  } ,
+			#{x  } ,
+			#{y  } ,
+			#{course_no } );
 
 	</insert>
 	
-	<select id="list" resultType="project.data.ro.board.BoardVO">
+	<select id="list" resultType="project.data.ro.map.MapVO">
 		SELECT * FROM pmap
 	</select>
-	
+	 
 	<!-- 지도 board_no추가 -->
 	<update id="update" parameterType="project.data.ro.board.BoardVO">
 		UPDATE pmap set board_no = #{board_no} where board_no=0

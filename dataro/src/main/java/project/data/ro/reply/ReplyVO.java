@@ -4,9 +4,11 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class ReplyVO {
    private String board_name;
    private int board_no;
@@ -20,10 +22,16 @@ public class ReplyVO {
    private Timestamp reply_updatedate;
    private int gno;
    private int ono;
+   
+   //댓글페이징
    private int page;
    private int startIdx;
    private int pageRow;
+   
    private String title;
+   
+	//해당 댓글에 달린 답글 수
+	private int replycount;
 
    public ReplyVO() {
       this.pageRow = 10;

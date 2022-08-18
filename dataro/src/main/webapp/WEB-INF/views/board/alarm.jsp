@@ -8,29 +8,30 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-
-
 $(function (){
-
 	$("#btn").click(function(){
 		console.log($("#messageFrm").serialize());
-		$.ajax({
- 			url : '/ro/member/readProcess',
-			type : 'post',
-			data : $("#messageFrm").serialize(),
-			success : function(e) {
-				alert("읽음 처리가 완료되었습니다.");
-			},
-			error : function(e){
-				alert(`error`);
-			}
- 		});
+		aj();
+		location.reload();
 	}); 
-	
-	
-	
-
+	if (${empty list }) {
+		$('#btn').hide();
+	}
 });
+
+function aj(){
+	$.ajax({
+		url : '/ro/member/readProcess',
+		type : 'post',
+		data : $("#messageFrm").serialize(),
+		success : function(e) {
+			alert("읽음 처리가 완료되었습니다.");
+		},
+		error : function(e){
+			alert(`error`);
+		}
+	});
+};
 
 </script>
 </head>
@@ -49,13 +50,22 @@ $(function (){
 			<td>읽음여부</td>
 		</tr>
 		<tr><td>&nbsp</td></tr>
-		<c:forEach var="vo" items="${list }" >
-		<tr>
-			<td>${vo.send_member_no}</td>
-			<td>${vo.message_content}</td>
-			<td><input type="checkbox" class="selected" name="message_no" value="${vo.message_no }"></td>
-		</tr>
-		</c:forEach>
+		<c:choose>
+		<c:when test="${empty list }">
+			<tr>
+				<td colspan="3">받은 쪽지가 없습니다.</td>
+			</tr>
+		</c:when>
+			<c:otherwise>
+				<c:forEach var="vo" items="${list }" >
+					<tr>
+						<td>${vo.send_member_no}</td>
+						<td>${vo.message_content}</td>
+						<td><input type="checkbox" class="selected" name="message_no" value="${vo.message_no }"></td>
+					</tr>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 	<tr><td>&nbsp</td></tr>
 	<tr><td colspan="3"><input type="button" value="읽음처리하기" id="btn"></td></tr>
 	</table>

@@ -9,4 +9,52 @@
 		select * from proom where room_no =${room_no}
 	</select>
 
+	<!-- 정현 -->
+	<insert id="makeRoom" parameterType="project.data.ro.room.RoomVO">
+		INSERT INTO proom (
+			board_name, board_no, roommaker_id, room_title, room_content, room_startdate, room_enddate, room_makedate
+			<if test="room_pwd != null and room_pwd != ''">
+			, room_pwd
+			</if>
+		) VALUES (
+			#{board_name}, #{board_no}, #{roommaker_id}, #{room_title}, #{room_content}, #{room_startdate}, #{room_enddate}, now()
+			<if test="room_pwd != null and room_pwd != ''">
+			, md5(#{room_pwd})
+			</if>
+		)
+		<selectKey keyProperty="room_no" resultType="int" order="AFTER">
+		 SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<select id="list2" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.room.RoomVO">
+		SELECT a.*, b.room_participant_no 
+		FROM (
+			SELECT proom.board_name, proom.board_no, roommaker_id, room_title, room_content, proom.room_startdate, proom.room_enddate, proom.room_pwd, count.room_no, room_participant_count 
+			FROM proom, 
+			(SELECT COUNT(*) room_participant_count, room_no FROM proommember GROUP BY room_no) count 
+			WHERE proom.room_no = count.room_no AND proom.board_name = #{board_name} AND proom.board_no = #{board_no}) a 
+		LEFT OUTER JOIN 
+			(SELECT * FROM proommember WHERE room_participant_no = #{login_member_no}) b 
+		ON a.room_no=  b.room_no	
+	</select>
+	
+	<select id="pwdCheck" parameterType="project.data.ro.room.RoomVO" resultType="int">
+		SELECT COUNT(*) FROM proom
+		WHERE board_name = #{board_name} AND board_no = #{board_no} AND room_no = #{room_no} AND room_pwd = md5(#{room_pwd})
+	</select>
+	
+	<insert id="enterRoom" parameterType="project.data.ro.room.RoomVO" >
+		INSERT INTO proommember (
+			room_no, room_participant_no
+		) VALUES (
+			#{room_no}, #{room_participant_no}
+		)
+	</insert>	
+
+	<select id="checkRoom" parameterType="project.data.ro.room.RoomVO" resultType="int">
+		SELECT COUNT(*) FROM proommember WHERE room_no = #{room_no} AND room_participant_no = #{room_participant_no}
+	</select>
+	
+
 </mapper>

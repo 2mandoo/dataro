@@ -32,10 +32,8 @@ $(function(){
 			data : {},
 			success : function(e) {
 				$("#areaForUser").html(e);
-			},
-			error : function(e){
-				loginAlert();
 			}
+			
 		});
 		if (${!empty loginInfo}) {
 			$('.modal').fadeIn();
@@ -92,18 +90,11 @@ function loginAlert(){
             	<img src ="/ro/img/alarm.png" width="50px">
             	<span id="theNumberOfMsg"> ${UnreadMsgs }</span>
             </a>
-            <c:choose>
-            	<c:when test="${!empty loginInfo }">
-		            <a href="/ro/board/travelWrite.do" id="wBtn">
-		            	<img src ="/ro/img/write.png" width="50px">
-		            </a>
-		        </c:when>
-		        <c:otherwise>
-		        	 <a href="javascript:loginAlert();" id="wBtn">
-		            	<img src ="/ro/img/write.png" width="50px">
-		            </a>
-		        </c:otherwise>
-            </c:choose>
+            
+            <a href="/ro/board/travelWrite.do" id="wBtn">
+            	<img src ="/ro/img/write.png" width="50px">
+            </a>
+		   
           	</ul>
         </div>
     	</header>

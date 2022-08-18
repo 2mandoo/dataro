@@ -36,7 +36,7 @@ $(function(){
 
 <div id="wrap">
 	<div class="content login page">
-		<a href="/ro/board/main.do" id="goMain"><img src="/ro/img/back.png">메인으로</a>
+		<a href="/ro/board/main.do"><img src="/ro/img/main.png" id="goMain"></a>
 		<form action="" method="get" name ="">
 			<table>
 				<tr>

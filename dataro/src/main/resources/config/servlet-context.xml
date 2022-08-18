@@ -48,6 +48,8 @@
         <property name="dataSource" ref="dataSource"/>
    </bean>
     
+<mybatis-spring:scan base-package="project.data.ro" annotation="org.apache.ibatis.annotations.Mapper"/>
+	
       <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
       <property name="defaultEncoding" value="utf-8"/>
       <!-- 1024*1024*10bytes 10MB -->
@@ -59,16 +61,26 @@
    </bean>
    
 
-<!-- 
-         <mvc:mapping path="/board/**/"/>
-         <mvc:exclude-mapping path="/board/index.do"/>
-         <mvc:exclude-mapping path="/board/view.do"/>
-         
-         <bean class="interceptor.MemberLoginInterceptor"/>
-      </mvc:interceptor>
-   </mvc:interceptors>
--->       
-   <mybatis-spring:scan base-package="project.data.ro" annotation="org.apache.ibatis.annotations.Mapper"/>
+<mvc:interceptors>
+	<mvc:interceptor>
+	
+		<mvc:mapping path="/board/**"/>  
+		<mvc:mapping path="/member/**"/>
+		<mvc:mapping path="/fullboard/**"/>
+		<mvc:mapping path="/room/**"/>
+		<mvc:exclude-mapping path="/board/main.do"/>
+		<mvc:exclude-mapping path="/member/register"/>
+		<mvc:exclude-mapping path="/member/login"/>
+		<mvc:exclude-mapping path="/member/findId"/>
+		<mvc:exclude-mapping path="/member/findPwd"/>
+		<mvc:exclude-mapping path="/member/findIdPwd"/>
+		<mvc:exclude-mapping path="/fullboard/fullmain.do"/>
+		
+		<bean class="Interceptor.MemberLoginInterceptor"/>
+		
+	</mvc:interceptor>
+</mvc:interceptors> 
+
     
 </beans>
 

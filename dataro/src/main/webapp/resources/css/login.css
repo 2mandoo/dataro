@@ -6,9 +6,10 @@
 
 .login form h1{text-align:center; padding-bottom:20px;}
 #wrap .login {display: block; margin: 0 auto; width: 700;}
-#wrap .page{position:relative; top:200px;}
+#wrap .page{position:relative; top:180px;}
 #wrap .page #goMain{position:relative; right:310px; bottom:50px;}
 .page table tr td{padding-bottom:10px;} 
+.login #goMain{width:40px; position:relative;}
 
 
 .login table .Btn{width: 150px; height:30px;}

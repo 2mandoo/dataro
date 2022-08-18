@@ -81,7 +81,7 @@ public class MemberController {
 			// 파일저장
 			String path = req.getRealPath("/img/");
 			try {
-			filename.transferTo(new File(path+real));
+				filename.transferTo(new File(path+real));
 			} catch (Exception e) {}
 			
 			vo.setM_filename_org(org);

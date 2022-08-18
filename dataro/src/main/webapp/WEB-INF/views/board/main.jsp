@@ -115,7 +115,7 @@ function loginAlert(){
 	    <div class="content main">
 	    <c:forEach var ="list" items="${list}">
      	<div class="cnt_set">
-          	<h5>${list.title}</h5>
+          	<h5>${list.title}</h5>글번호 : ${list.board_no}
           	<span>
           	<c:set var="hashArr" value="${fn:split(list.hashtag_name, ',')}" />
          	<c:forEach var ="hword" items="${hashArr}">
@@ -123,7 +123,7 @@ function loginAlert(){
          	</c:forEach>
          	</span>
          	<div class="img_area">
-            <a href="">이미지영역</a>
+            <a href="view.do?board_no=${list.board_no}">이미지영역</a>
             <ul>
               <li>
                 <span class="likecount">${list.likecount}</span>
@@ -140,10 +140,11 @@ function loginAlert(){
             </ul>
           </div>
           <ul class="courselist">
-            <li><span>●</span><span>국립익산박물관 값</span></li> <!-- 월요일에 물어보기  -->
-            <li><span>●</span><span>국립익산박물관</span></li>
-            <li><span>●</span><span>국립익산박물관</span></li>
-            <li><span>●</span><span>국립익산박물관</span></li>
+            <li><span>●</span><span>1</span></li>
+            <li><span>●</span><span>1</span></li>
+            <li><span>●</span><span>1</span></li>
+            <li><span>●</span><span>1</span></li>
+            <li><span>●</span><span>1</span></li>
           </ul>
       </div>
       </c:forEach>

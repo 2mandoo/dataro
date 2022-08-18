@@ -12,44 +12,45 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-
-import project.data.ro.board.BoardVO;
 
 @Controller
 @RequestMapping("/map")
 public class MapController {
-   
-   @Autowired
-   MapMapper mapper;
-   
-   @RequestMapping("/map.do")
-   public String map() {
-	   return "map/map";
-   }
-   
-   @RequestMapping("/get.do")
-   @ResponseBody
-   public List<MapVO> get(Model model) {
-      List<MapVO> courseList = mapper.list();
- 
-      model.addAttribute("courseList", courseList);
-      return courseList;
-   }
-   
-   
-   @RequestMapping("/print.do")
-   @ResponseBody
-   public MapVO[] printc(HttpServletRequest req, HttpServletResponse res) throws IOException {
-      String json = req.getParameter("json");
-      Gson gson = new Gson();
-      MapVO[] list = gson.fromJson(json, MapVO[].class);
-      
-      for(int i=0; i<list.length; i++) {
-         int a= mapper.insert(list[i]);
-         System.out.println(list[i]);
-         System.out.println(a);
-      }
-      return list;
-   }
+
+	@Autowired
+	MapMapper mapper;
+
+	@RequestMapping("/map.do")
+	public String map() {
+		return "map/map";
+	}
+
+	@RequestMapping(value="/get.do", produces = "application/text; charset=UTF-8" )
+	@ResponseBody
+	public String get(Model model) throws JsonProcessingException {
+		// board_no 받아서 조건 추가해야함 배열에 넣을때 순서 정확성 위해 course_no로 순서주기 
+		List<MapVO> courseList = mapper.list();
+		System.out.println(courseList);
+		model.addAttribute("courseList", courseList);
+
+		String json = new ObjectMapper().writeValueAsString(courseList);
+		return json;
+	}
+	
+	@RequestMapping("/print.do")
+	@ResponseBody
+	public MapVO[] printc(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		String json = req.getParameter("json");
+		Gson gson = new Gson();
+		MapVO[] list = gson.fromJson(json, MapVO[].class);
+
+		for(int i=0; i<list.length; i++) {
+			list[i].setCourse_no(i+1);
+			mapper.insert(list[i]);
+		}
+		return list;
+	}
 }

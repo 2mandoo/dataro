@@ -15,7 +15,6 @@ public class BoardVO {
 	private int viewcount; 
 	private Timestamp writedate; 
 	private Timestamp updatedate; 
-	// private int course_no;
 	private String stype;
 	private String sword;
 	private int startIdx;
@@ -40,6 +39,6 @@ public class BoardVO {
 	// 내용여러개
 	private String[] contents;
 	private int course_no;
-	
+	private int place_name;
 	private int login_member_no;
 }

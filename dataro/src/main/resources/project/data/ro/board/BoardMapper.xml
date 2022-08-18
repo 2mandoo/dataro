@@ -154,11 +154,10 @@
 		select 
 			*
 		    , (select count(*) from plike l where b.board_no = l.board_no) as likecount
-		    , (select count(*) from pdislike dl where b.board_no = dl.board_no) as dislikecount
 		    , (select group_concat(hashtag_name) from pcategory c left outer join phashtag  h on c.hashtag_no = h.hashtag_no where c.board_no = b.board_no) as hashtag_name
 		    from pboard b
 			<where>
-				board_name = '여행코스'
+				board_name = '여행게시판'
 				<if test ="stype != null or sword != null">
 					<if test ="stype == 'title'">
 					  and title like '%${sword}%'
@@ -169,6 +168,11 @@
 				</if>
 			</where>
 	</select>
+	
+	<!-- 
+	<select id ='course' resultType="project.data.ro.board.BoardVO">
+		select place_name from pmap where board_no = #{board_no}
+	</select> -->
 	
 	
 	

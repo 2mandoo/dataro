@@ -14,10 +14,9 @@ public interface BoardService {
 	
 	boolean update(BoardVO vo); 
 	boolean delete(int no); 
-	Map index(BoardVO vo); 
 	BoardVO view(int no); 
 	BoardVO edit(int no); 
-	// 마이페이지 관련 게시물 6개.
+	// 마이페이지 관련(정길)
 	Map myList1(BoardVO vo,  HttpSession sess);
 	Map myList2(BoardVO vo, HttpSession sess);
 	Map myList3(BoardVO vo, HttpSession sess);
@@ -25,10 +24,10 @@ public interface BoardService {
 	Map myList5(MessageVO vo, HttpSession sess);
 	List<RoomVO> myList6(RoomVO vo, HttpSession sess);
 	
-	// main
+	// main(호윤)
 	List<BoardVO> list(BoardVO vo);
 
-	// write
+	// write(진경)
 	boolean insert(BoardVO bvo);
 	List<HashTagVO> hash();
 	

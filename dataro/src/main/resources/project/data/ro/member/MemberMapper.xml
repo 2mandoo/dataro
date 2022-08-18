@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.data.ro.member.MemberMapper">
 
+	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+
+
+	<!-- 회원등록 -->
 	<insert id="insert" parameterType="project.data.ro.member.MemberVO">
 			INSERT INTO pmember (
 				id, nickname, pwd, email, m_filename_org, m_filename_server, regdate
@@ -29,8 +33,6 @@
 	</select>
 	
 	
-	
-	
 	<!-- 아이디로 해당하는 개인정보 가져오기 -->
 	<select id="myInfo" resultType="project.data.ro.member.MemberVO">
 		select * from pmember where id = #{id}
@@ -43,6 +45,7 @@
 	</select>
 	
 	
+	<!-- 회원정보수정 -->
 	<update id="editUserInfo" parameterType="project.data.ro.member.MemberVO">
 		update pmember set
 			nickname = #{nickname}
@@ -56,12 +59,14 @@
 	</update> 
 	
 	
+	<!-- 아이디 찾기 -->
 	<select id="findId" parameterType="project.data.ro.member.MemberVO" resultType="project.data.ro.member.MemberVO">
 		select * from pmember 
 		where email=#{email} and nickname=#{nickname}
 	</select>
 	
 	
+	<!-- 비밀번호 찾기 -->
 	<select id="findPwd" parameterType="project.data.ro.member.MemberVO" resultType="project.data.ro.member.MemberVO">
 		select * from pmember 
 		where id=#{id} and email=#{email}
@@ -74,6 +79,7 @@
 	</update>
 	
 	
+	<!-- 회원탈퇴 -->
 	<delete id="deleteId" parameterType="project.data.ro.member.MemberVO">
 		delete from pmember where id = #{id}
 	</delete>
@@ -87,12 +93,11 @@
 	<select id="unreadMsgContent" parameterType="project.data.ro.message.MessageVO" resultType="project.data.ro.message.MessageVO">
 		select * from pmessage p where receive_member_no=#{receive_member_no} and readdate is null;	
 	</select>
-	
+	<!-- 안읽은 쪽지 읽음처리 -->
 	<update id="readUpdate" parameterType="project.data.ro.message.MessageVO">
 		UPDATE `pmessage` SET `readdate` = now() WHERE message_no = #{message_no} and receive_member_no=#{receive_member_no}
 	</update>
 	
-	
-	
+	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 </mapper>

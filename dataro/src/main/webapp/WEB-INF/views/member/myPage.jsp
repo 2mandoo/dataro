@@ -92,6 +92,8 @@ function getPage5(page){
 		}
 	})
 };
+
+
 $(function(){
  	$('#setbtn').click(function(){
  		location.href="/ro/member/editMemberInfo";

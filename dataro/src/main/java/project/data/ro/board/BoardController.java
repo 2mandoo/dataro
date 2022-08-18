@@ -44,7 +44,6 @@ public class BoardController {
 	
 	@Autowired
 	MapMapper mapper;
-
 	//여행코스 글쓰기화면
 	@GetMapping("/travelWrite.do")
 	public String write(Model model) {
@@ -63,6 +62,9 @@ public class BoardController {
 		return "redirect:/board/travelWrite.do";
 	}
 	
+	
+//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
+
 	// 마이페이지 내가 쓴 게시글 보기
 	@RequestMapping("/myList1")
 	public String mylist1(BoardVO vo, Model model, HttpSession sess) {
@@ -104,6 +106,8 @@ public class BoardController {
 		model.addAttribute("list", service.myList6(vo, sess));
 		return "board/myList6";
 	}
+
+//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 	
 	
 	// main + 정길 수정.

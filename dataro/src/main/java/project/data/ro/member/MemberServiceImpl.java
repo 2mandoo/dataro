@@ -18,21 +18,25 @@ public class MemberServiceImpl implements MemberService {
 
 	private MemberMapper mapper;
 	
+	// 회원 등록
 	@Override
 	public boolean register(MemberVO vo) {
 		return mapper.insert(vo) > 0 ? true : false;
 	}
-
+	
+	// 아이디 중복확인
 	@Override
 	public int checkId(MemberVO vo) {
 		return mapper.checkId(vo);
 	}
 	
+	// 이메일 중복확인
 	@Override
 	public int checkEmail(MemberVO vo) {
 		return mapper.checkEmail(vo);
 	}
 	
+	// DB에 저장된 정보가 있어서 로그인 성공하면 로그인정보가 세션에 저장.
 	@Override
 	public boolean loginCheck(MemberVO vo, HttpSession sess) {
 		boolean r = false;

@@ -114,7 +114,7 @@ $(function(){
          	</c:forEach>
          	</span>
          	<div class="img_area">
-            <a href="/ro/board/travelWrite.do">이미지영역</a>
+            <a href="view.do?board_no=${list.board_no}">이미지영역</a>
             <ul>
               <li>
                 <span class="likecount">${list.likecount}</span>

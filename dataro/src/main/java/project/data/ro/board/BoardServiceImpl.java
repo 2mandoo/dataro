@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import project.data.ro.member.MemberVO;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomMapper;
 import project.data.ro.room.RoomVO;
@@ -81,7 +84,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Map myList1(BoardVO vo) {
+	public Map myList1(BoardVO vo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
+		int no = vo1.getMember_no();
+		vo.setMember_no(no);
 		int totalCount = mapper.count1(vo);
 		int totalPage = totalCount / vo.getPageRow();
 		if(totalCount % vo.getPageRow() > 0) totalPage++;
@@ -105,7 +111,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Map myList2(BoardVO vo) {
+	public Map myList2(BoardVO vo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
+		int no = vo1.getMember_no();
+		vo.setMember_no(no);
 		int totalCount = mapper.count2(vo);
 		int totalPage = totalCount / vo.getPageRow();
 		if(totalCount % vo.getPageRow() > 0) totalPage++;
@@ -129,7 +138,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public Map myList3(BoardVO vo) {
+	public Map myList3(BoardVO vo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
+		int no = vo1.getMember_no();
+		vo.setMember_no(no);
 		int totalCount = mapper.count3(vo);
 		int totalPage = totalCount / vo.getPageRow();
 		if(totalCount % vo.getPageRow() > 0) totalPage++;
@@ -153,7 +165,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Map myList4(MessageVO vo) {
+	public Map myList4(MessageVO vo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
+		int no = vo1.getMember_no();
+		vo.setReceive_member_no(no);
 		int totalCount = mapper.count4(vo);
 		int totalPage = totalCount / vo.getPageRow();
 		if(totalCount % vo.getPageRow() > 0) totalPage++;
@@ -177,7 +192,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public Map myList5(MessageVO vo) {
+	public Map myList5(MessageVO vo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
+		int no = vo1.getMember_no();
+		vo.setSend_member_no(no);
 		int totalCount = mapper.count5(vo);
 		int totalPage = totalCount / vo.getPageRow();
 		if(totalCount % vo.getPageRow() > 0) totalPage++;
@@ -201,7 +219,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<RoomVO> myList6(RoomVO vo) {
+	public List<RoomVO> myList6(RoomVO vo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
+		int no = vo1.getMember_no();
+		vo.setRoom_participant_no(no);
 		return mapper.myList6(vo);
 	}
 

@@ -39,7 +39,7 @@
 		and (title like '%${sword}%') 
 	</select>
 	
-	 
+	 <!-- 내가 쓴 댓글 -->
  	<select id="myList2" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.board.BoardVO">
 		select r.member_no, r.board_no, b.title, r.board_name, r.content, r.reply_writedate 
 		from preply r join pboard b 
@@ -58,7 +58,7 @@
 	</select> 
 	
 	
-	<!-- 좋아요 누른 게시물 -->
+	<!-- 내가 좋아요 누른 게시물 -->
 	<select id="myList3" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.board.BoardVO">
 		select l.board_name, l.board_no, b.title, b.viewcount
 		from plike l join pboard b 

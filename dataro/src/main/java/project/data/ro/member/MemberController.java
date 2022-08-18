@@ -124,9 +124,6 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("/main")
-	public void main() {}
-	
 	@GetMapping("/login")
 	public void login() {}
 	
@@ -153,18 +150,12 @@ public class MemberController {
 		return "common/alert";
 	}
 	
-	@GetMapping("/myInfo")
-	public void myInfo() {}
 	
-	@PostMapping("/myInfo")
-	public String myInfo1() {
-		return "redirect:/member/myInfo";
-	}
+	@GetMapping("/editMemberInfo") public void editUserInfo() {}
+	 
 	
-	@GetMapping("/editMemberInfo")
-	public void editUserInfo() {}
-	
-	@PostMapping("/editUserInfo")
+	// 회원정보수정.
+	@RequestMapping("/editUserInfo")
 	public String editUserInfo(MemberVO vo, 
 								HttpSession sess,
 								Model model, 

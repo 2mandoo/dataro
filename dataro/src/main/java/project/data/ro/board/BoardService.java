@@ -3,6 +3,8 @@ package project.data.ro.board;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.HashTagVO;
@@ -15,13 +17,13 @@ public interface BoardService {
 	Map index(BoardVO vo); 
 	BoardVO view(int no); 
 	BoardVO edit(int no); 
-	Map myList1(BoardVO vo);
-	Map myList2(BoardVO vo);
-	Map myList3(BoardVO vo);
-	Map myList4(MessageVO vo);
-	Map myList5(MessageVO vo);
-	List<RoomVO> myList6(RoomVO vo);
-	
+	// 마이페이지 관련 게시물 6개.
+	Map myList1(BoardVO vo,  HttpSession sess);
+	Map myList2(BoardVO vo, HttpSession sess);
+	Map myList3(BoardVO vo, HttpSession sess);
+	Map myList4(MessageVO vo, HttpSession sess);
+	Map myList5(MessageVO vo, HttpSession sess);
+	List<RoomVO> myList6(RoomVO vo, HttpSession sess);
 	
 	// main
 	List<BoardVO> list(BoardVO vo);

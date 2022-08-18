@@ -49,7 +49,8 @@
                     	<td>${vo.room_no}</td>
                         <td>${vo.room_title}</td>
                         <td>${vo.roommaker_id}</td>
-                        <td class="date"><fmt:formatDate value="${vo.room_startdate }" pattern="yyyy-MM-dd"/></td>
+                        <td>${vo.room_startdate }</td>
+                        <%-- <td><fmt:formatDate value="${vo.room_startdate }" pattern="yyyy-MM-dd"/></td> --%>
                     </tr>
                 </c:forEach>
                 </tbody>

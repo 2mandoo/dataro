@@ -17,11 +17,9 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>MAIN DATARO</title>
 <script>
-/* 	if (${empty loginInfo}){
-		$('#idImg').hidden();
-	} */
-	
 $(function(){
+	
+	
 	
 	$('#idImg').click(function(){
 		location.href="/ro/member/myPage";
@@ -37,11 +35,13 @@ $(function(){
 				$("#areaForUser").html(e);
 			},
 			error : function(e){
-				alert(`error`);
+				loginAlert();
 			}
 		});
 		
-		$('.modal').fadeIn();
+		if (${!empty loginInfo}) {
+			$('.modal').fadeIn();
+		}
 	});
 	
 	
@@ -54,7 +54,9 @@ $(function(){
 	
 });
 	
-
+function loginAlert(){
+	alert("로그인 후 이용해주세요 : )");
+}
 
 
 </script>
@@ -92,9 +94,18 @@ $(function(){
             	<img src ="/ro/img/alarm.png" width="50px">
             	<span id="theNumberOfMsg"> ${UnreadMsgs }</span>
             </a>
-            <a href="/ro/board/travelWrite.do">
-            	<img src ="/ro/img/write.png" width="50px">
-            </a>
+            <c:choose>
+            	<c:when test="${!empty loginInfo }">
+		            <a href="/ro/board/travelWrite.do" id="wBtn">
+		            	<img src ="/ro/img/write.png" width="50px">
+		            </a>
+		        </c:when>
+		        <c:otherwise>
+		        	 <a href="javascript:loginAlert();" id="wBtn">
+		            	<img src ="/ro/img/write.png" width="50px">
+		            </a>
+		        </c:otherwise>
+            </c:choose>
           	</ul>
         </div>
     	</header>

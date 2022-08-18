@@ -18,6 +18,9 @@ public class MemberServiceImpl implements MemberService {
 
 	private MemberMapper mapper;
 	
+	
+//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	
 	// 회원 등록
 	@Override
 	public boolean register(MemberVO vo) {
@@ -48,21 +51,25 @@ public class MemberServiceImpl implements MemberService {
 		return r; // 로그인 불가능한 상태. 
 	}
 	
+	// 아이디로 해당하는 개인정보 가져오기
 	@Override
 	public MemberVO myInfo(String id) {
 		return mapper.myInfo(id);
 	}
-
+	
+	// 회원정보수정
 	@Override
 	public boolean editUserInfo(MemberVO vo) {
 		return mapper.editUserInfo(vo) > 0 ? true : false;
 	}
 	
+	// 아이디 찾기
 	@Override
 	public MemberVO findId(MemberVO vo) {
 		return mapper.findId(vo);
 	}
-
+	
+	// 비밀번호찾기화면에서 입력한 아이디와 이메일이 디비에 저장되어 있나 확인 후, 임시비밀번호로 업데이트.
 	@Override
 	public MemberVO findPwd(MemberVO vo) {
 		MemberVO vo1 = mapper.findPwd(vo);
@@ -77,7 +84,7 @@ public class MemberServiceImpl implements MemberService {
 				temp += (int)(Math.random()*9);
 			}
 			vo1.setPwd(temp);
-			mapper.updateTempPwd(vo1); 
+			mapper.updateTempPwd(vo1);  // 임시비밀번호로 업데이트
 			String email = vo1.getEmail();
 			// email발송
 			SendMail.sendMail("jeonggil5579@naver.com", email, "[Dataro]임시 비밀번호", "임시비밀번호는 "+ temp + " 입니다.");
@@ -87,11 +94,13 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+	// 회원탈퇴
 	@Override
 	public int deleteId(MemberVO vo) {
 		return mapper.deleteId(vo);
 	}
 
+	// 회원번호로 해당하는 개인정보 가져오기
 	@Override
 	public MemberVO myInfo2(int no) {
 		return mapper.myInfo2(no);
@@ -115,6 +124,7 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.readUpdate(vo);
 	}
 
-	
+//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
 	
 }

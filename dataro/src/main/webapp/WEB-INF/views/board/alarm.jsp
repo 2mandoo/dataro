@@ -8,17 +8,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
+
+// 읽음처리하기 버튼 클릭시 읽음처리.
 $(function (){
 	$("#btn").click(function(){
 		console.log($("#messageFrm").serialize());
 		aj();
-		location.reload();
+		location.reload(); 
 	}); 
 	if (${empty list }) {
 		$('#btn').hide();
 	}
 });
 
+// 안읽은 쪽지 화면에서 체크표시한 값들을 ajax로 해당 url로 넘김. 
 function aj(){
 	$.ajax({
 		url : '/ro/member/readProcess',

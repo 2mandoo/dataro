@@ -66,7 +66,7 @@
 	</select>
 	
 	
-	<!-- 비밀번호 찾기 -->
+	<!-- 비밀번호찾기화면에서 입력한 아이디와 이메일이 디비에 저장되어 있나 확인 -->
 	<select id="findPwd" parameterType="project.data.ro.member.MemberVO" resultType="project.data.ro.member.MemberVO">
 		select * from pmember 
 		where id=#{id} and email=#{email}
@@ -84,7 +84,7 @@
 		delete from pmember where id = #{id}
 	</delete>
 	
-
+	
 	<!-- 읽지않은 쪽지갯수 -->
 	<select id="alarmForMessage" parameterType="project.data.ro.message.MessageVO" resultType="int">
 		select count(*) from pmessage p where receive_member_no=#{receive_member_no} and readdate is null

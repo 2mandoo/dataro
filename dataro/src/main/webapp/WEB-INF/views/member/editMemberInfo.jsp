@@ -12,12 +12,14 @@
 <body>
 <script>
 $(function(){
+	// 비밀번호입력칸
 	$('#pw1').focusout(function(){
 		if ($('#pw1').val() === '' ){
 			$("#area2").html('비밀번호를 입력해 주세요.').css('color','red').css('font-size','small');
 			$("#pw1").focus();
 			} 
 		})
+	// 비밀번호확인칸
 	$('#pwd').focusout(function(){
 		if ($('#pwd').val() === '' ){
 			$("#area2").html('비밀번호를 입력해 주세요.').css('color','red').css('font-size','small');
@@ -135,7 +137,7 @@ function checkEmail(){
 					<td><input type="text" id="pw1" name="pw1" placeholder="pw"></td>
 				</tr>
 				<tr>
-					<td class="right">비밀번호 : &nbsp</td>
+					<td class="right">비밀번호 확인 : &nbsp</td>
 					<td><input type="text" id="pwd" name="pwd" placeholder="pw for confirmation"></td>
 				</tr>
 				<tr>

@@ -4,10 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import project.data.ro.member.MemberVO;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomMapper;
 import project.data.ro.room.RoomVO;
@@ -47,30 +50,6 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Map index(BoardVO vo) {
-		int totalCount = mapper.count(vo);
-		int totalPage = totalCount / vo.getPageRow();
-		if(totalCount % vo.getPageRow() > 0) totalCount++;
-		int startIdx = (vo.getPage()-1) * vo.getPageRow();
-		vo.setStartIdx(startIdx);
-		List<BoardVO> list = mapper.list(vo);
-		int endPage = (int)(Math.ceil(vo.getPage()/10.0)*5);
-		int startPage = endPage - 4;
-		if (endPage > totalPage) endPage = totalPage;
-		boolean prev = startPage > 1 ? true : false;
-		boolean next = endPage < totalPage ? true: false;
-		Map map = new HashMap();
-		map.put("totalCount", totalCount);
-		map.put("totalPage", totalPage);
-		map.put("startPage", startPage);
-		map.put("endPage", endPage);
-		map.put("prev", prev);
-		map.put("next", next);
-		map.put("list", list);
-		return map;
-	}
-	
-	@Override
 	public BoardVO view(int no) {
 		mapper.updateViewcount(no);
 		return mapper.view(no);
@@ -81,8 +60,14 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.view(no);
 	}
 
+//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+	// 내가 쓴 게시물(마이페이지)
 	@Override
-	public Map myList1(BoardVO vo) {
+	public Map myList1(BoardVO vo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
+		int no = vo1.getMember_no();
+		vo.setMember_no(no);
 		int totalCount = mapper.count1(vo);
 		int totalPage = totalCount / vo.getPageRow();
 		if(totalCount % vo.getPageRow() > 0) totalPage++;
@@ -105,8 +90,12 @@ public class BoardServiceImpl implements BoardService {
 		return map;
 	}
 
+	// 내가 쓴 댓글(마이페이지)
 	@Override
-	public Map myList2(BoardVO vo) {
+	public Map myList2(BoardVO vo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
+		int no = vo1.getMember_no();
+		vo.setMember_no(no);
 		int totalCount = mapper.count2(vo);
 		int totalPage = totalCount / vo.getPageRow();
 		if(totalCount % vo.getPageRow() > 0) totalPage++;
@@ -128,9 +117,13 @@ public class BoardServiceImpl implements BoardService {
 		map.put("list", list);
 		return map;
 	}
-	
+
+	// 내가 좋아요 누른 게시물(마이페이지)
 	@Override
-	public Map myList3(BoardVO vo) {
+	public Map myList3(BoardVO vo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
+		int no = vo1.getMember_no();
+		vo.setMember_no(no);
 		int totalCount = mapper.count3(vo);
 		int totalPage = totalCount / vo.getPageRow();
 		if(totalCount % vo.getPageRow() > 0) totalPage++;
@@ -153,8 +146,12 @@ public class BoardServiceImpl implements BoardService {
 		return map;
 	}
 
+	// 내가 받은 쪽지(마이페이지)
 	@Override
-	public Map myList4(MessageVO vo) {
+	public Map myList4(MessageVO vo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
+		int no = vo1.getMember_no();
+		vo.setReceive_member_no(no);
 		int totalCount = mapper.count4(vo);
 		int totalPage = totalCount / vo.getPageRow();
 		if(totalCount % vo.getPageRow() > 0) totalPage++;
@@ -177,8 +174,12 @@ public class BoardServiceImpl implements BoardService {
 		return map;
 	}
 	
+	// 내가 보낸 쪽지(마이페이지)
 	@Override
-	public Map myList5(MessageVO vo) {
+	public Map myList5(MessageVO vo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
+		int no = vo1.getMember_no();
+		vo.setSend_member_no(no);
 		int totalCount = mapper.count5(vo);
 		int totalPage = totalCount / vo.getPageRow();
 		if(totalCount % vo.getPageRow() > 0) totalPage++;
@@ -200,11 +201,17 @@ public class BoardServiceImpl implements BoardService {
 		map.put("list", list);
 		return map;
 	}
-
+	
+	// 내가 참여한 방(마이페이지)
 	@Override
-	public List<RoomVO> myList6(RoomVO vo) {
+	public List<RoomVO> myList6(RoomVO vo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
+		int no = vo1.getMember_no();
+		vo.setRoom_participant_no(no);
 		return mapper.myList6(vo);
 	}
+	
+//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(끝) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 	@Override
 	public List<BoardVO> list(BoardVO vo) {

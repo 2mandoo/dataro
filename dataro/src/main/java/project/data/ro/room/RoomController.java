@@ -52,20 +52,12 @@ public class RoomController {
 	}
 	
 	//정현
-	@GetMapping("/write.do")
-	public String mkRoom(RoomVO vo) {
-		vo.setBoard_name("main");
-		vo.setBoard_no(987697);
-		vo.setRoommaker_id("test2");
-		return "room/make";
-	}
-	
 	@PostMapping("/write.do")
-	public String writeRoom(RoomVO vo) {
+	@ResponseBody
+	public int writeRoom(RoomVO vo) {
 		System.out.println(vo);
-		rservice.makeRoom(vo);
 		
-		return "redirect:/board/view.do";
+		return rservice.makeRoom(vo);
 	}
 	
 	@GetMapping("/room.do")

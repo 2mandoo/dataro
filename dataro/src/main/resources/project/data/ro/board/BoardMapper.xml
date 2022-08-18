@@ -3,18 +3,8 @@
 <mapper namespace="project.data.ro.board.BoardMapper">
 
 
-	<sql id="Sql">
-		<if test="stype != null and stype != ''">
-			<if test="stype != 'all'">
-				and (${stype} LIKE '%${sword}%')
-			</if>
-			<if test="stype == 'all'">
-	    		and (title LIKE '%${sword}%' OR content LIKE '%${sword}%')
-	    	</if>
-		</if>
-	</sql>
+	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ정길ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	
-
 	<select id="view" parameterType="int" resultType="project.data.ro.board.BoardVO">
 		SELECT * FROM pboard WHERE board_no=#{board_no} 
 	</select>
@@ -25,7 +15,7 @@
 	</update>
 	
 	
-	<!-- 내가 쓴 글 -->
+	<!-- 내가 쓴 글(마이페이지) -->
 	<select id="myList1" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.board.BoardVO">
 		SELECT * FROM pboard
 		where member_no=#{member_no}
@@ -39,7 +29,7 @@
 		and (title like '%${sword}%') 
 	</select>
 	
-	 
+	 <!-- 내가 쓴 댓글(마이페이지) -->
  	<select id="myList2" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.board.BoardVO">
 		select r.member_no, r.board_no, b.title, r.board_name, r.content, r.reply_writedate 
 		from preply r join pboard b 
@@ -58,7 +48,7 @@
 	</select> 
 	
 	
-	<!-- 좋아요 누른 게시물 -->
+	<!-- 내가 좋아요 누른 게시물(마이페이지) -->
 	<select id="myList3" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.board.BoardVO">
 		select l.board_name, l.board_no, b.title, b.viewcount
 		from plike l join pboard b 
@@ -77,7 +67,7 @@
 	</select> 
 	
 	
-	<!-- 내가 받은 쪽지 -->
+	<!-- 내가 받은 쪽지(마이페이지) -->
 	<select id="myList4" parameterType="project.data.ro.message.MessageVO" resultType="project.data.ro.message.MessageVO">
 		select 
     		m.nickname,
@@ -112,7 +102,7 @@
 	</select>
 	
 	
-	<!-- 내가 보낸 쪽지 -->
+	<!-- 내가 보낸 쪽지(마이페이지) -->
 	<select id="myList5" parameterType="project.data.ro.message.MessageVO" resultType="project.data.ro.message.MessageVO">
 		select 
     		m.nickname,
@@ -146,7 +136,8 @@
 		</if> 
 	</select> 
 	
-	<!-- 내가 참여한 채팅방 -->
+	
+	<!-- 내가 참여한 채팅방(마이페이지) -->
 	<select id="myList6" parameterType="project.data.ro.room.RoomVO" resultType="project.data.ro.room.RoomVO">
 		select p.board_name, p.room_no, p.room_title, p.roommaker_id, p.room_startdate
 		from proom p, proommember pr 
@@ -155,17 +146,18 @@
 	</select>
 	
 	
+	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ정길ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+
 	
 	<!-- main from 호윤 -->
 	<select id="list" resultType="project.data.ro.board.BoardVO"> 
 		select 
 			*
 		    , (select count(*) from plike l where b.board_no = l.board_no) as likecount
-		    , (select count(*) from pdislike dl where b.board_no = dl.board_no) as dislikecount
 		    , (select group_concat(hashtag_name) from pcategory c left outer join phashtag  h on c.hashtag_no = h.hashtag_no where c.board_no = b.board_no) as hashtag_name
 		    from pboard b
 			<where>
-				board_name = '여행코스'
+				board_name = '여행게시판'
 				<if test ="stype != null or sword != null">
 					<if test ="stype == 'title'">
 					  and title like '%${sword}%'
@@ -176,6 +168,11 @@
 				</if>
 			</where>
 	</select>
+	
+	<!-- 
+	<select id ='course' resultType="project.data.ro.board.BoardVO">
+		select place_name from pmap where board_no = #{board_no}
+	</select> -->
 	
 	
 	

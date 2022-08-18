@@ -69,8 +69,8 @@
                     	<div class="scroll"></div>
                     </div>
                  <!--//지도,글쓰기-->
-				 <a href="javascript:displayCouses(courseArr);">마커표시</a>
-                 <a href="javascript:goSave()">등록</a>
+				 <a href="javascript:displayCouses(courseArr);">[마커표시]</a>&nbsp;&nbsp;
+                 <a href="javascript:goSave()">[등록]</a>
             </form>
         </div>
     </div>

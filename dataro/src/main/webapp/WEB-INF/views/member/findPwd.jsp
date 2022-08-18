@@ -41,10 +41,8 @@ $(function(){
 			success : function(res) {
 				if (res.trim() == '') {
 					alert('회원정보가 올바르지 않습니다.');
-					/* $('#msg').html('입력하신 정보는 존재하지 않습니다.'); */
 				} else {
 					alert('임시비밀번호가 이메일로 발송되었습니다.');
-					/* $('#msg').html('이메일은 "'+res.trim()+'" 입니다.'); */
 				}
 			}
 		});

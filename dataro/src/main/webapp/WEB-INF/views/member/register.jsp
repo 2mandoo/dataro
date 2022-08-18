@@ -135,7 +135,7 @@ function checkEmail(){
 };
 </script>
 <div id="wrap">
-	<div class="content login">
+	<div class="content login page">
 		<form action="register" method="post" name ="register" enctype="multipart/form-data">
 		<h1>Register</h1>
 			<table>

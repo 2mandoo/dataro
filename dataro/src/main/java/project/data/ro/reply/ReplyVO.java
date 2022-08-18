@@ -30,9 +30,12 @@ public class ReplyVO {
    
    private String title;
    
-	//해당 댓글에 달린 답글 수
-	private int replycount;
+   //해당 댓글에 달린 답글 수
+   private int replycount;
 
+   //댓글 좋아요 눌렀는지 여부
+   private int islike;
+   
    public ReplyVO() {
       this.pageRow = 10;
       this.page = 1;

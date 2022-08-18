@@ -6,9 +6,15 @@
 
 .login form h1{text-align:center; padding-bottom:20px;}
 #wrap .login {display: block; margin: 0 auto; width: 700;}
+#wrap .page{position:relative; top:200px;}
+#wrap .page #goMain{position:relative; right:310px; bottom:50px;}
+.page table tr td{padding-bottom:10px;} 
 
-.login table .Btn{width: 150px;}
-.content .login table tr td input{margin:5px 0;height:33px}
+
+.login table .Btn{width: 150px; height:30px;}
+.content table tr td input{height:33px}
+.content table tr td #btn_leave{height:33px; position:relative; left:300px}
+
 .login #backBtn{width:70px; position:relative; right:200px; display:inline-block;}
 .login #setbtn{width:70px; position:relative; left:140px;}
 .login #idImg{position:relative; right:110px; border-radius:30px; width:300px; display:inline-block;}

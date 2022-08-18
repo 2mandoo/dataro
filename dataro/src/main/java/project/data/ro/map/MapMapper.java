@@ -11,4 +11,5 @@ public interface MapMapper {
    public int insert(MapVO vo);
    public List<MapVO> list();
    public int update(BoardVO vo);
+   public String place(BoardVO vo);
 }

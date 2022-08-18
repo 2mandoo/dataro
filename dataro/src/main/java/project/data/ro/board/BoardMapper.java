@@ -33,7 +33,7 @@ public interface BoardMapper {
 	
 	// main 
 	List<BoardVO> list(BoardVO vo);
-	
+	BoardVO place(BoardVO vo);
 	
 	// write
 	int insert(BoardVO vo);

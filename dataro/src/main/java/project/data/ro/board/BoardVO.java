@@ -1,8 +1,10 @@
 package project.data.ro.board;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.Data;
+import project.data.ro.map.MapVO;
 
 @Data
 public class BoardVO {
@@ -37,8 +39,8 @@ public class BoardVO {
 	private String hashtag_name; 
 	
 	// 내용여러개
+	private List<String> place_name;
 	private String[] contents;
 	private int course_no;
-	private int place_name;
 	private int login_member_no;
 }

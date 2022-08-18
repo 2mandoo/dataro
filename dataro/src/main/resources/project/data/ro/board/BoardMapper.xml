@@ -176,11 +176,6 @@
 			</where>
 	</select>
 	
-	<!-- 
-	<select id ='course' resultType="project.data.ro.board.BoardVO">
-		select place_name from pmap where board_no = #{board_no}
-	</select> -->
-	
 	
 	
 	<!-- 글쓰기 from 진경 -->

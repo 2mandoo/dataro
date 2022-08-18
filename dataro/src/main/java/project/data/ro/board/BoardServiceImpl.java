@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import project.data.ro.map.MapMapper;
+import project.data.ro.map.MapVO;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomMapper;
 import project.data.ro.room.RoomVO;
@@ -22,6 +23,8 @@ public class BoardServiceImpl implements BoardService {
 	BoardMapper mapper;
 	
 	RoomMapper rmapper;
+	
+	MapMapper pmapper;
 	
 	//여행코스글쓰기(for문-코스등록)
 	@Override
@@ -199,14 +202,16 @@ public class BoardServiceImpl implements BoardService {
 		map.put("list", list);
 		return map;
 	}
-
+	
 	@Override
 	public List<RoomVO> myList6(RoomVO vo) {
 		return mapper.myList6(vo);
 	}
-
+	// 메인
 	@Override
 	public List<BoardVO> list(BoardVO vo) {
+//		List<String> place_name = pmapper.place(vo.getBoard_no())
+		
 		return mapper.list(vo);
 	}
 
@@ -264,5 +269,4 @@ public class BoardServiceImpl implements BoardService {
 	public void dislikeBack(BoardVO vo) {
 		mapper.dislikeBack(vo);
 	}
-
 }

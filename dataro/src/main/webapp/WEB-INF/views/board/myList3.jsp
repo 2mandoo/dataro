@@ -88,7 +88,7 @@ function myList(){
                 </tr>
 				<c:if test="${empty data.list }">
                     <tr>
-                        <td class="first" colspan="5">좋아요 누른 게시물이 없습니다.</td>
+                        <td class="first" colspan="4">좋아요 누른 게시물이 없습니다.</td>
                     </tr>
                 </c:if>
                 <c:forEach var="vo" items="${data.list }" varStatus="status">

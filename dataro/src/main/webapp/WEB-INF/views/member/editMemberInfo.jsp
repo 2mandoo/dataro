@@ -115,7 +115,7 @@ function checkEmail(){
 };
 </script>
 <div id="wrap">
-	<div class="content login">
+	<div class="content login page">
 		<form action="editUserInfo" method="post" name ="register" enctype="multipart/form-data">
 			<table >
 				<tr>
@@ -143,8 +143,8 @@ function checkEmail(){
 					<td colspan="4"><div id="area2"></div></td>
 				</tr>
 				<tr>
-					<td class="right">이메일 : &nbsp</td>
-					<td colspan="3" >
+					<td class="right">이메일 :</td>
+					<td colspan="3" style="text-align:left;">
 						<input type="text" id="email" size="10" placeholder="email" name="email"/>@<input type="text" id="email2" name="email2" size="10" />
 						<select id="email_select" >
 							<option value="1" selected>선택하기</option>

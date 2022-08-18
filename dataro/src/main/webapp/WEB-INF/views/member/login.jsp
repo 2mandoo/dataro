@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/ro/resources/css/login.css"/>
 <link rel="stylesheet" href="/ro/resources/css/reset.css"/>
+<link rel="stylesheet" href="/ro/resources/css/login.css"/>
 </head>
 <body>
 <script>
@@ -31,7 +31,7 @@ $(function(){
 });
 </script>
 <div id="wrap">
-	<div class="content login">
+	<div class="content login page">
 		<form action="login" method="post" name ="login">
 		<h1>DataRo</h1>
 		<table>

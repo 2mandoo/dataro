@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/ro/resources/css/login.css"/>
 <link rel="stylesheet" href="/ro/resources/css/reset.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <script>
@@ -34,9 +34,9 @@ $(function(){
 });
 </script>
 
-<a href="/ro/board/main.do">메인으로</a>
 <div id="wrap">
-	<div class="content login">
+	<div class="content login page">
+		<a href="/ro/board/main.do" id="goMain"><img src="/ro/img/back.png">메인으로</a>
 		<form action="" method="get" name ="">
 			<table>
 				<tr>

@@ -53,7 +53,7 @@ function aj(){
 		<c:choose>
 		<c:when test="${empty list }">
 			<tr>
-				<td colspan="3">받은 쪽지가 없습니다.</td>
+				<td colspan="3">읽지 않은 쪽지가 없습니다.</td>
 			</tr>
 		</c:when>
 			<c:otherwise>

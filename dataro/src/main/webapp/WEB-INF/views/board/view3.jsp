@@ -272,7 +272,6 @@ a {
 		</div>
 	</div>  
 
-<<<<<<< HEAD
 	<!-- 댓글 수정 모달 -->
 	<div class="modal">
    		<div class="modal-content">
@@ -284,7 +283,6 @@ a {
 		</div>
 	</div> 
 	
-=======
 <!--  사용하다가 에러 안나면 지우자.
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
 >>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git

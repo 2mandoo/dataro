@@ -187,7 +187,7 @@ function checkEmail(){
 					${loginInfo.nickname } 님, 안녕하세요! <br>
 					계정을 삭제하려고 하신다니 아쉽습니다. <br>
 					<br><img src="/ro/img/sadCat.jpg" style="width:200px; display:block; position:relative; left:70px;"/><br>
-					회원 탈퇴를 원하시면 비밀번호를 입력해 주세요. <br> 
+					회원 탈퇴를 원하시면 비밀번호를 입력해 주세요. <br/><br/>
 					<input type="text" placeholder="pwd" id="pwd" name="pwd"> <br>
 					<input type="submit" value="회원탈퇴" id="leaveBtn" >
 				</div>

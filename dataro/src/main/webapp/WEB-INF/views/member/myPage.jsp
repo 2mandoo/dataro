@@ -13,15 +13,13 @@
 <body>
 <script>
 function getPage(page){ 
-	var sword = $('#sword').val();
-	var stype = $('#stype').val();
 	$.ajax({
 		url:"/ro/board/myList1",
 		type:'post',
 		data:{
 			page: page,
-			sword : sword,
-			stype: stype
+			sword : $('#sword').val(),
+			stype: $('#stype').val()
 		},
 		success : function(res){
 			$("#area").html(res);
@@ -95,9 +93,11 @@ function getPage5(page){
 
 
 $(function(){
+	// 회원정보수정으로 가기
  	$('#setbtn').click(function(){
  		location.href="/ro/member/editMemberInfo";
  	})
+ 	// 내가 쓴 글
  	$('#bt1').click(function(){
  		$.ajax({
  			url : '/ro/board/myList1',
@@ -110,6 +110,7 @@ $(function(){
 			}
  		});
  	});
+ 	// 내가 쓴 댓글
 	$('#bt2').click(function(){
  		$.ajax({
  			url : '/ro/board/myList2',
@@ -122,6 +123,7 @@ $(function(){
 			}
  		});
  	});
+ 	// 내가 좋아요 누른 게시물
 	$('#bt3').click(function(){
  		$.ajax({
  			url : '/ro/board/myList3',
@@ -134,6 +136,7 @@ $(function(){
 			}
  		});
  	});
+ 	// 내가 받은 쪽지
 	$('#bt4').click(function(){
  		$.ajax({
  			url : '/ro/board/myList4',
@@ -146,6 +149,7 @@ $(function(){
 			}
  		});
  	});
+ 	// 내가 보낸 쪽지
 	$('#bt5').click(function(){
  		$.ajax({
  			url : '/ro/board/myList5',
@@ -158,6 +162,7 @@ $(function(){
 			}
  		});
  	});
+ 	// 내가 참여한 채팅방
 	$('#bt6').click(function(){
  		$.ajax({
  			url : '/ro/board/myList6',

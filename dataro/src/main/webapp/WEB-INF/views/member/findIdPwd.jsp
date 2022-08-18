@@ -40,8 +40,8 @@ $(function(){
 		<form action="" method="get" name ="">
 			<table>
 				<tr>
-					<td id="fId">아이디 찾기</td>
-					<td id="fPwd">비밀번호 찾기</td>
+					<td id="fId"><a href="#">아이디 찾기</a></td>
+					<td id="fPwd"><a href="#">비밀번호 찾기</a></td>
 				</tr>
 				<tr>
 					<td>&nbsp</td>

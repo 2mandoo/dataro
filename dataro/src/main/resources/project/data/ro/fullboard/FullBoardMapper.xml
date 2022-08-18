@@ -20,7 +20,8 @@
 			(select filename_org from pfile where board_no=pboard.board_no) as filename_org,
 			(select filename_server from pfile where board_no=pboard.board_no) as filename_server
 			from  pboard 
-			where board_no = #{board_no} and board_name = '여행게시판' -->
+			where board_no = #{board_no} and board_name = '여행게시판'
+			 -->
 		select * 
 		from pboard A inner join pfile B 
 		on A.board_no = B.board_no

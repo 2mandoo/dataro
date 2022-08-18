@@ -15,7 +15,7 @@
 	<select id="checkId" resultType="int" parameterType="project.data.ro.member.MemberVO">
 		select count(*) from pmember where id = #{id}
 	</select>
-	
+
 	
 	<!-- 이메일 중복체크 -->
 	<select id="checkEmail" resultType="int" parameterType="project.data.ro.member.MemberVO">

@@ -72,12 +72,11 @@ public class BoardController {
 	
 	@RequestMapping("/region_detail")
 	@ResponseBody
-	public Map regionDatail(String rs) {
+	public Map regionDatail(String rs,Model model) {
 		System.out.println("실험"+rs);
 		System.out.println("결과"+uservice.regionDetail(rs));
-		Map a = new HashMap();
-		a.put("aaa", a);
-		return a;
+		model.addAttribute("region_detail",uservice.regionDetail(rs));
+		return uservice.regionDetail(rs);
 	}
 	
 	////////////////////////////////진경끝////////////////////////////////////////

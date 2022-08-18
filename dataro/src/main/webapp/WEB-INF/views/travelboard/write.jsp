@@ -187,7 +187,7 @@
 				rs:region_name
 			},
 			success:function(res){
-			 $('.region_detail').html(res)
+			 $('.region_detail').html(region_detail)
 			}
 		})
 

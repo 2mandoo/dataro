@@ -16,21 +16,7 @@
 	<link rel="stylesheet" href="/ro/resources/css/reset.css"/>
     <script>
 $(function(){
-	$('.title').click(function(page){
-		var board_no = $(this).prev('td')[0].innerText;
-		$.ajax({
- 			url : '/ro/board/view2',
-			type : 'post',
-			data : {board_no : board_no
-				},
-			success : function(e) {
-				$("#area").html(e);
-			},
-			error : function(e){
-				alert(`error`);
-			}
- 		});
-	})
+	// 검색 버튼 클릭시 검색에 맞는 목록 호출.
 	$('#searchBtn').click(function(){
 		myList();
 	});
@@ -88,14 +74,14 @@ function myList(){
                 </tr>
 				<c:if test="${empty data.list }">
                     <tr>
-                        <td class="first" colspan="5">좋아요 누른 게시물이 없습니다.</td>
+                        <td class="first" colspan="4">좋아요 누른 게시물이 없습니다.</td>
                     </tr>
                 </c:if>
                 <c:forEach var="vo" items="${data.list }" varStatus="status">
                     <tr>
                     	<td>${vo.board_name}</td>
                         <td>${vo.board_no }</td>
-                        <td class="title" > <a>${vo.title}</a></td>
+                        <td class="title" > <a href="/ro/board/view.do?board_no=${vo.board_no}">${vo.title}</a></td>
                         <td>${vo.viewcount}</td>
                     </tr>
                 </c:forEach>

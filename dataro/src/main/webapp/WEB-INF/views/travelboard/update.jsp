@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="/ro/resources/css/reset.css"/>
 <link rel="stylesheet" href="/ro/resources/css/style.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="shortcut icon" href="#"> <!-- favicon.ico 에러나서 넣어줌 -->
 </head>
 <body>
     <div id="wrap">
@@ -28,56 +27,39 @@
 	                    <input type="text" name="title" id="title" class="title_text" value="코스 타이틀">
 	                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
                     </div>
-                    <div class="region">
-                    	<input type="hidden" name="region_name" value="">
-                    	<select name="region" id="region">
-                    		<c:forEach var="region" items="${category.region}">
-                    			<option value="${region.region_name}" >${region.region_name }</option>
-                    		</c:forEach>
-                    	</select>
-                    	<div class="region_detail">
-                    
-                    	</div>
-                    </div>
                     <div class="hash">
-                   		<c:forEach var="hash" items="${category.hash}">
+                   		<c:forEach var="hash" items="${hash}">
                    			<label><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
                    		</c:forEach>
                     </div>
                 </div>
+                <!--//제목-->
           
                 <!--지도,글쓰기-->
-				<div class="map_wrap">
-					
-					<!-- 지도 나오는 곳 -->
-				    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-				    
-				    <!-- 검색 목록 -->
-				    <div id="menu_wrap" class="bg_white" style="display:;">
-				        <div class="option">
-				        </div>
-				        <hr>
-				        <ul id="placesList"></ul>
-				        <div id="pagination"></div>
-				    </div>
-				    
-				</div>
-				
-				<!-- 지도 검색 엔터도 가능-->
-				<div class="seracLocation">
-					<div>
-						<input type="text" value="종각역 맛집" id="keyword" onkeyup="enterkey()" size="15"> 
-						<a onclick="jacascript:searchPlaces()"><i class="fa-solid fa-magnifying-glass"></i></a>
+					<div class="map_wrap">
+					    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+					    <div id="menu_wrap" class="bg_white" style="display:;">
+					        <div class="option">
+					        </div>
+					        <hr>
+					        <ul id="placesList"></ul>
+					        <div id="pagination"></div>
+					    </div>
 					</div>
-				</div>
-				
-				<!-- 코스 설명 들어갈 부분 -->      
-				<div class="write_detail">
-					<div class="scroll"></div>
-				</div>
-                <!--//지도,글쓰기-->
-				<a href="javascript:displayCouses(courseArr);">[마커표시]</a>&nbsp;&nbsp;
-                <a href="javascript:goSave()">[등록]</a>
+                    <!-- //지도 -->
+                    <div class="seracLocation">
+                      	<div>
+                      		<!-- 엔터로 검색가능하게 바꿈 -->
+			                 <input type="text" value="종각역 맛집" id="keyword" onkeyup="enterkey()" size="15"> 
+			                 <a onclick="jacascript:searchPlaces()"><i class="fa-solid fa-magnifying-glass"></i></a>
+			            </div>
+                     </div>
+                    <div class="write_detail">
+                    	<div class="scroll"></div>
+                    </div>
+                 <!--//지도,글쓰기-->
+				 <a href="javascript:displayCouses(courseArr);">마커표시</a>
+                 <a href="javascript:goSave()">등록</a>
             </form>
         </div>
     </div>
@@ -101,7 +83,7 @@
 	var pic =1;
 
 	$(function(){
-	
+
 	})			
 	
 	//체크박스on
@@ -183,23 +165,6 @@
             }
         }
 	})
-
-	$("#region").change(function(){
-		console.log($(this).val())
-		var region_name = $(this).val()
-
-		$.ajax({
-			url:"/ro/board/region_detail",
-			data:{
-				rs:region_name
-			},
-			success:function(res){
-			 $('.region_detail').html(region_detail)
-			}
-		})
-
-	})
-	
 </script>
 
 </body>

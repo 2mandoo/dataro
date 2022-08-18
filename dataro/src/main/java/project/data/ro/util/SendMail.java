@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 
 public class SendMail {
 	
-	// 매개변수 : 발신자, 수신자, 제목, 내용
+	// 매개변수 : 발신자, 수신자, 제목, 내용 
 	public static void sendMail(String from, String to, String subject, String content) {
 		// 1. 메일서버 정보 설정(property)
 		Properties prop = System.getProperties();
@@ -25,7 +25,7 @@ public class SendMail {
 		Session session = Session.getDefaultInstance(prop, new Authenticator() {
 			@Override
 		    protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("jeonggil5579",""); // (네이버 아이디, 비번)
+				return new PasswordAuthentication("jeonggil5579","jeong123!"); // (네이버 아이디, 비번)
 			}
 		});
 		session.setDebug(true);

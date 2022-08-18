@@ -12,12 +12,14 @@
 <body>
 <script>
 $(function(){
+	// 비밀번호입력칸
 	$('#pw1').focusout(function(){
 		if ($('#pw1').val() === '' ){
 			$("#area2").html('비밀번호를 입력해 주세요.').css('color','red').css('font-size','small');
 			$("#pw1").focus();
 			} 
 		})
+	// 비밀번호확인칸
 	$('#pwd').focusout(function(){
 		if ($('#pwd').val() === '' ){
 			$("#area2").html('비밀번호를 입력해 주세요.').css('color','red').css('font-size','small');
@@ -115,7 +117,8 @@ function checkEmail(){
 };
 </script>
 <div id="wrap">
-	<div class="content login">
+	<div class="content login page">
+		<a href="/ro/board/main.do"><img src="/ro/img/main.png" id="goMain"></a>
 		<form action="editUserInfo" method="post" name ="register" enctype="multipart/form-data">
 			<table >
 				<tr>
@@ -135,7 +138,7 @@ function checkEmail(){
 					<td><input type="text" id="pw1" name="pw1" placeholder="pw"></td>
 				</tr>
 				<tr>
-					<td class="right">비밀번호 : &nbsp</td>
+					<td class="right">비밀번호 확인 : &nbsp</td>
 					<td><input type="text" id="pwd" name="pwd" placeholder="pw for confirmation"></td>
 				</tr>
 				<tr>
@@ -143,8 +146,8 @@ function checkEmail(){
 					<td colspan="4"><div id="area2"></div></td>
 				</tr>
 				<tr>
-					<td class="right">이메일 : &nbsp</td>
-					<td colspan="3" >
+					<td class="right">이메일 :</td>
+					<td colspan="3" style="text-align:left;">
 						<input type="text" id="email" size="10" placeholder="email" name="email"/>@<input type="text" id="email2" name="email2" size="10" />
 						<select id="email_select" >
 							<option value="1" selected>선택하기</option>
@@ -172,7 +175,6 @@ function checkEmail(){
 				</tr>
 				<tr><td>&nbsp</td></tr>
 				<tr>
-					<td class="right"><a href="/ro/board/main.do" >메인으로</a></td>
 					<td><input type="button" id="btn_leave" value="탈퇴하기"></td>
 				</tr>
 			</table>
@@ -185,7 +187,7 @@ function checkEmail(){
 					${loginInfo.nickname } 님, 안녕하세요! <br>
 					계정을 삭제하려고 하신다니 아쉽습니다. <br>
 					<br><img src="/ro/img/sadCat.jpg" style="width:200px; display:block; position:relative; left:70px;"/><br>
-					회원 탈퇴를 원하시면 비밀번호를 입력해 주세요. <br> 
+					회원 탈퇴를 원하시면 비밀번호를 입력해 주세요. <br/><br/>
 					<input type="text" placeholder="pwd" id="pwd" name="pwd"> <br>
 					<input type="submit" value="회원탈퇴" id="leaveBtn" >
 				</div>

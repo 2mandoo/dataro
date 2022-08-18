@@ -17,7 +17,6 @@ public interface MemberService {
 	MemberVO findId(MemberVO vo);
 	MemberVO findPwd(MemberVO vo);
 	int deleteId(MemberVO vo);
-	
 	int alarmForMessage(MessageVO vo);
 	List<MessageVO> unreadMsgContent(MessageVO vo);
 	int readUpdate(MessageVO vo);

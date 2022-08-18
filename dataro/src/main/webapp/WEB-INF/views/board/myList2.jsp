@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="/ro/resources/css/reset.css"/>
 <script>
 $(function(){
+	// 검색 버튼 클릭시 검색에 맞는 목록 호출.
 	$('#searchBtn').click(function(){
 		myList();
 	}) 

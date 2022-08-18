@@ -23,9 +23,9 @@ import project.data.ro.member.MemberService;
 import project.data.ro.member.MemberVO;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
+import project.data.ro.util.CategoryMapper;
 import project.data.ro.util.CategoryVO;
 import project.data.ro.util.FileVO;
-import project.data.ro.util.HashTagVO;
 import project.data.ro.util.UtilService;
 
 @Controller
@@ -44,11 +44,12 @@ public class BoardController {
 	
 	@Autowired
 	MapMapper mapper;
-
+	
+	////////////////////////////////진경시작////////////////////////////////////////
 	//여행코스 글쓰기화면
 	@GetMapping("/travelWrite.do")
 	public String write(Model model) {
-		model.addAttribute("hash",service.hash());
+		model.addAttribute("category",uservice.writeCategory());
 		return "travelboard/write";
 	}
 	
@@ -62,86 +63,73 @@ public class BoardController {
 		mapper.update(bvo);
 		return "redirect:/board/travelWrite.do";
 	}
-	
-	// 마이페이지 내가 쓴 게시물 상세보기
-	@PostMapping("/view")
-	public String view(BoardVO vo, Model model) {
-		BoardVO data = service.view(vo.getBoard_no());
-		model.addAttribute("data", data);
-		return "board/view";
+	//여행코스 글쓰기 수정
+	@RequestMapping("/update.do")
+	public String update(BoardVO bvo) {
+		
+		return "travelboard/update";
 	}
+	
+	@RequestMapping("/region_detail")
+	@ResponseBody
+	public Map regionDatail(String rs,Model model) {
+		System.out.println("실험"+rs);
+		System.out.println("결과"+uservice.regionDetail(rs));
+		model.addAttribute("region_detail",uservice.regionDetail(rs));
+		return uservice.regionDetail(rs);
+	}
+	
+	////////////////////////////////진경끝////////////////////////////////////////
+	
+	
+//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 
-	// 마이페이지 내가 좋아요 누른 게시물 상세보기
-	@PostMapping("/view2")
-	public String view2(BoardVO vo, Model model) {
-		BoardVO data = service.view(vo.getBoard_no());
-		model.addAttribute("data", data);
-		return "board/view2";
-	}
-	
 	// 마이페이지 내가 쓴 게시글 보기
 	@RequestMapping("/myList1")
 	public String mylist1(BoardVO vo, Model model, HttpSession sess) {
-		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
-		int no = vo1.getMember_no();
-		vo.setMember_no(no);
-		model.addAttribute("data", service.myList1(vo));
+		model.addAttribute("data", service.myList1(vo, sess));
 		return "board/myList1";
 	}
 	
 	// 마이페이지 내가 쓴 댓글 보기
 	@PostMapping("/myList2")
 	public String mylist2(BoardVO vo, Model model, HttpSession sess) {
-		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
-		int no = vo1.getMember_no();
-		vo.setMember_no(no);
-		System.out.println(vo);
-		model.addAttribute("data", service.myList2(vo));
+		model.addAttribute("data", service.myList2(vo, sess));
 		return "board/myList2";
 	}
 	
 	// 마이페이지 내가 좋아요 누른 게시글 보기
 	@PostMapping("/myList3")
 	public String mylist3(BoardVO vo, Model model, HttpSession sess) {
-		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
-		int no = vo1.getMember_no();
-		vo.setMember_no(no);
-		model.addAttribute("data", service.myList3(vo));
+		model.addAttribute("data", service.myList3(vo, sess));
 		return "board/myList3";
 	}
 	
 	// 마이페이지 내가 받은 쪽지 보기
 	@PostMapping("/myList4")
 	public String mylist4(MessageVO vo, Model model, HttpSession sess) {
-		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
-		int no = vo1.getMember_no();
-		vo.setReceive_member_no(no);
-		model.addAttribute("data", service.myList4(vo));
+		model.addAttribute("data", service.myList4(vo, sess));
 		return "board/myList4";
 	}
 	
 	// 마이페이지 내가 보낸 쪽지 보기
 	@PostMapping("/myList5")
 	public String mylist5(MessageVO vo, Model model, HttpSession sess) {
-		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
-		int no = vo1.getMember_no();
-		vo.setSend_member_no(no);
-		model.addAttribute("data", service.myList5(vo));
+		model.addAttribute("data", service.myList5(vo, sess));
 		return "board/myList5";
 	}
 	
 	// 마이페이지 내가 참여한 채팅방 보기
 	@PostMapping("/myList6")
 	public String mylist6(RoomVO vo, Model model, HttpSession sess) {
-		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
-		int no = vo1.getMember_no();
-		vo.setRoom_participant_no(no);
-		model.addAttribute("list", service.myList6(vo));
+		model.addAttribute("list", service.myList6(vo, sess));
 		return "board/myList6";
 	}
+
+//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 	
 	
-	// main 
+	// main + 정길 수정.
 	@GetMapping("/main.do")
 	public String mainGet(Model model, BoardVO vo, MessageVO mvo, HttpSession sess) {
 		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");

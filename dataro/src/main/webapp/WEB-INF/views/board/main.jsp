@@ -17,17 +17,14 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>MAIN DATARO</title>
 <script>
-/* 	if (${empty loginInfo}){
-		$('#idImg').hidden();
-	} */
-	
 $(function(){
 	
+	// 로그인 후 변경된 사진 클릭시 마이페이지로 가기(정길)
 	$('#idImg').click(function(){
 		location.href="/ro/member/myPage";
 	});
 	
-	
+	// 종 아이콘 클릭시 읽지 않은 쪽지 모달팝업(정길)
 	$('#alarmForUser').click(function(){
 		$.ajax({
 			url : '/ro/member/alarm',
@@ -35,16 +32,14 @@ $(function(){
 			data : {},
 			success : function(e) {
 				$("#areaForUser").html(e);
-			},
-			error : function(e){
-				alert(`error`);
 			}
+			
 		});
-		
-		$('.modal').fadeIn();
+		if (${!empty loginInfo}) {
+			$('.modal').fadeIn();
+		}
 	});
-	
-	
+	// 모달팝업 종료(정길)
 	$('.btn-close').click(function(){
 		$('.modal').fadeOut();
 	});	
@@ -53,8 +48,11 @@ $(function(){
 	
 	
 });
-	
 
+// 미로그인시 아이콘 클릭시 뜨는 얼럿(정길)
+function loginAlert(){
+	alert("로그인 후 이용해주세요 : )");
+}
 
 
 </script>
@@ -92,9 +90,11 @@ $(function(){
             	<img src ="/ro/img/alarm.png" width="50px">
             	<span id="theNumberOfMsg"> ${UnreadMsgs }</span>
             </a>
-            <a href="/ro/board/travelWrite.do">
+            
+            <a href="/ro/board/travelWrite.do" id="wBtn">
             	<img src ="/ro/img/write.png" width="50px">
             </a>
+		   
           	</ul>
         </div>
     	</header>

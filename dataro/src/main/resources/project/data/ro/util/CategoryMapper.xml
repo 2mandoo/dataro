@@ -2,9 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.data.ro.util.CategoryMapper">
 
+	<!-- 해쉬코드 등록/진경 -->
  	<insert id="insert" parameterType="project.data.ro.util.CategoryVO" >
 		insert into pcategory(hashtag_no,board_name,board_no)
 		VALUES (#{hashtag_no},#{board_name},#{board_no});
 	</insert>
+	
+	<!-- 해쉬코드 가져오기(출력)/진경 -->
+	<select id="hash"  resultType="project.data.ro.util.CategoryVO">
+		select * from phashtag order by hashtag_no
+	</select>
 
+	<!-- 글쓰기 지역정보 가지고오기/진경 -->
+	<select id="regionSelect" resultType="project.data.ro.util.CategoryVO">
+	 	select distinct substring(region_name,1,2) AS region_name from pregion
+	</select>
+	
+	<select id="regionDetail" parameterType="String" resultType="String">
+		select substring(region_name,3) AS region_name from pregion where region_name like "${rs}%";
+	</select>
 </mapper>

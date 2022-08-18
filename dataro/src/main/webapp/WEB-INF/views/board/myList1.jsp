@@ -83,7 +83,7 @@ function myList() {
                     <tr>
                     	<td>${vo.board_name}</td>
                     	<td name="board_no">${vo.board_no}</td>
-                        <td class="title" > <a href="/ro/board/update.do?board_no=${vo.board_no}">${vo.title}</a></td>
+                        <td class="title" > <a href="/ro/board/view.do?board_no=${vo.board_no}">${vo.title}</a></td>
                         <td>${vo.viewcount }</td>
                         <td class="date"><fmt:formatDate value="${vo.writedate }" pattern="yyyy-MM-dd"/></td>
                     </tr>

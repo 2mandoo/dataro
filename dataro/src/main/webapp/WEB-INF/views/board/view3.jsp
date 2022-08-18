@@ -12,16 +12,7 @@
     <link href="/ro/resources/css/view.css" rel="stylesheet">
     <title>view</title>
 </head>
-<style> <!-- 지도 마커라인 긋기-->
-.dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
-.dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#ffffffb8;}
-.dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
-.number {font-weight:bold;color:#ee6152;}
-.dotOverlay:after {content:'';position:absolute;margin-left:-6px;left:50%;bottom:-8px;width:11px;height:8px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')}
-.distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
-.distanceInfo .label {display:inline-block;width:50px;}
-.distanceInfo:after {content:none;}
-</style>
+
 <style>
 table, td, th {
   border : none;
@@ -50,6 +41,7 @@ a {
 	height:100vh;
 	width:100%;
 	display:none;
+	z-index: 5;
 }
 .msgmodal {
 	position:fixed;
@@ -59,6 +51,7 @@ a {
 	height:100vh;
 	width:100%;
 	display:none;
+	z-index: 5;
 }
 .roommodal {
 	position:fixed;
@@ -68,6 +61,7 @@ a {
 	height:100vh;
 	width:100%;
 	display:none;
+	z-index: 5;
 }
 
 .modal-content{
@@ -147,6 +141,42 @@ a {
 	padding:7px;
 	display:block;
 }
+
+#header {
+   background-color:lightgrey;
+   height:100px;
+}
+#nav {
+   background-color:#339999;
+   width:500px;
+   height:500px;
+   float:left;
+}
+#section {
+   width:700px;
+   text-align:left;
+   float:left;
+   padding:10px;
+   overflow-y: scroll;
+   background-color:#f3f3f3ee;
+}
+#footer {
+   background-color:#f9effdee;
+   height:450px;
+   clear:both;
+}
+
+
+</style>
+<style> <!-- 지도 마커라인 긋기-->
+.dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
+.dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#ffffffb8;}
+.dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
+.number {font-weight:bold;color:#ee6152;}
+.dotOverlay:after {content:'';position:absolute;margin-left:-6px;left:50%;bottom:-8px;width:11px;height:8px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')}
+.distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
+.distanceInfo .label {display:inline-block;width:50px;}
+.distanceInfo:after {content:none;}
 </style>
 <body>
     <div id="wrap">
@@ -184,47 +214,49 @@ a {
                 </c:if>
             </c:forEach>
             </div>
-            <div class="map">
-
-                <div id="map" style="width:500px;height:500px;"></div>
-                <div>
-                <table>
-                	<tr>
-                		<th>방제목</th>
-                		<th>방장</th>
-                		<th>시작일</th>
-                		<th>종료일</th>
-                		<th>참여인원</th>
-                	</tr>
-                	<c:forEach items="${data.roomList }" var="room">
-	                	<tr>
-	                		<td>
-	                		${room.room_title}
-	                			<c:if test="${empty room.room_pwd }">
-		                		<img src="/ro/img/openRoom.png">
-		                		</c:if>
-		                		<c:if test="${!empty room.room_pwd }">
-		                		<img src="/ro/img/secretRoom.png">
-		                		</c:if>
-	                		</td>
-	                		<td>${room.roommaker_id}</td>
-	                		<td>${room.room_startdate}</td>
-	                		<td>${room.room_enddate}</td>
-	                		<td>
-	                		${room.room_participant_count }명
-	                		<input type="button" value="${room.room_participant_no != 0? '참여중' : '참여하기'  }" onClick='joinRoom("${room.room_pwd }", ${room.room_no });'>
-	                		</td>
-	                	</tr>
-                	</c:forEach>
-                </table>
-                </div>
+            <div id="mapRoom">
+	            <div id="nav">
+	            <div id="map" style="width:500px;height:500px;"></div>
+	            </div>
+	            <div id="section">
+	            <table>
+	             	<tr>
+	               		<th>방제목</th>
+	               		<th>방장</th>
+	               		<th>시작일</th>
+	               		<th>종료일</th>
+	               		<th>참여인원</th>
+	               	</tr>
+	               	<c:forEach items="${data.roomList }" var="room">
+	                <tr>
+	                	<td>
+	                	${room.room_title}
+	                		<c:if test="${empty room.room_pwd }">
+		                	<img src="/ro/img/openRoom.png">
+		                	</c:if>
+		                	<c:if test="${!empty room.room_pwd }">
+		                	<img src="/ro/img/secretRoom.png">
+		                	</c:if>
+	                	</td>
+	                	<td>${room.roommaker_id}</td>
+	                	<td>${room.room_startdate}</td>
+	                	<td>${room.room_enddate}</td>
+	                	<td>
+	                	${room.room_participant_count }명
+	                	<input type="button" value="${room.room_participant_no != 0? '참여중' : '참여하기'  }" onClick='joinRoom("${room.room_pwd }", ${room.room_no });'>
+	                	</td>
+	                </tr>
+	               	</c:forEach>
+	            </table>
 				<input type="button" class="btn-makeclick" value="방 만들기">	
+	            </div>
             </div>
+
             <div class="course">
                 코스
 
             </div>
-            <div class="reply">
+            <div id="footer" class="reply">
                             
 
 	                            <input type="text" name="content" id="content"  placeholder="댓글을 작성해주세요." style="width:80%">
@@ -399,7 +431,8 @@ a {
     			data : {
     				'board_no' : ${data.board.board_no},
     				'board_name' : '${data.board.board_name}',
-    				'page' : page
+    				'page' : page,
+    				member_no : 8
     			},
     			success : function(res){
     				

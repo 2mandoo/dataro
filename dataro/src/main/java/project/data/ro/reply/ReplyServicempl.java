@@ -62,7 +62,7 @@ public class ReplyServicempl implements ReplyService {
 		map.put("prev", prev);
 		map.put("next", next);
 		map.put("list", list);
-		
+		System.out.println(list);
 		return map;
 	}
 

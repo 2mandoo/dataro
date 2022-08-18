@@ -10,7 +10,7 @@
            <col width="80px" />
            <col width="100px" />
            <col width="*" />
-           <col width="120px" />
+           <col width="140px" />
            <col width="200px" />
        </colgroup>
        <tbody>
@@ -39,6 +39,11 @@
 	               <td>
 	               	   <a href="javascript:setReply_no(${vo.reply_no });">[수정]</a>
 	                   <a href="javascript:commentDel(${vo.reply_no });">[삭제]</a>
+	                   <a href="javascript:">
+	                   <c:if test="${vo.islike == 0}">♡</c:if>
+	                   <c:if test="${vo.islike != 0}">♥</c:if>
+	                   </a>
+	                   
 	               </td>
 	               <td class="date"><fmt:formatDate value="${vo.reply_writedate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 	           </tr>
@@ -67,9 +72,7 @@
  
    
 	<script>
-
-	
-	//아이디 클릭하면 메세지 모달 띄우기
+	//아이디 클릭하면 메세지모달 띄우기
 	$('.btn-sendclick').click(function(){
 		$('.msgmodal').fadeIn();
 	})
@@ -80,13 +83,12 @@
 		$("#messageContent").val('');
 	})
 	
-	
-	
+	//메세지모달 X버튼
 	$('.btn-close').click(function(){
 		$('.modal').fadeOut();
 		$("#replyUpdate").val('');
 	})
-
+	//댓글 누르면 답글 보였다 숨기기
 	$('.replyList').click(function(){
 		$(this).next().toggle();
 	})
@@ -173,8 +175,3 @@
 		} 
 	}
 	</script>
-  
-  
-  
-  
-  

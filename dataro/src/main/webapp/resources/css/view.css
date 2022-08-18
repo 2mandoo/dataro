@@ -8,7 +8,7 @@
  .view .user .user_img img{display: inline-block;border:1px solid black;width: 50px;height: 50px;border-radius: 50px;}
  .view .user span{vertical-align: middle;}
  .view #count{float: right; display:inline-block; padding-top: 35px;}
- .view .category{height: 100px;  margin:10px 0;}
- .view .map{height: 200px; margin:10px 0;}
- .view .course{height: 300px; margin:10px 0;}
+ .view .category{margin:10px 0;}
+ .view .course{ margin:10px 0;}
+ .view #mapRoom{ height:500px;}
  .view .reply{height: 100px; margin:10px 0;}

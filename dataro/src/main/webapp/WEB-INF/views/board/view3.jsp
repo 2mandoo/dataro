@@ -12,6 +12,16 @@
     <link href="/ro/resources/css/view.css" rel="stylesheet">
     <title>view</title>
 </head>
+<style> <!-- 지도 마커라인 긋기-->
+.dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
+.dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#ffffffb8;}
+.dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
+.number {font-weight:bold;color:#ee6152;}
+.dotOverlay:after {content:'';position:absolute;margin-left:-6px;left:50%;bottom:-8px;width:11px;height:8px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')}
+.distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
+.distanceInfo .label {display:inline-block;width:50px;}
+.distanceInfo:after {content:none;}
+</style>
 <style>
 table, td, th {
   border : none;
@@ -139,7 +149,6 @@ a {
 }
 </style>
 <body>
-${test222}
     <div id="wrap">
         <div class="content view">
 		
@@ -175,11 +184,10 @@ ${test222}
                 </c:if>
             </c:forEach>
             </div>
-            <article>
             <div class="map">
-                <div id="map" style="width:200px;height:100px;"></div>
-                <aside>
-                
+
+                <div id="map" style="width:500px;height:500px;"></div>
+                <div>
                 <table>
                 	<tr>
                 		<th>방제목</th>
@@ -209,10 +217,9 @@ ${test222}
 	                	</tr>
                 	</c:forEach>
                 </table>
-                </aside>
+                </div>
 				<input type="button" class="btn-makeclick" value="방 만들기">	
             </div>
-            </article>
             <div class="course">
                 코스
 
@@ -265,6 +272,7 @@ ${test222}
 		</div>
 	</div>  
 
+<<<<<<< HEAD
 	<!-- 댓글 수정 모달 -->
 	<div class="modal">
    		<div class="modal-content">
@@ -276,107 +284,19 @@ ${test222}
 		</div>
 	</div> 
 	
+=======
+<!--  사용하다가 에러 안나면 지우자.
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
+>>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
 	<script type='text/javascript' src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
 	<script type='text/javascript' src="https://cdn.rawgit.com/abdmob/x2js/master/xml2json.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b93e1f37ba26daefa16850e15e3b7c31"></script>
-	<script>
-	
-	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-	var options = { //지도를 생성할 때 필요한 기본 옵션
-		center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-		level: 3 //지도의 레벨(확대, 축소 정도)
-	};
-	
-	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-	var markers = [];
-	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-	
-	//^^ 코스에 담은거 마커로 지도에 표시
-	function displayCouses(places){
-		
-		var bounds = new kakao.maps.LatLngBounds(); 
-		
-		for ( var i=0; i<places.length; i++ ) {
-	    	// 마커를 생성하고 지도에 표시합니다
-	    	var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
-	        	marker = addMarker(placePosition, i); 
-	        	
 
-		    // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-		    // LatLngBounds 객체에 좌표를 추가합니다
-		    bounds.extend(placePosition);
-		
-		    // 마커와 검색결과 항목에 mouseover 했을때
-		    // 해당 장소에 인포윈도우에 장소명을 표시합니다
-		    // mouseout 했을 때는 인포윈도우를 닫습니다
-		    (function(marker, place) {
-		        kakao.maps.event.addListener(marker, 'mouseover', function() {
-		            displayInfowindow(marker, place.place_name);
-		        });
-		
-		        kakao.maps.event.addListener(marker, 'mouseout', function() {
-		            infowindow.close();
-		        });
-		
-		
-		    })(marker, places[i]);
-		    
-		}
-	 	// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-	 	map.setBounds(bounds);
-	}
+-->	
 	
-	// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
-	// 인포윈도우에 장소명을 표시합니다
-	function displayInfowindow(marker, title) {
-	    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
-
-	    infowindow.setContent(content);
-	    infowindow.open(map, marker);
-	}
-	
-	// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-	function addMarker(position, idx, title) {
-		
-	    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-	        imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
-	        imgOptions =  {
-	            spriteSize : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
-	            spriteOrigin : new kakao.maps.Point(0, (idx*46)+10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-	            offset: new kakao.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
-	        },
-	        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
-	        marker = new kakao.maps.Marker({
-	            position: position, // 마커의 위치
-	            image: markerImage 
-	        });
-
-	    marker.setMap(map); // 지도 위에 마커를 표출합니다
-	    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
-
-	    return marker;
-	}
-
-	(function getCourse(){
-		var obj;
-		
-		$.ajax({
-			url : "../get.do",
-			type : "post",
-			
-			success : function(res){
-				obj = JSON.parse(res);
-				console.log(obj);
-				displayCouses(obj);
-			},
-			error: function(){
-				console.log("에러");
-			}
-		})
-	})();
-	</script>	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b93e1f37ba26daefa16850e15e3b7c31"></script>
+	<script type='text/javascript' src="/ro/js/map.js"></script>
+	<script type='text/javascript' src="/ro/js/mapView.js"></script>
     <script>
 	$('.btn-makeclick').click(function(){
 		$('.roommodal').fadeIn();

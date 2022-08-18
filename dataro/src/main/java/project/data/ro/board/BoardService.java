@@ -5,7 +5,6 @@ import java.util.Map;
 
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
-import project.data.ro.util.HashTagVO;
 
 
 public interface BoardService {
@@ -28,7 +27,7 @@ public interface BoardService {
 
 	// write
 	boolean insert(BoardVO bvo);
-	List<HashTagVO> hash();
+
 	
 	
 	//정현

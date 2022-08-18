@@ -2,7 +2,9 @@ package project.data.ro.util;
 
 import java.io.File;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,7 +21,7 @@ public class UtilServicempl implements UtilService {
 	CategoryMapper cmapper;
 	@Autowired
 	FileMapper fmapper;
-
+	//진경시작
 	//해쉬태그등록
 	@Override
 	public boolean insert(CategoryVO cvo,BoardVO bvo,@RequestParam List<Integer> hashtag_no) {
@@ -55,5 +57,21 @@ public class UtilServicempl implements UtilService {
 		}
 		return true;
 	}
+	//해시태그,지역 출력
+	@Override
+	public Map writeCategory() {
+		Map category = new HashMap();
+		category.put("hash", cmapper.hash());
+		category.put("region", cmapper.regionSelect());
+		return category;
+	}
 
+	@Override
+	public Map regionDetail(String rs) {
+		Map regionDetail =   cmapper.regionDetail(rs);
+		System.out.println("뀨"+regionDetail.get("region_name"));
+		return regionDetail;
+		
+	}
+	//진경끝
 }

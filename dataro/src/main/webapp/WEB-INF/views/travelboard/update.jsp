@@ -27,19 +27,8 @@
 	                    <input type="text" name="title" id="title" class="title_text" value="코스 타이틀">
 	                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
                     </div>
-                    <div class="region">
-                    	<input type="hidden" name="region_name" value="">
-                    	<select name="region" id="region">
-                    		<c:forEach var="region" items="${category.region}">
-                    			<option value="${region.region_name}" >${region.region_name }</option>
-                    		</c:forEach>
-                    	</select>
-                    	<div class="region_detail">
-                    		
-                    	</div>
-                    </div>
                     <div class="hash">
-                   		<c:forEach var="hash" items="${category.hash}">
+                   		<c:forEach var="hash" items="${hash}">
                    			<label><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
                    		</c:forEach>
                     </div>
@@ -94,7 +83,7 @@
 	var pic =1;
 
 	$(function(){
-	
+
 	})			
 	
 	//체크박스on
@@ -176,23 +165,6 @@
             }
         }
 	})
-
-	$("#region").change(function(){
-		console.log($(this).val())
-		var region_name = $(this).val()
-
-		$.ajax({
-			url:"/ro/board/region_detail",
-			data:{
-				rs:region_name
-			},
-			success:function(res){
-			 console.log(res);
-			}
-		})
-
-	})
-	
 </script>
 
 </body>

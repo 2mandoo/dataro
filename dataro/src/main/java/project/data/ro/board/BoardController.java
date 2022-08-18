@@ -23,9 +23,9 @@ import project.data.ro.member.MemberService;
 import project.data.ro.member.MemberVO;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
+import project.data.ro.util.CategoryMapper;
 import project.data.ro.util.CategoryVO;
 import project.data.ro.util.FileVO;
-import project.data.ro.util.HashTagVO;
 import project.data.ro.util.UtilService;
 
 @Controller
@@ -44,11 +44,12 @@ public class BoardController {
 	
 	@Autowired
 	MapMapper mapper;
-
+	
+	////////////////////////////////진경시작////////////////////////////////////////
 	//여행코스 글쓰기화면
 	@GetMapping("/travelWrite.do")
 	public String write(Model model) {
-		model.addAttribute("hash",service.hash());
+		model.addAttribute("category",uservice.writeCategory());
 		return "travelboard/write";
 	}
 	
@@ -62,6 +63,22 @@ public class BoardController {
 		mapper.update(bvo);
 		return "redirect:/board/travelWrite.do";
 	}
+	//여행코스 글쓰기 수정
+	@RequestMapping("/update.do")
+	public String update(BoardVO bvo) {
+		
+		return "travelboard/update";
+	}
+	
+	@RequestMapping("/region_detail")
+	@ResponseBody
+	public Map regionDatail(String rs) {
+		System.out.println("실험"+rs);
+		
+		return uservice.regionDetail(rs);
+	}
+	
+	////////////////////////////////진경끝////////////////////////////////////////
 	
 	// 마이페이지 내가 쓴 게시물 상세보기
 	@PostMapping("/view")

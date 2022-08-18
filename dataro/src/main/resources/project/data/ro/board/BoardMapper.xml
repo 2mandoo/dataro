@@ -179,7 +179,7 @@
 	
 	
 	
-	<!-- 글쓰기 from 진경 -->
+	<!-- 여행글쓰기 from 진경 -->
 	<insert id="insert" parameterType="project.data.ro.board.BoardVO">
 		INSERT 
 			INTO pboard(board_name,id,member_no,title,viewcount,writedate,updatedate)
@@ -189,18 +189,19 @@
 		</selectKey>
 	</insert>
 	
+	<!-- 여행글쓰기 수정 -->
+	<update id="update" parameterType="project.data.ro.board.BoardVO">
+		UPDATE pboard SET title=#{title},updatedate=NOW()
+		WHERE member_no=#{member_no}
+	</update>
+	
+	<!-- 여행코스 등록 -->
 	<insert id="insertCourse" parameterType="project.data.ro.board.BoardVO">
 		INSERT 
 			INTO pboardcourse(board_name,board_no,content, course_no)
 		VALUES (#{board_name},#{board_no},#{content},#{course_no})
 
 	</insert>
-
-
-	<select id="hash"  resultType="project.data.ro.util.HashTagVO">
-		select * from phashtag order by hashtag_no
-	</select>
-
 
 	<!-- 정현 -->
 	<select id="view2" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.board.BoardVO">

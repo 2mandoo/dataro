@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -12,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomMapper;
 import project.data.ro.room.RoomVO;
-import project.data.ro.util.HashTagVO;
+import project.data.ro.util.CategoryMapper;
 
 @Slf4j
 @Service
@@ -22,6 +21,8 @@ public class BoardServiceImpl implements BoardService {
 	BoardMapper mapper;
 	
 	RoomMapper rmapper;
+	
+	CategoryMapper cmapper;
 	
 	//여행코스글쓰기(for문-코스등록)
 	@Override
@@ -210,10 +211,7 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.list(vo);
 	}
 
-	@Override
-	public List<HashTagVO> hash() {
-		return mapper.hash();
-	}
+
 	
 	//정현
 	//게시글 상세보기

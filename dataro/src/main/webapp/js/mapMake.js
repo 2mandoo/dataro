@@ -1,3 +1,4 @@
+// ^^ map.js를 앞에 넣어야함.
 // ^^ 마커보기 눌렀는지 아닌지
 var markerShow = false;
 
@@ -9,7 +10,7 @@ var courseArr = [],
 // ^^ java 컨트롤러로 코스주소들 보내기
 function send(courseArr){
 	$.ajax({
-		url : "../map/print.do",
+		url : "../map/mapinsert.do",
 		type : "post",
 		data: {
 			'json' : JSON.stringify(courseArr)

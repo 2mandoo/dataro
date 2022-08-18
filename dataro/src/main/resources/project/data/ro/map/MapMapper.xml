@@ -34,8 +34,8 @@
 
 	</insert>
 	
-	<select id="list" resultType="project.data.ro.map.MapVO">
-		SELECT * FROM pmap
+	<select id="list" resultType="project.data.ro.map.MapVO" parameterType="project.data.ro.map.MapVO">
+		SELECT * FROM pmap where board_no=#{board_no}
 	</select>
 	 
 	<!-- 지도 board_no추가 -->

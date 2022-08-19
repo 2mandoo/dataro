@@ -154,7 +154,7 @@
 		select 
 			*
 		    , (select count(*) from plike l where b.board_no = l.board_no) as likecount
-		    , (select group_concat(hashtag_name) from pcategory c left outer join phashtag  h on c.hashtag_no = h.hashtag_no where c.board_no = b.board_no) as hashtag_name
+		    , (select group_concat(distinct(hashtag_name)) from pcategory c left outer join phashtag  h on c.hashtag_no = h.hashtag_no where c.board_no = b.board_no) as hashtag_name
 		    from pboard b
 			<where>
 				board_name = '여행게시판'
@@ -168,6 +168,7 @@
 				</if>
 			</where>
 	</select>
+	
 	<!-- main from 호윤 -->
 	<select id ="place" resultType="project.data.ro.map.MapVO" parameterType="int">
 		select place_name from pmap where board_no = #{board_no}

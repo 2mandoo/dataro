@@ -37,6 +37,7 @@ public interface BoardMapper {
 	List<BoardVO> list(BoardVO vo);
 	List<MapVO> place(int board_no);
 	
+	
 	// write
 	int insert(BoardVO vo);
 	int insertCourse(BoardVO vo);

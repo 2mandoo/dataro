@@ -278,5 +278,5 @@ public class BoardServiceImpl implements BoardService {
 	public List<MapVO> place(int board_no) {
 		return mapper.place(board_no);
 	}
-	//=================================정현===============================
+	
 }

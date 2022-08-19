@@ -98,11 +98,26 @@ function loginAlert(){
           	</ul>
         </div>
     	</header>
-	    <div> <!--여기도 forEach로 접근-->
-	    <c:forEach var ="hashtag" items = "${list}">
-	    <div style="display:inline-block; margin:0 10px;"><a href="">#${hashtag.hashtag_name}</a></div>
-	    </c:forEach> 
-	    </div>
+	    	<div style="display: inline-block; margin: 0 10px;" class="hash">
+	    		$('.hash span').click(function(){
+	    			$(this).
+	    		})
+	    		<span id="hash1">[#]</span>
+		    <span id="hash2">[#자전거코스]</span>
+		    <span>[#드라이브코스]</span>
+		    <span>[#뚜벅이코스]</span>
+		    <span>[#가족과함께]</span>
+		    <span>[#친구와함께]</span>
+		    <span>[#연인과함께]</span>
+		    <span>[#자연]</span>
+		    <span>[#반려동물]</span>
+		    <span>[#레포츠]</span>
+		    <span>[#1박2일]</span>
+		    <span>[#당일치기]</span>
+		    <span>[#축제]</span>
+		    <span>[#식도락]</span>
+		    <span>[#역사]</span>
+		</div>
 	    <div class="content main">
 	    <c:forEach var ="list" items="${list}">
      	<div class="cnt_set">
@@ -131,11 +146,11 @@ function loginAlert(){
             </ul>
           </div>
           <ul class="courselist"><!-- forEach로 접근 -->
-            <li>
            	<c:forEach var="mvo" items="${list.placeList }">
-            		<span>●</span><span>${mvo.place_name}</span>
-            	</c:forEach>
+           	<li>
+            		<span>●</span><span>${mvo.place_name}</span><br>
             	</li>
+            	</c:forEach>
           </ul>
       </div>
       </c:forEach>

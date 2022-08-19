@@ -226,7 +226,7 @@ public class BoardServiceImpl implements BoardService {
 
 
 	
-	//정현
+	//=================================정현===============================
 	//게시글 상세보기
 	@Override
 	public Map view(BoardVO vo) {
@@ -278,4 +278,5 @@ public class BoardServiceImpl implements BoardService {
 	public List<MapVO> place(int board_no) {
 		return mapper.place(board_no);
 	}
+	//=================================정현===============================
 }

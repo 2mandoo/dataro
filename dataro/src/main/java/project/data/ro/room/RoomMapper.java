@@ -11,7 +11,7 @@ public interface RoomMapper {
 	List<RoomVO> list(RoomVO vo);//삭제예정-진경
 	RoomVO view(int no);
 	
-	//정현
+	//=================================정현===============================
 	public int makeRoom(RoomVO vo);
 	
 	public List<RoomVO> list2(BoardVO vo);
@@ -21,5 +21,5 @@ public interface RoomMapper {
 	public int enterRoom(RoomVO vo);
 	
 	public int checkRoom(RoomVO vo);
-	
+	//=================================정현===============================
 }

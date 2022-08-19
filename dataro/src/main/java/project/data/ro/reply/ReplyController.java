@@ -15,6 +15,7 @@ public class ReplyController {
 	@Autowired
 	ReplyService service;
 	
+	//=================================정현===============================
 	@GetMapping("/reply/list.do")
 	public String list(ReplyVO vo, Model model) { 
 		System.out.println(vo);
@@ -72,5 +73,6 @@ public class ReplyController {
 			return "common/alert2";
 		}
 	}
+	//=================================정현===============================
 
 }

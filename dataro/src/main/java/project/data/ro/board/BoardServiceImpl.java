@@ -19,6 +19,7 @@ import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomMapper;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryMapper;
+import project.data.ro.util.CategoryVO;
 
 @Slf4j
 @Service
@@ -278,4 +279,5 @@ public class BoardServiceImpl implements BoardService {
 	public List<MapVO> place(int board_no) {
 		return mapper.place(board_no);
 	}
+	
 }

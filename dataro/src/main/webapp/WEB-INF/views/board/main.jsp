@@ -94,6 +94,7 @@ function loginAlert(){
             <a href="/ro/board/travelWrite.do" id="wBtn">
             	<img src ="/ro/img/write.png" width="50px">
             </a>
+    	<div><a href="#">#자전거코스</a></div>
 		   
           	</ul>
         </div>
@@ -135,8 +136,9 @@ function loginAlert(){
            	<c:forEach var="mvo" items="${list.placeList }">
             		<span>●</span><span>${mvo.place_name}</span>
             	</c:forEach>
-            	</li>
+            </li>
           </ul>
+           
       </div>
       </c:forEach>
   </div>

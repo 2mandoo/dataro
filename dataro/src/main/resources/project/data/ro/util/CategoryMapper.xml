@@ -13,12 +13,18 @@
 		select * from phashtag order by hashtag_no
 	</select>
 
-	<!-- 글쓰기 지역정보 가지고오기/진경 -->
+	<!-- 글쓰기 지역정보 대분류 출력/진경 -->
 	<select id="regionSelect" resultType="project.data.ro.util.CategoryVO">
 	 	select distinct substring(region_name,1,2) AS region_name from pregion
 	</select>
-	
-	<select id="regionDetail" parameterType="String" resultType="String">
-		select substring(region_name,3) AS region_name from pregion where region_name like "${rs}%";
+	<!-- 글쓰기 지역정보 소분류 출력/진경 -->
+	<select id="regionDetail" parameterType="String" resultType="project.data.ro.util.CategoryVO">
+		select region_no,substring(region_name,4) AS region_name from pregion where region_name like "${rs}%";
 	</select>
+	<!-- 글쓰기 지역번호 카테고리테이블에 등록/진경 -->
+	<insert id="regionInsert" parameterType="project.data.ro.util.CategoryVO">
+		insert into pcategory(board_name,board_no,region_no)
+		values (#{board_name},#{board_no},#{region_no})
+	</insert>
+	
 </mapper>

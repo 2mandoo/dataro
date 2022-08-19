@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<p><span><strong><img src="/ro/img/reply.png" width="30px">${reply.list.board_no }${reply.list.board_name }댓글(${reply.totalCount })</strong>  |  ${replyVO.page }/${reply.totalPage }페이지</span></p>
+<p><span><strong><img src="/ro/img/reply.png">댓글(${reply.totalCount })</strong>  |  ${replyVO.page }/${reply.totalPage }페이지</span></p>
    <table class="list">
        <colgroup>
            <col width="80px" />
@@ -24,7 +24,7 @@
        <c:forEach var="vo" items="${reply.list }" varStatus="idx" >
 	           <tr>
 	               <td>${reply.pagingCount-(10*(replyVO.page-1))-idx.index }</td>
-	               <td class="writer"><a class="btn-sendclick" href="javascript:">${vo.member_id } id자리</a></td>
+	               <td class="writer" id="btn-sendclick"  value=${vo.member_no }><a class="btn-sendclick" href="javascript:" value=${vo.member_no }>${vo.member_id }</a></td>
 	               <td class="txt_l" style="text-align:left">
 	                   <%-- ${vo.content } <c:if test="${loginInfo.member_no==vo.member_no }"><a href="javascript:commentDel(${vo.reply_no });">[삭제]</a></c:if> --%>
 	                   ${vo.content }
@@ -75,6 +75,11 @@
 	//아이디 클릭하면 메세지모달 띄우기
 	$('.btn-sendclick').click(function(){
 		$('.msgmodal').fadeIn();
+		var receive_member_no = $('#btn-sendclick').val();
+		console.log(receive_member_no);
+		$("#receive_member_no").val(receive_member_no);
+		console.log($("#receive_member_no").val());
+		
 	})
 	
 	//메세지모달 닫기버튼 누름

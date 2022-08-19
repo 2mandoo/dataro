@@ -22,19 +22,12 @@ public class RoomController {
 	@Autowired
 	ReplyService rpservice;
 
-	// 모임방리스트(상세보기떄문에임시로만듬/삭제예정)
-	@RequestMapping("/list")
-	public String list(RoomVO vo, Model model) {
-		model.addAttribute("list", rservice.list(vo));
-		return "room/list";
-	}
-
 	// 모임방상세보기
 	@RequestMapping("/view")
 	public String view(RoomVO vo, Model model) {
 		model.addAttribute("view", rservice.view(vo.getRoom_no()));
-		vo.setBoard_name("게시판");
-		return "room/view";
+		vo.setBoard_name("게시판"); 
+		return "room/room";
 	}
 
 	// 모임방채팅리스트
@@ -59,6 +52,10 @@ public class RoomController {
 	@ResponseBody
 	public int writeRoom(RoomVO vo) {
 		System.out.println(vo);
+		System.out.println("방제목"+vo.getRoom_title());
+		
+		System.out.println("3333333333333333333333333333"+vo);
+		System.out.println("3333333333333333333333333333"+vo);
 
 		return rservice.makeRoom(vo);
 	}
@@ -79,19 +76,19 @@ public class RoomController {
 		return "room/room";
 	}
 
-	 @PostMapping("/room.do")
-	 @ResponseBody 
-	 public Integer roomCheck(RoomVO vo, HttpSession sess) {
-	 
-	 MemberVO mvo = (MemberVO)sess.getAttribute("loginInfo");
-	 vo.setRoom_participant_no(mvo.getMember_no());
-	 
-	 // no=[ ] 로 파라미터 넘어오니 받고 session에 있는 로그인 정보 를이용해서 디비에 참여자 추가시켜야함. 
-	 int r = rservice.checkRoom(vo);
-	 
-	 return r; 
-	 }
-	 
+//	 @PostMapping("/room.do")
+//	 @ResponseBody 
+//	 public Integer roomCheck(RoomVO vo, HttpSession sess) {
+//	 
+//	 MemberVO mvo = (MemberVO)sess.getAttribute("loginInfo");
+//	 vo.setRoom_participant_no(mvo.getMember_no());
+//	 
+//	 // no=[ ] 로 파라미터 넘어오니 받고 session에 있는 로그인 정보 를이용해서 디비에 참여자 추가시켜야함. 
+//	 int r = rservice.checkRoom(vo);
+//	 
+//	 return r; 
+//	 }
+//	 
 
 	@GetMapping("/pwdForm.do")
 	public String pwdForm(RoomVO vo) {

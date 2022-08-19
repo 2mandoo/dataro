@@ -3,6 +3,7 @@
 (function getCourse() {
 	var obj;
 	var no=$('#board_no').val();  // 방만들기 모달 안에 hidden으로 숨겨진 board_no를 가지고 옴
+	console.log(no);
 	$.ajax({
 		url : "../map/mapcourselist.do",
 		type : "post",
@@ -12,7 +13,8 @@
 		success : function(res) {
 			obj = JSON.parse(res);
 			console.log(obj);
-			displayCouses(obj);
+			console.log(obj.length);
+			if(obj.length != 0) displayCouses(obj);
 		},
 		error : function() {
 			console.log("코스 가져오기 에러");

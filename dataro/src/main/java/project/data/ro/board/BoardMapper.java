@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import project.data.ro.map.MapVO;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryVO;
@@ -34,7 +35,7 @@ public interface BoardMapper {
 	
 	// main 
 	List<BoardVO> list(BoardVO vo);
-	BoardVO place(BoardVO vo);
+	List<MapVO> place(int board_no);
 	
 	// write
 	int insert(BoardVO vo);
@@ -61,5 +62,6 @@ public interface BoardMapper {
 	public int likeBack(BoardVO vo);
 	//싫어요 취소
 	public int dislikeBack(BoardVO vo);
+	
 	
 }

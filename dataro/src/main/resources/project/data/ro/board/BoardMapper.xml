@@ -169,9 +169,9 @@
 			</where>
 	</select>
 	<!-- main from 호윤 -->
-<!-- 	<select id ="place" parameterType="project.data.ro.board.BoardVO">
+	<select id ="place" resultType="project.data.ro.map.MapVO" parameterType="int">
 		select place_name from pmap where board_no = #{board_no}
-	</select> -->
+	</select>
 	
 	
 	<!-- 여행글쓰기 from 진경 -->

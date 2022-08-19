@@ -39,7 +39,7 @@ public class BoardVO {
 	private String hashtag_name; 
 	
 	// 내용여러개
-	private List<String> place_name;
+	private List<MapVO> placeList;
 	private String[] contents;
 	private int course_no;
 	private int login_member_no;

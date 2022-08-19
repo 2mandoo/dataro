@@ -274,4 +274,8 @@ public class BoardServiceImpl implements BoardService {
 	public void dislikeBack(BoardVO vo) {
 		mapper.dislikeBack(vo);
 	}
+	@Override
+	public List<MapVO> place(int board_no) {
+		return mapper.place(board_no);
+	}
 }

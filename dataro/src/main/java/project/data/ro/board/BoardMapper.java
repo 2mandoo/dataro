@@ -31,6 +31,9 @@ public interface BoardMapper {
 	List<MessageVO> myList4(MessageVO vo);
 	List<MessageVO> myList5(MessageVO vo);
 	List<RoomVO> myList6(RoomVO vo);
+//	정길 해쉬태그 연습
+	List<BoardVO> fromHash(int board_no);
+	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(마이페이지 끝) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 	
 	// main 

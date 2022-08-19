@@ -105,7 +105,7 @@ function loginAlert(){
 	    		})
 	    	})
 	    	</script>
-	    		<span class='hashtag' data-no=''>[#]</span> <!-- 값이 없는애들 -->
+	    	<span class='hashtag' data-no=''>[#]</span> <!-- 값이 없는애들 -->
 		    <span class='hashtag' data-no='1'>[#자전거코스]</span>
 		    <span class='hashtag' data-no='2'>[#드라이브코스]</span>
 		    <span class='hashtag' data-no='3'>[#뚜벅이코스]</span>

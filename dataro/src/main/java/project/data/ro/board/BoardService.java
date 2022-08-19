@@ -24,6 +24,10 @@ public interface BoardService {
 	Map myList4(MessageVO vo, HttpSession sess);
 	Map myList5(MessageVO vo, HttpSession sess);
 	List<RoomVO> myList6(RoomVO vo, HttpSession sess);
+	// 정길 연습
+	List<BoardVO> fromHash(int board_no);
+
+	
 	
 	// main(호윤)
 	List<BoardVO> list(BoardVO vo);

@@ -218,6 +218,12 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.myList6(vo);
 	}
 	
+	
+	@Override
+	public List<BoardVO> fromHash(int board_no) {
+		return mapper.fromHash(board_no);
+	}
+	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(끝) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	// 메인
 	@Override
@@ -286,4 +292,5 @@ public class BoardServiceImpl implements BoardService {
 	public List<CategoryVO> hashtag(int board_no) {
 		return mapper.hashtag(board_no);
 	}
+	
 }

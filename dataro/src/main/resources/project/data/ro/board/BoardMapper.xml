@@ -145,6 +145,12 @@
 		and pr.room_participant_no = #{room_participant_no};
 	</select>
 	
+	<!-- 해쉬태그 클릭 시 화면에 띄우게하는 것 연습. -->
+	<select id ="fromHash" resultType="project.data.ro.board.BoardVO" parameterType="int">
+		select * from pboard
+		where board_no in (select board_no from pcategory where hashtag_no = #{hashtag_no} and board_name='여행게시판')
+	</select>
+
 	
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ정길ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 

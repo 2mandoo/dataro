@@ -121,7 +121,8 @@ public class BoardController {
 		model.addAttribute("list", service.myList6(vo, sess));
 		return "board/myList6";
 	}
-
+	
+	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 	
 	

@@ -5,6 +5,7 @@ import java.util.List;
 
 import lombok.Data;
 import project.data.ro.map.MapVO;
+import project.data.ro.util.CategoryVO;
 
 @Data
 public class BoardVO {
@@ -40,6 +41,7 @@ public class BoardVO {
 	
 	// 내용여러개
 	private List<MapVO> placeList;
+	private List<CategoryVO> hashtagList;
 	private String[] contents;
 	private int course_no;
 	private int login_member_no;

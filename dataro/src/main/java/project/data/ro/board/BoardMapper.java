@@ -36,7 +36,7 @@ public interface BoardMapper {
 	// main 
 	List<BoardVO> list(BoardVO vo);
 	List<MapVO> place(int board_no);
-	
+	List<CategoryVO> hashtag(int board_no);
 	// write
 	int insert(BoardVO vo);
 	int insertCourse(BoardVO vo);

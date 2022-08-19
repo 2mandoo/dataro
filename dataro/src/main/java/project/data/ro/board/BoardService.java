@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
+import project.data.ro.util.CategoryVO;
 
 
 public interface BoardService {
@@ -27,6 +28,7 @@ public interface BoardService {
 	// main(호윤)
 	List<BoardVO> list(BoardVO vo);
 	List<MapVO> place(int board_no);
+	List<CategoryVO> hashtag(int board_no);
 	// write(진경)
 	boolean insert(BoardVO bvo);
 

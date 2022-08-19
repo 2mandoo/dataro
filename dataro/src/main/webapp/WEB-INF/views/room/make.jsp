@@ -17,6 +17,8 @@
 <input type="hidden" name="board_name" value="${roomVO.board_name }">
 <input type="hidden" name="board_no" value="${roomVO.board_no }">
 <input type="hidden" name="roommaker_id" value="${roomVO.roommaker_id }">
+<input type="hidden" name="room_title" value="${roomVO.room_title }">
+<input type="hidden" name="room_content" value="${roomVO.room_content }">
 *방 제목 : <input type="text" name="room_title"><br>
 *방 내용 : <textarea name="room_content"></textarea><br>
 <b>[여행 시작날짜와 종료날짜를 선택해주세요]</b><br>

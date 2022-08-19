@@ -154,7 +154,7 @@
 		select 
 			*
 		    , (select count(*) from plike l where b.board_no = l.board_no) as likecount
-		    , (select group_concat(hashtag_name) from pcategory c left outer join phashtag  h on c.hashtag_no = h.hashtag_no where c.board_no = b.board_no) as hashtag_name
+		    , (select group_concat(distinct(hashtag_name)) from pcategory c left outer join phashtag  h on c.hashtag_no = h.hashtag_no where c.board_no = b.board_no) as hashtag_name
 		    from pboard b
 			<where>
 				board_name = '여행게시판'

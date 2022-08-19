@@ -33,7 +33,7 @@ public interface BoardService {
 
 	
 	
-	//정현
+	//=================================정현===============================
 	//상세
 	Map view(BoardVO vo);
 	//게시글 좋아요
@@ -46,6 +46,7 @@ public interface BoardService {
 	int dislikeCheck(BoardVO vo);
 	void likeBack(BoardVO vo);
 	void dislikeBack(BoardVO vo);
+	//=================================정현===============================
 
 
 }

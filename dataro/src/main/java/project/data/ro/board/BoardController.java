@@ -147,14 +147,16 @@ public class BoardController {
 		return "board/main";
 	}
 	
-	//정현
+	//=================================정현===============================
 	@GetMapping("/view.do")
 	public String view(BoardVO vo, RoomVO rvo, Model model) {
-		System.out.println("=========== "+vo);
-		Map map = new HashMap();
-		map = service.view(vo);
-		System.out.println("=========== "+map);
-		model.addAttribute("data", map);
+//		MemberVO mvo = (MemberVO)sess.getAttribute("loginInfo");
+//		//글 보고있는 사람(로그인 한 사람)
+//		vo.setLogin_member_no(mvo.getMember_no());
+//		System.out.println("=+=++++++++== "+vo);
+//		Map map = new HashMap();
+//		map = service.view(vo);
+//		model.addAttribute("data", map);
 		return "board/view";
 	}
 	
@@ -184,5 +186,6 @@ public class BoardController {
 		}
 		return service.dislikeCheck(vo);
 	}
+	//=================================정현===============================
 	
 }

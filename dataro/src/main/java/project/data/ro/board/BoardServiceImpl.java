@@ -19,7 +19,6 @@ import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomMapper;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryMapper;
-import project.data.ro.util.CategoryVO;
 
 @Slf4j
 @Service
@@ -227,7 +226,7 @@ public class BoardServiceImpl implements BoardService {
 
 
 	
-	//정현
+	//=================================정현===============================
 	//게시글 상세보기
 	@Override
 	public Map view(BoardVO vo) {

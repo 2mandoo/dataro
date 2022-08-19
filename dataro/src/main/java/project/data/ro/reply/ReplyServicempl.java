@@ -28,7 +28,7 @@ public class ReplyServicempl implements ReplyService {
 	}
 
 	
-	//정현
+	//=================================정현===============================
 	@Override
 	public Map list2(ReplyVO vo) {
 		//총 댓글 수
@@ -94,6 +94,7 @@ public class ReplyServicempl implements ReplyService {
 	public List replyList(ReplyVO vo) {
 		return rmapper.replyList(vo);
 	}
+	//=================================정현===============================
 
 	
 }

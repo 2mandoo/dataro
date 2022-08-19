@@ -134,6 +134,7 @@ public class BoardController {
 		List<BoardVO> list = service.list(vo);
 		for (int i=0; i<list.size(); i++) {
 			list.get(i).setPlaceList(service.place(list.get(i).getBoard_no()));
+			list.get(i).setHashtagList(service.hashtag(list.get(i).getBoard_no()));
 		}
 		
 		model.addAttribute("list",list);

@@ -60,6 +60,8 @@ public class BoardController {
 		uservice.insert(cvo,bvo,hashtag_no);
 		uservice.fileupload(fvo, filename, req,bvo);
 		mapper.update(bvo);
+		uservice.regionInsert(cvo);
+		System.out.println("내가 누른거"+cvo.getRegion_no_arr());
 		return "redirect:/board/travelWrite.do";
 	}
 	//여행코스 글쓰기 수정
@@ -132,6 +134,7 @@ public class BoardController {
 		List<BoardVO> list = service.list(vo);
 		for (int i=0; i<list.size(); i++) {
 			list.get(i).setPlaceList(service.place(list.get(i).getBoard_no()));
+			list.get(i).setHashtagList(service.hashtag(list.get(i).getBoard_no()));
 		}
 		
 		model.addAttribute("list",list);

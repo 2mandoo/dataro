@@ -12,11 +12,7 @@ import project.data.ro.board.BoardVO;
 public class RoomServicempl implements RoomService {
 	@Autowired
 	RoomMapper rmapper;
-	//모임방리스트(임시-삭제예정)
-	@Override
-	public List<RoomVO> list(RoomVO vo) {
-		return rmapper.list(vo);
-	}
+
 	//모임방상세보기
 	@Override
 	public RoomVO view(int no) {

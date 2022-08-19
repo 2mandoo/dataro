@@ -41,7 +41,6 @@ public class BoardVO {
 	
 	// 내용여러개
 	private List<MapVO> placeList;
-	// 정길 해쉬태그 연습
 	private List<CategoryVO> hashtagList; 
 	private String[] contents;
 	private int course_no;

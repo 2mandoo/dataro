@@ -131,11 +131,7 @@ function loginAlert(){
             </ul>
           </div>
           <ul class="courselist">
-            <li><span>●</span><span>1</span></li>
-            <li><span>●</span><span>1</span></li>
-            <li><span>●</span><span>1</span></li>
-            <li><span>●</span><span>1</span></li>
-            <li><span>●</span><span>1</span></li>
+            <li><span>●</span><span>${place.place_name}</span></li>
           </ul>
       </div>
       </c:forEach>

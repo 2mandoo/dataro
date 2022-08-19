@@ -168,12 +168,10 @@
 				</if>
 			</where>
 	</select>
-	
-	<!-- 
-	<select id ='course' resultType="project.data.ro.board.BoardVO">
+	<!-- main from 호윤 -->
+<!-- 	<select id ="place" parameterType="project.data.ro.board.BoardVO">
 		select place_name from pmap where board_no = #{board_no}
 	</select> -->
-	
 	
 	
 	<!-- 여행글쓰기 from 진경 -->

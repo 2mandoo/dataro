@@ -3,6 +3,7 @@ package project.data.ro.board;
 import java.util.List;
 import java.util.Map;
 
+import project.data.ro.map.MapVO;
 import javax.servlet.http.HttpSession;
 
 import project.data.ro.message.MessageVO;
@@ -25,7 +26,6 @@ public interface BoardService {
 	
 	// main(호윤)
 	List<BoardVO> list(BoardVO vo);
-
 	// write(진경)
 	boolean insert(BoardVO bvo);
 

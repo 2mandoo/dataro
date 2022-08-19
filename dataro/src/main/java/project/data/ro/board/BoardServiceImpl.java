@@ -4,12 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import project.data.ro.map.MapMapper;
+import project.data.ro.map.MapVO;
 import project.data.ro.member.MemberVO;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomMapper;
@@ -25,6 +29,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	RoomMapper rmapper;
 	
+	MapMapper pmapper;
 	CategoryMapper cmapper;
 	
 	//여행코스글쓰기(for문-코스등록)
@@ -40,7 +45,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	//여행코스글수정
 	@Override
-	public boolean update(BoardVO vo) {
+	public boolean update(BoardVO vo) { 
 		return mapper.update(vo) > 0 ? true : false;
 	}
 	//여행코스글삭제
@@ -202,6 +207,7 @@ public class BoardServiceImpl implements BoardService {
 		return map;
 	}
 	
+
 	// 내가 참여한 방(마이페이지)
 	@Override
 	public List<RoomVO> myList6(RoomVO vo, HttpSession sess) {
@@ -212,9 +218,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(끝) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
+	// 메인
 	@Override
 	public List<BoardVO> list(BoardVO vo) {
+		mapper.place(vo);
+		
 		return mapper.list(vo);
 	}
 
@@ -269,5 +277,4 @@ public class BoardServiceImpl implements BoardService {
 	public void dislikeBack(BoardVO vo) {
 		mapper.dislikeBack(vo);
 	}
-
 }

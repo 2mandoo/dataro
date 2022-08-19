@@ -42,4 +42,10 @@
 	<update id="update" parameterType="project.data.ro.board.BoardVO">
 		UPDATE pmap set board_no = #{board_no} where board_no=0
 	</update>
+	
+	<!--from 호윤 -->
+	<select id ="place" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.map.MapVO">
+		select place_name from pmap where board_no = #{board_no}
+	</select>
+	
 </mapper>

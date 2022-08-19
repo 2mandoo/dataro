@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<p><span><strong><img src="/ro/img/reply.png" width="30px">${reply.list.board_no }${reply.list.board_name }댓글(${reply.totalCount })</strong>  |  ${replyVO.page }/${reply.totalPage }페이지</span></p>
+<p><span><strong><img src="/ro/img/reply.png">댓글(${reply.totalCount })</strong>  |  ${replyVO.page }/${reply.totalPage }페이지</span></p>
    <table class="list">
        <colgroup>
            <col width="80px" />
@@ -24,9 +24,8 @@
        <c:forEach var="vo" items="${reply.list }" varStatus="idx" >
 	           <tr>
 	               <td>${reply.pagingCount-(10*(replyVO.page-1))-idx.index }</td>
-	               <td class="writer"><a class="btn-sendclick" href="javascript:">${vo.member_id } id자리</a></td>
+	               <td class="writer"><a class="btn-sendclick" href="javascript:message(${vo.member_no }, '${vo.member_id }')">${vo.member_id }</a></td>
 	               <td class="txt_l" style="text-align:left">
-	                   <%-- ${vo.content } <c:if test="${loginInfo.member_no==vo.member_no }"><a href="javascript:commentDel(${vo.reply_no });">[삭제]</a></c:if> --%>
 	                   ${vo.content }
 	                   <a href="javascript:replyList(${vo.gno })" class="replyList">[답글]<c:if test="${vo.replycount>0 }">(${vo.replycount })</c:if></a>
 	                   <div class="messageBox" style="display:none;" >
@@ -37,8 +36,10 @@
 					   </div>
 	               </td>
 	               <td>
-	               	   <a href="javascript:setReply_no(${vo.reply_no });">[수정]</a>
-	                   <a href="javascript:commentDel(${vo.reply_no });">[삭제]</a>
+	               	   <c:if test="${loginInfo.member_no == vo.member_no }">
+	               	   		<a href="javascript:setReply_no(${vo.reply_no });">[수정]</a>
+	                   		<a href="javascript:commentDel(${vo.reply_no });">[삭제]</a>
+	                   </c:if>
 	                   <a href="javascript:">
 	                   <c:if test="${vo.islike == 0}">♡</c:if>
 	                   <c:if test="${vo.islike != 0}">♥</c:if>
@@ -73,8 +74,17 @@
    
 	<script>
 	//아이디 클릭하면 메세지모달 띄우기
+/* 	function message(no, id){
+		$('.msgmodal').fadeIn();
+		console.log(no);
+		console.log(id);
+		$("#receive_member_no").val(no);
+		$("#receive_member_id").val(id);
+	} */
+	
 	$('.btn-sendclick').click(function(){
 		$('.msgmodal').fadeIn();
+		
 	})
 	
 	//메세지모달 닫기버튼 누름
@@ -97,8 +107,8 @@
 		$.ajax({
 			url : "/ro/reply/replyList.do",
 			data : {
-				board_no : 987697, 
-				board_name : 'main',
+				board_no : ${boardVO.board_no}, 
+				board_name : ${boardVO.board_name},
 				gno : gno
 				//member_no : ${loginInfo.member_no} //el
 			},
@@ -150,11 +160,11 @@
 			$.ajax({
 				url : "/ro/reply/reply.do",
 				data : {
-					board_no : 987697, 
-					board_name : 'main',
+					board_no : ${boardVO.board_no}, 
+					board_name : ${boardVO.board_name},
 					content : $("#replyFrm"+gno+" .content2").val(),
-					gno : gno
-					//member_no : ${loginInfo.member_no} //el
+					gno : gno,
+					member_no : ${loginInfo.member_no}
 				},
 				success : function(res){
 						if(res=="success"){

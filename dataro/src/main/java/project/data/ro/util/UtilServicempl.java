@@ -21,7 +21,7 @@ public class UtilServicempl implements UtilService {
 	CategoryMapper cmapper;
 	@Autowired
 	FileMapper fmapper;
-	//진경시작
+	///////////////////////////////진경시작///////////////////////////////////////////
 	//해쉬태그등록
 	@Override
 	public boolean insert(CategoryVO cvo,BoardVO bvo,@RequestParam List<Integer> hashtag_no) {
@@ -29,6 +29,7 @@ public class UtilServicempl implements UtilService {
 			cvo.setBoard_no(bvo.getBoard_no());
 			cvo.setHashtag_no(hashtag);
 			cmapper.insert(cvo);
+			cmapper.regionInsert(cvo);
 		}
 		return true;
 	}
@@ -57,7 +58,7 @@ public class UtilServicempl implements UtilService {
 		}
 		return true;
 	}
-	//해시태그,지역 출력
+	//해시태그,지역대분류 출력
 	@Override
 	public Map writeCategory() {
 		Map category = new HashMap();
@@ -65,15 +66,26 @@ public class UtilServicempl implements UtilService {
 		category.put("region", cmapper.regionSelect());
 		return category;
 	}
-	//지역 리스트로 받아서 map에 담기
+	//지역 소분류 리스트로 받아서 map에 담기
 	@Override
 	public Map regionDetail(String rs) {
-		List<String> regionDetailList =cmapper.regionDetail(rs);
+		List<CategoryVO> regionDetailList =cmapper.regionDetail(rs);
 		System.out.println("뀨"+regionDetailList);
 		Map regionDetail = new HashMap();
 		regionDetail.put("regionDetailList", regionDetailList);
 		return regionDetail;
 		
 	}
-	//진경끝
+	//resion_no 카테고리 테이블에 등록
+	@Override
+	public int regionInsert(CategoryVO cvo) {
+		System.out.println("등록"+cvo.getRegion_no_arr());
+		for(int region:cvo.getRegion_no_arr()) {
+			cvo.setRegion_no(region);
+			cmapper.regionInsert(cvo);
+		}
+		return 0;
+	}
+
+	///////////////////////////////진경끝///////////////////////////////////////////
 }

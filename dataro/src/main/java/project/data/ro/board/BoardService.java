@@ -3,11 +3,12 @@ package project.data.ro.board;
 import java.util.List;
 import java.util.Map;
 
-import project.data.ro.map.MapVO;
 import javax.servlet.http.HttpSession;
 
+import project.data.ro.map.MapVO;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
+import project.data.ro.util.CategoryVO;
 
 
 public interface BoardService {
@@ -27,12 +28,13 @@ public interface BoardService {
 	// main(호윤)
 	List<BoardVO> list(BoardVO vo);
 	List<MapVO> place(int board_no);
+	List<CategoryVO> hashtag(int board_no);
 	// write(진경)
 	boolean insert(BoardVO bvo);
 
 	
 	
-	//정현
+	//=================================정현===============================
 	//상세
 	Map view(BoardVO vo);
 	//게시글 좋아요
@@ -45,6 +47,7 @@ public interface BoardService {
 	int dislikeCheck(BoardVO vo);
 	void likeBack(BoardVO vo);
 	void dislikeBack(BoardVO vo);
+	//=================================정현===============================
 
 
 }

@@ -43,10 +43,7 @@ $(function(){
 	$('.btn-close').click(function(){
 		$('.modal').fadeOut();
 	});	
-	
-	
-	
-	
+
 });
 
 // 미로그인시 아이콘 클릭시 뜨는 얼럿(정길)
@@ -63,6 +60,7 @@ function loginAlert(){
       <div class="inner">
          	<h1>DaTaRo</h1>
 	        <form id="frm" action="main.do" > 
+	        <input type="hidden" name="stag" id="stag">
 			<select id="form" name="stype" class="dSelect" title="검색분류 선택">
 			<option value="title" >제목</option> 
 			<option value="content" >내용</option>
@@ -98,19 +96,38 @@ function loginAlert(){
           	</ul>
         </div>
     	</header>
-	    <div> <!--여기도 forEach로 접근-->
-	    <c:forEach var ="hashtag" items = "${list}">
-	    <div style="display:inline-block; margin:0 10px;"><a href="">#${hashtag.hashtag_name}</a></div>
-	    </c:forEach> 
-	    </div>
+	    	<div style="display: inline-block; margin: 0 10px;" class="hash">
+	    	<script>
+	    	$(function() {
+	    		$('.hashtag').click(function(){
+	    			$("#stag").val($(this).data('no'));
+	    			$("#frm").submit();
+	    		})
+	    	})
+	    	</script>
+	    		<span class='hashtag' data-no=''>[#]</span> <!-- 값이 없는애들 -->
+		    <span class='hashtag' data-no='1'>[#자전거코스]</span>
+		    <span class='hashtag' data-no='2'>[#드라이브코스]</span>
+		    <span class='hashtag' data-no='3'>[#뚜벅이코스]</span>
+		    <span class='hashtag' data-no='4'>[#가족과함께]</span>
+		    <span class='hashtag' data-no='5'>[#친구와함께]</span>
+		    <span class='hashtag' data-no='6'>[#연인과함께]</span>
+		    <span class='hashtag' data-no='7'>[#자연]</span>
+		    <span class='hashtag' data-no='8'>[#반려동물]</span>
+		    <span class='hashtag' data-no='9'>[#레포츠]</span>
+		    <span class='hashtag' data-no='10'>[#1박2일]</span>
+		    <span class='hashtag' data-no='11'>[#당일치기]</span>
+		    <span class='hashtag' data-no='12'>[#축제]</span>
+		    <span class='hashtag' data-no='13'>[#식도락]</span>
+		    <span class='hashtag' data-no='14'>[#역사]</span>
+		</div>
 	    <div class="content main">
 	    <c:forEach var ="list" items="${list}">
      	<div class="cnt_set">
           	<h5>${list.title}</h5>글번호 : ${list.board_no}
           	<span>
-          	<c:set var="hashArr" value="${fn:split(list.hashtag_name, ',')}" />
-         	<c:forEach var ="hword" items="${hashArr}">
-         	#${hword} 
+         	<c:forEach var ="hvo" items="${list.hashtagList}">
+         	#${hvo.hashtag_name}
          	</c:forEach>
          	</span>
          	<div class="img_area">
@@ -131,12 +148,13 @@ function loginAlert(){
             </ul>
           </div>
           <ul class="courselist"><!-- forEach로 접근 -->
-            <li>
+          	<li>
            	<c:forEach var="mvo" items="${list.placeList }">
-            		<span>●</span><span>${mvo.place_name}</span>
+            		<span>●</span><span>${mvo.place_name}</span><br>
             	</c:forEach>
-            	</li>
+            </li>
           </ul>
+           
       </div>
       </c:forEach>
   </div>

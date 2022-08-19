@@ -19,6 +19,7 @@ import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomMapper;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryMapper;
+import project.data.ro.util.CategoryVO;
 
 @Slf4j
 @Service
@@ -220,13 +221,13 @@ public class BoardServiceImpl implements BoardService {
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(끝) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	// 메인
 	@Override
-	public List<BoardVO> list(BoardVO vo) {		
+	public List<BoardVO> list(BoardVO vo) {	
 		return mapper.list(vo);
 	}
 
 
 	
-	//정현
+	//=================================정현===============================
 	//게시글 상세보기
 	@Override
 	public Map view(BoardVO vo) {
@@ -277,5 +278,12 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<MapVO> place(int board_no) {
 		return mapper.place(board_no);
+	}
+
+	//=================================정현===============================
+	//호윤
+	@Override
+	public List<CategoryVO> hashtag(int board_no) {
+		return mapper.hashtag(board_no);
 	}
 }

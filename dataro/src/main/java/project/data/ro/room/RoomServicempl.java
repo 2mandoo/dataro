@@ -12,18 +12,14 @@ import project.data.ro.board.BoardVO;
 public class RoomServicempl implements RoomService {
 	@Autowired
 	RoomMapper rmapper;
-	//모임방리스트(임시-삭제예정)
-	@Override
-	public List<RoomVO> list(RoomVO vo) {
-		return rmapper.list(vo);
-	}
+
 	//모임방상세보기
 	@Override
 	public RoomVO view(int no) {
 		return rmapper.view(no);
 	}
 	
-	//정현
+	//=================================정현===============================
 	//방 만들고 방장 방 입장
 	@Override
 	public int makeRoom(RoomVO vo) {
@@ -48,9 +44,11 @@ public class RoomServicempl implements RoomService {
 	public int enterRoom(RoomVO vo) {
 		return rmapper.enterRoom(vo);
 	}
-
+	
+	//내가 참여한 방인지 확인
 	@Override
 	public int checkRoom(RoomVO vo) {
 		return rmapper.checkRoom(vo);
 	}
+	//=================================정현===============================
 }

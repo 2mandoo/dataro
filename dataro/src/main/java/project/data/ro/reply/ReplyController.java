@@ -15,10 +15,11 @@ public class ReplyController {
 	@Autowired
 	ReplyService service;
 	
+	//=================================정현===============================
 	@GetMapping("/reply/list.do")
 	public String list(ReplyVO vo, Model model) { 
 		System.out.println(vo);
-		
+		System.out.println("나와라~~~~");
 		model.addAttribute("reply", service.list2(vo));
 		model.addAttribute("page", vo.getPage());
 		return "common/comment2";
@@ -72,5 +73,6 @@ public class ReplyController {
 			return "common/alert2";
 		}
 	}
+	//=================================정현===============================
 
 }

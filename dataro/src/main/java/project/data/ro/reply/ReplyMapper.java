@@ -11,6 +11,7 @@ public interface ReplyMapper {
 	int update(ReplyVO vo);
 	
 	
+	//=================================정현===============================
 	//댓글 목록 출력
 	public List<ReplyVO> list2(ReplyVO vo); 
 	//총 댓글 개수
@@ -31,5 +32,6 @@ public interface ReplyMapper {
 	public int reply(ReplyVO vo);
 	//댓글 수정
 	public int update2(ReplyVO vo);
+	//=================================정현===============================
 		
 }

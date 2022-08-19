@@ -183,6 +183,7 @@ a {
 <body>
 <a href="/ro/board/main.do"><h1>dataro</h1></a>
     <div id="wrap">
+    ${loginInfo.nickname }
         <div class="content view">
             <div>
                 <div class="title">

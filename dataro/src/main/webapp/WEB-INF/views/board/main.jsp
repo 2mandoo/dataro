@@ -151,8 +151,9 @@ function loginAlert(){
             </ul>
           </div>
           <ul class="courselist"><!-- forEach로 접근 -->
+          	<li>
            	<c:forEach var="mvo" items="${list.placeList }">
-            		<span>●</span><span>${mvo.place_name}</span>
+            		<span>●</span><span>${mvo.place_name}</span><br>
             	</c:forEach>
             </li>
           </ul>

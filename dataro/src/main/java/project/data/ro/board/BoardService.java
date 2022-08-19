@@ -28,6 +28,7 @@ public interface BoardService {
 	// main(호윤)
 	List<BoardVO> list(BoardVO vo);
 	List<MapVO> place(int board_no);
+	List<CategoryVO> hashtag(int board_no);
 	// write(진경)
 	boolean insert(BoardVO bvo);
 

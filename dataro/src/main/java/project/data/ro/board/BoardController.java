@@ -23,7 +23,6 @@ import project.data.ro.member.MemberService;
 import project.data.ro.member.MemberVO;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
-import project.data.ro.util.CategoryMapper;
 import project.data.ro.util.CategoryVO;
 import project.data.ro.util.FileVO;
 import project.data.ro.util.UtilService;
@@ -148,14 +147,14 @@ public class BoardController {
 	
 	//=================================정현===============================
 	@GetMapping("/view.do")
-	public String view(BoardVO vo, RoomVO rvo, Model model) {
-//		MemberVO mvo = (MemberVO)sess.getAttribute("loginInfo");
-//		//글 보고있는 사람(로그인 한 사람)
-//		vo.setLogin_member_no(mvo.getMember_no());
-//		System.out.println("=+=++++++++== "+vo);
-//		Map map = new HashMap();
-//		map = service.view(vo);
-//		model.addAttribute("data", map);
+	public String view(BoardVO vo, RoomVO rvo, Model model, HttpSession sess) {
+		MemberVO mvo = (MemberVO)sess.getAttribute("loginInfo");
+		//글 보고있는 사람(로그인 한 사람)
+		vo.setLogin_member_no(mvo.getMember_no());
+		System.out.println("=+=++++++++== "+vo);
+		Map map = new HashMap();
+		map = service.view(vo);
+		model.addAttribute("data", map);
 		return "board/view";
 	}
 	

@@ -58,7 +58,9 @@ public class RoomController {
 	@PostMapping("/write.do")
 	@ResponseBody
 	public int writeRoom(RoomVO vo) {
-		System.out.println(vo);
+		
+		System.out.println("3333333333333333333333333333"+vo);
+		System.out.println("3333333333333333333333333333"+vo);
 
 		return rservice.makeRoom(vo);
 	}
@@ -79,19 +81,19 @@ public class RoomController {
 		return "room/room";
 	}
 
-	 @PostMapping("/room.do")
-	 @ResponseBody 
-	 public Integer roomCheck(RoomVO vo, HttpSession sess) {
-	 
-	 MemberVO mvo = (MemberVO)sess.getAttribute("loginInfo");
-	 vo.setRoom_participant_no(mvo.getMember_no());
-	 
-	 // no=[ ] 로 파라미터 넘어오니 받고 session에 있는 로그인 정보 를이용해서 디비에 참여자 추가시켜야함. 
-	 int r = rservice.checkRoom(vo);
-	 
-	 return r; 
-	 }
-	 
+//	 @PostMapping("/room.do")
+//	 @ResponseBody 
+//	 public Integer roomCheck(RoomVO vo, HttpSession sess) {
+//	 
+//	 MemberVO mvo = (MemberVO)sess.getAttribute("loginInfo");
+//	 vo.setRoom_participant_no(mvo.getMember_no());
+//	 
+//	 // no=[ ] 로 파라미터 넘어오니 받고 session에 있는 로그인 정보 를이용해서 디비에 참여자 추가시켜야함. 
+//	 int r = rservice.checkRoom(vo);
+//	 
+//	 return r; 
+//	 }
+//	 
 
 	@GetMapping("/pwdForm.do")
 	public String pwdForm(RoomVO vo) {

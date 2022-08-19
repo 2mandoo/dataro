@@ -136,6 +136,7 @@ function checkEmail(){
 </script>
 <div id="wrap">
 	<div class="content login page">
+		<a href="/ro/board/main.do"><img src="/ro/img/main.png" id="goMain"></a>
 		<form action="register" method="post" name ="register" enctype="multipart/form-data">
 		<h1>Register</h1>
 			<table>

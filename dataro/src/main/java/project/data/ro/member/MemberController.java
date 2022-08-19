@@ -26,7 +26,7 @@ import project.data.ro.message.MessageVO;
 @RequestMapping("/member")
 public class MemberController {
 	
-//	-----------------정길-----------------
+//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 	
 	@Autowired
 	MemberService service;
@@ -292,7 +292,7 @@ public class MemberController {
 		return "common/alert";
 	}
 	
-//	-----------------정길-----------------
+//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 
 	
 	

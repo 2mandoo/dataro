@@ -118,6 +118,7 @@ function checkEmail(){
 </script>
 <div id="wrap">
 	<div class="content login page">
+		<a href="/ro/board/main.do"><img src="/ro/img/main.png" id="goMain"></a>
 		<form action="editUserInfo" method="post" name ="register" enctype="multipart/form-data">
 			<table >
 				<tr>
@@ -174,7 +175,6 @@ function checkEmail(){
 				</tr>
 				<tr><td>&nbsp</td></tr>
 				<tr>
-					<td class="right"><a href="/ro/board/main.do" >메인으로</a></td>
 					<td><input type="button" id="btn_leave" value="탈퇴하기"></td>
 				</tr>
 			</table>

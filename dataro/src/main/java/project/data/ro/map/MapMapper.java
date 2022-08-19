@@ -9,7 +9,7 @@ import project.data.ro.board.BoardVO;
 @Mapper
 public interface MapMapper {
    public int insert(MapVO vo);
-   public List<MapVO> list();
+   public List<MapVO> list(MapVO vo);
    public int update(BoardVO vo);
    public String place(BoardVO vo);
 }

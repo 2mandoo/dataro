@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
-import project.data.ro.util.HashTagVO;
 
 
 public interface BoardService {
@@ -27,10 +26,9 @@ public interface BoardService {
 	
 	// main(호윤)
 	List<BoardVO> list(BoardVO vo);
-	boolean place(BoardVO vo);
 	// write(진경)
 	boolean insert(BoardVO bvo);
-	List<HashTagVO> hash();
+
 	
 	
 	//정현

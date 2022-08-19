@@ -81,7 +81,7 @@ function myList(){
                     <tr>
                     	<td>${vo.board_name}</td>
                         <td>${vo.board_no }</td>
-                        <td class="title" > <a>${vo.title}</a></td>
+                        <td class="title" > <a href="/ro/board/view.do?board_no=${vo.board_no}">${vo.title}</a></td>
                         <td>${vo.viewcount}</td>
                     </tr>
                 </c:forEach>

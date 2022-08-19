@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryVO;
-import project.data.ro.util.HashTagVO;
 
 @Mapper
 public interface BoardMapper {
@@ -40,7 +39,7 @@ public interface BoardMapper {
 	// write
 	int insert(BoardVO vo);
 	int insertCourse(BoardVO vo);
-	List<HashTagVO> hash();
+
 	
 	//정현
 	public BoardVO view2(BoardVO vo); 

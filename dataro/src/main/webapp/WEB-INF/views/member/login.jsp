@@ -28,11 +28,16 @@ $(function(){
 				$("#area2").hide();
 			} 
 	});
+	
+	
 });
+
+
 </script>
 <div id="wrap">
 	<div class="content login page">
 		<form action="login" method="post" name ="login">
+		<a href="/ro/board/main.do"><img src="/ro/img/main.png" id="goMain"></a>
 		<h1>DataRo</h1>
 		<table>
 			<tr>

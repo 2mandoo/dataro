@@ -18,7 +18,7 @@ import project.data.ro.member.MemberVO;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomMapper;
 import project.data.ro.room.RoomVO;
-import project.data.ro.util.HashTagVO;
+import project.data.ro.util.CategoryMapper;
 
 @Slf4j
 @Service
@@ -30,6 +30,7 @@ public class BoardServiceImpl implements BoardService {
 	RoomMapper rmapper;
 	
 	MapMapper pmapper;
+	CategoryMapper cmapper;
 	
 	//여행코스글쓰기(for문-코스등록)
 	@Override
@@ -220,15 +221,12 @@ public class BoardServiceImpl implements BoardService {
 	// 메인
 	@Override
 	public List<BoardVO> list(BoardVO vo) {
-	//List<String> place_name = pmapper.place(vo.getBoard_no())
+		mapper.place(vo);
 		
 		return mapper.list(vo);
 	}
 
-	@Override
-	public List<HashTagVO> hash() {
-		return mapper.hash();
-	}
+
 	
 	//정현
 	//게시글 상세보기

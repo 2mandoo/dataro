@@ -8,7 +8,6 @@ import project.data.ro.board.BoardVO;
 
 
 public interface RoomService {
-	List<RoomVO> list(RoomVO vo);//삭제예정-진경
 	RoomVO view(int no);
 	
 	//정현

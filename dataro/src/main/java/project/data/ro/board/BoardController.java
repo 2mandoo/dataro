@@ -57,10 +57,11 @@ public class BoardController {
 	@PostMapping("/insert.do")
 	public String insert(BoardVO bvo,CategoryVO cvo,@RequestParam List<Integer> hashtag_no,
 				FileVO fvo,@RequestParam MultipartFile[] filename, HttpServletRequest req) {
-		service.insert(bvo);
-		uservice.insert(cvo,bvo,hashtag_no);
-		uservice.fileupload(fvo, filename, req,bvo);
-		mapper.update(bvo);
+//		service.insert(bvo);
+//		uservice.insert(cvo,bvo,hashtag_no);
+//		uservice.fileupload(fvo, filename, req,bvo);
+//		mapper.update(bvo);
+		System.out.println("내가 누른거"+cvo.getRegion_name());
 		return "redirect:/board/travelWrite.do";
 	}
 	//여행코스 글쓰기 수정

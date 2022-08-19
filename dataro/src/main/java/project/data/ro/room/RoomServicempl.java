@@ -27,7 +27,6 @@ public class RoomServicempl implements RoomService {
 	//방 만들고 방장 방 입장
 	@Override
 	public int makeRoom(RoomVO vo) {
-		System.out.println("3333333333333333333333333333"+vo);
 		rmapper.makeRoom(vo);
 		rmapper.enterRoom(vo);
 		return 1;
@@ -49,7 +48,8 @@ public class RoomServicempl implements RoomService {
 	public int enterRoom(RoomVO vo) {
 		return rmapper.enterRoom(vo);
 	}
-
+	
+	//내가 참여한 방인지 확인
 	@Override
 	public int checkRoom(RoomVO vo) {
 		return rmapper.checkRoom(vo);

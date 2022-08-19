@@ -151,7 +151,9 @@ public class BoardController {
 	public String view(BoardVO vo, RoomVO rvo, Model model, HttpSession sess) {
 		MemberVO mvo = (MemberVO)sess.getAttribute("loginInfo");
 		//글 보고있는 사람(로그인 한 사람)
-		vo.setLogin_member_no(mvo.getMember_no());
+		if(mvo!= null) {
+			vo.setLogin_member_no(mvo.getMember_no());
+		}
 		System.out.println("=+=++++++++== "+vo);
 		Map map = new HashMap();
 		map = service.view(vo);

@@ -274,11 +274,12 @@ a {
 	<!-- 방만들기 모달 -->
 	<div class="roommodal">
    		<div class="modal-roomcontent">
-			<a class="btn-roomclose" href="javascript:">X</a>
+			<a class="btn-roomclose" href="javascript:"><img src="/ro/img/close.png"></a>
 			<h3>Make Room</h3>
-			<input type="hidden" id="board_name" name="board_name" value="${data.board.board_name }">
-			<input type="hidden" id="board_no" name="board_no" value="${data.board.board_no}">
-			<input type="hidden" id="roommaker_id" name="roommaker_id" value="${loginInfo.id }">
+			<input type="text" id="board_name" name="board_name" value="${data.board.board_name }">
+			<input type="text" id="board_no" name="board_no" value="${data.board.board_no}">
+			<input type="text" id="roommaker_id" name="roommaker_id" value="${loginInfo.id }">
+			<input type="text" id="room_participant_no" name="room_participant_no" value="${loginInfo.member_no }">
 			*방 제목 <input type="text" id="room_title" name="room_title" style="width:100%"><br>
 			*방 내용 <textarea id="room_content" name="room_content" style="width:100%"></textarea><br>
 			<b>[여행 시작날짜와 종료날짜를 선택해주세요]</b><br>
@@ -294,9 +295,9 @@ a {
 			<a class="btn-msgclose" href="javascript:">X</a>
 			<h3>Send Message</h3>
 			<input type="hidden" id="send_member_no" name="send_member_no" value="${loginInfo.member_no }" >
-			<input type="hidden" id="receive_member_no" name="receive_member_no" value="33">
+			<input type="hidden" id="receive_member_no" name="receive_member_no" value="">
 			보내는 사람 <input type="text" name="send_member_id" value="${loginInfo.id }" readonly><br>
-			받는 사람 <input type="text" name="receive_member_id" value="ss" readonly>
+			받는 사람 <input type="text" name="receive_member_id" id="receive_member_id" value="" readonly>
 			<input type="text" id="message_content" placeholder="보낼 메세지를 입력하세요." style="width:100%">
 			<a class="btn-send" href="javascript:sendMessage();">보내기</a>
 		</div>
@@ -359,6 +360,7 @@ a {
     	function makeRoom(){
     		var board_name = $("#board_name").val();
     		var board_no = $("#board_no").val();
+    		var room_participant_no = $("#room_participant_no").val();
     		var roommaker_id = $("#roommaker_id").val();
     		var room_title = $("#room_title").val();
     		var room_content = $("#room_content").val();
@@ -377,7 +379,9 @@ a {
     					room_content : room_content,
     					room_startdate : room_startdate,
     					room_enddate : room_enddate,
-    					room_pwd : room_pwd
+    					room_pwd : room_pwd,
+    					room_participant_no : room_participant_no
+    					
     				},
     				success : function(res){
     						if(res==1){
@@ -432,7 +436,7 @@ a {
     				'board_no' : ${data.board.board_no},
     				'board_name' : '${data.board.board_name}',
     				'page' : page,
-    				member_no : 8
+    				member_no : ${loginInfo.member_no}
     			},
     			success : function(res){
     				
@@ -464,9 +468,9 @@ a {
 	    			url : "/ro/reply/insert.do",
 	    			data : {
 	    				board_no : board_no, 
-	    				board_name : 'board_name',
+	    				board_name : board_name,
 	    				content : $("#content").val(),
-	    				member_no : 8
+	    				member_no : ${loginInfo.member_no}
 	    			},
 	    			success : function(res){
 	    					if(res=="success"){
@@ -537,7 +541,7 @@ a {
     			data : {
     				'board_no' : ${data.board.board_no},
     				'board_name' : '${data.board.board_name}',
-    				'member_no' : 8,
+    				'member_no' : ${loginInfo.member_no},
     				likeCheck : likeCheck
     			},
     			success : function(i){
@@ -563,7 +567,7 @@ a {
     			data : {
     				'board_no' : ${data.board.board_no},
     				'board_name' : '${data.board.board_name}',
-    				member_no : 8,
+    				member_no : ${loginInfo.member_no},
     				dislikeCheck : dislikeCheck
     			},
     			success : function(i){

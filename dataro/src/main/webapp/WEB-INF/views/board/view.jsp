@@ -280,7 +280,7 @@ a {
 			<a class="btn-roomclose" href="javascript:">X</a>
 			<h3>Make Room</h3>
 			<input type="hidden" id="board_name" name="board_name" value="main">
-			<input type="hidden" id="board_no" name="board_no" value="987697">
+			<input type="hidden" id="board_no" name="board_no" value="${data.board.board_no}">
 			<input type="hidden" id="roommaker_id" name="roommaker_id" value="test2">
 			*방 제목 <input type="text" id="room_title" name="room_title" style="width:100%"><br>
 			*방 내용 <textarea id="room_content" name="room_content" style="width:100%"></textarea><br>

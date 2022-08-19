@@ -103,7 +103,6 @@ function loginAlert(){
         </div>
     	</header>
 	    	<div style="display: inline-block; margin: 0 10px;" class="hash">
-<<<<<<< HEAD
 	    	<span id ="hash1" value="0" name="0">[#]</span>
 		    <span value="1">[#자전거코스]</span>
 		    <span value="2">[#드라이브코스]</span>
@@ -119,7 +118,6 @@ function loginAlert(){
 		    <span>[#축제]</span>
 		    <span>[#식도락]</span>
 		    <span>[#역사]</span>
-=======
 	    	<script>
 	    	$(function() {
 	    		$('.hashtag').click(function(){
@@ -143,7 +141,6 @@ function loginAlert(){
 		    <span class='hashtag' data-no='12'>[#축제]</span>
 		    <span class='hashtag' data-no='13'>[#식도락]</span>
 		    <span class='hashtag' data-no='14'>[#역사]</span>
->>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
 		</div>
 	    <div class="content main">
 	    <c:forEach var ="list" items="${list}">

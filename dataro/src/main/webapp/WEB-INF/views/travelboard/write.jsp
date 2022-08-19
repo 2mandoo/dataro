@@ -194,7 +194,10 @@
 				rs:region_name
 			},
 			success:function(res){
-			 $('.region_detail').html(region_detail)
+				for(int i=)
+				var html ='<input type="checkbox" value="'+res.regionDetailList+'">'
+				 $('.region_detail').html(html)
+			
 			}
 		})
 

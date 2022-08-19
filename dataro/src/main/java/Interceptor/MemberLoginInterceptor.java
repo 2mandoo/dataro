@@ -19,7 +19,7 @@ public class MemberLoginInterceptor implements HandlerInterceptor {
 			PrintWriter out = res.getWriter();
 			out.println("<script>");
 			out.println("alert('로그인 후 이용가능합니다 : )');");
-			out.println("location.href='/ro/board/main.do';");
+			out.println("location.href='/ro/member/login';");
 			out.println("</script>");
 			out.flush();
 			return false;

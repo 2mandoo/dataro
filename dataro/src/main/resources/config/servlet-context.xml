@@ -61,7 +61,7 @@
    </bean>
    
 
-<mvc:interceptors>
+<!-- <mvc:interceptors>
 	<mvc:interceptor>
 	
 		<mvc:mapping path="/board/**"/>  
@@ -79,7 +79,7 @@
 		<bean class="Interceptor.MemberLoginInterceptor"/>
 		
 	</mvc:interceptor>
-</mvc:interceptors> 
+</mvc:interceptors>   -->
 
     
 </beans>

@@ -11,7 +11,6 @@
     <link href="/ro/resources/css/reset.css" rel="stylesheet">
     <link href="/ro/resources/css/view.css" rel="stylesheet">
     <title>view</title>
-    <link rel="shortcut icon" href="#"> <!-- favicon.ico 에러나서 넣어줌 -->
 </head>
 
 <style>
@@ -155,6 +154,7 @@ a {
 }
 #section {
    width:700px;
+   height:500px;
    text-align:left;
    float:left;
    padding:10px;
@@ -171,10 +171,10 @@ a {
 </style>
 <style> <!-- 지도 마커라인 긋기-->
 .dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
-.dotOverlay {position:relative;bottom:-35px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:3px;background:#ffffffb8;}
+.dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#ffffffb8;}
 .dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
 .number {font-weight:bold;color:#ee6152;}
-.dotOverlay:after {content:'';position:absolute;transform:rotate(180deg);margin-left:-6px;left:50%;bottom:31px;width:11px;height:8px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')}
+.dotOverlay:after {content:'';position:absolute;margin-left:-6px;left:50%;bottom:-8px;width:11px;height:8px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')}
 .distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
 .distanceInfo .label {display:inline-block;width:50px;}
 .distanceInfo:after {content:none;}
@@ -280,7 +280,7 @@ a {
 			<a class="btn-roomclose" href="javascript:">X</a>
 			<h3>Make Room</h3>
 			<input type="hidden" id="board_name" name="board_name" value="main">
-			<input type="hidden" id="board_no" name="board_no" value="${data.board.board_no}">
+			<input type="hidden" id="board_no" name="board_no" value="987697">
 			<input type="hidden" id="roommaker_id" name="roommaker_id" value="test2">
 			*방 제목 <input type="text" id="room_title" name="room_title" style="width:100%"><br>
 			*방 내용 <textarea id="room_content" name="room_content" style="width:100%"></textarea><br>
@@ -433,7 +433,7 @@ a {
     				'board_no' : ${data.board.board_no},
     				'board_name' : '${data.board.board_name}',
     				'page' : page,
-    				member_no : 8
+    				member_no : 22
     			},
     			success : function(res){
     				

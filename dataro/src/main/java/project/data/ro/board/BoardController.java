@@ -144,16 +144,11 @@ public class BoardController {
 	//정현
 	@GetMapping("/view.do")
 	public String view(BoardVO vo, RoomVO rvo, Model model) {
-		int a =8;
-		model.addAttribute("test222", a);
-		
-		vo.setBoard_name("main");
-		vo.setBoard_no(987697);
-		vo.setMember_no(a);
+
 		Map map = new HashMap();
 		map = service.view(vo);
 		model.addAttribute("data", map);
-		return "board/view3";
+		return "board/view";
 	}
 	
 	@PostMapping("/initBoardLike.do")

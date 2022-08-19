@@ -220,9 +220,7 @@ public class BoardServiceImpl implements BoardService {
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(끝) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	// 메인
 	@Override
-	public List<BoardVO> list(BoardVO vo) {
-		mapper.place(vo);
-		
+	public List<BoardVO> list(BoardVO vo) {		
 		return mapper.list(vo);
 	}
 
@@ -235,7 +233,6 @@ public class BoardServiceImpl implements BoardService {
 		Map map = new HashMap();
 		
 		mapper.updateViewcount2(vo); //조회수 증가 후
-		vo.setLogin_member_no(5);
 		map.put("roomList", rmapper.list2(vo));
 		map.put("categoryList", mapper.categoryList(vo));
 		map.put("board", mapper.view2(vo));

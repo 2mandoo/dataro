@@ -8,6 +8,7 @@ public interface ReplyService {
 	List<ReplyVO> list(ReplyVO vo);
 	int update(ReplyVO vo);
 	
+	//=================================정현===============================
 	//목록 출력
 	public Map list2(ReplyVO vo);
 	//답글 목록
@@ -20,5 +21,6 @@ public interface ReplyService {
 	boolean insert2(ReplyVO vo);
 	//답변등록
 	boolean reply(ReplyVO vo);
+	//=================================정현===============================
 }
 	

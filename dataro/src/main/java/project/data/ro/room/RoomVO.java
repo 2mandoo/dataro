@@ -2,11 +2,11 @@ package project.data.ro.room;
 
 import java.sql.Timestamp;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class RoomVO {
 	private String board_name;
 	private int board_no;

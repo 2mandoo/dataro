@@ -194,11 +194,10 @@
 				rs:region_name
 			},
 			success:function(res){
-				
 				$(".region_detail").find("input").remove();
 				$(".region_detail").find("label").remove();
 				for(var i=0;i<res.regionDetailList.length;i++){
-				    	var html = '<input type="checkbox" name="region_name" id="region'+i+'" value="'+res.regionDetailList[i].region_no+'">'
+				    	var html = '<input type="checkbox" name="region_no_arr" id="region'+i+'" value="'+res.regionDetailList[i].region_no+'">'
 				    		html +='<label for="region'+i+'">'+res.regionDetailList[i].region_name+'</label>'
 				    	$(".region_detail").append(html);
 				}

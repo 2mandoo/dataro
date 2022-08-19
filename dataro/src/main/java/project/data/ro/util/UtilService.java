@@ -19,5 +19,8 @@ public interface UtilService {
 	Map writeCategory();
 	//지역 대분류 db에 넘겨 소분류가지고오기/map으로 해보고싶어서 해본거,list로해도됨
 	Map regionDetail(String rs);
+	//resion_no 카테고리 테이블에 등록
+	int regionInsert(CategoryVO cvo);
+	
 	
 }

@@ -24,7 +24,7 @@
        <c:forEach var="vo" items="${reply.list }" varStatus="idx" >
 	           <tr>
 	               <td>${reply.pagingCount-(10*(replyVO.page-1))-idx.index }</td>
-	               <td class="writer"><a class="btn-sendclick" href="javascript:message(${vo.member_no }, '${vo.member_id }')">${vo.member_id }</a></td>
+	               <td class="writer">${vo.member_id }<a class="btn-sendclick" href="javascript:message(${vo.member_no }, '${vo.member_id }')"><img src="/ro/img/message.png" title="쪽지 보내기"></a></td>
 	               <td class="txt_l" style="text-align:left">
 	                   ${vo.content }
 	                   <a href="javascript:replyList(${vo.gno })" class="replyList">[답글]<c:if test="${vo.replycount>0 }">(${vo.replycount })</c:if></a>
@@ -107,10 +107,10 @@
 		$.ajax({
 			url : "/ro/reply/replyList.do",
 			data : {
-				board_no : ${boardVO.board_no}, 
-				board_name : ${boardVO.board_name},
-				gno : gno
-				//member_no : ${loginInfo.member_no} //el
+				board_no : ${replyVO.board_no}, 
+				board_name : '${replyVO.board_name}',
+				gno : gno,
+				member_no : login_member_no
 			},
 			success : function(res){
 					console.log(res.length);
@@ -160,11 +160,11 @@
 			$.ajax({
 				url : "/ro/reply/reply.do",
 				data : {
-					board_no : ${boardVO.board_no}, 
-					board_name : ${boardVO.board_name},
+					board_no : ${replyVO.board_no}, 
+					board_name : ${replyVO.board_name},
 					content : $("#replyFrm"+gno+" .content2").val(),
 					gno : gno,
-					member_no : ${loginInfo.member_no}
+					member_no : login_member_no
 				},
 				success : function(res){
 						if(res=="success"){

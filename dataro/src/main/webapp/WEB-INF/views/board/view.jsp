@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/ro/resources/css/reset.css" rel="stylesheet">
     <link href="/ro/resources/css/view.css" rel="stylesheet">
+    <link rel="shortcut icon" href="#"> <!-- favicon.ico 에러나서 넣어줌 -->
     <title>view</title>
 </head>
 
@@ -179,6 +181,7 @@ a {
 .distanceInfo:after {content:none;}
 </style>
 <body>
+<a href="/ro/board/main.do"><h1>dataro</h1></a>
     <div id="wrap">
         <div class="content view">
             <div>
@@ -260,14 +263,17 @@ a {
 	                            <input type="text" name="content" id="content"  placeholder="댓글을 작성해주세요." style="width:80%">
 
 	                            <div style="text-align:right;">
-	                                <a href="javascript:goSave();">작성 </a>
+	                                <a href="javascript:goSave();"><img src="/ro/img/replyWrite.png" title="댓글 작성"></a>
 	                            </div>
 
 	                
 	                <div id="commentArea"></div>
 
             </div>
-
+			<c:if test="${loginInfo.member_no != boardVO.member_no }">
+			<a href="javascript:">수정</a>
+			<a href="javascript:"><img src="/ro/img/delete.png" title="게시글 삭제"></a>
+			</c:if>
    		</div>
 	</div>
 	
@@ -292,8 +298,8 @@ a {
 	<!-- 쪽지보내기 모달 -->
 	<div class="msgmodal">
    		<div class="modal-msgcontent">
-			<a class="btn-msgclose" href="javascript:">X</a>
-			<h3>Send Message</h3>
+			<a class="btn-msgclose" href="javascript:"><img src="/ro/img/close.png"></a>
+			<h3>Send Message<img src="/ro/img/message.png"></h3>
 			<input type="hidden" id="send_member_no" name="send_member_no" value="${loginInfo.member_no }" >
 			<input type="hidden" id="receive_member_no" name="receive_member_no" value="">
 			보내는 사람 <input type="text" name="send_member_id" value="${loginInfo.id }" readonly><br>
@@ -306,7 +312,7 @@ a {
 	<!-- 댓글 수정 모달 -->
 	<div class="modal">
    		<div class="modal-content">
-			<a class="btn-close" href="javascript:">X</a>
+			<a class="btn-close" href="javascript:"><img src="/ro/img/close.png"></a>
 			<h3>Edit Reply</h3>
 			<input type="text" id="replyUpdate" placeholder="수정할 내용을 입력하세요." style="width:100%">
 			<input type="hidden" id="modal_rno" value="">
@@ -341,7 +347,15 @@ a {
 		$("#room_enddate").val('');
 		$("#room_pwd").val('');
 	})
-    	
+	
+	var login_member_no;
+	<c:if test="${empty loginInfo.member_no }">
+    	login_member_no = -1
+	</c:if>
+	<c:if test="${!empty loginInfo.member_no }">
+    	login_member_no = ${loginInfo.member_no}
+	</c:if>
+	console.log(login_member_no);
     	var likeCheck = -1 ;
     	var dislikeCheck = -1;
     	function joinRoom(pwd, no){
@@ -436,7 +450,7 @@ a {
     				'board_no' : ${data.board.board_no},
     				'board_name' : '${data.board.board_name}',
     				'page' : page,
-    				member_no : ${loginInfo.member_no}
+    				member_no : login_member_no
     			},
     			success : function(res){
     				
@@ -470,7 +484,7 @@ a {
 	    				board_no : board_no, 
 	    				board_name : board_name,
 	    				content : $("#content").val(),
-	    				member_no : ${loginInfo.member_no}
+	    				member_no : login_member_no
 	    			},
 	    			success : function(res){
 	    					if(res=="success"){
@@ -526,7 +540,7 @@ a {
     				success : function(){
     						alert('댓글이 정상적으로 수정되었습니다.');
     						getComment(page);
-    						
+    						$('.modal').fadeOut();
     				}
     						
     			})
@@ -541,7 +555,7 @@ a {
     			data : {
     				'board_no' : ${data.board.board_no},
     				'board_name' : '${data.board.board_name}',
-    				'member_no' : ${loginInfo.member_no},
+    				'member_no' : login_member_no,
     				likeCheck : likeCheck
     			},
     			success : function(i){
@@ -567,7 +581,7 @@ a {
     			data : {
     				'board_no' : ${data.board.board_no},
     				'board_name' : '${data.board.board_name}',
-    				member_no : ${loginInfo.member_no},
+    				member_no : login_member_no,
     				dislikeCheck : dislikeCheck
     			},
     			success : function(i){

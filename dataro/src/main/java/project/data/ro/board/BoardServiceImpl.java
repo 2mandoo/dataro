@@ -220,9 +220,7 @@ public class BoardServiceImpl implements BoardService {
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(끝) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	// 메인
 	@Override
-	public List<BoardVO> list(BoardVO vo) {
-		mapper.place(vo);
-		
+	public List<BoardVO> list(BoardVO vo) {		
 		return mapper.list(vo);
 	}
 

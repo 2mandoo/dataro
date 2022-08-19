@@ -235,7 +235,6 @@ public class BoardServiceImpl implements BoardService {
 		Map map = new HashMap();
 		
 		mapper.updateViewcount2(vo); //조회수 증가 후
-		vo.setLogin_member_no(5);
 		map.put("roomList", rmapper.list2(vo));
 		map.put("categoryList", mapper.categoryList(vo));
 		map.put("board", mapper.view2(vo));

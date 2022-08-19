@@ -44,7 +44,10 @@ $(function(){
 		$('.modal').fadeOut();
 	});	
 	
-	
+	$('.hash span').click(function(){
+		const variable = document.getElementsById(hash1).value;
+		console.log(variable);
+	})
 	
 	
 });
@@ -99,12 +102,9 @@ function loginAlert(){
         </div>
     	</header>
 	    	<div style="display: inline-block; margin: 0 10px;" class="hash">
-	    		$('.hash span').click(function(){
-	    			$(this).
-	    		})
-	    		<span id="hash1">[#]</span>
-		    <span id="hash2">[#자전거코스]</span>
-		    <span>[#드라이브코스]</span>
+	    	<span id ="hash1" value="0" name="0">[#]</span>
+		    <span value="1">[#자전거코스]</span>
+		    <span value="2">[#드라이브코스]</span>
 		    <span>[#뚜벅이코스]</span>
 		    <span>[#가족과함께]</span>
 		    <span>[#친구와함께]</span>

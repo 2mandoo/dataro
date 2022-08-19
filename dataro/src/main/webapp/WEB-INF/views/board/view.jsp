@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -181,9 +180,8 @@ a {
 </style>
 <body>
     <div id="wrap">
+    ${loginInfo.nickname }
         <div class="content view">
-		${loginInfo.nickname }${loginInfo}hhhh
-           ${loginInfo.m_filename_server}
             <div>
                 <div class="title">
                     ${data.board.title}

@@ -157,7 +157,7 @@ public class BoardController {
 		Map map = new HashMap();
 		map = service.view(vo);
 		model.addAttribute("data", map);
-		return "board/view3";
+		return "board/view";
 	}
 	
 	@PostMapping("/initBoardLike.do")

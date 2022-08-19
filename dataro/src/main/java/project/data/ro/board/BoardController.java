@@ -66,16 +66,12 @@ public class BoardController {
 	//여행코스 글쓰기 수정
 	@RequestMapping("/update.do")
 	public String update(BoardVO bvo) {
-		
 		return "travelboard/update";
 	}
 	
 	@RequestMapping("/region_detail")
 	@ResponseBody
-	public Map regionDatail(String rs,Model model) {
-		System.out.println("실험"+rs);
-		System.out.println("결과"+uservice.regionDetail(rs));
-		model.addAttribute("region_detail",uservice.regionDetail(rs));
+	public Map regionDatail(String rs) {
 		return uservice.regionDetail(rs);
 	}
 	

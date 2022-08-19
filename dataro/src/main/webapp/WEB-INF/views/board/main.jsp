@@ -114,7 +114,7 @@ function loginAlert(){
          	</c:forEach>
          	</span>
          	<div class="img_area">
-            <a href="view.do?board_no=${list.board_no}">이미지영역</a>
+            <a href="view.do?board_no=${list.board_no}&board_name=${list.board_name}">이미지영역</a>
             <ul>
               <li>
                 <span class="likecount">${list.likecount}</span>

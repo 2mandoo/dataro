@@ -3,6 +3,8 @@
 (function getCourse() {
 	var obj;
 	var no=$('#board_no').val();  // 방만들기 모달 안에 hidden으로 숨겨진 board_no를 가지고 옴
+	console.log(no);
+	
 	$.ajax({
 		url : "../map/mapcourselist.do",
 		type : "post",

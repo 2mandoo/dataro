@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<p><span><strong><img src="/ro/img/reply.png" width="30px">댓글(${reply.totalCount })</strong>  |  ${replyVO.page }/${reply.totalPage }페이지</span></p>
+<p><span><strong><img src="/ro/img/reply.png" width="30px">${reply.list.board_no }${reply.list.board_name }댓글(${reply.totalCount })</strong>  |  ${replyVO.page }/${reply.totalPage }페이지</span></p>
    <table class="list">
        <colgroup>
            <col width="80px" />

@@ -182,8 +182,8 @@ a {
 <body>
     <div id="wrap">
         <div class="content view">
-		
-           
+		${loginInfo.nickname }${loginInfo}hhhh
+           ${loginInfo.m_filename_server}
             <div>
                 <div class="title">
                     ${data.board.title}
@@ -326,8 +326,10 @@ a {
 	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b93e1f37ba26daefa16850e15e3b7c31"></script>
+	<!-- 
 	<script type='text/javascript' src="/ro/js/map.js"></script>
 	<script type='text/javascript' src="/ro/js/mapView.js"></script>
+    
     <script>
 	$('.btn-makeclick').click(function(){
 		$('.roommodal').fadeIn();
@@ -431,9 +433,9 @@ a {
     			url : "/ro/reply/list.do",
     			data : {
     				'board_no' : ${data.board.board_no},
-    				'board_name' : '${data.board.board_name}',
+    				'board_name' : ${data.board.board_name},
     				'page' : page,
-    				member_no : 22
+    				member_no : 8
     			},
     			success : function(res){
     				
@@ -459,13 +461,15 @@ a {
     	 
     	function goSave(){
      		if(confirm('댓글을 작성하시겠습니까?')){
+        		var board_name = $("#board_name").val();
+        		var board_no = $("#board_no").val();
 	    		$.ajax({
 	    			url : "/ro/reply/insert.do",
 	    			data : {
-	    				board_no : 987697, 
-	    				board_name : 'main',
-	    				content : $("#content").val() //jquery
-	    				//member_no : ${loginInfo.member_no} //el
+	    				board_no : board_no, 
+	    				board_name : board_name,
+	    				content : $("#content").val(),
+	    				member_no : ${loginInfo.member_no}
 	    			},
 	    			success : function(res){
 	    					if(res=="success"){
@@ -535,8 +539,8 @@ a {
     			method : "post",
     			data : {
     				'board_no' : ${data.board.board_no},
-    				'board_name' : '${data.board.board_name}',
-    				'member_no' : 8,
+    				'board_name' : ${data.board.board_name},
+    				'member_no' : ${loginInfo.member_no},
     				likeCheck : likeCheck
     			},
     			success : function(i){
@@ -561,8 +565,8 @@ a {
     			method : "post",
     			data : {
     				'board_no' : ${data.board.board_no},
-    				'board_name' : '${data.board.board_name}',
-    				'member_no' : 8,
+    				'board_name' : ${data.board.board_name},
+    				member_no : ${loginInfo.member_no},
     				dislikeCheck : dislikeCheck
     			},
     			success : function(i){
@@ -584,6 +588,6 @@ a {
     	
     
     </script>
-    
+     -->
 </body>
 </html>

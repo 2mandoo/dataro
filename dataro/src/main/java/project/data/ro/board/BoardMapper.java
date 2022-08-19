@@ -12,24 +12,26 @@ import project.data.ro.util.HashTagVO;
 @Mapper
 public interface BoardMapper {
 	
-	int count(BoardVO vo);
+	int count(BoardVO vo); // 얘도 없는데 지워도 될까요? 정길.
+	BoardVO view(int no);
+	int updateViewcount(int no); 
+	int update(BoardVO vo);
+	//? delete boardmapper.xml 엔 없던데 머임요? 
+	int delete(int no);
+	
+//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(마이페이지) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 	int count1(BoardVO vo);
 	int count2(BoardVO vo);
 	int count3(BoardVO vo);
 	int count4(MessageVO vo);
 	int count5(MessageVO vo);
-	BoardVO view(int no);
-	int updateViewcount(int no);
-	int update(BoardVO vo);
-	//? delete boardmapper.xml 엔 없던데 머임요?
-	int delete(int no);
 	List<BoardVO> myList1(BoardVO vo);
 	List<BoardVO> myList2(BoardVO vo);
 	List<BoardVO> myList3(BoardVO vo);
 	List<MessageVO> myList4(MessageVO vo);
 	List<MessageVO> myList5(MessageVO vo);
 	List<RoomVO> myList6(RoomVO vo);
-	
+//	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(마이페이지 끝) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 	
 	// main 
 	List<BoardVO> list(BoardVO vo);

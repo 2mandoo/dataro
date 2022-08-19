@@ -26,12 +26,15 @@ import project.data.ro.message.MessageVO;
 @RequestMapping("/member")
 public class MemberController {
 	
+//	-----------------정길-----------------
+	
 	@Autowired
 	MemberService service;
 	
 	@Autowired
 	BoardService bService;
 
+	// 회원가입화면
 	@GetMapping("/register")
 	public void insert() {}
 	
@@ -124,12 +127,9 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("/main")
-	public void main() {}
-	
+	// 로그인
 	@GetMapping("/login")
 	public void login() {}
-	
 	@PostMapping("/login")
 	public String login(MemberVO vo, HttpSession sess, Model model, MessageVO mvo) {
 		if(service.loginCheck(vo, sess)) {
@@ -143,6 +143,7 @@ public class MemberController {
 		}
 	}
 	
+	// 로그아웃
 	@GetMapping("/logout")
 	public String logout(Model model, HttpServletRequest req) {
 		HttpSession sess= req.getSession();
@@ -153,17 +154,10 @@ public class MemberController {
 		return "common/alert";
 	}
 	
-	@GetMapping("/myInfo")
-	public void myInfo() {}
+	// 회원정보수정화면
+	@GetMapping("/editMemberInfo") public void editUserInfo() {}
 	
-	@PostMapping("/myInfo")
-	public String myInfo1() {
-		return "redirect:/member/myInfo";
-	}
-	
-	@GetMapping("/editMemberInfo")
-	public void editUserInfo() {}
-	
+	// 회원정보수정처리
 	@PostMapping("/editUserInfo")
 	public String editUserInfo(MemberVO vo, 
 								HttpSession sess,
@@ -220,10 +214,10 @@ public class MemberController {
 		}
 	}
 	
+	// 아이디 찾기
 	@GetMapping("/findId")
 	public void findId(){};
-	
-	@PostMapping("/findId")
+	@RequestMapping("/findId")
 	public String findId(Model model, MemberVO vo) {
 		MemberVO vo1 = service.findId(vo);
 		if (vo1 != null) {
@@ -232,10 +226,10 @@ public class MemberController {
 		return "common/result";
 	}
 	
+	// 비밀번호 찾기
 	@GetMapping("/findPwd")
 	public void findPwd(){};
-	
-	@PostMapping("/findPwd")
+	@RequestMapping("/findPwd")
 	public String findPwd(Model model, MemberVO vo) {
 		MemberVO vo1 = service.findPwd(vo);
 		if (vo1 != null) {
@@ -244,11 +238,11 @@ public class MemberController {
 		return "common/result";
 	}
 	
-	
+	// 아이디, 비밀번호 찾기 화면
 	@GetMapping("/findIdPwd")
 	public void findIdPwd(){};
 
-		
+	// 탈퇴처리
 	@PostMapping("/leave")
 	public String leave(MemberVO vo, Model model, HttpSession sess) {
 		MemberVO vo1 = (MemberVO)sess.getAttribute("loginInfo");
@@ -270,13 +264,8 @@ public class MemberController {
 	@GetMapping("/myPage")
 	public void myPage() {}
 	
-	@PostMapping("/myBoard1")
-	public String myBoard1(BoardVO vo, Model model) {
-		model.addAttribute("data", bService.index(vo));
-		return "board/index";
-	}
 	
-	
+	// 메인화면에 종 아이콘 클릭시 안읽은 쪽지내용 보기
 	@PostMapping("/alarm")
 	public String alarm(MessageVO vo, Model model, HttpSession sess) {
 		MemberVO vo1 = (MemberVO)sess.getAttribute("loginInfo");
@@ -286,7 +275,7 @@ public class MemberController {
 		return "board/alarm";
 	}
 	
-	
+	// 메인화면에 종 아이콘 클릭시 안읽은 쪽지내용 읽음처리
 	@PostMapping("/readProcess")
 	public String readProcess(MessageVO vo,  HttpSession sess, Model model, HttpServletRequest req) {
 		MemberVO vo1 = (MemberVO)sess.getAttribute("loginInfo");
@@ -303,7 +292,8 @@ public class MemberController {
 		return "common/alert";
 	}
 	
-	
+//	-----------------정길-----------------
+
 	
 	
 }

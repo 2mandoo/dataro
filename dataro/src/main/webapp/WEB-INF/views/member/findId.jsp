@@ -39,10 +39,8 @@ $(function(){
 			success : function(res) {
 				if (res.trim() == '') {
 					alert('입력하신 정보는 존재하지 않습니다.');
-					/* $('#msg').html('입력하신 정보는 존재하지 않습니다.'); */
 				} else {
 					alert('아이디는 "'+res.trim()+'" 입니다.');
-					/* $('#msg').html('이메일은 "'+res.trim()+'" 입니다.'); */
 				}
 			}
 		});

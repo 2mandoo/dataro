@@ -54,7 +54,7 @@ public class RoomController {
 		return "redirect:/room/view?room_no=" + vo.getRoom_no() + "&member_no=" + 1;
 	}
 
-	// 정현
+	//=================================정현===============================
 	@PostMapping("/write.do")
 	@ResponseBody
 	public int writeRoom(RoomVO vo) {
@@ -108,5 +108,7 @@ public class RoomController {
 		}
 
 	}
+	
+	//=================================정현===============================
 
 }

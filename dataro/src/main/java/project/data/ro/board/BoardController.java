@@ -146,7 +146,7 @@ public class BoardController {
 		return "board/main";
 	}
 	
-	//정현
+	//=================================정현===============================
 	@GetMapping("/view.do")
 	public String view(BoardVO vo, RoomVO rvo, Model model) {
 //		MemberVO mvo = (MemberVO)sess.getAttribute("loginInfo");
@@ -185,5 +185,6 @@ public class BoardController {
 		}
 		return service.dislikeCheck(vo);
 	}
+	//=================================정현===============================
 	
 }

@@ -15,10 +15,12 @@ public class MessageController {
 	@Autowired
 	MessageService service;
 	
+	//=================================정현===============================
 	@GetMapping("/message/sendMessage.do")
 	@ResponseBody
 	public int sendMessage(MessageVO vo) {
 		return service.insert(vo);
 	}
+	//=================================정현===============================
 
 }

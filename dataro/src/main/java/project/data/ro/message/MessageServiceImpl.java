@@ -9,9 +9,11 @@ public class MessageServiceImpl implements MessageService {
 	@Autowired
 	MessageMapper mapper;
 	
+	//=================================정현===============================
 	@Override
 	public int insert(MessageVO vo) {
 		return mapper.insert(vo);
 	}
+	//=================================정현===============================
 
 }

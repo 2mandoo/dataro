@@ -11,7 +11,7 @@ public interface RoomService {
 	List<RoomVO> list(RoomVO vo);//삭제예정-진경
 	RoomVO view(int no);
 	
-	//정현
+	//=================================정현===============================
 	//방 새로 만들기
 	public int makeRoom(RoomVO vo);
 	
@@ -22,4 +22,5 @@ public interface RoomService {
 	public int enterRoom(RoomVO vo);
 	
 	public int checkRoom(RoomVO vo);
+	//=================================정현===============================
 }

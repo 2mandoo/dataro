@@ -23,7 +23,7 @@ public class RoomServicempl implements RoomService {
 		return rmapper.view(no);
 	}
 	
-	//정현
+	//=================================정현===============================
 	//방 만들고 방장 방 입장
 	@Override
 	public int makeRoom(RoomVO vo) {
@@ -53,4 +53,5 @@ public class RoomServicempl implements RoomService {
 	public int checkRoom(RoomVO vo) {
 		return rmapper.checkRoom(vo);
 	}
+	//=================================정현===============================
 }

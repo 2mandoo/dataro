@@ -149,9 +149,10 @@ public class BoardController {
 	//정현
 	@GetMapping("/view.do")
 	public String view(BoardVO vo, RoomVO rvo, Model model) {
-
+		System.out.println("=========== "+vo);
 		Map map = new HashMap();
 		map = service.view(vo);
+		System.out.println("=========== "+map);
 		model.addAttribute("data", map);
 		return "board/view";
 	}

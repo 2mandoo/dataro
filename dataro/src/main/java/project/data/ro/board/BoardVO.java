@@ -7,6 +7,7 @@ import lombok.Data;
 import project.data.ro.map.MapVO;
 import project.data.ro.util.CategoryVO;
 import project.data.ro.util.FileVO;
+import project.data.ro.util.LikeVO;
 
 @Data
 public class BoardVO {
@@ -41,8 +42,9 @@ public class BoardVO {
 	private String hashtag_name; 
 	private int stag; 
 	
-	// 정길 메인에 이미지 띄우기 연습
+	// 정길 메인에 이미지 띄우기
 	private List<FileVO> getTravPic;
+	
 	
 	// 내용여러개
 	private List<MapVO> placeList;

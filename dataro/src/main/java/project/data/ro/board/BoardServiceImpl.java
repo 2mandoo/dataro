@@ -21,6 +21,7 @@ import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryMapper;
 import project.data.ro.util.CategoryVO;
 import project.data.ro.util.FileVO;
+import project.data.ro.util.LikeVO;
 
 @Slf4j
 @Service
@@ -225,7 +226,8 @@ public class BoardServiceImpl implements BoardService {
 	public List<FileVO> getTravPic(int board_no) {
 		return mapper.getTravPic(board_no);
 	}
-	
+
+
 	
 	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(끝) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -296,6 +298,9 @@ public class BoardServiceImpl implements BoardService {
 	public List<CategoryVO> hashtag(int board_no) {
 		return mapper.hashtag(board_no);
 	}
+	
+	
+	
 	
 	
 }

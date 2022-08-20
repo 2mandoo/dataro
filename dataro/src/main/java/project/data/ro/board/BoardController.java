@@ -25,6 +25,7 @@ import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryVO;
 import project.data.ro.util.FileVO;
+import project.data.ro.util.LikeVO;
 import project.data.ro.util.UtilService;
 
 @Controller
@@ -124,6 +125,7 @@ public class BoardController {
 	}
 	
 	
+	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 	
 	
@@ -132,9 +134,10 @@ public class BoardController {
 	public String mainGet(Model model, BoardVO vo, MessageVO mvo, HttpSession sess) {
 		List<BoardVO> list = service.list(vo);
 		for (int i=0; i<list.size(); i++) {
-			list.get(i).setPlaceList(service.place(list.get(i).getBoard_no()));
-			list.get(i).setHashtagList(service.hashtag(list.get(i).getBoard_no()));
-			list.get(i).setGetTravPic(service.getTravPic(list.get(i).getBoard_no()));
+			list.get(i).setPlaceList(service.place(list.get(i).getBoard_no())); // 장소이름
+			list.get(i).setHashtagList(service.hashtag(list.get(i).getBoard_no())); // 해쉬태그
+			list.get(i).setGetTravPic(service.getTravPic(list.get(i).getBoard_no())); // 게시글 사진
+			
 		}
 		model.addAttribute("list",list);
 		

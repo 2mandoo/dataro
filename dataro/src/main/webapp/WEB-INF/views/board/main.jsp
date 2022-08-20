@@ -139,7 +139,8 @@ function loginAlert(){
             <ul>
               <li>
                 <span class="likecount">${list.likecount}</span>
-                <span class="likecount_button"><button type="button" onclick="load()" >☆</button></span> <!-- load(this) -->
+                <span class="likecount_button"><a onclick="load()" >♥</a></span> 
+             
               </li>
               <li>
                 <span>${list.dislikecount}</span>
@@ -169,6 +170,13 @@ function loginAlert(){
 		</div>
 	</div>
 </div>
+<script>
 
+
+
+
+
+
+</script>
 </body>
 </html>

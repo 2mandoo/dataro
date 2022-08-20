@@ -10,6 +10,7 @@ import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryVO;
 import project.data.ro.util.FileVO;
+import project.data.ro.util.LikeVO;
 
 
 public interface BoardService {
@@ -27,6 +28,7 @@ public interface BoardService {
 	List<RoomVO> myList6(RoomVO vo, HttpSession sess);
 
 	List<FileVO> getTravPic(int board_no); // 정길 메인에 이미지 띄우기 연습.
+
 	
 	// main(호윤)
 	List<BoardVO> list(BoardVO vo);

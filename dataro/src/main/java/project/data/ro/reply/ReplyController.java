@@ -19,7 +19,7 @@ public class ReplyController {
 	@GetMapping("/reply/list.do")
 	public String list(ReplyVO vo, Model model) { 
 		System.out.println(vo);
-		
+		System.out.println("나와라~~~~");
 		model.addAttribute("reply", service.list2(vo));
 		model.addAttribute("page", vo.getPage());
 		return "common/comment2";

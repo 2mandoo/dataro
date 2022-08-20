@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/ro/resources/css/reset.css" rel="stylesheet">
     <link href="/ro/resources/css/view.css" rel="stylesheet">
+    <link rel="shortcut icon" href="#"> <!-- favicon.ico 에러나서 넣어줌 -->
     <title>view</title>
 </head>
 
@@ -179,7 +181,9 @@ a {
 .distanceInfo:after {content:none;}
 </style>
 <body>
+<a href="/ro/board/main.do"><h1>dataro</h1></a>
     <div id="wrap">
+    ${loginInfo.nickname }
         <div class="content view">
             <div>
                 <div class="title">
@@ -260,25 +264,29 @@ a {
 	                            <input type="text" name="content" id="content"  placeholder="댓글을 작성해주세요." style="width:80%">
 
 	                            <div style="text-align:right;">
-	                                <a href="javascript:goSave();">작성 </a>
+	                                <a href="javascript:goSave();"><img src="/ro/img/replyWrite.png" title="댓글 작성"></a>
 	                            </div>
 
 	                
 	                <div id="commentArea"></div>
 
             </div>
-
+			<c:if test="${loginInfo.member_no != boardVO.member_no }">
+			<a href="javascript:">수정</a>
+			<a href="javascript:"><img src="/ro/img/delete.png" title="게시글 삭제"></a>
+			</c:if>
    		</div>
 	</div>
 	
 	<!-- 방만들기 모달 -->
 	<div class="roommodal">
    		<div class="modal-roomcontent">
-			<a class="btn-roomclose" href="javascript:">X</a>
+			<a class="btn-roomclose" href="javascript:"><img src="/ro/img/close.png"></a>
 			<h3>Make Room</h3>
-			<input type="hidden" id="board_name" name="board_name" value="${data.board.board_name }">
-			<input type="hidden" id="board_no" name="board_no" value="${data.board.board_no}">
-			<input type="hidden" id="roommaker_id" name="roommaker_id" value="${loginInfo.id }">
+			<input type="text" id="board_name" name="board_name" value="${data.board.board_name }">
+			<input type="text" id="board_no" name="board_no" value="${data.board.board_no}">
+			<input type="text" id="roommaker_id" name="roommaker_id" value="${loginInfo.id }">
+			<input type="text" id="room_participant_no" name="room_participant_no" value="${loginInfo.member_no }">
 			*방 제목 <input type="text" id="room_title" name="room_title" style="width:100%"><br>
 			*방 내용 <textarea id="room_content" name="room_content" style="width:100%"></textarea><br>
 			<b>[여행 시작날짜와 종료날짜를 선택해주세요]</b><br>
@@ -291,12 +299,12 @@ a {
 	<!-- 쪽지보내기 모달 -->
 	<div class="msgmodal">
    		<div class="modal-msgcontent">
-			<a class="btn-msgclose" href="javascript:">X</a>
-			<h3>Send Message</h3>
+			<a class="btn-msgclose" href="javascript:"><img src="/ro/img/close.png"></a>
+			<h3>Send Message<img src="/ro/img/message.png"></h3>
 			<input type="hidden" id="send_member_no" name="send_member_no" value="${loginInfo.member_no }" >
-			<input type="hidden" id="receive_member_no" name="receive_member_no" value="33">
+			<input type="hidden" id="receive_member_no" name="receive_member_no" value="">
 			보내는 사람 <input type="text" name="send_member_id" value="${loginInfo.id }" readonly><br>
-			받는 사람 <input type="text" name="receive_member_id" value="ss" readonly>
+			받는 사람 <input type="text" name="receive_member_id" id="receive_member_id" value="" readonly>
 			<input type="text" id="message_content" placeholder="보낼 메세지를 입력하세요." style="width:100%">
 			<a class="btn-send" href="javascript:sendMessage();">보내기</a>
 		</div>
@@ -305,7 +313,7 @@ a {
 	<!-- 댓글 수정 모달 -->
 	<div class="modal">
    		<div class="modal-content">
-			<a class="btn-close" href="javascript:">X</a>
+			<a class="btn-close" href="javascript:"><img src="/ro/img/close.png"></a>
 			<h3>Edit Reply</h3>
 			<input type="text" id="replyUpdate" placeholder="수정할 내용을 입력하세요." style="width:100%">
 			<input type="hidden" id="modal_rno" value="">
@@ -340,7 +348,15 @@ a {
 		$("#room_enddate").val('');
 		$("#room_pwd").val('');
 	})
-    	
+	
+	var login_member_no;
+	<c:if test="${empty loginInfo.member_no }">
+    	login_member_no = -1
+	</c:if>
+	<c:if test="${!empty loginInfo.member_no }">
+    	login_member_no = ${loginInfo.member_no}
+	</c:if>
+	console.log(login_member_no);
     	var likeCheck = -1 ;
     	var dislikeCheck = -1;
     	function joinRoom(pwd, no){
@@ -359,6 +375,7 @@ a {
     	function makeRoom(){
     		var board_name = $("#board_name").val();
     		var board_no = $("#board_no").val();
+    		var room_participant_no = $("#room_participant_no").val();
     		var roommaker_id = $("#roommaker_id").val();
     		var room_title = $("#room_title").val();
     		var room_content = $("#room_content").val();
@@ -377,7 +394,9 @@ a {
     					room_content : room_content,
     					room_startdate : room_startdate,
     					room_enddate : room_enddate,
-    					room_pwd : room_pwd
+    					room_pwd : room_pwd,
+    					room_participant_no : room_participant_no
+    					
     				},
     				success : function(res){
     						if(res==1){
@@ -432,7 +451,7 @@ a {
     				'board_no' : ${data.board.board_no},
     				'board_name' : '${data.board.board_name}',
     				'page' : page,
-    				member_no : 8
+    				member_no : login_member_no
     			},
     			success : function(res){
     				
@@ -464,9 +483,9 @@ a {
 	    			url : "/ro/reply/insert.do",
 	    			data : {
 	    				board_no : board_no, 
-	    				board_name : 'board_name',
+	    				board_name : board_name,
 	    				content : $("#content").val(),
-	    				member_no : 8
+	    				member_no : login_member_no
 	    			},
 	    			success : function(res){
 	    					if(res=="success"){
@@ -522,7 +541,7 @@ a {
     				success : function(){
     						alert('댓글이 정상적으로 수정되었습니다.');
     						getComment(page);
-    						
+    						$('.modal').fadeOut();
     				}
     						
     			})
@@ -537,7 +556,7 @@ a {
     			data : {
     				'board_no' : ${data.board.board_no},
     				'board_name' : '${data.board.board_name}',
-    				'member_no' : 8,
+    				'member_no' : login_member_no,
     				likeCheck : likeCheck
     			},
     			success : function(i){
@@ -563,7 +582,7 @@ a {
     			data : {
     				'board_no' : ${data.board.board_no},
     				'board_name' : '${data.board.board_name}',
-    				member_no : 8,
+    				member_no : login_member_no,
     				dislikeCheck : dislikeCheck
     			},
     			success : function(i){

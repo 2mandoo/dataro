@@ -9,6 +9,7 @@ import project.data.ro.map.MapVO;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryVO;
+import project.data.ro.util.FileVO;
 
 
 public interface BoardService {
@@ -24,10 +25,8 @@ public interface BoardService {
 	Map myList4(MessageVO vo, HttpSession sess);
 	Map myList5(MessageVO vo, HttpSession sess);
 	List<RoomVO> myList6(RoomVO vo, HttpSession sess);
-	// 정길 연습
-	List<BoardVO> fromHash(int board_no);
 
-	
+	List<FileVO> getTravPic(int board_no); // 정길 메인에 이미지 띄우기 연습.
 	
 	// main(호윤)
 	List<BoardVO> list(BoardVO vo);

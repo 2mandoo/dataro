@@ -20,6 +20,7 @@ import project.data.ro.room.RoomMapper;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryMapper;
 import project.data.ro.util.CategoryVO;
+import project.data.ro.util.FileVO;
 
 @Slf4j
 @Service
@@ -219,10 +220,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	
+	// 메인에 이미지띄우기 정길
 	@Override
-	public List<BoardVO> fromHash(int board_no) {
-		return mapper.fromHash(board_no);
+	public List<FileVO> getTravPic(int board_no) {
+		return mapper.getTravPic(board_no);
 	}
+	
+	
 	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(끝) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	// 메인
@@ -292,5 +296,6 @@ public class BoardServiceImpl implements BoardService {
 	public List<CategoryVO> hashtag(int board_no) {
 		return mapper.hashtag(board_no);
 	}
+	
 	
 }

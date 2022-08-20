@@ -130,15 +130,15 @@ public class BoardController {
 	// main + 정길 수정.
 	@GetMapping("/main.do")
 	public String mainGet(Model model, BoardVO vo, MessageVO mvo, HttpSession sess) {
-		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
-//		model.addAttribute("place",service.place(vo));
 		List<BoardVO> list = service.list(vo);
 		for (int i=0; i<list.size(); i++) {
 			list.get(i).setPlaceList(service.place(list.get(i).getBoard_no()));
 			list.get(i).setHashtagList(service.hashtag(list.get(i).getBoard_no()));
+			list.get(i).setGetTravPic(service.getTravPic(list.get(i).getBoard_no()));
 		}
-		
 		model.addAttribute("list",list);
+		
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
 		if (vo1 != null) {
 			int num = vo1.getMember_no();
 			mvo.setReceive_member_no(num);

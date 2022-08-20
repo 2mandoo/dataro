@@ -145,35 +145,36 @@
 		and pr.room_participant_no = #{room_participant_no};
 	</select>
 	
-	<!-- 해쉬태그 클릭 시 화면에 띄우게하는 것 연습. -->
-	<select id ="fromHash" resultType="project.data.ro.board.BoardVO" parameterType="int">
-		select * from pboard
-		where board_no in (select board_no from pcategory where hashtag_no = #{hashtag_no} and board_name='여행게시판')
-	</select>
-
 	
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ정길ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 	
 	<!-- main from 호윤 -->
 	<select id="list" resultType="project.data.ro.board.BoardVO"> 
+	
 		select 
 			*
 		    , (select count(*) from plike l where b.board_no = l.board_no) as likecount
-		    , (select group_concat(hashtag_name) from pcategory c left outer join phashtag  h on c.hashtag_no = h.hashtag_no where c.board_no = b.board_no) as hashtag_name
-		    from pboard b
-			<where>
-				board_name = '여행게시판'
-				<if test ="stype != null or sword != null">
-					<if test ="stype == 'title'">
-					  and title like '%${sword}%'
-					</if>
-					<if test = "stype == 'content'">
-					  and content like '%${sword}%'
-					</if>
+		    , (select group_concat(hashtag_name) from 
+		    pcategory c left outer join phashtag  h on c.hashtag_no = h.hashtag_no where c.board_no = b.board_no) as hashtag_name
+		from pboard b where title like '%${sword}%' 
+		
+			<choose>
+				<when test="stag != '' ">
+					and board_no in (select board_no from pcategory where hashtag_no = #{stag} and board_name='여행게시판')
+					order by writedate desc;
+				</when>
+				<otherwise>
+					and board_name = '여행게시판' order by writedate desc;
+				</otherwise>
+			</choose>
+			
+			<!-- <if test ="stype != null or sword != null">
+				<if test ="stype == 'title'">
+				  and title like '%${sword}%'
 				</if>
-				
-			</where>
+			</if> -->
+			
 	</select>
 	
 	<!-- main from 호윤 -->
@@ -187,6 +188,14 @@
 		on phashtag.hashtag_no = pcategory.hashtag_no
         join pboard on pboard.board_no = pcategory.board_no
 		where pboard.board_no = #{board_no};
+	</select>
+	
+	
+	<!-- 정길 메인에 글쓰기에 등록한 이미지 띄우기 -->
+	<select id ="getTravPic" resultType="project.data.ro.util.FileVO" parameterType="int">
+		select board_no, filename_server 
+		from pfile 
+		where board_no = #{board_no} limit 1;
 	</select>
 	
 	

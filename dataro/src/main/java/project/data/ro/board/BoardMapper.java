@@ -8,6 +8,7 @@ import project.data.ro.map.MapVO;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryVO;
+import project.data.ro.util.FileVO;
 
 @Mapper
 public interface BoardMapper {
@@ -31,8 +32,8 @@ public interface BoardMapper {
 	List<MessageVO> myList4(MessageVO vo);
 	List<MessageVO> myList5(MessageVO vo);
 	List<RoomVO> myList6(RoomVO vo);
-//	정길 해쉬태그 연습
-	List<BoardVO> fromHash(int board_no);
+
+	List<FileVO> getTravPic(int board_no); // 정길 메인에 이미지 띄우기 연습.
 	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(마이페이지 끝) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 	

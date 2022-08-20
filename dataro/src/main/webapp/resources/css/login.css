@@ -10,7 +10,7 @@
 #wrap .page #goMain{position:relative; right:310px; bottom:50px;}
 .page table tr td{padding-bottom:10px;} 
 .login #goMain{width:40px; position:relative;}
-
+.page table tr th{text-align:center; }
 
 .login table .Btn{width: 150px; height:30px;}
 .content table tr td input{height:33px}

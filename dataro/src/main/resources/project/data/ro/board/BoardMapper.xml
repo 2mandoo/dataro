@@ -151,23 +151,20 @@
 	
 	<!-- main from 호윤 -->
 	<select id="list" resultType="project.data.ro.board.BoardVO"> 
-		select 
-			*
-		    , (select count(*) from plike l where b.board_no = l.board_no) as likecount
-		    , (select group_concat(hashtag_name) from pcategory c left outer join phashtag  h on c.hashtag_no = h.hashtag_no where c.board_no = b.board_no) as hashtag_name
-		    from pboard b
-			<where>
-				board_name = '여행게시판'
-				<if test ="stype != null or sword != null">
-					<if test ="stype == 'title'">
-					  and title like '%${sword}%'
-					</if>
-					<if test = "stype == 'content'">
-					  and content like '%${sword}%'
-					</if>
+		select * from pboard
+			where board_name = '여행게시판'
+			<if test ="stype != null or sword != null"> 
+				<if test ="stype == 'title'">
+				  and title like '%${sword}%'
 				</if>
-				
-			</where>
+				<if test = "stype == 'content'">
+				  and content like '%${sword}%'
+				</if>
+			</if>
+			<if test = "stag != '' and stag != null">
+				and board_no in (select board_no from pcategory where hashtag_no = #{stag} and board_name='여행게시판')
+			</if>
+			order by writedate desc
 	</select>
 	
 	<!-- main from 호윤 -->

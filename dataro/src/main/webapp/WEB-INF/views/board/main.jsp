@@ -60,13 +60,13 @@ function loginAlert(){
       <div class="inner">
          	<h1>DaTaRo</h1>
 	        <form id="frm" action="main.do" > 
-	        <input type="hidden" name="stag" id="stag">
-			<select id="form" name="stype" class="dSelect" title="검색분류 선택">
-			<option value="title" >제목</option> 
-			<option value="content" >내용</option>
-			</select>
-			<input type="text" id="" name="sword" value="" placeholder="검색">
-			<input type ="submit"  value="검색">
+		        	<input type="hidden" name="stag" id="stag">
+				<select id="form" name="stype" class="dSelect" title="검색분류 선택">
+					<option value="title" >제목</option> 
+					<option value="content" >내용</option>
+				</select>
+					<input type="text" id="" name="sword" value="" placeholder="검색">
+					<input type ="submit"  value="검색">
 			</form>
             <ul>
             <a href="/ro/fullboard/fullmain.do">
@@ -97,7 +97,7 @@ function loginAlert(){
         </div>
     	</header>
 	    	<div style="display: inline-block; margin: 0 10px;" class="hash">
-	    	<script>
+	    	<script><!-- 메인페이지 해쉬태크 클릭시 해당 해쉬태그 값에 대한 게시물만 불러오는 함수 -->
 	    	$(function() {
 	    		$('.hashtag').click(function(){
 	    			$("#stag").val($(this).data('no'));
@@ -131,7 +131,9 @@ function loginAlert(){
          	</c:forEach>
          	</span>
          	<div class="img_area">
-            <a href="view.do?board_no=${list.board_no}&board_name=${list.board_name}">이미지영역</a>
+            <a href="view.do?board_no=${list.board_no}&board_name=${list.board_name}">
+            <img src ="/ro/img/profile.png" width="50px">
+            </a>
             <ul>
               <li>
                 <span class="likecount">${list.likecount}</span>
@@ -149,7 +151,7 @@ function loginAlert(){
           </div>
           <ul class="courselist"><!-- forEach로 접근 -->
           	<li>
-           	<c:forEach var="mvo" items="${list.placeList }">
+           	<c:forEach var="mvo" items="${list.placeList}">
             		<span>●</span><span>${mvo.place_name}</span><br>
             	</c:forEach>
             </li>

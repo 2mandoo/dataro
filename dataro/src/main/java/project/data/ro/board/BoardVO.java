@@ -20,6 +20,7 @@ public class BoardVO {
 	private Timestamp updatedate; 
 	private String stype;
 	private String sword;
+	private String stag;
 	private int startIdx;
 	private int pageRow;
 	private int page;

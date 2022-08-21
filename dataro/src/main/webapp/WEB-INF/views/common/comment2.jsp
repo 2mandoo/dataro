@@ -24,9 +24,8 @@
        <c:forEach var="vo" items="${reply.list }" varStatus="idx" >
 	           <tr>
 	               <td>${reply.pagingCount-(10*(replyVO.page-1))-idx.index }</td>
-	               <td class="writer" id="btn-sendclick"  value=${vo.member_no }><a class="btn-sendclick" href="javascript:" value=${vo.member_no }>${vo.member_id }</a></td>
+	               <td class="writer">${vo.member_id }<a class="btn-sendclick" href="javascript:message(${vo.member_no }, '${vo.member_id }')"><img src="/ro/img/message.png" title="쪽지 보내기"></a></td>
 	               <td class="txt_l" style="text-align:left">
-	                   <%-- ${vo.content } <c:if test="${loginInfo.member_no==vo.member_no }"><a href="javascript:commentDel(${vo.reply_no });">[삭제]</a></c:if> --%>
 	                   ${vo.content }
 	                   <a href="javascript:replyList(${vo.gno })" class="replyList">[답글]<c:if test="${vo.replycount>0 }">(${vo.replycount })</c:if></a>
 	                   <div class="messageBox" style="display:none;" >
@@ -37,8 +36,10 @@
 					   </div>
 	               </td>
 	               <td>
-	               	   <a href="javascript:setReply_no(${vo.reply_no });">[수정]</a>
-	                   <a href="javascript:commentDel(${vo.reply_no });">[삭제]</a>
+	               	   <c:if test="${loginInfo.member_no == vo.member_no }">
+	               	   		<a href="javascript:setReply_no(${vo.reply_no });">[수정]</a>
+	                   		<a href="javascript:commentDel(${vo.reply_no });">[삭제]</a>
+	                   </c:if>
 	                   <a href="javascript:">
 	                   <c:if test="${vo.islike == 0}">♡</c:if>
 	                   <c:if test="${vo.islike != 0}">♥</c:if>
@@ -73,12 +74,16 @@
    
 	<script>
 	//아이디 클릭하면 메세지모달 띄우기
+/* 	function message(no, id){
+		$('.msgmodal').fadeIn();
+		console.log(no);
+		console.log(id);
+		$("#receive_member_no").val(no);
+		$("#receive_member_id").val(id);
+	} */
+	
 	$('.btn-sendclick').click(function(){
 		$('.msgmodal').fadeIn();
-		var receive_member_no = $('#btn-sendclick').val();
-		console.log(receive_member_no);
-		$("#receive_member_no").val(receive_member_no);
-		console.log($("#receive_member_no").val());
 		
 	})
 	
@@ -102,10 +107,10 @@
 		$.ajax({
 			url : "/ro/reply/replyList.do",
 			data : {
-				board_no : 987697, 
-				board_name : 'main',
-				gno : gno
-				//member_no : ${loginInfo.member_no} //el
+				board_no : ${replyVO.board_no}, 
+				board_name : '${replyVO.board_name}',
+				gno : gno,
+				member_no : login_member_no
 			},
 			success : function(res){
 					console.log(res.length);
@@ -155,11 +160,11 @@
 			$.ajax({
 				url : "/ro/reply/reply.do",
 				data : {
-					board_no : 987697, 
-					board_name : 'main',
+					board_no : ${replyVO.board_no}, 
+					board_name : ${replyVO.board_name},
 					content : $("#replyFrm"+gno+" .content2").val(),
-					gno : gno
-					//member_no : ${loginInfo.member_no} //el
+					gno : gno,
+					member_no : login_member_no
 				},
 				success : function(res){
 						if(res=="success"){

@@ -23,12 +23,12 @@ public class RoomController {
 	ReplyService rpservice;
 
 	// 모임방상세보기
-	@RequestMapping("/view")
-	public String view(RoomVO vo, Model model) {
-		model.addAttribute("view", rservice.view(vo.getRoom_no()));
-		vo.setBoard_name("게시판"); 
-		return "room/room";
-	}
+//	@RequestMapping("/view")
+//	public String view(RoomVO vo, Model model) {
+//		model.addAttribute("view", rservice.view(vo.getRoom_no()));
+//		System.out.println("여행제목"+vo.getRoom_title());
+//		return "room/room";
+//	}
 
 	// 모임방채팅리스트
 	@RequestMapping("/chatlist")
@@ -44,35 +44,36 @@ public class RoomController {
 
 		System.out.println("*************방번호" + vo.getRoom_no());
 
-		return "redirect:/room/view?room_no=" + vo.getRoom_no() + "&member_no=" + 1;
+		return "redirect:/room/room.do?room_no=" + vo.getRoom_no() + "&member_no=" + 1;
 	}
 
 	//=================================정현===============================
 	@PostMapping("/write.do")
 	@ResponseBody
 	public int writeRoom(RoomVO vo) {
-		System.out.println(vo);
-		System.out.println("방제목"+vo.getRoom_title());
-		
-		System.out.println("3333333333333333333333333333"+vo);
-		System.out.println("3333333333333333333333333333"+vo);
-
 		return rservice.makeRoom(vo);
 	}
 
 	@GetMapping("/room.do")
-	public String enterRoom(RoomVO vo, HttpSession sess) {
-		
+	public String enterRoom(RoomVO vo, HttpSession sess, Model model) {
+		//세션에 저장되어있는 로그인 한 사람의 member_no를 roomVO의 room_participant_no번호로 set해서 방에 참가시킴
 		 MemberVO mvo = (MemberVO)sess.getAttribute("loginInfo");
+		 
+		 
 		 vo.setRoom_participant_no(mvo.getMember_no());
-		 System.out.println(vo.getRoom_participant_no());
+		 //System.out.println(vo.getRoom_participant_no());
 
 		// no=[ ] 로 파라미터 넘어오니 받고 session에 있는 로그인 정보 를 이용해서 디비에 참여자 추가시켜야함.
 		int r = rservice.checkRoom(vo);
+		//아직 참여하지 않은 방이라면 DB에 insert
 		if (r == 0) {
 			rservice.enterRoom(vo);
 		}
 		// if문으로 proom 디비로 로그인정보가 방넘버 만든이랑 같으면 proommember 디비에 넣지 말고 바로 리턴시켜주면 됨.
+		//이미 참여 했다면 DB insert 생략하고, 바로 방으로 입장시켜줌 
+		
+		//진경-방상세보기jsp에 등록된 내용 넘겨줌
+		model.addAttribute("view", rservice.view(vo.getRoom_no()));
 		return "room/room";
 	}
 
@@ -97,10 +98,12 @@ public class RoomController {
 
 	@PostMapping("/pwdCheck.do")
 	public String pwdCheck(RoomVO vo) {
+		
 		int r = rservice.pwdCheck(vo);
+		//비밀번호 일치하면 해당 방으로 입장
 		if (r == 1) {
 			return "redirect:/room/room.do?room_no=" + vo.getRoom_no();
-		} else {
+		} else { // 일치하지 않으면 다시 목록으로
 			return "redirect:/board/view.do";
 		}
 

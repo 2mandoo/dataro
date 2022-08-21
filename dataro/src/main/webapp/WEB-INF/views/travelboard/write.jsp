@@ -27,10 +27,17 @@
 	                    </span>
 	                    <input type="text" name="title" id="title" class="title_text" value="코스 타이틀">
 	                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
+	                    <div class="hash">
+	                      	<h3>여행테마</h3>
+	                   		<c:forEach var="hash" items="${category.hash}">
+	                   			<label><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
+	                   		</c:forEach>
+	                    </div>
                     </div>
                     <div class="region">
                     	<input type="hidden" name="region_name" value="">
                     	<select name="region" id="region">
+                    		<option value="0" selected>지역</option>
                     		<c:forEach var="region" items="${category.region}">
                     			<option value="${region.region_name}" >${region.region_name }</option>
                     		</c:forEach>
@@ -39,13 +46,7 @@
                     
                     	</div>
                     </div>
-                    <div class="hash">
-                   		<c:forEach var="hash" items="${category.hash}">
-                   			<label><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
-                   		</c:forEach>
-                    </div>
                 </div>
-          
                 <!--지도,글쓰기-->
 				<div class="map_wrap">
 					
@@ -93,25 +94,21 @@
 <script type='text/javascript' src="/ro/js/map.js"></script>
 <script type='text/javascript' src="/ro/js/mapMake.js"></script> 
 <script>
+	$(function(){
+		$("#hash0").parent("label").css("background","#eee")
+		$("#hash0").prop("disabled",true)
+	})
 	function goSave(){
 		send(courseArr);
 		AH.submit();
 	};
-
 	var pic =1;
-
-	$(function(){
-	
-	})			
-	
 	//체크박스on
 	$(".hash label").click(function(){
 		if($(this).find("input[type='checkbox']").is(':checked')){
 			$(this).toggleClass("on")
 		}
 	})
-	
-
 	function writebox(index,places){
 		
 		var html ='<div class="set">'
@@ -183,23 +180,22 @@
             }
         }
 	})
-
+	//지도 소분류 ajax로 바로 가져오기
 	$("#region").change(function(){
 		console.log($(this).val())
 		var region_name = $(this).val()
-
 		$.ajax({
 			url:"/ro/board/region_detail",
 			data:{
 				rs:region_name
 			},
 			success:function(res){
-				
 				$(".region_detail").find("input").remove();
 				$(".region_detail").find("label").remove();
 				for(var i=0;i<res.regionDetailList.length;i++){
-				    	var html = '<input type="checkbox" name="region_name" id="region'+i+'" value="'+res.regionDetailList[i].region_no+'">'
-				    		html +='<label for="region'+i+'">'+res.regionDetailList[i].region_name+'</label>'
+				    	var html = '<label for="region'+i+'">'+res.regionDetailList[i].region_name
+				    		html +='<input type="checkbox" name="region_no_arr" id="region'+i+'" value="'+res.regionDetailList[i].region_no+'">'
+				    		html +='</label>'
 				    	$(".region_detail").append(html);
 				}
 			}

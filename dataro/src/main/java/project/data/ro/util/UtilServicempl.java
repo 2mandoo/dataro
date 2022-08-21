@@ -76,7 +76,16 @@ public class UtilServicempl implements UtilService {
 		return regionDetail;
 		
 	}
-	//지역번호 카테고리테이블에 등록
+	//resion_no 카테고리 테이블에 등록
+	@Override
+	public int regionInsert(CategoryVO cvo) {
+		System.out.println("등록"+cvo.getRegion_no_arr());
+		for(int region:cvo.getRegion_no_arr()) {
+			cvo.setRegion_no(region);
+			cmapper.regionInsert(cvo);
+		}
+		return 0;
+	}
 
 	///////////////////////////////진경끝///////////////////////////////////////////
 }

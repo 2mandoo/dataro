@@ -144,8 +144,8 @@ public class BoardController {
 		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
 		if (vo1 != null) {
 			int num = vo1.getMember_no();
-			mvo.setReceive_member_no(num);
-			int num2 = mService.alarmForMessage(mvo);
+			mvo.setReceive_member_no(num); 
+			int num2 = mService.alarmForMessage(mvo); // 내가 읽지 않은 쪽지 불러오기.
 			String result = String.valueOf(num2); 
 			model.addAttribute("UnreadMsgs", result);
 			return "board/main";

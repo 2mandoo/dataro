@@ -41,6 +41,21 @@ function myList() {
 		});
 	return false;
 }
+
+function deleteMsg(){
+	$.ajax({
+		url : '/ro/member/deleteProcess',
+		type : 'post',
+		data : $('#Frm').serialize(),
+		success : function(e) {
+			alert(`쪽지가 삭제되었습니다2.`);
+			location.reload();
+		},
+		error : function(e){
+			alert(`error`);
+		}
+	});
+}
 </script>
 </head> 
 <body>
@@ -49,7 +64,7 @@ function myList() {
         <div id="area"></div>
 	        <h1 class="sub_title">받은 쪽지함</h1>
        	 	<div>
-                <form method="post" name="Form" id="searchForm" action="" onsubmit="return myList();"> 
+                <form method="post" id="Frm" name ="Frm" onsubmit="return myList();"> 
                     <span class="srchSelect">
                         <select id="stype" name="stype" value="${param.stype }">
                             <option value="all">전체</option>
@@ -67,12 +82,14 @@ function myList() {
                     <col width="100px" />
                     <col width="*" />
                     <col width="150px" />
+                    <col width="70px" />
                 </colgroup>
                 <tr>
                     <th>닉네임</th>
                     <th>아이디</th>
                     <th>내용</th>
                     <th>받은 날짜</th>
+                    <th>쪽지삭제</th>
                 </tr>
 				<c:if test="${empty data.list }">
                     <tr>
@@ -85,8 +102,12 @@ function myList() {
                     	<td>${vo.id}</td>
                         <td>${vo.message_content}</td>
                         <td class="date"><fmt:formatDate value="${vo.senddate }" pattern="yyyy-MM-dd"/></td>
+                        <td><input type="checkbox" class="selected" name="message_no" value="${vo.message_no }"></td>
                     </tr>
                 </c:forEach>
+                	<tr>
+                		<td colspan="5" style="text-align:right;"><a href="javascript:deleteMsg();">삭제하기</a></td>
+                	</tr>
             </table>
             <div>
                 <ul class='paging'>

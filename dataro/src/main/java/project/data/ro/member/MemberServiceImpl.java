@@ -124,6 +124,11 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.readUpdate(vo);
 	}
 
+	@Override
+	public int deleteMsg(int message_no) {
+		return mapper.deleteMsg(message_no);
+	}
+
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 	

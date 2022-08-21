@@ -292,6 +292,21 @@ public class MemberController {
 		return "common/alert";
 	}
 	
+	
+	@RequestMapping("/deleteProcess")
+	@ResponseBody
+	public String deleteProcess(Model model, HttpServletRequest req, MessageVO vo) {
+		String[] message_noArr = req.getParameterValues("message_no");
+		for(int i = 0; i < message_noArr.length; i++) {
+			int message_no = Integer.parseInt(message_noArr[i]);
+			System.out.println(message_no+"88888888888888888888888");
+			vo.setMessage_no(message_no);
+			service.deleteMsg(message_no);
+		}
+		model.addAttribute("msg",  "쪽지가 삭제되었습니다1.");
+		return "common/alert";
+	}
+	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 
 	

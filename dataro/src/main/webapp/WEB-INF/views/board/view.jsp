@@ -245,6 +245,7 @@ a {
 	                	<td>${room.room_enddate}</td>
 	                	<td>
 	                	${room.room_participant_count }명
+	                	<input type="hidden" value="room.room_no" class="no">
 	                	<input type="button" value="${room.room_participant_no > 0 ? '참여중' : '참여하기'  }" onClick='joinRoom("${room.room_pwd }", ${room.room_no });'>
 	                	</td>
 	                </tr>
@@ -366,9 +367,11 @@ a {
 	    		if(pwd){
 	    			location.href="../room/pwdForm.do?board_name=${data.board.board_name}&board_no=${data.board.board_no}&room_no="+no
 	    		} else{
-	    			location.href="../room/room.do?room_no="+no
+	    			location.href="../room/room.do?room_no="+no;
+	    			
 	    		}
     		}
+    		$(".no").submit();
     		
     	}
     	

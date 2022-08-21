@@ -23,12 +23,12 @@ public class RoomController {
 	ReplyService rpservice;
 
 	// 모임방상세보기
-	@RequestMapping("/view")
-	public String view(RoomVO vo, Model model) {
-		model.addAttribute("view", rservice.view(vo.getRoom_no()));
-		vo.setBoard_name("게시판"); 
-		return "room/room";
-	}
+//	@RequestMapping("/view")
+//	public String view(RoomVO vo, Model model) {
+//		model.addAttribute("view", rservice.view(vo.getRoom_no()));
+//		System.out.println("여행제목"+vo.getRoom_title());
+//		return "room/room";
+//	}
 
 	// 모임방채팅리스트
 	@RequestMapping("/chatlist")
@@ -44,7 +44,7 @@ public class RoomController {
 
 		System.out.println("*************방번호" + vo.getRoom_no());
 
-		return "redirect:/room/view?room_no=" + vo.getRoom_no() + "&member_no=" + 1;
+		return "redirect:/room/room.do?room_no=" + vo.getRoom_no() + "&member_no=" + 1;
 	}
 
 	//=================================정현===============================
@@ -55,7 +55,7 @@ public class RoomController {
 	}
 
 	@GetMapping("/room.do")
-	public String enterRoom(RoomVO vo, HttpSession sess) {
+	public String enterRoom(RoomVO vo, HttpSession sess, Model model) {
 		//세션에 저장되어있는 로그인 한 사람의 member_no를 roomVO의 room_participant_no번호로 set해서 방에 참가시킴
 		 MemberVO mvo = (MemberVO)sess.getAttribute("loginInfo");
 		 
@@ -71,6 +71,9 @@ public class RoomController {
 		}
 		// if문으로 proom 디비로 로그인정보가 방넘버 만든이랑 같으면 proommember 디비에 넣지 말고 바로 리턴시켜주면 됨.
 		//이미 참여 했다면 DB insert 생략하고, 바로 방으로 입장시켜줌 
+		
+		//진경-방상세보기jsp에 등록된 내용 넘겨줌
+		model.addAttribute("view", rservice.view(vo.getRoom_no()));
 		return "room/room";
 	}
 

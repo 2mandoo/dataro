@@ -79,15 +79,16 @@
 
 
 /*모임방상세보기,채팅*/
-.room_view{background:#d6e2f9;padding: 40px;}
-.room_view article{background: #fff;border-radius: 15px;padding: 15px 30px;}
+.room_view{background:#d6e2f9;padding: 40px;height:100vh;overflow-y:scroll}
+.room_view article{background: #fff;padding: 15px 30px;margin-bottom:50px}
 .room_view h3{margin: 20px 0;font-size: 40px;font-weight: 400;}
 .room_view .cnt{text-align: left;min-height: 100px;}
-.room_view form{display: inline-block;width: 100%;background: #eee;padding:15px 30px;margin-top:15px;}
-.room_view form input[type='text']{width: 70%;float: left;}
-.room_view form input[type='submit']{width: 25%;float: right;}
-.chat_list li{text-align:left;background: #fff;border-radius: 15px;padding:15px;margin-bottom:13px;font-size: 16px;}
-.chat_list li.me{text-align:right;background: #fff4d5;}
+.room_view form{display: inline-block;width: 100%;background: #eee;padding:15px 30px;margin-top:15px;width:1200px;position:fixed;bottom:0;left:50%;transform: translateX(-50%)}
+.room_view form input[type='text']{width:83%;float: left;height:70px;border:none}
+.room_view form input[type='submit']{width:15%;float: right;height:70px;line-height:70px;background:#fff4d5;border:none;font-size:20px}
+.chat_list li{text-align:left;margin-bottom:13px;font-size: 16px;}
+.chat_list li .inner{display:inline-block;background: #fff;border-radius:25px;padding:15px;}
+.chat_list li.me .inner{text-align:right;background: #fff4d5;}
 .chat_list li .date{font-size: 14px;color: #777}
 
 /* 지도 마커라인긋기 */

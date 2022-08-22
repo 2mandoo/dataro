@@ -48,11 +48,12 @@ function deleteMsg(){
 		type : 'post',
 		data : $('#Frm').serialize(),
 		success : function(e) {
-			alert(`쪽지가 삭제되었습니다2.`);
-			location.reload();
+			if (e === 1)
+			alert(`쪽지가 삭제되었습니다`);
+			myList();
 		},
 		error : function(e){
-			alert(`error`);
+			alert(`삭제할 쪽지를 체크해주세요 : )`);
 		}
 	});
 }
@@ -93,9 +94,9 @@ function deleteMsg(){
                 </tr>
 				<c:if test="${empty data.list }">
                     <tr>
-                        <td class="first" colspan="4">받은 쪽지가 없습니다.</td>
+                        <td class="first" colspan="5">받은 쪽지가 없습니다.</td>
                     </tr>
-                	</c:if>
+                </c:if>
                 <c:forEach var="vo" items="${data.list }" varStatus="status">
                     <tr>
                     	<td>${vo.nickname}</td>

@@ -18,9 +18,9 @@
 <body>
 <div id="wrap">
 	<div class="content login">
+	    <h1 class="sub_title">참여한 채팅방</h1>
         <div class="bbs" style="display:inline-block; height:200px; overflow-y:scroll;">
         <div id="area"></div>
-	        <h1 class="sub_title">참여한 채팅방</h1>
        	 	<div>
                 <form method="post" name="Form" id="searchForm" action="">
             	<table class="list">
@@ -50,7 +50,6 @@
                         <td>${vo.room_title}</td>
                         <td>${vo.roommaker_id}</td>
                         <td>${vo.room_startdate }</td>
-                        <%-- <td><fmt:formatDate value="${vo.room_startdate }" pattern="yyyy-MM-dd"/></td> --%>
                     </tr>
                 </c:forEach>
                 </tbody>

@@ -109,7 +109,8 @@
     		m.nickname,
     		m.id,
     		me.message_content, 
-    		me.senddate 
+    		me.senddate,
+    		me.message_no
 		from pmessage me join pmember m  
 		on m.member_no = me.receive_member_no where send_member_no=#{send_member_no} 
 		<if test="stype != null and stype != ''">

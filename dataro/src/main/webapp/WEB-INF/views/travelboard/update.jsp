@@ -15,9 +15,6 @@
 </head>
 <body>
     <div id="wrap">
-    <c:forEach var="vo" items="${up }">
-    	${vo.title }
-    </c:forEach>
         <div class="content tv_write">
             <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data">
             <input type="hidden" name="member_no" value=${loginInfo.member_no }>
@@ -28,7 +25,7 @@
 	                        <div class="user_img"><img src="/ro/img/${loginInfo.m_filename_server}"></div>
 	                        <p>${loginInfo.nickname }</p>
 	                    </span>
-	                    <input type="text" name="title" id="title" class="title_text" value="코스 타이틀">
+	                    <input type="text" name="title" id="title" class="title_text" value="${ud.view.title }">
 	                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
 	                    <div class="hash">
 	                      	<h3>여행테마</h3>
@@ -98,6 +95,9 @@
 <script type='text/javascript' src="/ro/js/mapMake.js"></script> 
 <script>
 	$(function(){
+		console.log(${ud.course.length});
+		console.log(${ud.course[1]});
+
 		$("#hash0").parent("label").css("background","#eee")
 		$("#hash0").prop("disabled",true)
 	})
@@ -112,6 +112,43 @@
 			$(this).toggleClass("on")
 		}
 	})
+	//등록한글 불러오기(수정용)
+	function updatebox(index,places){
+		
+		var html ='<div class="set">'
+			html +='<span class="jk"></span>'
+			html +='<div class="map_list">'
+			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
+					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';
+				    if (places.road_address_name) {
+				    	html += '    <span>' + places.road_address_name + '</span>' +
+				                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
+				    } else {
+				    	html += '    <span>' +  places.address_name  + '</span>'; 
+				    }
+   			html += '  <span class="tel">' + places.phone  + '</span>'     
+			html +="</div>"
+	        html +='    <textarea placeholder="내용 입력" name="contents"></textarea>'
+	        html +='    <div class="pic_wrap">'
+	        html +='        <div class="pic">'
+            html +='           <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
+            pic++;
+	        html +='       		<img src="/ro/img/no-image.jpg">'
+        	html +='       		<span class="delete" ><i class="fa-solid fa-circle-minus"></i></span>'
+	        html +='     	</div>'
+	        html +='   	 	<div class="pic">'
+            html +='            <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
+            html +='       		<img src="/ro/img/no-image.jpg">'
+            html +='        	<span class="delete" ><i class="fa-solid fa-circle-minus"></i></span>'
+	        html +='      	</div>'
+	        html +='    </div>'
+		    html +='    <span class="course_delete">코스삭제</span>'
+	        html +='</div>'
+	        pic++;
+			$('.scroll').append(html);
+			 
+	};
+	//글추가 작성용
 	function writebox(index,places){
 		
 		var html ='<div class="set">'

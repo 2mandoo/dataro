@@ -19,7 +19,6 @@ import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryMapper;
 import project.data.ro.util.CategoryVO;
 import project.data.ro.util.FileVO;
-import project.data.ro.util.LikeVO;
 
 @Slf4j
 @Service
@@ -45,6 +44,16 @@ public class BoardServiceImpl implements BoardService {
 			mapper.insertCourse(bvo);
 		}
 		return true;
+	}
+	//여행코스글수정 화면 불러오기
+	@Override
+	public Map updateView(BoardVO vo) {
+		Map ud = new HashMap();
+		ud.put("view",mapper.updateView(vo));
+		ud.put("course",mapper.updateCourse(vo));
+		System.out.println("가"+mapper.updateView(vo));
+		System.out.println("나"+mapper.updateCourse(vo));
+		return ud;
 	}
 	//여행코스글수정
 	@Override
@@ -288,4 +297,5 @@ public class BoardServiceImpl implements BoardService {
 	public List<CategoryVO> hashtag(int board_no) {
 		return mapper.hashtag(board_no);
 	}
+
 }

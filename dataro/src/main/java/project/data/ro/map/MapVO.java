@@ -17,4 +17,5 @@ public class MapVO {
 	private String road_address_name;
 	private String x;
 	private String y;
+	private String content;
 }

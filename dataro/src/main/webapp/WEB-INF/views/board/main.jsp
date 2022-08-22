@@ -58,8 +58,7 @@ function loginAlert(){
 <div id="wrap">
     <header>
       <div class="inner">
-         	<h1>DaTaRo</h1>
-
+         	<h1>dataro</h1>
 	        <form id="frm" action="main.do" > 
 		        	<input type="hidden" name="stag" id="stag">
 				<select id="form" name="stype" class="dSelect" title="검색분류 선택">
@@ -81,7 +80,7 @@ function loginAlert(){
             	<c:otherwise>
             		<a href="#">
 		            <img src ="/ro/img/${loginInfo.m_filename_server}" width="50px" id="idImg" style="border-radius:30px;">
-		            </a>
+		        </a>
             	</c:otherwise>
 			</c:choose>            
             <a href="#" id="alarmForUser">
@@ -105,7 +104,7 @@ function loginAlert(){
 	    		})
 	    	})
 	    	</script>
-	    	<span class='hashtag' data-no=''>[#]</span> <!-- 값이 없는애들 -->
+	    		<span class='hashtag' data-no=''>[#전체]</span> <!-- 값이 없는애들 -->
 		    <span class='hashtag' data-no='1'>[#자전거코스]</span>
 		    <span class='hashtag' data-no='2'>[#드라이브코스]</span>
 		    <span class='hashtag' data-no='3'>[#뚜벅이코스]</span>
@@ -132,7 +131,7 @@ function loginAlert(){
          	</span>
          	<div class="img_area">
             <a href="view.do?board_no=${list.board_no}&board_name=${list.board_name}">
-             <img src ="/ro/img/${loginInfo.m_filename_server}" width="50px" id="idImg" style="border-radius:30px;">
+             <img src ="/ro/upload/${list.filename_server }" width="100px" id="idImg" style="border-radius:100px;">
             </a>
             <ul>
               <li>
@@ -167,13 +166,5 @@ function loginAlert(){
 		</div>
 	</div>
 </div>
-<script>
-
-
-
-
-
-
-</script>
 </body>
 </html>

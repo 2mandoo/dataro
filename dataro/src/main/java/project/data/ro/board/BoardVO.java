@@ -41,7 +41,8 @@ public class BoardVO {
 	private int replycount;
 	private int dislikecount;
 	private int hashtag_no;
-	private String hashtag_name; 
+	private String hashtag_name;
+	private String filename_server;
 	
 	// 정길 메인에 이미지 띄우기
 	private List<FileVO> getTravPic;

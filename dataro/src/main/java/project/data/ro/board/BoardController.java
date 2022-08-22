@@ -141,6 +141,7 @@ public class BoardController {
 	// main + 정길 수정.
 	@GetMapping("/main.do")
 	public String mainGet(Model model, BoardVO vo, MessageVO mvo, HttpSession sess) {
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
 		List<BoardVO> list = service.list(vo);
 		for (int i=0; i<list.size(); i++) {
 			list.get(i).setPlaceList(service.place(list.get(i).getBoard_no())); // 장소이름
@@ -149,8 +150,6 @@ public class BoardController {
 			
 		}
 		model.addAttribute("list",list);
-		
-		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
 		if (vo1 != null) {
 			int num = vo1.getMember_no();
 			mvo.setReceive_member_no(num); 
@@ -204,5 +203,9 @@ public class BoardController {
 		return service.dislikeCheck(vo);
 	}
 	//=================================정현===============================
-	
+	@GetMapping("/test.do")
+	public String test(BoardVO vo) {
+		service.list(vo);
+		return "board/test";
+	}
 }

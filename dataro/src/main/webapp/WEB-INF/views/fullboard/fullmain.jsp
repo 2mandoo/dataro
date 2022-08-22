@@ -28,13 +28,13 @@
   		</c:if>
   	};
   </script>
-    <title>FULL DATARO</title>
+    <title>DATARO</title>
   </head>
   <body>
   <a href="/ro/board/main.do"><h1>dataro</h1></a>
   <div id="wrap">
     <div class="content">
-      <h2 class="mb-5">DATARO 게시판</h2>
+      <h2 class="mb-5">[ dataro 자유게시판 ]</h2>
       <div class="table-responsive">
         <table class="table table-striped custom-table">
         <p><span><strong>총 ${flist.totalCount}개</strong>  |  ${fullboardVO.page } ${flist.totalPage}페이지</span></p>
@@ -51,7 +51,7 @@
           <tbody>
      		<c:if test="${empty flist.list}">
                 <tr>
-                  <td class="first" colspan="7">등록된 글이 없습니다.</td>
+                  <td class="first" colspan="10">등록된 글이 없습니다.</td>
                 </tr>
             </c:if>
 	          <c:forEach var ="vo" items="${flist.list}" varStatus="status">
@@ -69,7 +69,7 @@
           <a class="btn" href="javascript:goWrite();">글작성 </a>
        </div>
        </div>
-       <div class="pagenate clear">
+       <div class="pagenate clear"> <!-- 페이징 처리 -->
            <ul class='paging'>
            <c:if test="${flist.prev == true }">
            	<li><a href="fullmain.do?page=${flist.startPage-1 }&stype=${param.stype}&sword=${param.sword}"></a></li>
@@ -85,10 +85,9 @@
            </ul> 
        </div>
        	<div>
-	      	<form id="frm" action="fullmain.do" >  <!-- 검색, 기본값 get 방식 -->
+	      	<form id="frm" action="fullmain.do" > <!-- 하단부 검색 -->
 			<select id="form" name="stype" class="dSelect" title="검색분류 선택">
 			<option value="title" >제목</option> 
-			<option value="content" >내용</option>
 			</select>
 			<input type="text" id="" name="sword" value="" placeholder="검색">
 			<input type ="submit"  value="검색">

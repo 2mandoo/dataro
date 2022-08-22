@@ -31,18 +31,16 @@
         <div class="content main">
         <div class="sub">
             <div class="size">
-                <h3 class="sub_title">글작성 게시판</h3>
+                <h3 class="sub_title">글작성</h3>
                 <div class="bbs">
-                <form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data" ><!-- enctype="multipart/form-data" -->
-                <!-- <input type="hidden" name="member_no" value="${loginInfo.no }"> -->
+                <form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data" >
                     <table class="board_write">
                         <tbody>
                         <tr>
-                            <th>선택구분</th>
+                            <th>게시판 구분</th>
                             <td>
                                <select id="form" name="board_name" class="board_name" title="board_name">
-									<option value="여행게시판" >여행게시판</option> 
-									<option value="여행코스" >여행코스</option>
+									<option value="자유게시판" >자유게시판</option>
                                </select>
                             </td>
                         </tr>
@@ -52,12 +50,6 @@
                                 <input type="text" name="title" id="title" class="title" value=""/>
                             </td>
                         </tr>
-                        <!-- <tr>
-                            <th>내용</th>
-                            <td>
-                                <textarea name="content" id="content"></textarea>
-                            </td>
-                        </tr> -->
                         <tr>
                         	<th>첨부파일</th>
                         	<td>

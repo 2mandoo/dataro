@@ -60,7 +60,7 @@ function loginAlert(){
       <div class="inner">
          	<h1>DaTaRo</h1>
 	        <form id="frm" action="main.do" method="get"> 
-	        	<input type="hidden" name="stag" id="stag">
+	        	<input type="hidden" name="stag" id="stag" >
 				<select id="stype" name="stype" class="dSelect" title="검색분류 선택">
 					<option value="title">글제목</option> 
 				</select>

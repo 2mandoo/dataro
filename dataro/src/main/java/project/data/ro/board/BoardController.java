@@ -25,6 +25,7 @@ import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryVO;
 import project.data.ro.util.FileVO;
+import project.data.ro.util.LikeVO;
 import project.data.ro.util.UtilService;
 
 @Controller
@@ -130,26 +131,29 @@ public class BoardController {
 		model.addAttribute("list", service.myList6(vo, sess));
 		return "board/myList6";
 	}
-
+	
+	
+	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 	
 	
 	// main + 정길 수정.
 	@GetMapping("/main.do")
 	public String mainGet(Model model, BoardVO vo, MessageVO mvo, HttpSession sess) {
-		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
-//		model.addAttribute("place",service.place(vo));
 		List<BoardVO> list = service.list(vo);
 		for (int i=0; i<list.size(); i++) {
-			list.get(i).setPlaceList(service.place(list.get(i).getBoard_no()));
-			list.get(i).setHashtagList(service.hashtag(list.get(i).getBoard_no()));
+			list.get(i).setPlaceList(service.place(list.get(i).getBoard_no())); // 장소이름
+			list.get(i).setHashtagList(service.hashtag(list.get(i).getBoard_no())); // 해쉬태그
+			list.get(i).setGetTravPic(service.getTravPic(list.get(i).getBoard_no())); // 게시글 사진
+			
 		}
-		
 		model.addAttribute("list",list);
+		
+		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
 		if (vo1 != null) {
 			int num = vo1.getMember_no();
-			mvo.setReceive_member_no(num);
-			int num2 = mService.alarmForMessage(mvo);
+			mvo.setReceive_member_no(num); 
+			int num2 = mService.alarmForMessage(mvo); // 내가 읽지 않은 쪽지 불러오기.
 			String result = String.valueOf(num2); 
 			model.addAttribute("UnreadMsgs", result);
 			return "board/main";

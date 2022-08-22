@@ -31,7 +31,7 @@ function aj(){
 			alert("읽음 처리가 완료되었습니다.");
 		},
 		error : function(e){
-			alert(`error`);
+			alert(`쪽지를 읽지 않으셨습니다.`);
 		}
 	});
 };
@@ -48,7 +48,7 @@ function aj(){
 	        <col width="100px" />
 	    </colgroup>
 		<tr>
-			<td>보낸 사람번호</td>
+			<td>닉네임</td>
 			<td>내가 받은 쪽지</td>
 			<td>읽음여부</td>
 		</tr>
@@ -62,7 +62,7 @@ function aj(){
 			<c:otherwise>
 				<c:forEach var="vo" items="${list }" >
 					<tr>
-						<td>${vo.send_member_no}</td>
+						<td>${vo.nickname}</td>
 						<td>${vo.message_content}</td>
 						<td><input type="checkbox" class="selected" name="message_no" value="${vo.message_no }"></td>
 					</tr>

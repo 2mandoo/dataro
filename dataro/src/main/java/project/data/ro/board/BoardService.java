@@ -9,14 +9,16 @@ import project.data.ro.map.MapVO;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryVO;
+import project.data.ro.util.FileVO;
+import project.data.ro.util.LikeVO;
 
 
 public interface BoardService {
 	
 	boolean update(BoardVO vo); 
 	boolean delete(int no); 
-	BoardVO view(int no); 
-	BoardVO edit(int no); 
+//	BoardVO view(int no); 
+//	BoardVO edit(int no); 
 	// 마이페이지 관련(정길)
 	Map myList1(BoardVO vo,  HttpSession sess);
 	Map myList2(BoardVO vo, HttpSession sess);
@@ -24,6 +26,9 @@ public interface BoardService {
 	Map myList4(MessageVO vo, HttpSession sess);
 	Map myList5(MessageVO vo, HttpSession sess);
 	List<RoomVO> myList6(RoomVO vo, HttpSession sess);
+
+	List<FileVO> getTravPic(int board_no); // 정길 메인에 이미지 띄우기 연습.
+
 	
 	// main(호윤)
 	List<BoardVO> list(BoardVO vo);

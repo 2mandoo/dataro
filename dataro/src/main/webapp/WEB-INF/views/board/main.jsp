@@ -59,11 +59,11 @@ function loginAlert(){
     <header>
       <div class="inner">
          	<h1>DaTaRo</h1>
+
 	        <form id="frm" action="main.do" > 
 		        	<input type="hidden" name="stag" id="stag">
 				<select id="form" name="stype" class="dSelect" title="검색분류 선택">
 					<option value="title" >제목</option> 
-					<option value="content" >내용</option>
 				</select>
 					<input type="text" id="" name="sword" value="" placeholder="검색">
 					<input type ="submit"  value="검색">
@@ -105,7 +105,7 @@ function loginAlert(){
 	    		})
 	    	})
 	    	</script>
-	    		<span class='hashtag' data-no=''>[#]</span> <!-- 값이 없는애들 -->
+	    	<span class='hashtag' data-no=''>[#]</span> <!-- 값이 없는애들 -->
 		    <span class='hashtag' data-no='1'>[#자전거코스]</span>
 		    <span class='hashtag' data-no='2'>[#드라이브코스]</span>
 		    <span class='hashtag' data-no='3'>[#뚜벅이코스]</span>
@@ -132,20 +132,20 @@ function loginAlert(){
          	</span>
          	<div class="img_area">
             <a href="view.do?board_no=${list.board_no}&board_name=${list.board_name}">
-            <img src ="/ro/img/profile.png" width="50px">
+             <img src ="/ro/img/${loginInfo.m_filename_server}" width="50px" id="idImg" style="border-radius:30px;">
             </a>
             <ul>
               <li>
-                <span class="likecount">${list.likecount}</span>
-                <span class="likecount_button"><button type="button" onclick="load()" >☆</button></span> <!-- load(this) -->
+                 <span><b>${list.likecount}</b></span>
+                  <span>좋아요</span>
               </li>
               <li>
-                <span>${list.dislikecount}</span>
-                <span>☆</span>
+               <span><b>${list.replycount}</b></span>
+                <span>댓글수</span>
               </li>
               <li>
-                <span>${list.viewcount}</span>
-                <span>☆</span>
+                <span><b>${list.viewcount}</b></span>
+                <span>조회수</span>
               </li>
             </ul>
           </div>
@@ -153,7 +153,7 @@ function loginAlert(){
           	<li>
            	<c:forEach var="mvo" items="${list.placeList}">
             		<span>●</span><span>${mvo.place_name}</span><br>
-            	</c:forEach>
+            </c:forEach>
             </li>
           </ul>
            
@@ -167,6 +167,13 @@ function loginAlert(){
 		</div>
 	</div>
 </div>
+<script>
 
+
+
+
+
+
+</script>
 </body>
 </html>

@@ -5,14 +5,14 @@
 
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ정길ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	
-	<select id="view" parameterType="int" resultType="project.data.ro.board.BoardVO">
+	<!-- <select id="view" parameterType="int" resultType="project.data.ro.board.BoardVO">
 		SELECT * FROM pboard WHERE board_no=#{board_no} 
 	</select>
 	
 	
 	<update id="updateViewcount" parameterType="int">
 		UPDATE pboard SET viewcount = viewcount+1 WHERE board_no=#{board_no} 
-	</update>
+	</update> -->
 	
 	
 	<!-- 내가 쓴 글(마이페이지) -->
@@ -73,7 +73,8 @@
     		m.nickname,
     		m.id,
     		me.message_content, 
-    		me.senddate 
+    		me.senddate,
+    		me.message_no
 		from pmessage me join pmember m  
 		on m.member_no = me.send_member_no where receive_member_no=#{receive_member_no} 
 		<if test="stype != null and stype != ''">
@@ -108,7 +109,8 @@
     		m.nickname,
     		m.id,
     		me.message_content, 
-    		me.senddate 
+    		me.senddate,
+    		me.message_no
 		from pmessage me join pmember m  
 		on m.member_no = me.receive_member_no where send_member_no=#{send_member_no} 
 		<if test="stype != null and stype != ''">
@@ -146,12 +148,27 @@
 	</select>
 	
 	
+	<!-- 정길 메인에 글쓰기에 등록한 이미지 띄우기 -->
+	<select id ="getTravPic" resultType="project.data.ro.util.FileVO" parameterType="int">
+		select board_no, filename_server 
+		from pfile 
+		where board_no = #{board_no} limit 1;
+	</select>
+	
+	
+	
+	
+	
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ정길ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 	
 	<!-- main from 호윤 -->
 	<select id="list" resultType="project.data.ro.board.BoardVO"> 
-		select * from pboard
+		select
+		 * 
+ 		,(SELECT COUNT(*) FROM plike WHERE pboard.board_no = plike.board_no) as likecount
+		,(SELECT COUNT(reply_no) FROM preply WHERE board_name = #{board_name} AND board_no = #{board_no}) AS replycount
+		from pboard
 			where board_name = '여행게시판'
 			<if test ="stype != null or sword != null"> 
 				<if test ="stype == 'title'">
@@ -167,6 +184,10 @@
 			order by writedate desc
 	</select>
 	
+		
+	
+
+	
 	<!-- main from 호윤 -->
 	<select id ="place" resultType="project.data.ro.map.MapVO" parameterType="int">
 		select place_name from pmap where board_no = #{board_no}
@@ -179,6 +200,8 @@
         join pboard on pboard.board_no = pcategory.board_no
 		where pboard.board_no = #{board_no};
 	</select>
+	
+	
 	
 	
 	<!-- 여행글쓰기 from 진경 -->

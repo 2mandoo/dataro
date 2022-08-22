@@ -91,11 +91,21 @@
 	</select>
 	<!-- 읽지않은 쪽지내용 -->
 	<select id="unreadMsgContent" parameterType="project.data.ro.message.MessageVO" resultType="project.data.ro.message.MessageVO">
-		select * from pmessage p where receive_member_no=#{receive_member_no} and readdate is null;	
+			select 
+    		m.nickname,
+    		m.id,
+    		me.message_no,
+    		me.message_content
+		from pmessage me join pmember m  
+		on m.member_no = me.send_member_no where receive_member_no=#{receive_member_no} and readdate is null
 	</select>
 	<!-- 안읽은 쪽지 읽음처리 -->
 	<update id="readUpdate" parameterType="project.data.ro.message.MessageVO">
 		UPDATE `pmessage` SET `readdate` = now() WHERE message_no = #{message_no} and receive_member_no=#{receive_member_no}
+	</update>
+	<!-- 쪽지 삭제 -->
+	<update id="deleteMsg" parameterType="int">
+		delete from pmessage where message_no = #{message_no};
 	</update>
 	
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->

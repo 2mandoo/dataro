@@ -53,11 +53,11 @@
       <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
       <property name="defaultEncoding" value="utf-8"/>
       <!-- 1024*1024*10bytes 10MB -->
-      <property name="maxUploadSize" value="104857560"/>
-      <!-- 1024*1024*2bytes 2MB -->
-      <property name="maxUploadSizePerFile" value="2097152"/>
+      <property name="maxUploadSize" value="314572680"/>
+      <!-- 1024*1024*2bytes * 3 (6 mb)-->
+      <property name="maxUploadSizePerFile" value="314572680"/>
       <!-- <property name="uploadTempDir" value="file:/C:/kdigital/upload/tmp"/> -->
-      <property name="maxInMemorySize" value="10485756"/>
+      <property name="maxInMemorySize" value="314572680"/>
    </bean>
    
 

@@ -153,16 +153,13 @@
 	<select id="list" resultType="project.data.ro.board.BoardVO"> 
 		select
 		 * 
- 		,(SELECT COUNT(*) FROM plike WHERE pboard.board_no = plike.board_no) as likecount
-		,(SELECT COUNT(reply_no) FROM preply WHERE board_name = #{board_name} AND board_no = #{board_no}) AS replycount
-		from pboard
-			where board_name = '여행게시판'
+ 		,(SELECT COUNT(*) FROM plike WHERE pboard.board_no = plike.board_no) AS likecount
+		,(SELECT COUNT(reply_no) FROM preply WHERE pboard.board_no = preply.board_no) AS replycount
+		,(SELECT filename_server  FROM pfile where pboard.board_name='여행게시판' and pboard.board_no = pfile.board_no limit 1) AS filename_server
+		from pboard where board_name = '여행게시판'
 			<if test ="stype != null or sword != null"> 
 				<if test ="stype == 'title'">
 				  and title like '%${sword}%'
-				</if>
-				<if test = "stype == 'content'">
-				  and content like '%${sword}%'
 				</if>
 			</if>
 			<if test = "stag != '' and stag != null">
@@ -174,6 +171,10 @@
 	<!-- main from 호윤 -->
 	<select id ="place" resultType="project.data.ro.map.MapVO" parameterType="int">
 		select place_name from pmap where board_no = #{board_no}
+	</select>
+	
+	<select id="file_server">
+		insert into 
 	</select>
 	
 	<select id ="hashtag" resultType="project.data.ro.util.CategoryVO" parameterType="int">

@@ -130,7 +130,6 @@ public class BoardController {
 	@GetMapping("/main.do")
 	public String mainGet(Model model, BoardVO vo, MessageVO mvo, HttpSession sess) {
 		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
-//		model.addAttribute("place",service.place(vo));
 		List<BoardVO> list = service.list(vo);
 		for (int i=0; i<list.size(); i++) {
 			list.get(i).setPlaceList(service.place(list.get(i).getBoard_no()));
@@ -191,5 +190,9 @@ public class BoardController {
 		return service.dislikeCheck(vo);
 	}
 	//=================================정현===============================
-	
+	@GetMapping("/test.do")
+	public String test(BoardVO vo) {
+		service.list(vo);
+		return "board/test";
+	}
 }

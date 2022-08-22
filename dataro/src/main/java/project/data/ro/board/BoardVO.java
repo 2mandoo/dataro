@@ -39,7 +39,8 @@ public class BoardVO {
 	private int replycount;
 	private int dislikecount;
 	private int hashtag_no;
-	private String hashtag_name; 
+	private String hashtag_name;
+	private String filename_server;
 	
 	// 내용여러개
 	private List<MapVO> placeList;

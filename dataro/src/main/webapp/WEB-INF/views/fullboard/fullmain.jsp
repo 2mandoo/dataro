@@ -31,6 +31,7 @@
     <title>FULL DATARO</title>
   </head>
   <body>
+  <a href="/ro/board/main.do"><h1>dataro</h1></a>
   <div id="wrap">
     <div class="content">
       <h2 class="mb-5">DATARO 게시판</h2>

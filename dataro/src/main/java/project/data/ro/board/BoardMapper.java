@@ -15,8 +15,8 @@ import project.data.ro.util.LikeVO;
 public interface BoardMapper {
 	
 	int count(BoardVO vo); // 얘도 없는데 지워도 될까요? 정길.
-	BoardVO view(int no);
-	int updateViewcount(int no); 
+//	BoardVO view(int no);
+//	int updateViewcount(int no); 
 	int update(BoardVO vo);
 	//? delete boardmapper.xml 엔 없던데 머임요? 
 	int delete(int no);

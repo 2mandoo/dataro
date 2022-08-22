@@ -6,12 +6,14 @@
 	<ul>
 		<c:forEach var="chat" items="${list}">
 			<li <c:if test="${loginInfo.member_no eq chat.member_no}">class="me"</c:if>>
-				<c:if test="${loginInfo.member_no ne chat.member_no}">
-					<span>${chat.member_no }</span>
-					<span>${mvo.id }</span>
-				</c:if><!-- 야호 -->
-				<span>${chat.content}</span>
-				<span class="date">${chat.reply_writedate}</span>
+				<span class="inner">
+					<c:if test="${loginInfo.member_no ne chat.member_no}">
+						<span>${chat.member_no }</span>
+						<span>${mvo.id }</span>
+					</c:if><!-- 야호 -->
+					<span>${chat.content}</span>
+					<span class="date">${chat.reply_writedate}</span>
+				</span>
 			</li>
 		</c:forEach>
 	</ul>

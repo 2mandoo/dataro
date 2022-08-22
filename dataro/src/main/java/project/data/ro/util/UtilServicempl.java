@@ -45,7 +45,11 @@ public class UtilServicempl implements UtilService {
 				String ext=org.substring(org.lastIndexOf('.'));
 				String sever = new Date().getTime()+ext;
 				
-				String pate = req.getRealPath("/upload/");
+//				String pate = req.getRealPath("/upload/"); 
+//				정길이가 밑의 경로로 수정. 
+//				폴더를 upload로 할 시, 개인 pc에 각각 workspace 에 upload폴더를 따로 만들어야하니,
+//				이미 만들어져 있는 img 폴더에 저장하는게 낫겠다 싶어서.
+				String pate = req.getRealPath("/img/");
 				try {
 					files.transferTo(new File(pate+sever));
 				}catch(Exception e) {}

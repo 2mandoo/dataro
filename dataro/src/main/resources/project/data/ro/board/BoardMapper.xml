@@ -73,7 +73,8 @@
     		m.nickname,
     		m.id,
     		me.message_content, 
-    		me.senddate 
+    		me.senddate,
+    		me.message_no
 		from pmessage me join pmember m  
 		on m.member_no = me.send_member_no where receive_member_no=#{receive_member_no} 
 		<if test="stype != null and stype != ''">
@@ -108,7 +109,8 @@
     		m.nickname,
     		m.id,
     		me.message_content, 
-    		me.senddate 
+    		me.senddate,
+    		me.message_no
 		from pmessage me join pmember m  
 		on m.member_no = me.receive_member_no where send_member_no=#{send_member_no} 
 		<if test="stype != null and stype != ''">
@@ -146,6 +148,17 @@
 	</select>
 	
 	
+	<!-- 정길 메인에 글쓰기에 등록한 이미지 띄우기 -->
+	<select id ="getTravPic" resultType="project.data.ro.util.FileVO" parameterType="int">
+		select board_no, filename_server 
+		from pfile 
+		where board_no = #{board_no} limit 1;
+	</select>
+	
+	
+	
+	
+	
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ정길ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 	
@@ -168,6 +181,10 @@
 			order by writedate desc
 	</select>
 	
+		
+	
+
+	
 	<!-- main from 호윤 -->
 	<select id ="place" resultType="project.data.ro.map.MapVO" parameterType="int">
 		select place_name from pmap where board_no = #{board_no}
@@ -186,6 +203,8 @@
 	</select>
 	
 	
+	
+	
 	<!-- 여행글쓰기 from 진경 -->
 	<insert id="insert" parameterType="project.data.ro.board.BoardVO">
 		INSERT 
@@ -195,6 +214,13 @@
 				SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>
+	<!-- 여행수정화면 불러오기 -->
+	<select id="updateView" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.board.BoardVO">
+		select board_no,member_no,title
+		from pboard
+		where board_no = #{board_no};
+	</select>
+
 	
 	<!-- 여행글쓰기 수정 -->
 	<update id="update" parameterType="project.data.ro.board.BoardVO">

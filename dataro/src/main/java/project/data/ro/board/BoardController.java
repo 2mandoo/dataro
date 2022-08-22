@@ -25,6 +25,7 @@ import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryVO;
 import project.data.ro.util.FileVO;
+import project.data.ro.util.LikeVO;
 import project.data.ro.util.UtilService;
 
 @Controller
@@ -43,6 +44,7 @@ public class BoardController {
 	
 	@Autowired
 	MapMapper mapper;
+
 	
 	////////////////////////////////진경시작////////////////////////////////////////
 	//여행코스 글쓰기화면
@@ -64,12 +66,19 @@ public class BoardController {
 		System.out.println("내가 누른거"+cvo.getRegion_no_arr());
 		return "redirect:/board/travelWrite.do";
 	}
+	//여행코스 글쓰기 수정화면
+	@RequestMapping("/updateView.do")
+	public String updateView(BoardVO bvo,HttpSession sess) {
+		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
+		bvo.setMember_no(mvo.getMember_no());
+		return "travelboard/update";
+	}
 	//여행코스 글쓰기 수정
 	@RequestMapping("/update.do")
 	public String update(BoardVO bvo) {
 		return "travelboard/update";
 	}
-	
+	//지역나오게
 	@RequestMapping("/region_detail")
 	@ResponseBody
 	public Map regionDatail(String rs) {
@@ -122,7 +131,9 @@ public class BoardController {
 		model.addAttribute("list", service.myList6(vo, sess));
 		return "board/myList6";
 	}
-
+	
+	
+	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 	
 	
@@ -132,15 +143,16 @@ public class BoardController {
 		MemberVO vo1 = (MemberVO) sess.getAttribute("loginInfo");
 		List<BoardVO> list = service.list(vo);
 		for (int i=0; i<list.size(); i++) {
-			list.get(i).setPlaceList(service.place(list.get(i).getBoard_no()));
-			list.get(i).setHashtagList(service.hashtag(list.get(i).getBoard_no()));
+			list.get(i).setPlaceList(service.place(list.get(i).getBoard_no())); // 장소이름
+			list.get(i).setHashtagList(service.hashtag(list.get(i).getBoard_no())); // 해쉬태그
+			list.get(i).setGetTravPic(service.getTravPic(list.get(i).getBoard_no())); // 게시글 사진
+			
 		}
-		
 		model.addAttribute("list",list);
 		if (vo1 != null) {
 			int num = vo1.getMember_no();
-			mvo.setReceive_member_no(num);
-			int num2 = mService.alarmForMessage(mvo);
+			mvo.setReceive_member_no(num); 
+			int num2 = mService.alarmForMessage(mvo); // 내가 읽지 않은 쪽지 불러오기.
 			String result = String.valueOf(num2); 
 			model.addAttribute("UnreadMsgs", result);
 			return "board/main";

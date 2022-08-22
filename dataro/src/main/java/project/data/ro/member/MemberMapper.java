@@ -39,6 +39,8 @@ public interface MemberMapper {
 	List<MessageVO> unreadMsgContent(MessageVO vo);
 	// 안 읽은 쪽지 읽음처리. 
 	int readUpdate(MessageVO vo);
+	// 쪽지 삭제
+	int deleteMsg(int message_no);
 	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 

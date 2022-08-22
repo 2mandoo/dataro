@@ -4,10 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -20,6 +18,8 @@ import project.data.ro.room.RoomMapper;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryMapper;
 import project.data.ro.util.CategoryVO;
+import project.data.ro.util.FileVO;
+import project.data.ro.util.LikeVO;
 
 @Slf4j
 @Service
@@ -31,8 +31,10 @@ public class BoardServiceImpl implements BoardService {
 	RoomMapper rmapper;
 	
 	MapMapper pmapper;
+	
 	CategoryMapper cmapper;
 	
+	//////////////////////////진경//////////////////////
 	//여행코스글쓰기(for문-코스등록)
 	@Override
 	public boolean insert(BoardVO bvo) {
@@ -55,16 +57,6 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.delete(no) > 0 ? true : false;
 	}
 
-//	@Override
-//	public BoardVO view(int no) {
-//		mapper.updateViewcount(no);
-//		return mapper.view(no);
-//	}
-
-//	@Override
-//	public BoardVO edit(int no) {
-//		return mapper.view(no);
-//	}
 
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
@@ -217,6 +209,16 @@ public class BoardServiceImpl implements BoardService {
 		vo.setRoom_participant_no(no);
 		return mapper.myList6(vo);
 	}
+	
+	
+	// 메인에 이미지띄우기 정길
+	@Override
+	public List<FileVO> getTravPic(int board_no) {
+		return mapper.getTravPic(board_no);
+	}
+
+
+	
 	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(끝) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	// 메인

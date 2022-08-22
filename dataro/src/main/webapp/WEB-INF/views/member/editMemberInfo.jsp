@@ -120,33 +120,31 @@ function checkEmail(){
 	<div class="content login page">
 		<a href="/ro/board/main.do"><img src="/ro/img/main.png" id="goMain"></a>
 		<form action="editUserInfo" method="post" name ="register" enctype="multipart/form-data">
-			<table >
+			<table>
 				<tr>
-					<td></td>
-					<td colspan="2"><h1>회원정보수정</h1></td>
+					<td colspan="3"><h1>회원정보수정</h1></td>
 				</tr>
 				<tr>
-					<td class="right">아이디 : &nbsp</td>
+					<th class="right">아이디 : &nbsp</th>
 					<td><input type="text" id="id" name="id" value="${loginInfo.id }" readonly></td>
 				</tr>
 				<tr>
-					<td class="right">닉네임 : &nbsp</td>
+					<th class="right">닉네임 : &nbsp</th>
 					<td><input type="text" id="nickname" name="nickname" placeholder="nickname"></td>
 				</tr>
 				<tr>
-					<td class="right">비밀번호 : &nbsp</td>
+					<th class="right">비밀번호 : &nbsp</th>
 					<td><input type="text" id="pw1" name="pw1" placeholder="pw"></td>
 				</tr>
 				<tr>
-					<td class="right">비밀번호 확인 : &nbsp</td>
+					<th class="right">비밀번호 확인 : &nbsp</th>
 					<td><input type="text" id="pwd" name="pwd" placeholder="pw for confirmation"></td>
 				</tr>
 				<tr>
-					<td></td>
-					<td colspan="4"><div id="area2"></div></td>
+					<td colspan="3"><div id="area2"></div></td>
 				</tr>
 				<tr>
-					<td class="right">이메일 :</td>
+					<th class="right">이메일 :</th>
 					<td colspan="3" style="text-align:left;">
 						<input type="text" id="email" size="10" placeholder="email" name="email"/>@<input type="text" id="email2" name="email2" size="10" />
 						<select id="email_select" >
@@ -161,14 +159,14 @@ function checkEmail(){
 					</td>
 				</tr>
 				<tr>
-					<td colspan="4"><div id="area3"></div></td>
+					<td colspan="3"><div id="area3"></div></td>
 				</tr>
 				<tr>
-					<td class="right">내 사진변경 : &nbsp</td>
+					<th class="right">내 사진변경 : &nbsp</th>
 					<td colspan=""><input type="file" name="filename"></td>
 				</tr>
 				<tr>
-					<td colspan="4" ><h5>사진을 첨부하지 않으시면 기본이미지가 적용됩니다.</h5></td>
+					<td colspan="2" ><h5>&nbsp&nbsp&nbsp&nbsp사진을 첨부하지 않으시면 기본이미지가 적용됩니다.</h5></td>
 				</tr>
 				<tr>
 					<td colspan="3"><input type="submit" value="수정하기" class="Btn"></td>

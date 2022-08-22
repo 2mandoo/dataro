@@ -152,7 +152,7 @@ function loginAlert(){
           	<li>
            	<c:forEach var="mvo" items="${list.placeList}">
             		<span>●</span><span>${mvo.place_name}</span><br>
-            	</c:forEach>
+            </c:forEach>
             </li>
           </ul>
            
@@ -166,6 +166,5 @@ function loginAlert(){
 		</div>
 	</div>
 </div>
-
 </body>
 </html>

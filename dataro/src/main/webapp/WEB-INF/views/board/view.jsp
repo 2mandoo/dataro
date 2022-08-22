@@ -272,7 +272,8 @@ a {
 	                <div id="commentArea"></div>
 
             </div>
-			<c:if test="${loginInfo.member_no != boardVO.member_no }">
+           	<!--진귀: 확인후 지우시면됨  boardVO.member_no 는 없는 값이라 0 떠서 디비에서 받아온 data.board.member_no 로 바꿈 -->
+			<c:if test="${loginInfo.member_no == data.board.member_no }">
 			<a href="javascript:">수정</a>
 			<a href="javascript:"><img src="/ro/img/delete.png" title="게시글 삭제"></a>
 			</c:if>

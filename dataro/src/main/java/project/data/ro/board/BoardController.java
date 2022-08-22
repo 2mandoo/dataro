@@ -68,16 +68,17 @@ public class BoardController {
 	}
 	//여행코스 글쓰기 수정화면
 	@RequestMapping("/updateView.do")
-	public String updateView(BoardVO bvo,HttpSession sess) {
+	public String updateView(BoardVO bvo,HttpSession sess,Model model) {
 		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
 		bvo.setMember_no(mvo.getMember_no());
+		model.addAttribute("ud",service.updateView(bvo));
 		return "travelboard/update";
 	}
 	//여행코스 글쓰기 수정
-	@RequestMapping("/update.do")
-	public String update(BoardVO bvo) {
-		return "travelboard/update";
-	}
+//	@RequestMapping("/update.do")
+//	public String update(BoardVO bvo) {
+//		return "travelboard/update";
+//	}
 	//지역나오게
 	@RequestMapping("/region_detail")
 	@ResponseBody

@@ -10,7 +10,6 @@ import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryVO;
 import project.data.ro.util.FileVO;
-import project.data.ro.util.LikeVO;
 
 
 public interface BoardService {
@@ -36,6 +35,8 @@ public interface BoardService {
 	List<CategoryVO> hashtag(int board_no);
 	// write(진경)
 	boolean insert(BoardVO bvo);
+	Map updateView(BoardVO vo);
+
 
 	
 	

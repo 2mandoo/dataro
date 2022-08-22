@@ -48,7 +48,8 @@ public interface BoardMapper {
 	// 여행코스글쓰기/코스등록-진경
 	int insertCourse(BoardVO vo);
 	// 여행코스수정/화면출력-진경
-	List<BoardVO> updateView(BoardVO vo);
+	BoardVO updateView(BoardVO vo);
+	List<MapVO> updateCourse(BoardVO vo);
 
 	
 	//=================================정현===============================

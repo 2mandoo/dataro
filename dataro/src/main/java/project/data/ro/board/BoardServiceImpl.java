@@ -4,10 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -33,6 +31,7 @@ public class BoardServiceImpl implements BoardService {
 	MapMapper pmapper;
 	CategoryMapper cmapper;
 	
+	//////////////////////////진경//////////////////////
 	//여행코스글쓰기(for문-코스등록)
 	@Override
 	public boolean insert(BoardVO bvo) {
@@ -55,6 +54,7 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.delete(no) > 0 ? true : false;
 	}
 
+    ////////////////////////////진경끝
 	@Override
 	public BoardVO view(int no) {
 		mapper.updateViewcount(no);
@@ -65,6 +65,8 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO edit(int no) {
 		return mapper.view(no);
 	}
+	
+
 
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
@@ -286,4 +288,6 @@ public class BoardServiceImpl implements BoardService {
 	public List<CategoryVO> hashtag(int board_no) {
 		return mapper.hashtag(board_no);
 	}
+
+
 }

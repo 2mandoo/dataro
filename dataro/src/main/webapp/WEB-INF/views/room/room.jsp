@@ -46,7 +46,7 @@ function getchat(){
 			$("#chatArea").html(res)
 		}
 	})
-	//setTimeout(getchat,1000)
+	setTimeout(getchat,1000)
 
 	
 }

@@ -45,7 +45,7 @@ public class UtilServicempl implements UtilService {
 				String ext=org.substring(org.lastIndexOf('.'));
 				String sever = new Date().getTime()+ext;
 				
-				String pate = req.getRealPath("/upload/");
+				String pate = req.getRealPath("/img");
 				try {
 					files.transferTo(new File(pate+sever));
 				}catch(Exception e) {}

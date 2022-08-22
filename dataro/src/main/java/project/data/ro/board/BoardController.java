@@ -43,6 +43,7 @@ public class BoardController {
 	
 	@Autowired
 	MapMapper mapper;
+
 	
 	////////////////////////////////진경시작////////////////////////////////////////
 	//여행코스 글쓰기화면
@@ -64,12 +65,19 @@ public class BoardController {
 		System.out.println("내가 누른거"+cvo.getRegion_no_arr());
 		return "redirect:/board/travelWrite.do";
 	}
+	//여행코스 글쓰기 수정화면
+	@RequestMapping("/updateView.do")
+	public String updateView(BoardVO bvo,HttpSession sess) {
+		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
+		bvo.setMember_no(mvo.getMember_no());
+		return "travelboard/update";
+	}
 	//여행코스 글쓰기 수정
 	@RequestMapping("/update.do")
 	public String update(BoardVO bvo) {
 		return "travelboard/update";
 	}
-	
+	//지역나오게
 	@RequestMapping("/region_detail")
 	@ResponseBody
 	public Map regionDatail(String rs) {

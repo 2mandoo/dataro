@@ -1,6 +1,7 @@
 package project.data.ro.board;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -37,9 +38,12 @@ public interface BoardMapper {
 	List<BoardVO> list(BoardVO vo);
 	List<MapVO> place(int board_no);
 	List<CategoryVO> hashtag(int board_no);
-	// write
+	// 여행코스글쓰기 -진경
 	int insert(BoardVO vo);
+	// 여행코스글쓰기/코스등록-진경
 	int insertCourse(BoardVO vo);
+	// 여행코스수정/화면출력-진경
+	List<BoardVO> updateView(BoardVO vo);
 
 	
 	//=================================정현===============================

@@ -272,10 +272,10 @@ a {
 	                <div id="commentArea"></div>
 
             </div>
-			<c:if test="${loginInfo.member_no != boardVO.member_no }">
-			<a href="javascript:">수정</a>
+            <a href="/ro/board/updateView.do?board_no=${data.board.board_no}">수정</a>
 			<a href="javascript:"><img src="/ro/img/delete.png" title="게시글 삭제"></a>
-			</c:if>
+			<!--<c:if test="${loginInfo.member_no == boardVO.member_no }"> -->
+			<!--</c:if> -->
    		</div>
 	</div>
 	
@@ -371,7 +371,6 @@ a {
 	    			
 	    		}
     		}
-    		$(".no").submit();
     		
     	}
     	
@@ -604,7 +603,7 @@ a {
     		});
 	  	
     	}
-    	
+
     
     </script>
      

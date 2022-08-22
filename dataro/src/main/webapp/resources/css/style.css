@@ -116,7 +116,7 @@ header .inner #theNumberOfMsg{position:relative; bottom:10px; right:5px;}
 .main .cnt_set{width:33.3%; display: inline-block; float: left; margin-top: 2cm;}
 .main .cnt_set h5{font-size: 30px;}
 .main .cnt_set .img_area{border: 1px solid blue;position: relative;}
-.main .cnt_set .img_area a{height: 200px;display: block;}
+.main .cnt_set .img_area a{height: 300px;display: block;}
 .main .cnt_set .img_area ul{position: absolute;right: 0;bottom: 0;}
 .main .cnt_set .img_area ul li{display: inline-block;}
 .main .cnt_set .img_area ul li span{display: block;}
@@ -160,7 +160,7 @@ header .inner #theNumberOfMsg{position:relative; bottom:10px; right:5px;}
     display: block;
 }
 
-/* 메인페이지 해쉬태그이름 화살표모양 표시*/
+/* 메인페이지 해쉬태그이름 손가락 표시*/
 .hashtag:hover{
 	cursor:pointer;
 	color: blue;

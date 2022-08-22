@@ -64,7 +64,6 @@ function loginAlert(){
 		        	<input type="hidden" name="stag" id="stag">
 				<select id="form" name="stype" class="dSelect" title="검색분류 선택">
 					<option value="title" >제목</option> 
-					<option value="content" >내용</option>
 				</select>
 					<input type="text" id="" name="sword" value="" placeholder="검색">
 					<input type ="submit"  value="검색">

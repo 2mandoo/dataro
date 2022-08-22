@@ -36,6 +36,7 @@ public class BoardVO {
 	
 	private String content; 
 	private int likecount;
+	private int replycount;
 	private int dislikecount;
 	private int hashtag_no;
 	private String hashtag_name; 

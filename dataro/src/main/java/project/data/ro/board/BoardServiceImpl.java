@@ -55,16 +55,16 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.delete(no) > 0 ? true : false;
 	}
 
-	@Override
-	public BoardVO view(int no) {
-		mapper.updateViewcount(no);
-		return mapper.view(no);
-	}
+//	@Override
+//	public BoardVO view(int no) {
+//		mapper.updateViewcount(no);
+//		return mapper.view(no);
+//	}
 
-	@Override
-	public BoardVO edit(int no) {
-		return mapper.view(no);
-	}
+//	@Override
+//	public BoardVO edit(int no) {
+//		return mapper.view(no);
+//	}
 
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
@@ -221,7 +221,7 @@ public class BoardServiceImpl implements BoardService {
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(끝) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	// 메인
 	@Override
-	public List<BoardVO> list(BoardVO vo) {	
+	public List<BoardVO> list(BoardVO vo) {
 		return mapper.list(vo);
 	}
 

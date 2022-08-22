@@ -132,20 +132,20 @@ function loginAlert(){
          	</span>
          	<div class="img_area">
             <a href="view.do?board_no=${list.board_no}&board_name=${list.board_name}">
-            <img src ="/ro/img/profile.png" width="50px">
+             <img src ="/ro/img/${loginInfo.m_filename_server}" width="50px" id="idImg" style="border-radius:30px;">
             </a>
             <ul>
               <li>
-                <span class="likecount">${list.likecount}</span>
-                <span class="likecount_button"><button type="button" onclick="load()" >☆</button></span> <!-- load(this) -->
+                 <span><b>${list.likecount}</b></span>
+                  <span>좋아요</span>
               </li>
               <li>
-                <span>${list.dislikecount}</span>
-                <span>☆</span>
+               <span><b>${list.replycount}</b></span>
+                <span>댓글수</span>
               </li>
               <li>
-                <span>${list.viewcount}</span>
-                <span>☆</span>
+                <span><b>${list.viewcount}</b></span>
+                <span>조회수</span>
               </li>
             </ul>
           </div>

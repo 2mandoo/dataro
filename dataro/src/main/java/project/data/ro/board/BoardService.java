@@ -15,8 +15,8 @@ public interface BoardService {
 	
 	boolean update(BoardVO vo); 
 	boolean delete(int no); 
-	BoardVO view(int no); 
-	BoardVO edit(int no); 
+//	BoardVO view(int no); 
+//	BoardVO edit(int no); 
 	// 마이페이지 관련(정길)
 	Map myList1(BoardVO vo,  HttpSession sess);
 	Map myList2(BoardVO vo, HttpSession sess);

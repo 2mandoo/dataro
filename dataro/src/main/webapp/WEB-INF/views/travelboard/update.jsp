@@ -82,6 +82,7 @@
             </form>
         </div>
     </div>
+    
 
 <!-- 사용하다가 에러 안나면 지우자 
 <script type='text/javascript' src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
@@ -95,12 +96,12 @@
 <script type='text/javascript' src="/ro/js/mapMake.js"></script> 
 <script>
 	$(function(){
-		console.log(${ud.course.length});
-		console.log(${ud.course[1]});
-
-		$("#hash0").parent("label").css("background","#eee")
-		$("#hash0").prop("disabled",true)
-	})
+		
+		$("#hash0").parent("label").css("background","#eee");
+		$("#hash0").prop("disabled",true);
+	});
+	
+	
 	function goSave(){
 		send(courseArr);
 		AH.submit();
@@ -243,6 +244,7 @@
 
 	})
 	
+	console.log(${ud})
 </script>
 
 </body>

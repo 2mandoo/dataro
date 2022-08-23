@@ -53,5 +53,6 @@ public class BoardVO {
 	private List<CategoryVO> hashtagList; 
 	private String[] contents;
 	private int course_no;
+	private int count_course_no;
 	private int login_member_no;
 }

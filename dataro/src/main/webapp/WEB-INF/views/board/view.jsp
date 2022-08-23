@@ -338,7 +338,16 @@ a {
 	<script type='text/javascript' src="/ro/js/mapView.js"></script>
     
     <script>
-	$('.btn-makeclick').click(function(){
+   	
+    $(function(){
+   		//댓글 1페이지 불러오기
+   		getComment(1); 
+   		clickBoardLike();
+   		clickDislike();
+   	
+   	});
+
+   	$('.btn-makeclick').click(function(){
 		$('.roommodal').fadeIn();
 	})
 	
@@ -470,13 +479,6 @@ a {
     	};
     	
      	
-    	$(function(){
-    		//댓글 1페이지 불러오기
-    		getComment(1); 
-    		clickBoardLike();
-    		clickDislike();
-    	
-    	});
     	 
     	function goSave(){
      		if(confirm('댓글을 작성하시겠습니까?')){

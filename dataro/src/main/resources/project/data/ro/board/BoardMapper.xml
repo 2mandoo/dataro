@@ -162,13 +162,14 @@
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ정길ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 	
-	<!-- main from 호윤 -->
+	<!-- 호윤 메인 페이지 -->
 	<select id="list" resultType="project.data.ro.board.BoardVO"> 
 		select
 		 * 
- 		,(SELECT COUNT(*) FROM plike WHERE pboard.board_no = plike.board_no) AS likecount
-		,(SELECT COUNT(reply_no) FROM preply WHERE pboard.board_no = preply.board_no) AS replycount
-		,(SELECT filename_server  FROM pfile where pboard.board_name='여행게시판' and pboard.board_no = pfile.board_no limit 1) AS filename_server
+ 		,(SELECT COUNT(*) FROM plike WHERE pboard.board_no = plike.board_no) AS likecount <!-- 좋아요 갯수 -->
+		,(SELECT COUNT(reply_no) FROM preply WHERE pboard.board_no = preply.board_no) AS replycount <!--  댓글 갯수 -->
+		,(SELECT filename_server  FROM pfile where pboard.board_name='여행게시판' 
+			and pboard.board_no = pfile.board_no limit 1) AS filename_server <!-- 글쓰기할떄 넣은 사진 메인페이지에 불러오기 -->
 		from pboard where board_name = '여행게시판'
 			<if test ="stype != null or sword != null"> 
 				<if test ="stype == 'title'">
@@ -181,19 +182,13 @@
 			order by writedate desc
 	</select>
 	
-		
-	
 
-	
-	<!-- main from 호윤 -->
+	<!-- 호윤 메인페이지에 각 게시물에 해당하는 코스 보여주기 -->
 	<select id ="place" resultType="project.data.ro.map.MapVO" parameterType="int">
 		select place_name from pmap where board_no = #{board_no}
 	</select>
 	
-	<select id="file_server">
-		insert into 
-	</select>
-	
+	<!-- 호윤 메인페이지에 각 게시물에 해당하는 해쉬태그 보여주기 -->
 	<select id ="hashtag" resultType="project.data.ro.util.CategoryVO" parameterType="int">
 		select pboard.board_no,phashtag.hashtag_no,phashtag.hashtag_name 
 		from phashtag join pcategory

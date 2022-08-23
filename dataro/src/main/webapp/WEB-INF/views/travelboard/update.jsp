@@ -108,6 +108,7 @@
             </form>
         </div>
     </div>
+    
 
 <!-- 사용하다가 에러 안나면 지우자 
 <script type='text/javascript' src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
@@ -121,10 +122,19 @@
 <script type='text/javascript' src="/ro/js/mapMake.js"></script> 
 <script>
 	$(function(){
+<<<<<<< HEAD
 
 		$("#hash0").parent("label").css("background","#eee")
 		$("#hash0").prop("disabled",true)
 	})
+=======
+		
+		$("#hash0").parent("label").css("background","#eee");
+		$("#hash0").prop("disabled",true);
+	});
+	
+	
+>>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
 	function goSave(){
 		send(courseArr);
 		AH.submit();
@@ -233,6 +243,8 @@
 			$(this).toggleClass("on")
 		}
 	})
+	
+	console.log(${ud})
 </script>
 
 </body>

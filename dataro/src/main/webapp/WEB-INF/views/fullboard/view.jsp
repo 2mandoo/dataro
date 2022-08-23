@@ -28,7 +28,7 @@
 			url : "/ro/comment/list.do",
 			data : {
 				board_no : ${view.board_no},
-				board_name : '여행게시판',
+				board_name : '자유게시판',
 			},
 			success : function(res) {
 				$("#commentArea").html(res);

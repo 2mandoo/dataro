@@ -291,7 +291,12 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.place(board_no);
 	}
 
+	@Override
+	public int delete(BoardVO vo) {
+		return mapper.delete(vo);
+	}
 	//=================================정현===============================
+	
 	//호윤
 	@Override
 	public List<CategoryVO> hashtag(int board_no) {

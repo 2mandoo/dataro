@@ -74,7 +74,33 @@
 				
 				<!-- 코스 설명 들어갈 부분 -->      
 				<div class="write_detail">
-					<div class="scroll"></div>
+					<div class="scroll">
+						<c:forEach var="course" items="${ud.course}">
+							<div class="set">
+								<div class="map_list">
+									<span>${course.course_no }</span>
+									<span class="markerbg marker_1"></span>
+									<span class="info"><h5>${course.place_name }</h5></span>
+								    <span class="jibun gray">${course.address_name }</span>
+							        <span class="tel">${course.phone }</span>
+						        </div>
+					            <textarea placeholder="" name="contents">${course.content}</textarea>
+					            <div class="pic_wrap">
+					            	<div class="pic">
+					                	<input type="file" class="file_input1" name="filename" id="1" onchange="readInputFile(this)"> 
+					                         <img src="/ro/img/no-image.jpg">    
+					                         <span class="delete"><i class="fa-solid fa-circle-minus"></i></span>
+				                    </div>   
+				                    <div class="pic">            
+					                    <input type="file" class="file_input2" name="filename" id="2" onchange="readInputFile(this)">     
+			                      		<img src="/ro/img/no-image.jpg">        	
+			                      		<span class="delete"><i class="fa-solid fa-circle-minus"></i></span>      	
+				                     </div>    
+					             </div>    
+					             <span class="course_delete">코스삭제</span>
+					        </div>
+						</c:forEach>
+					</div>
 				</div>
                 <!--//지도,글쓰기-->
 				<a href="javascript:displayCouses(courseArr);">[마커표시]</a>&nbsp;&nbsp;
@@ -95,8 +121,6 @@
 <script type='text/javascript' src="/ro/js/mapMake.js"></script> 
 <script>
 	$(function(){
-		console.log(${ud.course.length});
-		console.log(${ud.course[1]});
 
 		$("#hash0").parent("label").css("background","#eee")
 		$("#hash0").prop("disabled",true)
@@ -112,42 +136,7 @@
 			$(this).toggleClass("on")
 		}
 	})
-	//등록한글 불러오기(수정용)
-	function updatebox(index,places){
-		
-		var html ='<div class="set">'
-			html +='<span class="jk"></span>'
-			html +='<div class="map_list">'
-			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
-					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';
-				    if (places.road_address_name) {
-				    	html += '    <span>' + places.road_address_name + '</span>' +
-				                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
-				    } else {
-				    	html += '    <span>' +  places.address_name  + '</span>'; 
-				    }
-   			html += '  <span class="tel">' + places.phone  + '</span>'     
-			html +="</div>"
-	        html +='    <textarea placeholder="내용 입력" name="contents"></textarea>'
-	        html +='    <div class="pic_wrap">'
-	        html +='        <div class="pic">'
-            html +='           <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
-            pic++;
-	        html +='       		<img src="/ro/img/no-image.jpg">'
-        	html +='       		<span class="delete" ><i class="fa-solid fa-circle-minus"></i></span>'
-	        html +='     	</div>'
-	        html +='   	 	<div class="pic">'
-            html +='            <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
-            html +='       		<img src="/ro/img/no-image.jpg">'
-            html +='        	<span class="delete" ><i class="fa-solid fa-circle-minus"></i></span>'
-	        html +='      	</div>'
-	        html +='    </div>'
-		    html +='    <span class="course_delete">코스삭제</span>'
-	        html +='</div>'
-	        pic++;
-			$('.scroll').append(html);
-			 
-	};
+	
 	//글추가 작성용
 	function writebox(index,places){
 		
@@ -156,12 +145,8 @@
 			html +='<div class="map_list">'
 			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
 					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';
-				    if (places.road_address_name) {
-				    	html += '    <span>' + places.road_address_name + '</span>' +
-				                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
-				    } else {
-				    	html += '    <span>' +  places.address_name  + '</span>'; 
-				    }
+			html += '    <span>' +  places.address_name  + '</span>'; 
+				    
    			html += '  <span class="tel">' + places.phone  + '</span>'     
 			html +="</div>"
 	        html +='    <textarea placeholder="내용 입력" name="contents"></textarea>'
@@ -242,7 +227,12 @@
 		})
 
 	})
-	
+	//지도소분류 체크css
+	$(document).on("click",".region_detail label",function(){
+		if($(this).find("input[type='checkbox']").is(':checked')){
+			$(this).toggleClass("on")
+		}
+	})
 </script>
 
 </body>

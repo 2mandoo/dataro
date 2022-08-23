@@ -58,7 +58,7 @@ function loginAlert(){
 <div id="wrap">
     <header>
       <div class="inner">
-         	<h1>dataro</h1>
+         	<a href="/ro/board/main.do"><h1>DATARO</h1></a>
 	        <form id="frm" action="main.do" > 
 		        	<input type="hidden" name="stag" id="stag">
 				<select id="form" name="stype" class="dSelect" title="검색분류 선택">
@@ -74,7 +74,7 @@ function loginAlert(){
           	<c:choose>
           		<c:when test="${empty loginInfo }">
 	            	<a href="/ro/member/login" id="toPic">
-	            		<img src ="/ro/img/profile.png" width="50px">
+	            		<img src ="/ro/img/profile.png">
 	            	</a> 
             	</c:when>
             	<c:otherwise>
@@ -84,12 +84,12 @@ function loginAlert(){
             	</c:otherwise>
 			</c:choose>            
             <a href="#" id="alarmForUser">
-            	<img src ="/ro/img/alarm.png" width="50px">
+            	<img src ="/ro/img/alarm.png" >
             	<span id="theNumberOfMsg"> ${UnreadMsgs }</span>
             </a>
             
             <a href="/ro/board/travelWrite.do" id="wBtn">
-            	<img src ="/ro/img/write.png" width="50px">
+            	<img src ="/ro/img/write.png" >
             </a>
 		   
           	</ul>

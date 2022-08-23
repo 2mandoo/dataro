@@ -51,11 +51,11 @@ public class BoardServiceImpl implements BoardService {
 		Map ud = new HashMap();
 		ud.put("view",mapper.updateView(vo));
 		ud.put("course",mapper.updateCourse(vo));
-		ud.put("hrcategory", mapper.updateCategory(vo));
+		ud.put("hrcategory",mapper.updateCategory(vo));
+		ud.put("hrcategory2",mapper.updateCategory2(vo));
 		
-		System.out.println("가"+mapper.updateView(vo));
-		System.out.println("나"+mapper.updateCourse(vo));
 		System.out.println("해쉬태그"+mapper.updateCategory(vo));
+		System.out.println("지역변호"+mapper.updateCategory2(vo));
 		return ud;
 	}
 	//여행코스글수정

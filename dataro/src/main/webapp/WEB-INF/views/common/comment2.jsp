@@ -8,7 +8,7 @@
    <table class="list">
        <colgroup>
            <col width="80px" />
-           <col width="100px" />
+           <col width="140px" />
            <col width="*" />
            <col width="140px" />
            <col width="200px" />
@@ -30,7 +30,7 @@
 	                   <a href="javascript:replyList(${vo.gno })" class="replyList">[답글]<c:if test="${vo.replycount>0 }">(${vo.replycount })</c:if></a>
 	                   <div class="messageBox" style="display:none;" >
 	                   <form id="replyFrm${vo.gno }">
-						    <input type="text" class="content2" placeholder="답글을 작성해주세요."><a href="javascript:goSave2(${vo.gno });">작성 </a>
+						    <input type="text" class="content2" style="width:70%" placeholder="답글을 작성해주세요."><a href="javascript:goSave2(${vo.gno });">작성 </a>
 					   </form>
 						    <div id="replyList${vo.gno }"></div>
 					   </div>
@@ -74,18 +74,18 @@
    
 	<script>
 	//아이디 클릭하면 메세지모달 띄우기
-/* 	function message(no, id){
+ 	function message(no, id){
 		$('.msgmodal').fadeIn();
 		console.log(no);
 		console.log(id);
 		$("#receive_member_no").val(no);
 		$("#receive_member_id").val(id);
-	} */
+	} 
 	
-	$('.btn-sendclick').click(function(){
+/* 	$('.btn-sendclick').click(function(){
 		$('.msgmodal').fadeIn();
 		
-	})
+	}) */
 	
 	//메세지모달 닫기버튼 누름
 	$('.btn-msgclose').click(function(){
@@ -129,9 +129,12 @@
 						html += "</tr>";
 						for(i=0;i<res.length;i++){
 							html += "<tr>";
-							html += "	<td style='text-align:center;'>"+res[i].member_id+"</td>";
+							html += "	<td style='text-align:center;'>"+res[i].member_id;
+							html += 	"<a class='btn-sendclick' href='javascript:message(" + res[i].member_no + ",`" + res[i].member_id +"`)'><img src='/ro/img/message.png' title='쪽지 보내기'></a></td>";
 							html += "	<td style='text-align:center;'>"+res[i].content;
-							html += "	<a href='javascript:commentDel("+res[i].reply_no +");'>[삭제]</a></td>";
+							if(login_member_no == res[i].member_no){
+								html += "	<a href='javascript:commentDel("+res[i].reply_no +");'>[삭제]</a></td>";
+							}
 							html += "	<td style='text-align:center; height:50px;'>" + res[i].reply_writedate + "</td>";
 							
 							html += "</tr>";
@@ -161,10 +164,11 @@
 				url : "/ro/reply/reply.do",
 				data : {
 					board_no : ${replyVO.board_no}, 
-					board_name : ${replyVO.board_name},
+					board_name : '${replyVO.board_name}',
 					content : $("#replyFrm"+gno+" .content2").val(),
 					gno : gno,
-					member_no : login_member_no
+					member_no : login_member_no,
+					member_id : '${loginInfo.id}'
 				},
 				success : function(res){
 						if(res=="success"){

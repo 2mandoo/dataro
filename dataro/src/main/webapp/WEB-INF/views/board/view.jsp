@@ -14,218 +14,10 @@
     <title>view</title>
 </head>
 
-<style>
-table, td, th {
-  border : none;
-  text-align:center;
-};
 
-* {
-	box-sizing:border-box;
-}
-
-body {
-	font-size:18px;
-	margin:50px;
-	line-height:1.5em;
-}
-
-a {
-	text-decoration:none;
-}
-
-.modal {
-	position:fixed;
-	background-color:rgba(0,0,0,0.4);
-	top:0;
-	left:0;
-	height:100vh;
-	width:100%;
-	display:none;
-	z-index: 5;
-}
-.msgmodal {
-	position:fixed;
-	background-color:rgba(0,0,0,0.4);
-	top:0;
-	left:0;
-	height:100vh;
-	width:100%;
-	display:none;
-	z-index: 5;
-}
-.roommodal {
-	position:fixed;
-	background-color:rgba(0,0,0,0.4);
-	top:0;
-	left:0;
-	height:100vh;
-	width:100%;
-	display:none;
-	z-index: 5;
-}
-.roompwdmodal {
-	position:fixed;
-	background-color:rgba(0,0,0,0.4);
-	top:0;
-	left:0;
-	height:100vh;
-	width:100%;
-	display:none;
-	z-index: 5;
-}
-
-.modal-content{
-	background-color:#fff;
-	width:350px;
-	border-radius:10px;
-	position:absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%,-50%);
-	padding:30px;
-	box-shadow:0 0 15px rgba(0,0,0,0.15);
-	text-align:center;
-}
-.modal-msgcontent{
-	background-color:#fff;
-	width:350px;
-	border-radius:10px;
-	position:absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%,-50%);
-	padding:30px;
-	box-shadow:0 0 15px rgba(0,0,0,0.15);
-	text-align:center;
-}
-.modal-roomcontent{
-	background-color:#fff;
-	width:350px;
-	border-radius:10px;
-	position:absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%,-50%);
-	padding:30px;
-	box-shadow:0 0 15px rgba(0,0,0,0.15);
-	text-align:center;
-}
-.modal-roompwdcontent{
-	background-color:#fff;
-	width:350px;
-	border-radius:10px;
-	position:absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%,-50%);
-	padding:30px;
-	box-shadow:0 0 15px rgba(0,0,0,0.15);
-	text-align:center;
-}
-
-.btn-close {
-	position : absolute;
-	top:15px;
-	right:15px;
-}
-.btn-msgclose {
-	position : absolute;
-	top:15px;
-	right:15px;
-}
-.btn-roomclose {
-	position : absolute;
-	top:15px;
-	right:15px;
-}
-.btn-roompwdclose {
-	position : absolute;
-	top:15px;
-	right:15px;
-}
-
-.btn-edit {
-	background-color:#616BEE;
-	color:#fff;
-	border-radius:5px;
-	font-size:14px;
-	padding:7px;
-	display:block;
-}
-.btn-send {
-	background-color:#616BEE;
-	color:#fff;
-	border-radius:5px;
-	font-size:14px;
-	padding:7px;
-	display:block;
-}
-.btn-make {
-	background-color:#616BEE;
-	color:#fff;
-	border-radius:5px;
-	font-size:14px;
-	padding:7px;
-	display:block;
-}
-
-#header {
-   background-color:lightgrey;
-   height:100px;
-}
-#nav {
-   background-color:#339999;
-   width:500px;
-   height:500px;
-   float:left;
-}
-#section {
-   width:700px;
-   height:500px;
-   text-align:left;
-   float:left;
-   padding:10px;
-   overflow-y: scroll;
-   background-color:#f3f3f3ee;
-}
-#footer {
-   background-color:#f9effdee;
-   height:450px;
-   clear:both;
-}
-
-
-</style>
-<style> <!-- 지도 마커라인 긋기-->
-.dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
-.dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#ffffffb8;}
-.dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
-.number {font-weight:bold;color:#ee6152;}
-.dotOverlay:after {content:'';position:absolute;margin-left:-6px;left:50%;bottom:-8px;width:11px;height:8px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')}
-.distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
-.distanceInfo .label {display:inline-block;width:50px;}
-.distanceInfo:after {content:none;}
-</style>
-<style> <!-- 코스 나오는곳 css -->
- .write_detail{background:#eee;width:100%;height:500px;padding:20px;overflow-x: scroll;}
- .write_detail .scroll{width:2080px}
- .write_detail .set{padding:20px;background:#fff;width:400px;float:left;margin-right:15px}
- .write_detail #courseList{float:initial;overflow:hidden}
- .write_detail #courseList li{display:inline-block;float:left;width:400px;background:#fff;padding:15px;margin-right:15px;height:80px}
- .write_detail .seracLocation{display:inline-block;width:100%;border:1px solid #000;}
- .write_detail .seracLocation input{border:none;display:inline-block;width:80%;float:left}
- .write_detail .seracLocation button{border:none;display:inline-block;width:20%;float:right}
- .write_detail .set textarea{width:100%;height:200px}
- .write_detail .set .pic_wrap{display:inline-block;width:100%;height:100px;margin:20px 0}
- .write_detail .set .pic_wrap .pic{width:100px;float:left;height:100%;background:yellow;margin-right:10px;position:relative;}
- .write_detail .set .pic_wrap .pic input{position:absolute;width:100%;height:100%;top:0;left:0;opacity:0;cursor:pointer;z-index:2}
- .write_detail .set .pic_wrap .pic img{width:100%}
- .write_detail .set .pic_wrap .pic .delete{position:absolute;display:inline-block;top:0;right:0;z-index:5;width:auto;transform: translate(50%,-50%);cursor:pointer}
- .write_detail .set .pic_wrap .plus{float:left;line-height:100px}
-</style>
 <body>
-<a href="/ro/board/main.do"><h1>dataro</h1></a>
+	<a href="/ro/board/main.do"><h1>DATARO</h1></a>
+	<a href="/ro/member/login">login</a>
     <div id="wrap">
    
         <div class="content view">
@@ -261,72 +53,90 @@ a {
             </c:forEach>
             </div>
             <div id="mapRoom">
-	            <div id="nav">
-	            <div id="map" style="width:500px;height:500px;"></div>
-	            </div>
+	            	<div id="map" style="width:500px;height:500px;float:left;"></div>
 	            <div id="section">
-	            <table>
-	             	<tr>
-	               		<th>방제목</th>
-	               		<th>방장</th>
-	               		<th>시작일</th>
-	               		<th>종료일</th>
-	               		<th>참여인원</th>
-	               	</tr>
-	               	<c:forEach items="${data.roomList }" var="room">
-	                <tr>
-	                	<td>
-	                	${room.room_title}
-	                		<c:if test="${empty room.room_pwd }">
-		                	<img src="/ro/img/openRoom.png">
-		                	</c:if>
-		                	<c:if test="${!empty room.room_pwd }">
-		                	<img src="/ro/img/secretRoom.png">
-		                	</c:if>
-	                	</td>
-	                	<td>${room.roommaker_id}</td>
-	                	<td>${room.room_startdate}</td>
-	                	<td>${room.room_enddate}</td>
-	                	<td>
-	                	${room.room_participant_count }명
-	                	<input type="hidden" value="room.room_no" class="no">
-	                	<input type="button" value="${room.room_participant_no > 0 ? '참여중' : '참여하기'  }" onClick='joinRoom("${room.room_pwd }", ${room.room_no });'>
-	                	</td>
-	                </tr>
-	               	</c:forEach>
-	            </table>
-				<input type="button" class="btn-makeclick" value="방 만들기">	
+	            	<div class="mkroom btn-makeclick"> 방 만들기
+	            	</div>
+	            	<c:if test="${empty data.roomList }">
+	            	 <br>등록된 방이 없습니다.<br>
+	            	 방을 생성하여 새로운 여행 친구들을 만나보세요:D
+	            	</c:if>
+	            	<c:if test="${!empty data.roomList }">
+			            <div class="tt">
+			            <table>
+			            <colgroup>
+                            <col width="*" />
+                            <col width="80px" />
+                            <col width="100px" />
+                            <col width="100px" />
+                            <col width="100px" />
+                        </colgroup>
+			             	<tr>
+			               		<th>방제목</th>
+			               		<th>방장</th>
+			               		<th>시작일</th>
+			               		<th>종료일</th>
+			               		<th>참여인원</th>
+			               	</tr>
+			               	<c:forEach items="${data.roomList }" var="room">
+			                <tr>
+			                	<td>
+			                		${room.room_title}
+			                		<c:if test="${empty room.room_pwd }">
+				                	<img src="/ro/img/openRoom.png">
+				                	</c:if>
+				                	<c:if test="${!empty room.room_pwd }">
+				                	<img src="/ro/img/secretRoom.png">
+				                	</c:if>
+			                	</td>
+			                	<td>${room.roommaker_id}</td>
+			                	<td>${room.room_startdate}</td>
+			                	<td>${room.room_enddate}</td>
+			                	<td>
+				                	${room.room_participant_count }명
+				                	<input type="hidden" value="room.room_no" class="no">
+				                	<input type="button" value="${room.room_participant_no > 0 ? '참여중' : '참여하기'  }" onClick='joinRoom("${room.room_pwd }", ${room.room_no });'>
+			                	</td>
+			                </tr>
+			               	</c:forEach>
+			            </table>
+			            </div>
+	            	</c:if>
 	            </div>
             </div>
 
             <div class="course">
                 코스
-            </div>
 				<!-- 코스 설명 들어갈 부분 -->      
 				<div class="write_detail">
 					<div class="scroll"></div>
 				</div>
+            </div>
+            
+				
+
             <div id="footer" class="reply">
-                            
-
-	                            <input type="text" name="content" id="content"  placeholder="댓글을 작성해주세요." style="width:80%">
-
-	                            <div style="text-align:right;">
-	                                <a href="javascript:goSave();"><img src="/ro/img/replyWrite.png" title="댓글 작성"></a>
-	                            </div>
-
-	                
-	                <div id="commentArea"></div>
-
+	            <c:if test="${empty loginInfo.member_no}">
+		        	<input type="text" placeholder="댓글은 로그인 후 작성 가능합니다." style="width:80%" readonly>
+	            </c:if>
+	            <c:if test="${!empty loginInfo.member_no}">
+			    	<input type="text" name="content" id="content"  placeholder="댓글을 작성해주세요." style="width:80%">
+			        <div style="text-align:right;">
+			        <a href="javascript:goSave();"><img src="/ro/img/replyWrite.png" title="댓글 작성"></a>
+			        </div>
+		        </c:if>
+		        
+            	<!-- 댓글 나오는 부분 -->
+	           	<div id="commentArea"></div>
             </div>
 
 			<c:if test="${loginInfo.member_no == data.board.member_no }">
 			<a href="/ro/board/updateView.do?board_no=${data.board.board_no}">수정</a>
-			<form method="post" action="/ro/board/viewDelete.do">
-				<input type="hidden" name="board_no" value="${boardVO.board_no }">
-				<input type="hidden" name="board_name" value="${boardVO.board_name }">
-				<a href="javascript:"><img src="/ro/img/delete.png" onclick="submit();" title="게시글 삭제"></a>
-			</form>
+	        <form name="delFrm" method="post" action="/ro/board/viewDelete.do">
+	        	<input type="hidden" name="board_no" value="${boardVO.board_no }">
+            	<input type="hidden" name="board_name" value="${boardVO.board_name }">
+	            <a href="javascript:viewDel()"><img src="/ro/img/delete.png" title="게시글 삭제"></a>
+         	</form>
 			</c:if> 
    		</div>
 	</div>
@@ -352,10 +162,10 @@ a {
    		<div class="modal-roomcontent">
 			<a class="btn-roomclose" href="javascript:"><img src="/ro/img/close.png"></a>
 			<h3>Make Room</h3>
-			<input type="text" id="board_name" name="board_name" value="${data.board.board_name }">
-			<input type="text" id="board_no" name="board_no" value="${data.board.board_no}">
-			<input type="text" id="roommaker_id" name="roommaker_id" value="${loginInfo.id }">
-			<input type="text" id="room_participant_no" name="room_participant_no" value="${loginInfo.member_no }">
+			<input type="hidden" id="board_name" name="board_name" value="${data.board.board_name }">
+			<input type="hidden" id="board_no" name="board_no" value="${data.board.board_no}">
+			<input type="hidden" id="roommaker_id" name="roommaker_id" value="${loginInfo.id }">
+			<input type="hidden" id="room_participant_no" name="room_participant_no" value="${loginInfo.member_no }">
 			*방 제목 <input type="text" id="room_title" name="room_title" style="width:100%"><br>
 			*방 내용 <textarea id="room_content" name="room_content" style="width:100%"></textarea><br>
 			<b>[여행 시작날짜와 종료날짜를 선택해주세요]</b><br>
@@ -364,7 +174,8 @@ a {
 			비밀번호 : <input type="password" id="room_pwd" name="room_pwd">
 			<a class="btn-make" href="javascript:makeRoom();">방만들기</a>
 		</div>
-	</div>  
+	</div> 
+	 
 	<!-- 쪽지보내기 모달 -->
 	<div class="msgmodal">
    		<div class="modal-msgcontent">
@@ -390,6 +201,7 @@ a {
 		</div>
 	</div> 
 	
+
 <!--  사용하다가 에러 안나면 지우자.
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
 >>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
@@ -405,7 +217,6 @@ a {
 	<script type='text/javascript' src="/ro/js/mapView.js"></script>
     
     <script>
-   	
     $(function(){
    		//댓글 1페이지 불러오기
    		getComment(1); 
@@ -423,15 +234,10 @@ a {
 			html +='<div class="map_list">'
 			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
 					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';
-				    if (places.road_address_name) {
-				    	html += '    <span>' + places.road_address_name + '</span>' +
-				                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
-				    } else {
-				    	html += '    <span>' +  places.address_name  + '</span>'; 
-				    }
+			html += '    <span>' +  places.address_name  + '</span>'; 
    			html += '  <span class="tel">' + places.phone  + '</span>'     
 			html +="</div>"
-	        html +='    <textarea placeholder="내용 입력" name="contents">'+places.content+'</textarea>'
+	        html +='    <textarea placeholder="내용 입력" name="contents" readonly>'+places.content+'</textarea>'
 	        html +='    <div class="pic_wrap">'
 	        html +='        <div class="pic">'
 	        html +='       		<img src="/ro/img/no-image.jpg">'
@@ -595,7 +401,8 @@ a {
 	    				board_no : board_no, 
 	    				board_name : board_name,
 	    				content : $("#content").val(),
-	    				member_no : login_member_no
+	    				member_no : login_member_no,
+	    				member_id : '${loginInfo.id}'
 	    			},
 	    			success : function(res){
 	    					if(res=="success"){
@@ -616,6 +423,12 @@ a {
     		} 
     	}
     	
+    	
+    	function viewDel(){
+    		if(confirm("글을 삭제하시겠습니까?")){
+    			delFrm.submit();
+    		}
+    	}
     	
     	function commentDel(no){
     		if(confirm("댓글을 삭제하시겠습니까?")){

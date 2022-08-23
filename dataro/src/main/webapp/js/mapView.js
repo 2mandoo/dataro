@@ -1,26 +1,5 @@
 // ^^ map.js를 앞에 넣어야함.
 // ^^ 들어오자마자 코스 마커랑 직선 지도위에 올리기
-(function getCourse() {
-	var obj;
-	var no=$('#board_no').val();  // 방만들기 모달 안에 hidden으로 숨겨진 board_no를 가지고 옴
-	console.log(no);
-	$.ajax({
-		url : "../map/mapcourselist.do",
-		type : "post",
-		data : {
-			board_no : no
-		},
-		success : function(res) {
-			obj = JSON.parse(res);
-			console.log(obj);
-			console.log(obj.length);
-			if(obj.length != 0) displayCouses(obj);
-		},
-		error : function() {
-			console.log("코스 가져오기 에러");
-		}
-	})
-})();
 
 //^^ 코스에 담은거 마커로 지도에 표시
 function displayCouses(places) {

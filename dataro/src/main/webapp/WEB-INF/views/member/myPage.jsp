@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>My Page</title>
 <link rel="stylesheet" href="/ro/resources/css/login.css"/>
 <link rel="stylesheet" href="/ro/resources/css/reset.css"/>
 </head>
@@ -181,19 +181,19 @@ $(function(){
 	<div class="content login pa">
 		<form action="" method="post" >
 		<a href="/ro/board/main.do"><img src="/ro/img/main.png" id="goMain"></a>
-		<img src="/ro/img/icon6.png" id="setbtn" ><br>
-		<h1>my page</h1>
+		<img src="/ro/img/setting.png" id="setbtn" ><br>
+		<h1>MY PAGE</h1>
 			<img src ="/ro/img/${loginInfo.m_filename_server}"  id="idImg" >
 			<h1 id="nic">${loginInfo.nickname}</h1>
 			<a href="/ro/member/logout" id="lo">로그아웃</a>
 			<input type="hidden" value="${loginInfo.member_no}" name="member_no" id="no"> 
 			<div>
-				<img src="/ro/img/icon1.png" id="bt1" style="width:70px">
-				<img src="/ro/img/icon2.png" id="bt2" style="width:70px">
-				<img src="/ro/img/icon3.png" id="bt3" style="width:70px">
-				<img src="/ro/img/icon4.png" id="bt4" style="width:70px">
-				<img src="/ro/img/icon7.png" id="bt5" style="width:70px">
-				<img src="/ro/img/icon5.png" id="bt6" style="width:70px">
+				<img src="/ro/img/myArticle.png" id="bt1" title="내가 쓴 글">
+				<img src="/ro/img/myReply.png" id="bt2" title="내가 쓴 댓글">
+				<img src="/ro/img/heart.png" id="bt3" title="좋아요 누른 게시물">
+				<img src="/ro/img/message2.png" id="bt4" title="받은 쪽지함">
+				<img src="/ro/img/message3.png" id="bt5" title="보낸 쪽지함">
+				<img src="/ro/img/room.png" id="bt6" title="내가 참여한 채팅방">
 			</div>
 			<div id="area"></div>
 		</form>

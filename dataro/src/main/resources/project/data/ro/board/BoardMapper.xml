@@ -216,14 +216,19 @@
 		where board_no = #{board_no};
 	</select>
 	<select id="updateCourse" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.map.MapVO">
-		select bc.board_no,bc.content,bc.course_no,place_name,address_name,phone
-		from pboardcourse bc,pmap m 
+		select bc.content, m.*
+		from pboardcourse bc, pmap m 
 		where bc.board_no = m.board_no and bc.course_no = m.course_no and bc.board_no=#{board_no};
 	</select>
 	<select id="updateCategory" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.util.CategoryVO">
-		select *
+		select hashtag_no
 		from pcategory
-		where board_no = #{board_no};
+		where board_no = #{board_no} and hashtag_no is not null;
+	</select>
+	<select id="updateCategory2" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.util.CategoryVO">
+		select region_no
+		from pcategory
+		where board_no = #{board_no} and region_no is not null;
 	</select>
 	
 	<!-- 여행글쓰기 수정 -->

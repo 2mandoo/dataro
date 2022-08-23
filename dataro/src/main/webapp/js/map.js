@@ -1,3 +1,29 @@
+
+function getAllCourse() {
+	var no=$('#board_no').val();  // 방만들기 모달 안에 hidden으로 숨겨진 board_no를 가지고 옴
+	console.log(11111111111111111111);
+	console.log(no);
+	
+	$.ajax({
+		url : "../board/getAllCourse.do",
+		type : "post",
+		data : {
+			board_no : no
+		},
+		success : function(res) {
+			console.log(res);
+			console.log(res.course);
+			    			
+			for(var i=0; i<res.course.length; i++){
+				updatebox(i,res.course[i]);
+			}
+		},
+		error : function() {
+			console.log("all 가져오기 에러");
+		}
+	});
+}
+
 // 마커를 담을 배열입니다
 var markers = [];
 

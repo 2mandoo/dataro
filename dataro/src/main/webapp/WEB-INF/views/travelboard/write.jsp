@@ -110,7 +110,7 @@
 		}
 	})
 	function writebox(index,places){
-		
+		count++;
 		var html ='<div class="set">'
 			html +='<span class="jk"></span>'
 			html +='<div class="map_list">'

@@ -83,7 +83,7 @@
         </div>
     </div>
     
-
+<input type="hidden" id="board_no" name="board_no" value="${boardVO.board_no }">
 <!-- 사용하다가 에러 안나면 지우자 
 <script type='text/javascript' src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
 <script type='text/javascript' src="https://cdn.rawgit.com/abdmob/x2js/master/xml2json.js"></script>
@@ -99,6 +99,8 @@
 		
 		$("#hash0").parent("label").css("background","#eee");
 		$("#hash0").prop("disabled",true);
+		
+		getAllCourse();
 	});
 	
 	
@@ -113,45 +115,10 @@
 			$(this).toggleClass("on")
 		}
 	})
-	//등록한글 불러오기(수정용)
-	function updatebox(index,places){
-		
-		var html ='<div class="set">'
-			html +='<span class="jk"></span>'
-			html +='<div class="map_list">'
-			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
-					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';
-				    if (places.road_address_name) {
-				    	html += '    <span>' + places.road_address_name + '</span>' +
-				                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
-				    } else {
-				    	html += '    <span>' +  places.address_name  + '</span>'; 
-				    }
-   			html += '  <span class="tel">' + places.phone  + '</span>'     
-			html +="</div>"
-	        html +='    <textarea placeholder="내용 입력" name="contents"></textarea>'
-	        html +='    <div class="pic_wrap">'
-	        html +='        <div class="pic">'
-            html +='           <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
-            pic++;
-	        html +='       		<img src="/ro/img/no-image.jpg">'
-        	html +='       		<span class="delete" ><i class="fa-solid fa-circle-minus"></i></span>'
-	        html +='     	</div>'
-	        html +='   	 	<div class="pic">'
-            html +='            <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
-            html +='       		<img src="/ro/img/no-image.jpg">'
-            html +='        	<span class="delete" ><i class="fa-solid fa-circle-minus"></i></span>'
-	        html +='      	</div>'
-	        html +='    </div>'
-		    html +='    <span class="course_delete">코스삭제</span>'
-	        html +='</div>'
-	        pic++;
-			$('.scroll').append(html);
-			 
-	};
+	
 	//글추가 작성용
 	function writebox(index,places){
-		
+		count++;
 		var html ='<div class="set">'
 			html +='<span class="jk"></span>'
 			html +='<div class="map_list">'
@@ -244,7 +211,6 @@
 
 	})
 	
-	console.log(${ud})
 </script>
 
 </body>

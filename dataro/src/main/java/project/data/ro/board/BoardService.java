@@ -37,6 +37,8 @@ public interface BoardService {
 	//=================================정현===============================
 	//상세
 	Map view(BoardVO vo);
+	//게시글 삭제
+	int delete(BoardVO vo);
 	//게시글 좋아요
 	int clickBoardLike(BoardVO vo);
 	//게시글 싫어요

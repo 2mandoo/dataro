@@ -64,6 +64,16 @@ a {
 	display:none;
 	z-index: 5;
 }
+.roompwdmodal {
+	position:fixed;
+	background-color:rgba(0,0,0,0.4);
+	top:0;
+	left:0;
+	height:100vh;
+	width:100%;
+	display:none;
+	z-index: 5;
+}
 
 .modal-content{
 	background-color:#fff;
@@ -101,6 +111,18 @@ a {
 	box-shadow:0 0 15px rgba(0,0,0,0.15);
 	text-align:center;
 }
+.modal-roompwdcontent{
+	background-color:#fff;
+	width:350px;
+	border-radius:10px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	padding:30px;
+	box-shadow:0 0 15px rgba(0,0,0,0.15);
+	text-align:center;
+}
 
 .btn-close {
 	position : absolute;
@@ -113,6 +135,11 @@ a {
 	right:15px;
 }
 .btn-roomclose {
+	position : absolute;
+	top:15px;
+	right:15px;
+}
+.btn-roompwdclose {
 	position : absolute;
 	top:15px;
 	right:15px;
@@ -183,7 +210,7 @@ a {
 <body>
 <a href="/ro/board/main.do"><h1>dataro</h1></a>
     <div id="wrap">
-    ${loginInfo.nickname }
+   
         <div class="content view">
             <div>
                 <div class="title">
@@ -273,11 +300,31 @@ a {
             </div>
 			<c:if test="${loginInfo.member_no != boardVO.member_no }">
 			<a href="javascript:">수정</a>
-			<a href="javascript:"><img src="/ro/img/delete.png" title="게시글 삭제"></a>
+			<form method="post" action="/ro/board/viewDelete.do">
+				<input type="hidden" name="board_no" value="${boardVO.board_no }">
+				<input type="hidden" name="board_name" value="${boardVO.board_name }">
+				<a href="javascript:"><img src="/ro/img/delete.png" onclick="submit();" title="게시글 삭제"></a>
+			</form>
 			</c:if>
    		</div>
 	</div>
 	
+	<!-- 방비밀번호 모달 -->
+	<div class="roompwdmodal">
+   		<div class="modal-roompwdcontent">
+   			<a class="btn-roompwdclose" href="javascript:"><img src="/ro/img/close.png"></a>
+			<h3>Enter Password</h3>
+			<form action="/ro/room/pwdCheck.do" method="post">
+				<input type="hidden" name="board_name" value="${data.board.board_name}">
+				<input type="hidden" name="board_no" value="${data.board.board_no}">
+				<input type="hidden" id="room_no" name="room_no" value="">
+				<input type="text" name="room_pwd">
+				<input type="submit" value="참여">
+			</form>	
+		</div>
+	</div>
+
+
 	<!-- 방만들기 모달 -->
 	<div class="roommodal">
    		<div class="modal-roomcontent">
@@ -336,6 +383,7 @@ a {
 	<script type='text/javascript' src="/ro/js/mapView.js"></script>
     
     <script>
+
 	$('.btn-makeclick').click(function(){
 		$('.roommodal').fadeIn();
 	})
@@ -348,6 +396,10 @@ a {
 		$("#room_enddate").val('');
 		$("#room_pwd").val('');
 	})
+	$('.btn-roompwdclose').click(function(){
+		$('.roompwdmodal').fadeOut();
+		$("#room_pwd").val('');
+	})
 	
 	var login_member_no;
 	<c:if test="${empty loginInfo.member_no }">
@@ -357,14 +409,18 @@ a {
     	login_member_no = ${loginInfo.member_no}
 	</c:if>
 	console.log(login_member_no);
+	
     	var likeCheck = -1 ;
     	var dislikeCheck = -1;
+    	
     	function joinRoom(pwd, no){
     		alert(no);
     		if(confirm('방에 참여하시겠습니까?')){
     			
 	    		if(pwd){
-	    			location.href="../room/pwdForm.do?board_name=${data.board.board_name}&board_no=${data.board.board_no}&room_no="+no
+	    			// location.href="../room/pwdForm.do?board_name=${data.board.board_name}&board_no=${data.board.board_no}&room_no="+no
+	    			$('#room_no').val(no);
+	    			$('.roompwdmodal').fadeIn();
 	    		} else{
 	    			location.href="../room/room.do?room_no="+no
 	    		}

@@ -20,8 +20,8 @@
    		     <form action="chatWrite" method="post">
         		<input type="hidden" name="room_no" value="${view.room_no }">
         		<input type="hidden" name="member_no" value="${loginInfo.member_no }">
-        		<input type="text" name="content" value="댓글을 입력하세요">
-        		<input type="submit">
+        		<input type="text" name="content" value="">
+        		<input type="submit" value="전송">
         	</form>
 			<div id="chatArea">
 
@@ -47,6 +47,8 @@ function getchat(){
 		}
 	})
 	setTimeout(getchat,1000)
+
+	
 }
 
 </script>

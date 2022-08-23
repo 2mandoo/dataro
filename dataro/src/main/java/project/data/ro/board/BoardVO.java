@@ -6,6 +6,8 @@ import java.util.List;
 import lombok.Data;
 import project.data.ro.map.MapVO;
 import project.data.ro.util.CategoryVO;
+import project.data.ro.util.FileVO;
+import project.data.ro.util.LikeVO;
 
 @Data
 public class BoardVO {
@@ -20,6 +22,7 @@ public class BoardVO {
 	private Timestamp updatedate; 
 	private String stype;
 	private String sword;
+	private String stag;
 	private int startIdx;
 	private int pageRow;
 	private int page;
@@ -35,9 +38,15 @@ public class BoardVO {
 	
 	private String content; 
 	private int likecount;
+	private int replycount;
 	private int dislikecount;
 	private int hashtag_no;
-	private String hashtag_name; 
+	private String hashtag_name;
+	private String filename_server;
+	
+	// 정길 메인에 이미지 띄우기
+	private List<FileVO> getTravPic;
+	
 	
 	// 내용여러개
 	private List<MapVO> placeList;

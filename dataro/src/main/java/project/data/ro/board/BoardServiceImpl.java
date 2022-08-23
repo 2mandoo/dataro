@@ -4,10 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -20,6 +18,7 @@ import project.data.ro.room.RoomMapper;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryMapper;
 import project.data.ro.util.CategoryVO;
+import project.data.ro.util.FileVO;
 
 @Slf4j
 @Service
@@ -31,8 +30,10 @@ public class BoardServiceImpl implements BoardService {
 	RoomMapper rmapper;
 	
 	MapMapper pmapper;
+	
 	CategoryMapper cmapper;
 	
+	//////////////////////////진경//////////////////////
 	//여행코스글쓰기(for문-코스등록)
 	@Override
 	public boolean insert(BoardVO bvo) {
@@ -43,6 +44,16 @@ public class BoardServiceImpl implements BoardService {
 			mapper.insertCourse(bvo);
 		}
 		return true;
+	}
+	//여행코스글수정 화면 불러오기
+	@Override
+	public Map updateView(BoardVO vo) {
+		Map ud = new HashMap();
+		ud.put("view",mapper.updateView(vo));
+		ud.put("course",mapper.updateCourse(vo));
+		System.out.println("가"+mapper.updateView(vo));
+		System.out.println("나"+mapper.updateCourse(vo));
+		return ud;
 	}
 	//여행코스글수정
 	@Override
@@ -55,16 +66,6 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.delete(no) > 0 ? true : false;
 	}
 
-	@Override
-	public BoardVO view(int no) {
-		mapper.updateViewcount(no);
-		return mapper.view(no);
-	}
-
-	@Override
-	public BoardVO edit(int no) {
-		return mapper.view(no);
-	}
 
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
@@ -218,10 +219,20 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.myList6(vo);
 	}
 	
+	
+	// 메인에 이미지띄우기 정길
+	@Override
+	public List<FileVO> getTravPic(int board_no) {
+		return mapper.getTravPic(board_no);
+	}
+
+
+	
+	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(끝) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	// 메인
 	@Override
-	public List<BoardVO> list(BoardVO vo) {	
+	public List<BoardVO> list(BoardVO vo) {
 		return mapper.list(vo);
 	}
 
@@ -291,4 +302,5 @@ public class BoardServiceImpl implements BoardService {
 	public List<CategoryVO> hashtag(int board_no) {
 		return mapper.hashtag(board_no);
 	}
+
 }

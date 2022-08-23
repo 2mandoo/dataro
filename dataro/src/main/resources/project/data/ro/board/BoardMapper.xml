@@ -5,14 +5,14 @@
 
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ정길ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	
-	<select id="view" parameterType="int" resultType="project.data.ro.board.BoardVO">
+	<!-- <select id="view" parameterType="int" resultType="project.data.ro.board.BoardVO">
 		SELECT * FROM pboard WHERE board_no=#{board_no} 
 	</select>
 	
 	
 	<update id="updateViewcount" parameterType="int">
 		UPDATE pboard SET viewcount = viewcount+1 WHERE board_no=#{board_no} 
-	</update>
+	</update> -->
 	
 	
 	<!-- 내가 쓴 글(마이페이지) -->
@@ -73,7 +73,8 @@
     		m.nickname,
     		m.id,
     		me.message_content, 
-    		me.senddate 
+    		me.senddate,
+    		me.message_no
 		from pmessage me join pmember m  
 		on m.member_no = me.send_member_no where receive_member_no=#{receive_member_no} 
 		<if test="stype != null and stype != ''">
@@ -108,7 +109,8 @@
     		m.nickname,
     		m.id,
     		me.message_content, 
-    		me.senddate 
+    		me.senddate,
+    		me.message_no
 		from pmessage me join pmember m  
 		on m.member_no = me.receive_member_no where send_member_no=#{send_member_no} 
 		<if test="stype != null and stype != ''">
@@ -146,35 +148,47 @@
 	</select>
 	
 	
+	<!-- 정길 메인에 글쓰기에 등록한 이미지 띄우기 -->
+	<select id ="getTravPic" resultType="project.data.ro.util.FileVO" parameterType="int">
+		select board_no, filename_server 
+		from pfile 
+		where board_no = #{board_no} limit 1;
+	</select>
+	
+	
+	
+	
+	
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ정길ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 	
-	<!-- main from 호윤 -->
+	<!-- 호윤 메인 페이지 -->
 	<select id="list" resultType="project.data.ro.board.BoardVO"> 
-		select 
-			*
-		    , (select count(*) from plike l where b.board_no = l.board_no) as likecount
-		    , (select group_concat(hashtag_name) from pcategory c left outer join phashtag  h on c.hashtag_no = h.hashtag_no where c.board_no = b.board_no) as hashtag_name
-		    from pboard b
-			<where>
-				board_name = '여행게시판'
-				<if test ="stype != null or sword != null">
-					<if test ="stype == 'title'">
-					  and title like '%${sword}%'
-					</if>
-					<if test = "stype == 'content'">
-					  and content like '%${sword}%'
-					</if>
+		select
+		 * 
+ 		,(SELECT COUNT(*) FROM plike WHERE pboard.board_no = plike.board_no) AS likecount <!-- 좋아요 갯수 -->
+		,(SELECT COUNT(reply_no) FROM preply WHERE pboard.board_no = preply.board_no) AS replycount <!--  댓글 갯수 -->
+		,(SELECT filename_server  FROM pfile where pboard.board_name='여행게시판' 
+			and pboard.board_no = pfile.board_no limit 1) AS filename_server <!-- 글쓰기할떄 넣은 사진 메인페이지에 불러오기 -->
+		from pboard where board_name = '여행게시판'
+			<if test ="stype != null or sword != null"> 
+				<if test ="stype == 'title'">
+				  and title like '%${sword}%'
 				</if>
-				
-			</where>
+			</if>
+			<if test = "stag != '' and stag != null">
+				and board_no in (select board_no from pcategory where hashtag_no = #{stag} and board_name='여행게시판')
+			</if>
+			order by writedate desc
 	</select>
 	
-	<!-- main from 호윤 -->
+
+	<!-- 호윤 메인페이지에 각 게시물에 해당하는 코스 보여주기 -->
 	<select id ="place" resultType="project.data.ro.map.MapVO" parameterType="int">
 		select place_name from pmap where board_no = #{board_no}
 	</select>
 	
+	<!-- 호윤 메인페이지에 각 게시물에 해당하는 해쉬태그 보여주기 -->
 	<select id ="hashtag" resultType="project.data.ro.util.CategoryVO" parameterType="int">
 		select pboard.board_no,phashtag.hashtag_no,phashtag.hashtag_name 
 		from phashtag join pcategory
@@ -182,6 +196,8 @@
         join pboard on pboard.board_no = pcategory.board_no
 		where pboard.board_no = #{board_no};
 	</select>
+	
+	
 	
 	
 	<!-- 여행글쓰기 from 진경 -->
@@ -193,6 +209,18 @@
 				SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>
+	<!-- 여행수정화면 불러오기 -->
+	<select id="updateView" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.board.BoardVO">
+		select board_no,member_no,title
+		from pboard
+		where board_no = #{board_no};
+	</select>
+	<select id="updateCourse" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.map.MapVO">
+		select bc.board_no,bc.content,bc.course_no,place_name,address_name,phone
+		from pboardcourse bc,pmap m 
+		where bc.board_no = m.board_no and bc.course_no = m.course_no and bc.board_no=#{board_no};
+	</select>
+
 	
 	<!-- 여행글쓰기 수정 -->
 	<update id="update" parameterType="project.data.ro.board.BoardVO">

@@ -178,9 +178,9 @@ $(function(){
 });
 </script>
 <div id="wrap" >
-	<div class="content login">
+	<div class="content login pa">
 		<form action="" method="post" >
-		<img src="/ro/img/back.png" onclick="location.href='/ro/board/main.do'" id="backBtn">
+		<a href="/ro/board/main.do"><img src="/ro/img/main.png" id="goMain"></a>
 		<img src="/ro/img/icon6.png" id="setbtn" ><br>
 		<h1>my page</h1>
 			<img src ="/ro/img/${loginInfo.m_filename_server}"  id="idImg" >

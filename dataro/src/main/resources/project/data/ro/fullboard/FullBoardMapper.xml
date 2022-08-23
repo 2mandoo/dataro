@@ -1,38 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.data.ro.fullboard.FullBoardMapper">
-	
+
+	<!-- 게시판 입력 -->
 	<insert id = "insert" parameterType="project.data.ro.fullboard.FullBoardVO"> <!--course_no 일단 뻄 -->
 		insert into pboard(board_name,board_no,id,member_no,title,viewcount,writedate,updatedate)
-		values (#{board_name},#{board_no},id,#{member_no},#{title},#{viewcount},NOW(),NOW())
+		values ('자유게시판',#{board_no},id,#{member_no},#{title},#{viewcount},NOW(),NOW())
 		<selectKey keyProperty="board_no" resultType="int" order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>
 	
+	<!-- 파일 입력 -->
 	<insert id="fileUpload" parameterType="project.data.ro.fullboard.FullBoardVO" >
 		insert into pfile(board_name,board_no,filename_org,filename_server)
-		VALUES ('여행게시판',#{board_no},#{filename_org},#{filename_server})
+		VALUES ('자유게시판',#{board_no},#{filename_org},#{filename_server})
 	</insert>
 	
+	<!-- 상세 페이지 -->
 	<select id="view" parameterType="project.data.ro.fullboard.FullBoardVO" resultType="project.data.ro.fullboard.FullBoardVO"> <!-- 하나의 객체 -->  <!-- parameterType="int" --> 
-<!-- 			select *,
-			(select filename_org from pfile where board_no=pboard.board_no) as filename_org,
-			(select filename_server from pfile where board_no=pboard.board_no) as filename_server
-			from  pboard 
-			where board_no = #{board_no} and board_name = '여행게시판'
-			 -->
-		select * 
-		from pboard A inner join pfile B 
+		select * from pboard A inner join pfile B 
 		on A.board_no = B.board_no
-		where A.board_no = #{board_no} and A.board_name = '여행게시판';
+		where A.board_no = #{board_no} and A.board_name = '자유게시판'
 	</select>
 
-	
-	<select id="list" resultType="project.data.ro.fullboard.FullBoardVO"> <!-- 하나의 객체, parapmeterType이 없어도 실행됨 -->
-	select * from pboard <!-- 조건 추가해서 쿼리 작성해야함 -->
+	<!-- 게시판 페이지 -->
+	<select id="list" resultType="project.data.ro.fullboard.FullBoardVO">
+	select * from pboard 
 		<where>
-			board_name = '여행게시판'
+			board_name = '자유게시판'
 			<if test ="stype != null or sword != null">
 				<if test ="stype == 'title'">
 				  and title like '%${sword}%'
@@ -46,23 +42,25 @@
 		LIMIT  ${startIdx},${pageRow};
 	</select>
 	
+	<!-- 게시글 총갯수 페이징처리할떄 필요 -->
 	<select id="count" parameterType="project.data.ro.fullboard.FullBoardVO" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM pboard
 	</select>
 	
-	
+	<!-- 게시글 조회수 -->
 	<update id="viewcountupdate" parameterType="project.data.ro.fullboard.FullBoardVO">
-	  UPDATE pboard SET viewcount = viewcount + 1 WHERE board_no = #{board_no} and board_name = '여행게시판' <!-- 텍스트로 하지 말 것 -->
+	  UPDATE pboard SET viewcount = viewcount + 1 WHERE board_no = #{board_no} and board_name = '자유게시판' <!-- 텍스트로 하지 말 것 -->
 	</update>
 	
+	<!--  게시글 삭제 -->
 	<delete id="delete" parameterType="int">
 		DELETE FROM pboard WHERE board_no=#{board_no} 
 	</delete>
 	
+	<!-- 게시글 제목 수정 -->
 	<update id="update" parameterType="project.data.ro.fullboard.FullBoardVO">
 		UPDATE pboard SET
 			title = #{title}
-<!-- 			, content = #{content} -->
 			<if test="filename_org != null">
 			, filename_org = #{filename_org}
 			, filename_server = #{filename_server}

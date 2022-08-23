@@ -1,6 +1,7 @@
 package project.data.ro.board;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -8,13 +9,15 @@ import project.data.ro.map.MapVO;
 import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryVO;
+import project.data.ro.util.FileVO;
+import project.data.ro.util.LikeVO;
 
 @Mapper
 public interface BoardMapper {
 	
 	int count(BoardVO vo); // 얘도 없는데 지워도 될까요? 정길.
-	BoardVO view(int no);
-	int updateViewcount(int no); 
+//	BoardVO view(int no);
+//	int updateViewcount(int no); 
 	int update(BoardVO vo);
 	//? delete boardmapper.xml 엔 없던데 머임요? 
 	int delete(int no);
@@ -31,15 +34,22 @@ public interface BoardMapper {
 	List<MessageVO> myList4(MessageVO vo);
 	List<MessageVO> myList5(MessageVO vo);
 	List<RoomVO> myList6(RoomVO vo);
+
+	List<FileVO> getTravPic(int board_no); // 정길 메인에 이미지 띄우기 연습.
+	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(마이페이지 끝) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 	
 	// main 
 	List<BoardVO> list(BoardVO vo);
 	List<MapVO> place(int board_no);
 	List<CategoryVO> hashtag(int board_no);
-	// write
+	// 여행코스글쓰기 -진경
 	int insert(BoardVO vo);
+	// 여행코스글쓰기/코스등록-진경
 	int insertCourse(BoardVO vo);
+	// 여행코스수정/화면출력-진경
+	BoardVO updateView(BoardVO vo);
+	List<MapVO> updateCourse(BoardVO vo);
 
 	
 	//=================================정현===============================

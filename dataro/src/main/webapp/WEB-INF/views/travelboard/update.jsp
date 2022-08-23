@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/ro/resources/css/reset.css"/>
 <link rel="stylesheet" href="/ro/resources/css/style.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="shortcut icon" href="#"> <!-- favicon.ico 에러나서 넣어줌 -->
 </head>
 <body>
     <div id="wrap">
@@ -24,42 +25,60 @@
 	                        <div class="user_img"><img src="/ro/img/${loginInfo.m_filename_server}"></div>
 	                        <p>${loginInfo.nickname }</p>
 	                    </span>
-	                    <input type="text" name="title" id="title" class="title_text" value="코스 타이틀">
+	                    <input type="text" name="title" id="title" class="title_text" value="${ud.view.title }">
 	                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
+	                    <div class="hash">
+	                      	<h3>여행테마</h3>
+	                   		<c:forEach var="hash" items="${category.hash}">
+	                   			<label><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
+	                   		</c:forEach>
+	                    </div>
                     </div>
-                    <div class="hash">
-                   		<c:forEach var="hash" items="${hash}">
-                   			<label><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
-                   		</c:forEach>
+                    <div class="region">
+                    	<input type="hidden" name="region_name" value="">
+                    	<select name="region" id="region">
+                    		<option value="0" selected>지역</option>
+                    		<c:forEach var="region" items="${category.region}">
+                    			<option value="${region.region_name}" >${region.region_name }</option>
+                    		</c:forEach>
+                    	</select>
+                    	<div class="region_detail">
+                    
+                    	</div>
                     </div>
                 </div>
-                <!--//제목-->
-          
                 <!--지도,글쓰기-->
-					<div class="map_wrap">
-					    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-					    <div id="menu_wrap" class="bg_white" style="display:;">
-					        <div class="option">
-					        </div>
-					        <hr>
-					        <ul id="placesList"></ul>
-					        <div id="pagination"></div>
-					    </div>
+				<div class="map_wrap">
+					
+					<!-- 지도 나오는 곳 -->
+				    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+				    
+				    <!-- 검색 목록 -->
+				    <div id="menu_wrap" class="bg_white" style="display:;">
+				        <div class="option">
+				        </div>
+				        <hr>
+				        <ul id="placesList"></ul>
+				        <div id="pagination"></div>
+				    </div>
+				    
+				</div>
+				
+				<!-- 지도 검색 엔터도 가능-->
+				<div class="seracLocation">
+					<div>
+						<input type="text" value="종각역 맛집" id="keyword" onkeyup="enterkey()" size="15"> 
+						<a onclick="jacascript:searchPlaces()"><i class="fa-solid fa-magnifying-glass"></i></a>
 					</div>
-                    <!-- //지도 -->
-                    <div class="seracLocation">
-                      	<div>
-                      		<!-- 엔터로 검색가능하게 바꿈 -->
-			                 <input type="text" value="종각역 맛집" id="keyword" onkeyup="enterkey()" size="15"> 
-			                 <a onclick="jacascript:searchPlaces()"><i class="fa-solid fa-magnifying-glass"></i></a>
-			            </div>
-                     </div>
-                    <div class="write_detail">
-                    	<div class="scroll"></div>
-                    </div>
-                 <!--//지도,글쓰기-->
-				 <a href="javascript:displayCouses(courseArr);">마커표시</a>
-                 <a href="javascript:goSave()">등록</a>
+				</div>
+				
+				<!-- 코스 설명 들어갈 부분 -->      
+				<div class="write_detail">
+					<div class="scroll"></div>
+				</div>
+                <!--//지도,글쓰기-->
+				<a href="javascript:displayCouses(courseArr);">[마커표시]</a>&nbsp;&nbsp;
+                <a href="javascript:goSave()">[등록]</a>
             </form>
         </div>
     </div>
@@ -75,25 +94,61 @@
 <script type='text/javascript' src="/ro/js/map.js"></script>
 <script type='text/javascript' src="/ro/js/mapMake.js"></script> 
 <script>
+	$(function(){
+		console.log(${ud.course.length});
+		console.log(${ud.course[1]});
+
+		$("#hash0").parent("label").css("background","#eee")
+		$("#hash0").prop("disabled",true)
+	})
 	function goSave(){
 		send(courseArr);
 		AH.submit();
 	};
-
 	var pic =1;
-
-	$(function(){
-
-	})			
-	
 	//체크박스on
 	$(".hash label").click(function(){
 		if($(this).find("input[type='checkbox']").is(':checked')){
 			$(this).toggleClass("on")
 		}
 	})
-	
-
+	//등록한글 불러오기(수정용)
+	function updatebox(index,places){
+		
+		var html ='<div class="set">'
+			html +='<span class="jk"></span>'
+			html +='<div class="map_list">'
+			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
+					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';
+				    if (places.road_address_name) {
+				    	html += '    <span>' + places.road_address_name + '</span>' +
+				                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
+				    } else {
+				    	html += '    <span>' +  places.address_name  + '</span>'; 
+				    }
+   			html += '  <span class="tel">' + places.phone  + '</span>'     
+			html +="</div>"
+	        html +='    <textarea placeholder="내용 입력" name="contents"></textarea>'
+	        html +='    <div class="pic_wrap">'
+	        html +='        <div class="pic">'
+            html +='           <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
+            pic++;
+	        html +='       		<img src="/ro/img/no-image.jpg">'
+        	html +='       		<span class="delete" ><i class="fa-solid fa-circle-minus"></i></span>'
+	        html +='     	</div>'
+	        html +='   	 	<div class="pic">'
+            html +='            <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
+            html +='       		<img src="/ro/img/no-image.jpg">'
+            html +='        	<span class="delete" ><i class="fa-solid fa-circle-minus"></i></span>'
+	        html +='      	</div>'
+	        html +='    </div>'
+		    html +='    <span class="course_delete">코스삭제</span>'
+	        html +='</div>'
+	        pic++;
+			$('.scroll').append(html);
+			 
+	};
+	//글추가 작성용
 	function writebox(index,places){
 		
 		var html ='<div class="set">'
@@ -165,6 +220,29 @@
             }
         }
 	})
+	//지도 소분류 ajax로 바로 가져오기
+	$("#region").change(function(){
+		console.log($(this).val())
+		var region_name = $(this).val()
+		$.ajax({
+			url:"/ro/board/region_detail",
+			data:{
+				rs:region_name
+			},
+			success:function(res){
+				$(".region_detail").find("input").remove();
+				$(".region_detail").find("label").remove();
+				for(var i=0;i<res.regionDetailList.length;i++){
+				    	var html = '<label for="region'+i+'">'+res.regionDetailList[i].region_name
+				    		html +='<input type="checkbox" name="region_no_arr" id="region'+i+'" value="'+res.regionDetailList[i].region_no+'">'
+				    		html +='</label>'
+				    	$(".region_detail").append(html);
+				}
+			}
+		})
+
+	})
+	
 </script>
 
 </body>

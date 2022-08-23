@@ -423,15 +423,10 @@ a {
 			html +='<div class="map_list">'
 			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
 					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';
-				    if (places.road_address_name) {
-				    	html += '    <span>' + places.road_address_name + '</span>' +
-				                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
-				    } else {
-				    	html += '    <span>' +  places.address_name  + '</span>'; 
-				    }
+			html += '    <span>' +  places.address_name  + '</span>'; 
    			html += '  <span class="tel">' + places.phone  + '</span>'     
 			html +="</div>"
-	        html +='    <textarea placeholder="내용 입력" name="contents">'+places.content+'</textarea>'
+	        html +='    <textarea placeholder="내용 입력" name="contents" readonly>'+places.content+'</textarea>'
 	        html +='    <div class="pic_wrap">'
 	        html +='        <div class="pic">'
 	        html +='       		<img src="/ro/img/no-image.jpg">'

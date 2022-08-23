@@ -2,10 +2,7 @@
 // ^^ 마커보기 눌렀는지 아닌지
 var markerShow = false;
 
-// ^^ 코스 주소를 담을 배열, 인덱스
-var courseArr = [],
-	courseIdx = 0,
-	count=0;
+
    
 // ^^ java 컨트롤러로 코스주소들 보내기
 function send(courseArr){
@@ -31,8 +28,6 @@ function send(courseArr){
 var ps = new kakao.maps.services.Places();  
 
 
-// 키워드로 장소를 검색합니다
-searchPlaces();
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {

@@ -17,6 +17,7 @@
 
 <body>
 	<a href="/ro/board/main.do"><h1>DATARO</h1></a>
+	<a href="/ro/member/login">login</a>
     <div id="wrap">
    
         <div class="content view">
@@ -54,13 +55,20 @@
             <div id="mapRoom">
 	            	<div id="map" style="width:500px;height:500px;float:left;"></div>
 	            <div id="section">
-	            	<input type="button" class="btn-makeclick" value="방 만들기">	
+	            	<input class="mkroom btn-makeclick" type="button" value="방 만들기">	
 	            	<c:if test="${empty data.roomList }">
 	            	 <br>등록된 방이 없습니다.<br>
 	            	 방을 생성하여 새로운 여행 친구들을 만나보세요:D
 	            	</c:if>
 	            	<c:if test="${!empty data.roomList }">
 			            <table>
+			            <colgroup>
+                            <col width="*" />
+                            <col width="80px" />
+                            <col width="100px" />
+                            <col width="100px" />
+                            <col width="100px" />
+                        </colgroup>
 			             	<tr>
 			               		<th>방제목</th>
 			               		<th>방장</th>
@@ -390,7 +398,8 @@
 	    				board_no : board_no, 
 	    				board_name : board_name,
 	    				content : $("#content").val(),
-	    				member_no : login_member_no
+	    				member_no : login_member_no,
+	    				member_id : '${loginInfo.id}'
 	    			},
 	    			success : function(res){
 	    					if(res=="success"){

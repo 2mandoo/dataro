@@ -8,7 +8,7 @@
    <table class="list">
        <colgroup>
            <col width="80px" />
-           <col width="100px" />
+           <col width="140px" />
            <col width="*" />
            <col width="140px" />
            <col width="200px" />

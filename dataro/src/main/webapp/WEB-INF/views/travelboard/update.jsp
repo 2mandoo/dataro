@@ -112,7 +112,7 @@
         </div>
     </div>
     
-
+<input type="hidden" id="board_no" name="board_no" value="${boardVO.board_no }">
 <!-- 사용하다가 에러 안나면 지우자 
 <script type='text/javascript' src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
 <script type='text/javascript' src="https://cdn.rawgit.com/abdmob/x2js/master/xml2json.js"></script>
@@ -130,6 +130,8 @@
 	})
 		$("#hash0").parent("label").css("background","#eee");
 		$("#hash0").prop("disabled",true);
+		
+		getAllCourse();
 	});
 	
 	function goSave(){
@@ -146,7 +148,7 @@
 	
 	//글추가 작성용
 	function writebox(index,places){
-		
+		count++;
 		var html ='<div class="set">'
 			html +='<span class="jk"></span>'
 			html +='<div class="map_list">'
@@ -241,7 +243,6 @@
 		}
 	})
 	
-	console.log(${ud})
 </script>
 
 </body>

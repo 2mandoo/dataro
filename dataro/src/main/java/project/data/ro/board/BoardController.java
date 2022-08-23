@@ -29,7 +29,6 @@ import project.data.ro.util.LikeVO;
 import project.data.ro.util.UtilService;
 
 @Controller
-@Slf4j
 @RequestMapping("/board")
 public class BoardController {
 	
@@ -45,6 +44,16 @@ public class BoardController {
 	@Autowired
 	MapMapper mapper;
 
+	// +++진귀
+	@PostMapping("/getAllCourse.do")
+	@ResponseBody
+	public Map vview(BoardVO bvo,HttpSession sess,Model model) {
+	//	MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
+		bvo.setMember_no(40);
+		return service.updateView(bvo);
+	}
+	// 진귀++++++
+	
 	
 	////////////////////////////////진경시작////////////////////////////////////////
 	//여행코스 글쓰기화면

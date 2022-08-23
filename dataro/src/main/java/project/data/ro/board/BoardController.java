@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import lombok.extern.slf4j.Slf4j;
 import project.data.ro.map.MapMapper;
 import project.data.ro.member.MemberService;
 import project.data.ro.member.MemberVO;
@@ -25,7 +24,6 @@ import project.data.ro.message.MessageVO;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryVO;
 import project.data.ro.util.FileVO;
-import project.data.ro.util.LikeVO;
 import project.data.ro.util.UtilService;
 
 @Controller
@@ -45,11 +43,15 @@ public class BoardController {
 	MapMapper mapper;
 
 	// +++진귀
-	@PostMapping("/getAllCourse.do")
+	
+	@RequestMapping("/getAllCourse.do")
 	@ResponseBody
 	public Map vview(BoardVO bvo,HttpSession sess,Model model) {
 		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
-		bvo.setMember_no(mvo.getMember_no());
+		if(mvo != null) {  
+			// 로그인 안해도 view 에서 널포인트에러 안나게 바꿈
+			bvo.setMember_no(mvo.getMember_no());
+		}
 		return service.updateView(bvo);
 	}
 	// 진귀++++++

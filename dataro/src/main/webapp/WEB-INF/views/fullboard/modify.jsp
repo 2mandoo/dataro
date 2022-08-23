@@ -14,17 +14,23 @@
 <link rel="stylesheet" href="/ro/resources/css/owl.carousel.min.css">
 <link rel="stylesheet" href="/ro/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/ro/resources/css/style2.css">
-    <script>
-   	function goSave() {
-   		update.submit();
-   	}
-   </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+function goModifySave() {
+	if($("#title").val() == '') {
+		alert("제목수정시 공백은 안됩니다 ㅠㅠ");
+		$("#title").focus();
+	} else {
+		alert("제목수정 완료 입니다!!");
+		update.submit();
+	}
+}
+</script>
 </head>
-<body>
-    
+<body> 
         <div class="sub">
             <div class="size">
-                <h3 class="sub_title">수정 게시판</h3>
+                <h3 class="sub_title">수정게시판</h3>
     
                 <div class="bbs">
                 <form method="post" name="update" id="frm" action="update.do"><!-- enctype="multipart/form-data" -->
@@ -32,21 +38,15 @@
                     <table class="board_write">
                         <tbody>
                         <tr>
-                            <th>제목</th>
+                            <th>제목수정</th>
                             <td>
-                                <input type="text" name="title" id="title" class="wid100" value="${modify.title }"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>내용</th>
-                            <td>
-                                <textarea name="content" id="content">${modify.content }</textarea>
+                                <input type="text" name="title" id="title" class="wid100" value="${modify.title}"/>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                     <div class="btnSet"  style="text-align:right;">
-                        <a class="btn" href="javascript:goSave();">저장 </a>
+                        <a class="btn" href="javascript:goModifySave();">저장 </a>
                     </div>
                     </form>
                 </div>

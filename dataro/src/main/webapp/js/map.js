@@ -1,9 +1,7 @@
 
 function getAllCourse() {
 	var no=$('#board_no').val();  // 방만들기 모달 안에 hidden으로 숨겨진 board_no를 가지고 옴
-	console.log(11111111111111111111);
-	console.log(no);
-	
+
 	$.ajax({
 		url : "/ro/board/getAllCourse.do",
 		type : "post",
@@ -13,10 +11,14 @@ function getAllCourse() {
 		success : function(res) {
 			console.log(res);
 			console.log(res.course);
-			for(var i=0; i<res.course.length; i++){
-				updatebox(i,res.course[i]);
+			if(res.course.length != 0) {
+				for(var i=0; i<res.course.length; i++){
+					updatebox(i,res.course[i]);
+					courseArr.push(res.course[i]);
+				}
+				displayCouses(res.course);
 			}
-			console.log(res.hrcategory.length)
+			console.log(res.hrcategory)
 		
 			for(var i=1;i<=res.hrcategory.length;i++){
 				console.log("배열"+res.hrcategory[i])
@@ -26,12 +28,18 @@ function getAllCourse() {
 				}
 			}
 		},
-		error : function() {
-			console.log("all 가져오기 에러");
+		error : function(e) {
+			console.log("all 가져오기 에러"+e);
 		}
 	});
+	
 }
 
+// ^^ 코스 주소를 담을 배열, 인덱스
+var courseArr = [],
+	courseIdx = 0,
+	count=0;
+	
 // 마커를 담을 배열입니다
 var markers = [];
 

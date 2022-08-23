@@ -204,9 +204,11 @@ public class MemberController {
 		String email = vo.getEmail()+'@'+vo.getEmail2();
 		vo.setEmail(email);
 		if (service.editUserInfo(vo)) {
-			model.addAttribute("msg",  "회원정보 수정이 완료되었습니다.");
+			model.addAttribute("msg",  "회원정보 수정이 완료되었습니다. 다시 로그인해주세요");
 			model.addAttribute("url", "/ro/board/main.do");
-			sess.setAttribute("loginInfo", vo); // 세션에 바뀐 값 덮어쓰기.
+//			sess.setAttribute("loginInfo", vo); // 세션에 바뀐 값 덮어쓰기.
+			sess.invalidate(); // 세션객체에 저장된 값 모두 초기화. 
+
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "회원정보를 확인해 주세요");

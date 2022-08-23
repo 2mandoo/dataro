@@ -54,7 +54,7 @@
 	
 	<!--  게시글 삭제 -->
 	<delete id="delete" parameterType="int">
-		DELETE FROM pboard WHERE board_no=#{board_no} 
+		DELETE FROM pboard WHERE board_no= #{board_no}
 	</delete>
 	
 	<!-- 게시글 제목 수정 -->

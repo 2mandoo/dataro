@@ -48,8 +48,8 @@ public class BoardController {
 	@PostMapping("/getAllCourse.do")
 	@ResponseBody
 	public Map vview(BoardVO bvo,HttpSession sess,Model model) {
-	//	MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
-		bvo.setMember_no(40);
+		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
+		bvo.setMember_no(mvo.getMember_no());
 		return service.updateView(bvo);
 	}
 	// 진귀++++++

@@ -16,6 +16,8 @@ function send(courseArr){
 		success : function(res){
 			console.log(res);
 			console.log(typeof res);
+
+
 		},
 		error: function(){
 			console.log("에러");

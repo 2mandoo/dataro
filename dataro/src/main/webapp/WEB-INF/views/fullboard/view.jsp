@@ -41,20 +41,25 @@
 	});
 	function goSave() {
 		if (confirm('댓글을 저장하시겠습니까?')) {
+			if($("#contents").val() == '') {
+				alert("댓글 등록시 공백은 불가입니다. ㅠㅠ");
+				$("#contents").focus();
+			} else {
     		$.ajax({
     			url : "/ro/comment/insert.do",
     			data : {
     				board_no : ${view.board_no},
-    				board_name : '여행게시판',
+    				board_name : '자유게시판',
     				content : $("#contents").val(),
     			},
     			success : function(res) {
     				if (res.trim() == "1") {
     					alert('정상적으로 댓글이 등록되었습니다.');
     					$("#contents").val('');
-    				}
-    			}
-    		});
+	    				}
+	    			}
+	    		});
+			}
 		}
 	}
 	function commentDel(board_no) {
@@ -112,9 +117,14 @@
                                 </td>
                                 <td>
                                     <div class="btnSet"  style="text-align:right;">
-                                        <a class="btn" href="javascript:goSave();">저장 </a>
+                                        <a class="btn" href="javascript:goSave();"><strong>댓글저장</strong> </a>
                                     </div>
                                 </td>
+                                <!-- <td>
+                                    <div class="btnSet2"  style="text-align:right;">
+                                        <a class="btn" href="javascript:goSave();"><strong>댓글삭제</strong> </a>
+                                    </div>
+                                </td> -->
                             </tr>
                             </tbody>
                         </table>

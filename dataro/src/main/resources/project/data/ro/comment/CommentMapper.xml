@@ -6,26 +6,25 @@
 		INSERT INTO preply (
 			content, member_no, board_no, reply_writedate , reply_no, board_name
 		) VALUES (
-			#{content}, #{member_no}, #{board_no},NOW(),#{reply_no},#{board_name}
+			#{content}, #{member_no}, #{board_no},NOW(),#{reply_no},'자유게시판'
 		)
 	</insert>
 	
 	<select id="count" parameterType="project.data.ro.comment.CommentVO" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM preply
-		WHERE board_no = #{board_no} AND board_name = #{board_name}
+		WHERE board_no = #{board_no} AND board_name = '자유게시판'
 	</select>
 	
 	<select id="list" parameterType="project.data.ro.comment.CommentVO" resultType="project.data.ro.comment.CommentVO">
 		SELECT *
-		<!-- 	,(SELECT name FROM pmember WHERE board_no=preply.reply_no) AS member_name -->
 		FROM preply
-		WHERE board_no = #{board_no} AND board_name = #{board_name}
+		WHERE board_no = #{board_no} AND board_name = '자유게시판'
 		ORDER BY reply_writedate DESC
 		LIMIT  ${startIdx},${pageRow};
 	</select>
 	
 	<delete id="delete" parameterType="int">
-		DELETE FROM preply WHERE board_no=#{board_no} 
+		DELETE FROM preply WHERE board_no= #{board_no} 
 	</delete>
 	
 	

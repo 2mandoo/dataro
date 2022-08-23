@@ -20,9 +20,6 @@
   <script src="/ro/js/main.js"></script>
   <script>
 	function goWrite() {
- /*   		<c:if test="${empty loginInfo}">
-  			alert('로그인 후 작성가능합니다!!');
-  		</c:if> */
 	<c:if test="${empty loginInfo}">
   			location.href='write.do';
   		</c:if>
@@ -36,7 +33,7 @@
     <div class="content">
       <h2 class="mb-5">[ dataro 자유게시판 ]</h2>
       <div class="table-responsive">
-        <table class="table table-striped custom-table">
+        <table class="table table-striped custom-table" style="margin-left: auto; margin-right: auto;">
         <p><span><strong>총 ${flist.totalCount}개</strong>  |  ${fullboardVO.page } ${flist.totalPage}페이지</span></p>
 		<span>게시판 목록</span>
           <thead>
@@ -66,13 +63,13 @@
           </tbody>
         </table> 
         <div class="btnSet"  style="text-align:right;">
-          <a class="btn" href="javascript:goWrite();">글작성 </a>
+          <a class="btn" href="javascript:goWrite();"><strong>글작성</strong> </a>
        </div>
        </div>
        <div class="pagenate clear"> <!-- 페이징 처리 -->
            <ul class='paging'>
            <c:if test="${flist.prev == true }">
-           	<li><a href="fullmain.do?page=${flist.startPage-1 }&stype=${param.stype}&sword=${param.sword}"></a></li>
+           	<li><a href="fullmain.do?page=${flist.startPage-1}&stype=${param.stype}&sword=${param.sword}"></a></li>
            </c:if>
            <c:forEach var="A" begin="${flist.startPage }" end="${flist.endPage }">
                <a href='fullmain.do?page=${A}&stype=${param.stype}&sword=${param.sword}'

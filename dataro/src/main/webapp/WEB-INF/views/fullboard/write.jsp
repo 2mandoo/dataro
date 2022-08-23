@@ -16,7 +16,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <title>게시판 등록</title>
   <script>
- 	function goSave() {
+ 	function goWriteSave() {
  		if($("#title").val() == '') {
  			alert("제목은 꼭 등록해주세요!!");
  			$("#title").focus();
@@ -59,7 +59,7 @@
                         </tbody>
                     </table>
                     <div class="btnSet"  style="text-align:right;">
-                        <a class="btn" href="javascript:goSave();">저장</a>
+                        <a class="btn" href="javascript:goWriteSave();">저장</a>
                     </div>
                     </form>
                 </div>

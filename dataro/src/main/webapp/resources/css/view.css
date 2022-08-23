@@ -178,6 +178,7 @@ a {
 	border:0;
 	outline:0;
 	padding:7px;
+	text-align : center;
 }
 
 #header {
@@ -196,9 +197,13 @@ a {
    text-align:left;
    float:left;
    padding:10px;
-   overflow-y: scroll;
    background-color:#f3f3f3ee;
    font-size:14px;
+}
+#section .tt{
+	width:680px;
+	height:430px;
+	overflow-y: scroll;
 }
 #footer {
    background-color:#f9effdee;

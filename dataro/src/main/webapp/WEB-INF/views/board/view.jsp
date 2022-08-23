@@ -55,12 +55,14 @@
             <div id="mapRoom">
 	            	<div id="map" style="width:500px;height:500px;float:left;"></div>
 	            <div id="section">
-	            	<input class="mkroom btn-makeclick" type="button" value="방 만들기">	
+	            	<div class="mkroom btn-makeclick"> 방 만들기
+	            	</div>
 	            	<c:if test="${empty data.roomList }">
 	            	 <br>등록된 방이 없습니다.<br>
 	            	 방을 생성하여 새로운 여행 친구들을 만나보세요:D
 	            	</c:if>
 	            	<c:if test="${!empty data.roomList }">
+			            <div class="tt">
 			            <table>
 			            <colgroup>
                             <col width="*" />
@@ -98,18 +100,19 @@
 			                </tr>
 			               	</c:forEach>
 			            </table>
+			            </div>
 	            	</c:if>
 	            </div>
             </div>
 
             <div class="course">
                 코스
-            </div>
-            
 				<!-- 코스 설명 들어갈 부분 -->      
 				<div class="write_detail">
 					<div class="scroll"></div>
 				</div>
+            </div>
+            
 				
 
             <div id="footer" class="reply">

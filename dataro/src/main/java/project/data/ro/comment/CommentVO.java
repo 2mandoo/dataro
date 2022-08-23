@@ -9,6 +9,7 @@ public class CommentVO {
 	
 	String content;
 	int member_no;
+	String id;
 	int board_no;
 	int reply_no;
 	String board_name;
@@ -20,6 +21,7 @@ public class CommentVO {
 	int startIdx;
 	int pageRow;
 	int page;
+	String nickname;
 	
 	public CommentVO() {
 		this.pageRow = 10;

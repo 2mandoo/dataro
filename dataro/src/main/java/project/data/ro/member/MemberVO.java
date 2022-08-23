@@ -18,4 +18,5 @@ public class MemberVO {
 	private String m_filename_server;
 	private Timestamp regdate;
 	
+	
 }

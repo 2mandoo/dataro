@@ -21,7 +21,7 @@
   			location.href='delete.do?board_no='+board_no;
   		}
   	}
-	function getComment() {
+	function getComment(page) {
 		console.log(1);
 		
 		$.ajax({
@@ -29,6 +29,7 @@
 			data : {
 				board_no : ${view.board_no},
 				board_name : '자유게시판',
+				page : page
 			},
 			success : function(res) {
 				$("#commentArea").html(res);
@@ -40,27 +41,36 @@
 		getComment(1);
 	});
 	function goSave() {
+		<c:if test="${empty loginInfo}">
+		alert('댓글은 로그인후 작성가능합니다. 로그인페이지에서 만나여');
+		location.href='/ro/member/login.do';
+		</c:if>
+		<c:if test="${!empty loginInfo}">
 		if (confirm('댓글을 저장하시겠습니까?')) {
 			if($("#contents").val() == '') {
 				alert("댓글 등록시 공백은 불가입니다. ㅠㅠ");
 				$("#contents").focus();
 			} else {
-    		$.ajax({
-    			url : "/ro/comment/insert.do",
-    			data : {
-    				board_no : ${view.board_no},
-    				board_name : '자유게시판',
-    				content : $("#contents").val(),
-    			},
-    			success : function(res) {
-    				if (res.trim() == "1") {
-    					alert('정상적으로 댓글이 등록되었습니다.');
-    					$("#contents").val('');
-	    				}
-	    			}
-	    		});
-			}
+		    		$.ajax({
+		    			url : "/ro/comment/insert.do",
+		    			data : {
+		    				board_no : ${view.board_no},
+		    				board_name : '자유게시판',
+		    				content : $("#contents").val(),
+		    				member_no : ${loginInfo.member_no},
+		    				id : "${loginInfo.id}"
+		    				},
+		    			success : function(res) {
+		    				if (res.trim() == "1") {
+		    					alert('정상적으로 댓글이 등록되었습니다.');
+		    					$("#contents").val('');
+		    					getComment(1);
+			    			}
+			    		}
+			    	});
+			}	
 		}
+		</c:if>
 	}
 	function commentDel(board_no) {
 		if (confirm("댓글을 삭제하시겠습니까?")) {
@@ -75,6 +85,7 @@
 			})
 		}
 	}
+	
 </script>
 </head>
 <body>
@@ -85,8 +96,8 @@
                     <div class="view">
                         <div class="title">
                             <dl>
-                                <dt>${view.title}</dt>
-                                <dd class="date">게시일 : ${view.writedate} </dd>
+                                <dt>제목 : ${view.title}</dt><br>
+                                <dt>게시일 : ${view.writedate}</dt>
                             </dl>
                         </div>
                         <div class="cont"><p>${view.content}</p> </div>

@@ -16,7 +16,8 @@
 	</select>
 	
 	<select id="list" parameterType="project.data.ro.comment.CommentVO" resultType="project.data.ro.comment.CommentVO">
-		SELECT *
+		SELECT
+		 *
 		FROM preply
 		WHERE board_no = #{board_no} AND board_name = '자유게시판'
 		ORDER BY reply_writedate DESC

@@ -18,20 +18,82 @@
   <script src="/ro/js/popper.min.js"></script>
   <script src="/ro/js/bootstrap.min.js"></script>
   <script src="/ro/js/main.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script>
+  	// 자유게시판 글쓰기는 로그인 후 가능하도록 하기(호윤)
 	function goWrite() {
-	<c:if test="${empty loginInfo}">
-  			location.href='write.do';
-  		</c:if>
-  	};
+ 		<c:if test="${empty loginInfo}">
+ 			alert('글쓰기는 로그인 후 작성가능합니다!! 로그인페이지에서 만나여')
+ 			location.href='/ro/member/login.do';
+ 		</c:if>
+		<c:if test="${!empty loginInfo}">
+ 			location.href='write.do';
+ 		</c:if>
+ 	}
+  	$(function(){
+  		
+  		// 로그인 후 변경된 사진 클릭시 마이페이지로 가기(정길)
+  		$('#idImg').click(function(){
+  			location.href="/ro/member/myPage";
+  		});
+  		
+  		// 종 아이콘 클릭시 읽지 않은 쪽지 모달팝업(정길)
+  		$('#alarmForUser').click(function(){
+  			$.ajax({
+  				url : '/ro/member/alarm',
+  				type : 'post',
+  				data : {},
+  				success : function(e) {
+  					$("#areaForUser").html(e);
+  				}
+  				
+  			});
+  			if (${!empty loginInfo}) {
+  				$('.modal').fadeIn();
+  			}
+  		});
+  		// 모달팝업 종료(정길)
+  		$('.btn-close').click(function(){
+  			$('.modal').fadeOut();
+  		});	
+
+  	});
+
+  	// 미로그인시 아이콘 클릭시 뜨는 얼럿(정길)
+  	function loginAlert(){
+  		alert("로그인 후 이용해주세요 : )");
+  	}
   </script>
     <title>DATARO</title>
   </head>
   <body>
-  <a href="/ro/board/main.do"><h1>dataro</h1></a>
+  <a href="/ro/board/main.do"><h1>☞메인페이지로 이동☜</h1></a>
   <div id="wrap">
     <div class="content">
-      <h2 class="mb-5">[ dataro 자유게시판 ]</h2>
+    <ul>
+          	<c:choose>
+          		<c:when test="${empty loginInfo }">
+	            	<a href="/ro/member/login" id="toPic">
+	            		<img src ="/ro/img/profile.png" width="50px"><b>[로그인]<b>
+	            	</a> 
+            	</c:when>
+            	<c:otherwise>
+            		<a href="#">
+		            <img src ="/ro/img/${loginInfo.m_filename_server}" width="50px" id="idImg" style="border-radius:30px;">
+		        </a>
+            	</c:otherwise>
+			</c:choose>            
+            <a href="#" id="alarmForUser">
+            	<img src ="/ro/img/alarm.png" width="50px"><b>[알림]<b>
+            	<span id="theNumberOfMsg"> ${UnreadMsgs }</span>
+            </a>
+            
+            <a href="/ro/board/travelWrite.do" id="wBtn">
+            	<img src ="/ro/img/write.png" width="50px"><b>[여행글쓰기]<b>
+            </a>
+		   
+          	</ul>
+      <h2 class="mb-5">[ dataro 자유게시판 ] <td><a href="/ro/member/myPage">☞${loginInfo.id}☜</a></td></h2>
       <div class="table-responsive">
         <table class="table table-striped custom-table" style="margin-left: auto; margin-right: auto;">
         <p><span><strong>총 ${flist.totalCount}개</strong>  |  ${fullboardVO.page } ${flist.totalPage}페이지</span></p>
@@ -41,8 +103,9 @@
               <th scope="col" >번호</th>
               <th scope="col" >제목</th>
               <th scope="col" >조회수</th>
-              <th scope="col" >코스</th>
+              <th scope="col" >게시판</th>
               <th scope="col" >게시일</th>
+              <th scope="col" >작성자ID</th>
             </tr>
           </thead>
           <tbody>
@@ -57,7 +120,8 @@
 	              <td><a href="view.do?board_no=${vo.board_no}">${vo.title}</a></td>
 	              <td>${vo.viewcount}</td>
 	              <td>${vo.board_name}</td>
-	              <td><a href="view.do?board_no=${vo.board_no}">${vo.writedate}</td>
+	              <td><a href="view.do?board_no=${vo.board_no}"><fmt:formatDate value="${vo.writedate}" pattern="yyyy-MM-dd HH:mm"/></td>
+	              <td>${loginInfo.id}</td>
 	            </tr>
 	          </c:forEach>
           </tbody>
@@ -71,9 +135,11 @@
            <c:if test="${flist.prev == true }">
            	<li><a href="fullmain.do?page=${flist.startPage-1}&stype=${param.stype}&sword=${param.sword}"></a></li>
            </c:if>
-           <c:forEach var="A" begin="${flist.startPage }" end="${flist.endPage }">
+           <c:forEach var="A" begin="${flist.startPage}" end="${flist.endPage}">
                <a href='fullmain.do?page=${A}&stype=${param.stype}&sword=${param.sword}'
-               <c:if test="${fullBoardVO.page == A }">class='current'</c:if>>${A}</a>
+               <c:if test="${fullBoardVO.page == A }">
+               class='current'
+               </c:if>>${A}</a>
            </c:forEach>
            <c:if test="${flist.next == true }">
            	<a href="fullmain.do?page=${flist.endPage+1 }
@@ -91,10 +157,6 @@
 			</form>
 		</div>
       </div>
-      	<div>
-
-		</div>
     </div>
-  </div>
   </body>
 </html>

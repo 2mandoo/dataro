@@ -5,7 +5,7 @@
 	<!-- 게시판 입력 -->
 	<insert id = "insert" parameterType="project.data.ro.fullboard.FullBoardVO"> <!--course_no 일단 뻄 -->
 		insert into pboard(board_name,board_no,id,member_no,title,viewcount,writedate,updatedate)
-		values ('자유게시판',#{board_no},id,#{member_no},#{title},#{viewcount},NOW(),NOW())
+		values ('자유게시판',#{board_no},#{id},#{member_no},#{title},#{viewcount},NOW(),NOW())
 		<selectKey keyProperty="board_no" resultType="int" order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
@@ -19,14 +19,17 @@
 	
 	<!-- 상세 페이지 -->
 	<select id="view" parameterType="project.data.ro.fullboard.FullBoardVO" resultType="project.data.ro.fullboard.FullBoardVO"> <!-- 하나의 객체 -->  <!-- parameterType="int" --> 
-		select * from pboard A inner join pfile B 
+		select * from pboard A left join pfile B 
 		on A.board_no = B.board_no
 		where A.board_no = #{board_no} and A.board_name = '자유게시판'
 	</select>
 
 	<!-- 게시판 페이지 -->
 	<select id="list" resultType="project.data.ro.fullboard.FullBoardVO">
-	select * from pboard 
+	select
+	 *
+	 , (select id from pmember where member_no =#{member_no}) as '아이디'
+	from pboard 
 		<where>
 			board_name = '자유게시판'
 			<if test ="stype != null or sword != null">
@@ -65,11 +68,11 @@
 			, filename_org = #{filename_org}
 			, filename_server = #{filename_server}
 			</if>
-			<if test ="content == null">
-			select * from pboard b inner join pboardcourse p
+			<!-- <if test ="content == null">
+			select * from pboard b join pboardcourse p
 			on b.board_no = p.board_no and b.board_name = p.board_name
 			where content = #{content}
-			</if>
+			</if> -->
 		WHERE board_no = #{board_no}
 	</update>
 </mapper>

@@ -20,7 +20,7 @@ public class FullBoardVO {
 	Timestamp updatedate;
 	//int course_no;
 	int member_no;
-	
+	String nickname;
 	//-------------------
 	
 	private String filename_org;

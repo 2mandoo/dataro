@@ -76,6 +76,7 @@ public class FullBoardServiceImple implements FullBoardService {
 		boolean next = endPage < totalPage ? true : false;
 		
 		Map map = new HashMap();
+		
 		map.put("totalCount", totalCount);
 		map.put("totalPage", totalPage);
 		map.put("startPage", startPage);
@@ -83,6 +84,7 @@ public class FullBoardServiceImple implements FullBoardService {
 		map.put("prev", prev);
 		map.put("next", next);
 		map.put("list", list);
+		
 		
 		return map;
 	}

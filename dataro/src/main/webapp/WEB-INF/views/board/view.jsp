@@ -309,48 +309,34 @@ a {
             <div class="course">
                 코스
             </div>
-<<<<<<< HEAD
             
-=======
 				<!-- 코스 설명 들어갈 부분 -->      
 				<div class="write_detail">
 					<div class="scroll"></div>
 				</div>
->>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
+				
             <div id="footer" class="reply">
-            <c:if test="${empty loginInfo.member_no}">
-	        	<input type="text" placeholder="댓글은 로그인 후 작성 가능합니다." style="width:80%" readonly>
-            </c:if>
-            <c:if test="${!empty loginInfo.member_no}">
-		    	<input type="text" name="content" id="content"  placeholder="댓글을 작성해주세요." style="width:80%">
-		        <div style="text-align:right;">
-		        <a href="javascript:goSave();"><img src="/ro/img/replyWrite.png" title="댓글 작성"></a>
-		        </div>
-	        </c:if>
-            	
+	            <c:if test="${empty loginInfo.member_no}">
+		        	<input type="text" placeholder="댓글은 로그인 후 작성 가능합니다." style="width:80%" readonly>
+	            </c:if>
+	            <c:if test="${!empty loginInfo.member_no}">
+			    	<input type="text" name="content" id="content"  placeholder="댓글을 작성해주세요." style="width:80%">
+			        <div style="text-align:right;">
+			        <a href="javascript:goSave();"><img src="/ro/img/replyWrite.png" title="댓글 작성"></a>
+			        </div>
+		        </c:if>
+		        
+            	<!-- 댓글 나오는 부분 -->
 	           	<div id="commentArea"></div>
             </div>
-<<<<<<< HEAD
             
-           	<!--진귀: 확인후 지우시면됨  boardVO.member_no 는 없는 값이라 0 떠서 디비에서 받아온 data.board.member_no 로 바꿈 -->
-=======
-
->>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
 			<c:if test="${loginInfo.member_no == data.board.member_no }">
 			<a href="/ro/board/updateView.do?board_no=${data.board.board_no}">수정</a>
-<<<<<<< HEAD
 	        <form name="delFrm" method="post" action="/ro/board/viewDelete.do">
 	        	<input type="hidden" name="board_no" value="${boardVO.board_no }">
             	<input type="hidden" name="board_name" value="${boardVO.board_name }">
 	            <a href="javascript:viewDel()"><img src="/ro/img/delete.png" title="게시글 삭제"></a>
          	</form>
-=======
-			<form method="post" action="/ro/board/viewDelete.do">
-				<input type="hidden" name="board_no" value="${boardVO.board_no }">
-				<input type="hidden" name="board_name" value="${boardVO.board_name }">
-				<a href="javascript:"><img src="/ro/img/delete.png" onclick="submit();" title="게시글 삭제"></a>
-			</form>
->>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
 			</c:if> 
    		</div>
 	</div>

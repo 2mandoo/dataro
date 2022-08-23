@@ -15,6 +15,9 @@
 </head>
 <body>
     <div id="wrap">
+    	<c:forEach var="a" items="ud.hrcategory">
+    	${a.hashtag_no }
+    	</c:forEach>
         <div class="content tv_write">
             <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data">
             <input type="hidden" name="member_no" value=${loginInfo.member_no }>
@@ -122,19 +125,13 @@
 <script type='text/javascript' src="/ro/js/mapMake.js"></script> 
 <script>
 	$(function(){
-<<<<<<< HEAD
-
 		$("#hash0").parent("label").css("background","#eee")
 		$("#hash0").prop("disabled",true)
 	})
-=======
-		
 		$("#hash0").parent("label").css("background","#eee");
 		$("#hash0").prop("disabled",true);
 	});
 	
-	
->>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
 	function goSave(){
 		send(courseArr);
 		AH.submit();

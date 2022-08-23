@@ -50,6 +50,7 @@ public interface BoardMapper {
 	// 여행코스수정/화면출력-진경
 	BoardVO updateView(BoardVO vo);
 	List<MapVO> updateCourse(BoardVO vo);
+	List<CategoryVO> updateCategory(BoardVO vo);
 
 	
 	//=================================정현===============================

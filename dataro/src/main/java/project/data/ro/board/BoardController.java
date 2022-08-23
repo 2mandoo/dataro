@@ -73,6 +73,7 @@ public class BoardController {
 		bvo.setMember_no(mvo.getMember_no());
 		model.addAttribute("ud",service.updateView(bvo)); //등록된코스 정보,타이틀 불러오기
 		model.addAttribute("category",uservice.writeCategory());
+		
 		return "travelboard/update";
 	}
 	//여행코스 글쓰기 수정

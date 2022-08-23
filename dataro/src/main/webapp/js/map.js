@@ -5,17 +5,25 @@ function getAllCourse() {
 	console.log(no);
 	
 	$.ajax({
-		url : "../board/getAllCourse.do",
+		url : "/ro/board/getAllCourse.do",
 		type : "post",
 		data : {
-			board_no : no
+			board_no : no,
 		},
 		success : function(res) {
 			console.log(res);
 			console.log(res.course);
-			    			
 			for(var i=0; i<res.course.length; i++){
 				updatebox(i,res.course[i]);
+			}
+			console.log(res.hrcategory.length)
+		
+			for(var i=1;i<=res.hrcategory.length;i++){
+				console.log("배열"+res.hrcategory[i])
+				if(res.hrcategory[i].hashtag_no == document.getElementsByName("hashtag_no")[i].value){
+					document.getElementsByName("hashtag_no")[i].checked=true;
+					document.getElementsByName("hashtag_no")[i].parent('label').toggleClass("on")
+				}
 			}
 		},
 		error : function() {

@@ -307,8 +307,6 @@ a {
 					<div class="scroll"></div>
 				</div>
             <div id="footer" class="reply">
-                            
-
 	                            <input type="text" name="content" id="content"  placeholder="댓글을 작성해주세요." style="width:80%">
 
 	                            <div style="text-align:right;">

@@ -15,9 +15,6 @@
 </head>
 <body>
     <div id="wrap">
-    	<c:forEach var="a" items="ud.hrcategory">
-    	${a.hashtag_no }
-    	</c:forEach>
         <div class="content tv_write">
             <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data">
             <input type="hidden" name="member_no" value=${loginInfo.member_no }>
@@ -125,12 +122,8 @@
 <script type='text/javascript' src="/ro/js/mapMake.js"></script> 
 <script>
 	$(function(){
-		$("#hash0").parent("label").css("background","#eee")
-		$("#hash0").prop("disabled",true)
-	})
 		$("#hash0").parent("label").css("background","#eee");
 		$("#hash0").prop("disabled",true);
-		
 		getAllCourse();
 	});
 	
@@ -147,7 +140,7 @@
 	})
 	
 	//글추가 작성용
-	function writebox(index,places){
+	function updatebox(index,places){
 		count++;
 		var html ='<div class="set">'
 			html +='<span class="jk"></span>'

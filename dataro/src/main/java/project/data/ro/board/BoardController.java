@@ -80,7 +80,7 @@ public class BoardController {
 	public String updateView(BoardVO bvo,HttpSession sess,Model model) {
 		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
 		bvo.setMember_no(mvo.getMember_no());
-		model.addAttribute("ud",service.updateView(bvo)); //등록된코스 정보,타이틀 불러오기
+		//model.addAttribute("ud",service.updateView(bvo)); //등록된코스 정보,타이틀 불러오기
 		model.addAttribute("category",uservice.writeCategory());
 		
 		return "travelboard/update";

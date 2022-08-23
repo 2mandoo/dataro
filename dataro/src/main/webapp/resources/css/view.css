@@ -169,6 +169,18 @@ a {
 	display:block;
 }
 
+.mkroom {
+  	position: sticky;
+  	top: 0; /* 클래스 sticky인 요소 안에서 top값이 0이되면 sticky를 적용 */
+  	background-color:#616BEE;
+	color:#fff;
+	border-radius:5px;
+	border:0;
+	outline:0;
+	padding:7px;
+	text-align : center;
+}
+
 #header {
    background-color:lightgrey;
    height:100px;
@@ -185,14 +197,22 @@ a {
    text-align:left;
    float:left;
    padding:10px;
-   overflow-y: scroll;
    background-color:#f3f3f3ee;
+   font-size:14px;
+}
+#section .tt{
+	width:680px;
+	height:430px;
+	overflow-y: scroll;
 }
 #footer {
    background-color:#f9effdee;
    height:450px;
    clear:both;
+   font-size:14px;
 }
+
+
  
  
  

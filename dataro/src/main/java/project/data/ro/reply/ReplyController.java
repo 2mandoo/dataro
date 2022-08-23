@@ -16,6 +16,7 @@ public class ReplyController {
 	ReplyService service;
 	
 	//=================================정현===============================
+	//댓글 목록
 	@GetMapping("/reply/list.do")
 	public String list(ReplyVO vo, Model model) { 
 		System.out.println(vo);
@@ -25,6 +26,7 @@ public class ReplyController {
 		return "common/comment2";
 	}
 
+	//답글 목록
 	@GetMapping("/reply/replyList.do")
 	@ResponseBody
 	public List replyList(ReplyVO vo, Model model) { 
@@ -32,6 +34,7 @@ public class ReplyController {
 		return service.replyList(vo);
 	}
 	
+	//댓글 작성
 	@GetMapping("/reply/insert.do")
 	@ResponseBody
 	public String insert(ReplyVO vo, Model model){
@@ -41,6 +44,8 @@ public class ReplyController {
 			return "fail";
 		}
 	}
+	
+	//답글 작성
 	@GetMapping("/reply/reply.do")
 	@ResponseBody
 	public String reply(ReplyVO vo, Model model){

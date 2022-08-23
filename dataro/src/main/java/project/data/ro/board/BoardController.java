@@ -218,6 +218,7 @@ public class BoardController {
 	
 	@PostMapping("/viewDelete.do")
 	public String viewDelete(BoardVO vo, Model model) {
+		System.out.println(vo);
 		if(service.delete(vo)==1) {
 			model.addAttribute("msg", "정상적으로 삭제되었습니다.");
 			model.addAttribute("url", "/ro/board/main.do");

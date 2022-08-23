@@ -122,6 +122,7 @@ a {
 	padding:30px;
 	box-shadow:0 0 15px rgba(0,0,0,0.15);
 	text-align:center;
+	background-color:#ebffedee;
 }
 
 .btn-close {
@@ -225,7 +226,7 @@ a {
  .write_detail .set .pic_wrap .plus{float:left;line-height:100px}
 </style>
 <body>
-<a href="/ro/board/main.do"><h1>dataro</h1></a>
+	<a href="/ro/board/main.do"><h1>DATARO</h1></a>
     <div id="wrap">
    
         <div class="content view">
@@ -265,68 +266,91 @@ a {
 	            <div id="map" style="width:500px;height:500px;"></div>
 	            </div>
 	            <div id="section">
-	            <table>
-	             	<tr>
-	               		<th>방제목</th>
-	               		<th>방장</th>
-	               		<th>시작일</th>
-	               		<th>종료일</th>
-	               		<th>참여인원</th>
-	               	</tr>
-	               	<c:forEach items="${data.roomList }" var="room">
-	                <tr>
-	                	<td>
-	                	${room.room_title}
-	                		<c:if test="${empty room.room_pwd }">
-		                	<img src="/ro/img/openRoom.png">
-		                	</c:if>
-		                	<c:if test="${!empty room.room_pwd }">
-		                	<img src="/ro/img/secretRoom.png">
-		                	</c:if>
-	                	</td>
-	                	<td>${room.roommaker_id}</td>
-	                	<td>${room.room_startdate}</td>
-	                	<td>${room.room_enddate}</td>
-	                	<td>
-	                	${room.room_participant_count }명
-	                	<input type="hidden" value="room.room_no" class="no">
-	                	<input type="button" value="${room.room_participant_no > 0 ? '참여중' : '참여하기'  }" onClick='joinRoom("${room.room_pwd }", ${room.room_no });'>
-	                	</td>
-	                </tr>
-	               	</c:forEach>
-	            </table>
-				<input type="button" class="btn-makeclick" value="방 만들기">	
+	            	<input type="button" class="btn-makeclick" value="방 만들기">	
+	            	<c:if test="${empty data.roomList }">
+	            	 <br>등록된 방이 없습니다.<br>
+	            	 방을 생성하여 새로운 여행 친구들을 만나보세요:D
+	            	</c:if>
+	            	<c:if test="${!empty data.roomList }">
+			            <table>
+			             	<tr>
+			               		<th>방제목</th>
+			               		<th>방장</th>
+			               		<th>시작일</th>
+			               		<th>종료일</th>
+			               		<th>참여인원</th>
+			               	</tr>
+			               	<c:forEach items="${data.roomList }" var="room">
+			                <tr>
+			                	<td>
+			                		${room.room_title}
+			                		<c:if test="${empty room.room_pwd }">
+				                	<img src="/ro/img/openRoom.png">
+				                	</c:if>
+				                	<c:if test="${!empty room.room_pwd }">
+				                	<img src="/ro/img/secretRoom.png">
+				                	</c:if>
+			                	</td>
+			                	<td>${room.roommaker_id}</td>
+			                	<td>${room.room_startdate}</td>
+			                	<td>${room.room_enddate}</td>
+			                	<td>
+				                	${room.room_participant_count }명
+				                	<input type="hidden" value="room.room_no" class="no">
+				                	<input type="button" value="${room.room_participant_no > 0 ? '참여중' : '참여하기'  }" onClick='joinRoom("${room.room_pwd }", ${room.room_no });'>
+			                	</td>
+			                </tr>
+			               	</c:forEach>
+			            </table>
+	            	</c:if>
 	            </div>
             </div>
 
             <div class="course">
                 코스
             </div>
+<<<<<<< HEAD
+            
+=======
 				<!-- 코스 설명 들어갈 부분 -->      
 				<div class="write_detail">
 					<div class="scroll"></div>
 				</div>
+>>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
             <div id="footer" class="reply">
-                            
-
-	                            <input type="text" name="content" id="content"  placeholder="댓글을 작성해주세요." style="width:80%">
-
-	                            <div style="text-align:right;">
-	                                <a href="javascript:goSave();"><img src="/ro/img/replyWrite.png" title="댓글 작성"></a>
-	                            </div>
-
-	                
-	                <div id="commentArea"></div>
-
+            <c:if test="${empty loginInfo.member_no}">
+	        	<input type="text" placeholder="댓글은 로그인 후 작성 가능합니다." style="width:80%" readonly>
+            </c:if>
+            <c:if test="${!empty loginInfo.member_no}">
+		    	<input type="text" name="content" id="content"  placeholder="댓글을 작성해주세요." style="width:80%">
+		        <div style="text-align:right;">
+		        <a href="javascript:goSave();"><img src="/ro/img/replyWrite.png" title="댓글 작성"></a>
+		        </div>
+	        </c:if>
+            	
+	           	<div id="commentArea"></div>
             </div>
+<<<<<<< HEAD
+            
+           	<!--진귀: 확인후 지우시면됨  boardVO.member_no 는 없는 값이라 0 떠서 디비에서 받아온 data.board.member_no 로 바꿈 -->
+=======
 
+>>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
 			<c:if test="${loginInfo.member_no == data.board.member_no }">
 			<a href="/ro/board/updateView.do?board_no=${data.board.board_no}">수정</a>
+<<<<<<< HEAD
+	        <form name="delFrm" method="post" action="/ro/board/viewDelete.do">
+	        	<input type="hidden" name="board_no" value="${boardVO.board_no }">
+            	<input type="hidden" name="board_name" value="${boardVO.board_name }">
+	            <a href="javascript:viewDel()"><img src="/ro/img/delete.png" title="게시글 삭제"></a>
+         	</form>
+=======
 			<form method="post" action="/ro/board/viewDelete.do">
 				<input type="hidden" name="board_no" value="${boardVO.board_no }">
 				<input type="hidden" name="board_name" value="${boardVO.board_name }">
 				<a href="javascript:"><img src="/ro/img/delete.png" onclick="submit();" title="게시글 삭제"></a>
 			</form>
+>>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
 			</c:if> 
    		</div>
 	</div>
@@ -352,10 +376,10 @@ a {
    		<div class="modal-roomcontent">
 			<a class="btn-roomclose" href="javascript:"><img src="/ro/img/close.png"></a>
 			<h3>Make Room</h3>
-			<input type="text" id="board_name" name="board_name" value="${data.board.board_name }">
-			<input type="text" id="board_no" name="board_no" value="${data.board.board_no}">
-			<input type="text" id="roommaker_id" name="roommaker_id" value="${loginInfo.id }">
-			<input type="text" id="room_participant_no" name="room_participant_no" value="${loginInfo.member_no }">
+			<input type="hidden" id="board_name" name="board_name" value="${data.board.board_name }">
+			<input type="hidden" id="board_no" name="board_no" value="${data.board.board_no}">
+			<input type="hidden" id="roommaker_id" name="roommaker_id" value="${loginInfo.id }">
+			<input type="hidden" id="room_participant_no" name="room_participant_no" value="${loginInfo.member_no }">
 			*방 제목 <input type="text" id="room_title" name="room_title" style="width:100%"><br>
 			*방 내용 <textarea id="room_content" name="room_content" style="width:100%"></textarea><br>
 			<b>[여행 시작날짜와 종료날짜를 선택해주세요]</b><br>
@@ -364,7 +388,8 @@ a {
 			비밀번호 : <input type="password" id="room_pwd" name="room_pwd">
 			<a class="btn-make" href="javascript:makeRoom();">방만들기</a>
 		</div>
-	</div>  
+	</div> 
+	 
 	<!-- 쪽지보내기 모달 -->
 	<div class="msgmodal">
    		<div class="modal-msgcontent">
@@ -390,6 +415,7 @@ a {
 		</div>
 	</div> 
 	
+
 <!--  사용하다가 에러 안나면 지우자.
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
 >>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
@@ -405,7 +431,6 @@ a {
 	<script type='text/javascript' src="/ro/js/mapView.js"></script>
     
     <script>
-   	
     $(function(){
    		//댓글 1페이지 불러오기
    		getComment(1); 
@@ -611,6 +636,12 @@ a {
     		} 
     	}
     	
+    	
+    	function viewDel(){
+    		if(confirm("글을 삭제하시겠습니까?")){
+    			delFrm.submit();
+    		}
+    	}
     	
     	function commentDel(no){
     		if(confirm("댓글을 삭제하시겠습니까?")){

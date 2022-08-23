@@ -23,7 +23,7 @@ public class FullBoardController {
 	FullBoardService service;
 	
 	
-	// 전체게시판
+	// 자유게시판
 	@RequestMapping("/fullboard/fullmain.do")
 	public String mainfullboardGet(FullBoardVO vo, Model model ) {
 		model.addAttribute("flist",service.index(vo)); 
@@ -44,14 +44,14 @@ public class FullBoardController {
 	}
 	
 	//수정폼
-	@RequestMapping("fullboard/modify.do")//
+	@RequestMapping("/fullboard/modify.do")
 	public String modify(FullBoardVO vo, Model model) {
 		model.addAttribute("modify",service.modify(vo));
 		return "fullboard/modify";
 	}
 	
-	//삭제
-	@GetMapping("fullboard/delete.do")
+	// 글삭제
+	@GetMapping("/fullboard/delete.do")
 	public String delete(FullBoardVO vo, Model model) {
 		if(service.remove(vo.getBoard_no())) {
 			model.addAttribute("msg","삭제완료입니다!!");

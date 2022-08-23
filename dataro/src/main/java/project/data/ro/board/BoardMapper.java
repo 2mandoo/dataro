@@ -51,6 +51,7 @@ public interface BoardMapper {
 	BoardVO updateView(BoardVO vo);
 	List<MapVO> updateCourse(BoardVO vo);
 	List<CategoryVO> updateCategory(BoardVO vo);
+	List<CategoryVO> updateCategory2(BoardVO vo);
 
 	
 	//=================================정현===============================

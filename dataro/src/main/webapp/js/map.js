@@ -18,14 +18,16 @@ function getAllCourse() {
 				}
 				displayCouses(res.course);
 			}
-			console.log(res.hrcategory)
-		
-			for(var i=1;i<=res.hrcategory.length;i++){
-				console.log("배열"+res.hrcategory[i])
-				if(res.hrcategory[i].hashtag_no == document.getElementsByName("hashtag_no")[i].value){
-					document.getElementsByName("hashtag_no")[i].checked=true;
-					document.getElementsByName("hashtag_no")[i].parent('label').toggleClass("on")
-				}
+			console.log(res.hrcategory.length)
+			console.log("지역번호"+res.hrcategory2[1])
+			
+			for(var i=0;i<res.hrcategory.length;i++){
+				var idx = res.hrcategory[i].hashtag_no;
+				document.getElementsByName("hashtag_no")[idx].checked=true;
+				document.getElementsByName("hashtag_no")[idx].parentElement.className='on';
+			};
+			for(var i=0;i<res.hrcategory2.length;i++){
+				console.log(res.hrcategory2[i].region_no)
 			}
 		},
 		error : function(e) {

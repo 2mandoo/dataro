@@ -64,6 +64,16 @@ a {
 	display:none;
 	z-index: 5;
 }
+.roompwdmodal {
+	position:fixed;
+	background-color:rgba(0,0,0,0.4);
+	top:0;
+	left:0;
+	height:100vh;
+	width:100%;
+	display:none;
+	z-index: 5;
+}
 
 .modal-content{
 	background-color:#fff;
@@ -101,6 +111,18 @@ a {
 	box-shadow:0 0 15px rgba(0,0,0,0.15);
 	text-align:center;
 }
+.modal-roompwdcontent{
+	background-color:#fff;
+	width:350px;
+	border-radius:10px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	padding:30px;
+	box-shadow:0 0 15px rgba(0,0,0,0.15);
+	text-align:center;
+}
 
 .btn-close {
 	position : absolute;
@@ -113,6 +135,11 @@ a {
 	right:15px;
 }
 .btn-roomclose {
+	position : absolute;
+	top:15px;
+	right:15px;
+}
+.btn-roompwdclose {
 	position : absolute;
 	top:15px;
 	right:15px;
@@ -180,10 +207,27 @@ a {
 .distanceInfo .label {display:inline-block;width:50px;}
 .distanceInfo:after {content:none;}
 </style>
+<style> <!-- 코스 나오는곳 css -->
+ .write_detail{background:#eee;width:100%;height:500px;padding:20px;overflow-x: scroll;}
+ .write_detail .scroll{width:2080px}
+ .write_detail .set{padding:20px;background:#fff;width:400px;float:left;margin-right:15px}
+ .write_detail #courseList{float:initial;overflow:hidden}
+ .write_detail #courseList li{display:inline-block;float:left;width:400px;background:#fff;padding:15px;margin-right:15px;height:80px}
+ .write_detail .seracLocation{display:inline-block;width:100%;border:1px solid #000;}
+ .write_detail .seracLocation input{border:none;display:inline-block;width:80%;float:left}
+ .write_detail .seracLocation button{border:none;display:inline-block;width:20%;float:right}
+ .write_detail .set textarea{width:100%;height:200px}
+ .write_detail .set .pic_wrap{display:inline-block;width:100%;height:100px;margin:20px 0}
+ .write_detail .set .pic_wrap .pic{width:100px;float:left;height:100%;background:yellow;margin-right:10px;position:relative;}
+ .write_detail .set .pic_wrap .pic input{position:absolute;width:100%;height:100%;top:0;left:0;opacity:0;cursor:pointer;z-index:2}
+ .write_detail .set .pic_wrap .pic img{width:100%}
+ .write_detail .set .pic_wrap .pic .delete{position:absolute;display:inline-block;top:0;right:0;z-index:5;width:auto;transform: translate(50%,-50%);cursor:pointer}
+ .write_detail .set .pic_wrap .plus{float:left;line-height:100px}
+</style>
 <body>
 <a href="/ro/board/main.do"><h1>dataro</h1></a>
     <div id="wrap">
-    ${loginInfo.nickname }
+   
         <div class="content view">
             <div>
                 <div class="title">
@@ -257,8 +301,11 @@ a {
 
             <div class="course">
                 코스
-
             </div>
+				<!-- 코스 설명 들어갈 부분 -->      
+				<div class="write_detail">
+					<div class="scroll"></div>
+				</div>
             <div id="footer" class="reply">
                             
 
@@ -272,14 +319,34 @@ a {
 	                <div id="commentArea"></div>
 
             </div>
-           	<!--진귀: 확인후 지우시면됨  boardVO.member_no 는 없는 값이라 0 떠서 디비에서 받아온 data.board.member_no 로 바꿈 -->
+
 			<c:if test="${loginInfo.member_no == data.board.member_no }">
 			<a href="/ro/board/updateView.do?board_no=${data.board.board_no}">수정</a>
-			<a href="javascript:"><img src="/ro/img/delete.png" title="게시글 삭제"></a>
+			<form method="post" action="/ro/board/viewDelete.do">
+				<input type="hidden" name="board_no" value="${boardVO.board_no }">
+				<input type="hidden" name="board_name" value="${boardVO.board_name }">
+				<a href="javascript:"><img src="/ro/img/delete.png" onclick="submit();" title="게시글 삭제"></a>
+			</form>
 			</c:if> 
    		</div>
 	</div>
 	
+	<!-- 방비밀번호 모달 -->
+	<div class="roompwdmodal">
+   		<div class="modal-roompwdcontent">
+   			<a class="btn-roompwdclose" href="javascript:"><img src="/ro/img/close.png"></a>
+			<h3>Enter Password</h3>
+			<form action="/ro/room/pwdCheck.do" method="post">
+				<input type="hidden" name="board_name" value="${data.board.board_name}">
+				<input type="hidden" name="board_no" value="${data.board.board_no}">
+				<input type="hidden" id="room_no" name="room_no" value="">
+				<input type="text" name="room_pwd">
+				<input type="submit" value="참여">
+			</form>	
+		</div>
+	</div>
+
+
 	<!-- 방만들기 모달 -->
 	<div class="roommodal">
    		<div class="modal-roomcontent">
@@ -338,6 +405,45 @@ a {
 	<script type='text/javascript' src="/ro/js/mapView.js"></script>
     
     <script>
+   	
+    $(function(){
+   		//댓글 1페이지 불러오기
+   		getComment(1); 
+   		clickBoardLike();
+   		clickDislike();
+   	
+   		getAllCourse(); 
+   	});
+
+  //등록한글 불러오기(수정용)
+	function updatebox(index,places){
+		count++;
+		var html ='<div class="set">'
+			html +='<span class="jk"></span>'
+			html +='<div class="map_list">'
+			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
+					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';
+				    if (places.road_address_name) {
+				    	html += '    <span>' + places.road_address_name + '</span>' +
+				                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
+				    } else {
+				    	html += '    <span>' +  places.address_name  + '</span>'; 
+				    }
+   			html += '  <span class="tel">' + places.phone  + '</span>'     
+			html +="</div>"
+	        html +='    <textarea placeholder="내용 입력" name="contents">'+places.content+'</textarea>'
+	        html +='    <div class="pic_wrap">'
+	        html +='        <div class="pic">'
+	        html +='       		<img src="/ro/img/no-image.jpg">'
+	        html +='     	</div>'
+	        html +='   	 	<div class="pic">'
+            html +='       		<img src="/ro/img/no-image.jpg">'
+	        html +='      	</div>'
+	        html +='    </div>'
+	        html +='</div>'
+			$('.scroll').append(html);
+			 
+	};
 	$('.btn-makeclick').click(function(){
 		$('.roommodal').fadeIn();
 	})
@@ -350,6 +456,10 @@ a {
 		$("#room_enddate").val('');
 		$("#room_pwd").val('');
 	})
+	$('.btn-roompwdclose').click(function(){
+		$('.roompwdmodal').fadeOut();
+		$("#room_pwd").val('');
+	})
 	
 	var login_member_no;
 	<c:if test="${empty loginInfo.member_no }">
@@ -359,14 +469,18 @@ a {
     	login_member_no = ${loginInfo.member_no}
 	</c:if>
 	console.log(login_member_no);
+	
     	var likeCheck = -1 ;
     	var dislikeCheck = -1;
+    	
     	function joinRoom(pwd, no){
     		alert(no);
     		if(confirm('방에 참여하시겠습니까?')){
     			
 	    		if(pwd){
-	    			location.href="../room/pwdForm.do?board_name=${data.board.board_name}&board_no=${data.board.board_no}&room_no="+no
+	    			// location.href="../room/pwdForm.do?board_name=${data.board.board_name}&board_no=${data.board.board_no}&room_no="+no
+	    			$('#room_no').val(no);
+	    			$('.roompwdmodal').fadeIn();
 	    		} else{
 	    			location.href="../room/room.do?room_no="+no;
 	    			
@@ -470,13 +584,6 @@ a {
     	};
     	
      	
-    	$(function(){
-    		//댓글 1페이지 불러오기
-    		getComment(1); 
-    		clickBoardLike();
-    		clickDislike();
-    	
-    	});
     	 
     	function goSave(){
      		if(confirm('댓글을 작성하시겠습니까?')){

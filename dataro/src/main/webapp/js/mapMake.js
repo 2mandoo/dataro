@@ -130,7 +130,6 @@ function displayPlaces(places) {
 					if(confirm('코스 추가?')) {
 						courseArr.push(place);
 						writebox(courseIdx++,place);
-						count++;
 					}
 				} else{
 					alert("코스는 최대5개까지 등록 가능합니다.")							

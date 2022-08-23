@@ -17,5 +17,7 @@ public class MapVO {
 	private String road_address_name;
 	private String x;
 	private String y;
+	
+	//글수정에서 사용하기위해 추가함-진경
 	private String content;
 }

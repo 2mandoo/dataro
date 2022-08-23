@@ -51,8 +51,11 @@ public class BoardServiceImpl implements BoardService {
 		Map ud = new HashMap();
 		ud.put("view",mapper.updateView(vo));
 		ud.put("course",mapper.updateCourse(vo));
+		ud.put("hrcategory", mapper.updateCategory(vo));
+		
 		System.out.println("가"+mapper.updateView(vo));
 		System.out.println("나"+mapper.updateCourse(vo));
+		System.out.println("해쉬태그"+mapper.updateCategory(vo));
 		return ud;
 	}
 	//여행코스글수정
@@ -291,7 +294,12 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.place(board_no);
 	}
 
+	@Override
+	public int delete(BoardVO vo) {
+		return mapper.delete(vo);
+	}
 	//=================================정현===============================
+	
 	//호윤
 	@Override
 	public List<CategoryVO> hashtag(int board_no) {

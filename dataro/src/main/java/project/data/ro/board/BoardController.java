@@ -29,7 +29,6 @@ import project.data.ro.util.LikeVO;
 import project.data.ro.util.UtilService;
 
 @Controller
-@Slf4j
 @RequestMapping("/board")
 public class BoardController {
 	
@@ -45,6 +44,16 @@ public class BoardController {
 	@Autowired
 	MapMapper mapper;
 
+	// +++진귀
+	@PostMapping("/getAllCourse.do")
+	@ResponseBody
+	public Map vview(BoardVO bvo,HttpSession sess,Model model) {
+		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
+		bvo.setMember_no(mvo.getMember_no());
+		return service.updateView(bvo);
+	}
+	// 진귀++++++
+	
 	
 	////////////////////////////////진경시작////////////////////////////////////////
 	//여행코스 글쓰기화면
@@ -71,7 +80,9 @@ public class BoardController {
 	public String updateView(BoardVO bvo,HttpSession sess,Model model) {
 		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
 		bvo.setMember_no(mvo.getMember_no());
-		model.addAttribute("ud",service.updateView(bvo));
+		model.addAttribute("ud",service.updateView(bvo)); //등록된코스 정보,타이틀 불러오기
+		model.addAttribute("category",uservice.writeCategory());
+		
 		return "travelboard/update";
 	}
 	//여행코스 글쓰기 수정
@@ -201,6 +212,18 @@ public class BoardController {
 			return 0;
 		}
 		return service.dislikeCheck(vo);
+	}
+	
+	@PostMapping("/viewDelete.do")
+	public String viewDelete(BoardVO vo, Model model) {
+		if(service.delete(vo)==1) {
+			model.addAttribute("msg", "정상적으로 삭제되었습니다.");
+			model.addAttribute("url", "/ro/board/main.do");
+			return "common/alert2";
+		} else {
+			model.addAttribute("msg", "삭제에 실패하였습니다.");
+			return "common/alert2";
+		}
 	}
 	//=================================정현===============================
 	@GetMapping("/test.do")

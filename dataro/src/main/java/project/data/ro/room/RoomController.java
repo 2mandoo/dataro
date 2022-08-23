@@ -91,10 +91,6 @@ public class RoomController {
 //	 }
 //	 
 
-	@GetMapping("/pwdForm.do")
-	public String pwdForm(RoomVO vo) {
-		return "room/pwdCheck";
-	}
 
 	@PostMapping("/pwdCheck.do")
 	public String pwdCheck(RoomVO vo) {

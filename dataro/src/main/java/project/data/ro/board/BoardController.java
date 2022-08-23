@@ -202,6 +202,18 @@ public class BoardController {
 		}
 		return service.dislikeCheck(vo);
 	}
+	
+	@PostMapping("/viewDelete.do")
+	public String viewDelete(BoardVO vo, Model model) {
+		if(service.delete(vo)==1) {
+			model.addAttribute("msg", "정상적으로 삭제되었습니다.");
+			model.addAttribute("url", "/ro/board/main.do");
+			return "common/alert2";
+		} else {
+			model.addAttribute("msg", "삭제에 실패하였습니다.");
+			return "common/alert2";
+		}
+	}
 	//=================================정현===============================
 	@GetMapping("/test.do")
 	public String test(BoardVO vo) {

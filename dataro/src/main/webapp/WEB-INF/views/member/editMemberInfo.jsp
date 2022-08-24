@@ -126,7 +126,7 @@ function checkEmail(){
 					<td><h1>회원정보수정</h1></td>
 				</tr>
 				<tr>
-					<td><input type="text" id="id" name="id" value="${loginInfo.id }" readonly></td>
+					<td><input type="text" id="id" name="id" value="${loginInfo.id }" readonly ></td>
 				</tr>
 				<tr>
 					<td><input type="text" id="nickname" name="nickname" placeholder="Nickname" maxlength='8' required></td>

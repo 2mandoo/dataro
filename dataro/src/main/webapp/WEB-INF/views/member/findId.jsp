@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/ro/resources/css/reset.css"/>
 <link rel="stylesheet" href="/ro/resources/css/login.css"/>
+<link rel="stylesheet" href="/ro/resources/css/reset.css"/>
 </head>
 <body>
 <script>
@@ -48,9 +48,9 @@ $(function(){
 });
 </script>
 <div id="wrap">
-	<div class="content login page">
+	<div class="content login ">
 		<form action="" method="post" name ="">
-			<table style="width:700px";>
+			<table>
 				<tr><td><h1>아이디 찾기</h1></td></tr>
 				<tr>
 					<td><input type="text" id="nickname" name="nickname" placeholder="Nickname" maxlength='8'></td>

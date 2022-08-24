@@ -50,9 +50,9 @@ $(function(){
 });
 </script>
 <div id="wrap">
-	<div class="content login page">
+	<div class="content login ">
 		<form action="" method="post" name ="" >
-			<table style="width:700px;">
+			<table>
 				<tr><td><h1>비밀번호 찾기</h1></td></tr>
 				<tr>
 					<td><input type="text" id="id" name="id" placeholder="Id" ></td>

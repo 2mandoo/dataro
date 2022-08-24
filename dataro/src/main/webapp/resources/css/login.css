@@ -25,7 +25,7 @@
      overflow: hidden;
      text-overflow: ellipsis;
 }
-     
+    
 #wrap .border {
 	padding-top: 20px;
 	border-radius: 20px;
@@ -33,6 +33,20 @@
 	padding: 10px;
 	position: relative;
     top: 50px;
+}
+#wrap .bord {
+	padding-top: 20px;
+	border-radius: 20px;
+    box-shadow: 2px 2px 5px #d3d3d3, -2px -2px 5px #d3d3d3;
+	padding: 10px;
+	position: relative;
+    top: 50px;
+    width:700px;
+}
+
+a img #gohome {
+	position:relative;
+	right:50px;
 }
 
 .page .leaveBtn {background-color:#616BEE;

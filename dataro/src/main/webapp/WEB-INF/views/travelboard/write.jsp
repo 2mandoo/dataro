@@ -42,9 +42,8 @@
                     			<option value="${region.region_name}" >${region.region_name }</option>
                     		</c:forEach>
                     	</select>
-                    	<div class="region_detail">
-                    
-                    	</div>
+                    	<ul class="region_result"></ul>
+                    	<div class="region_detail"></div>
                     </div>
                 </div>
                 <!--지도,글쓰기-->
@@ -224,22 +223,32 @@
 				$(".region_detail").find("input").remove();
 				$(".region_detail").find("label").remove();
 				for(var i=0;i<res.regionDetailList.length;i++){
-				    	var html = '<label for="region'+i+'">'+res.regionDetailList[i].region_name
-				    		html +='<input type="checkbox" name="region_no_arr" id="region'+i+'" value="'+res.regionDetailList[i].region_no+'">'
+				    	var html = '<label for="region'+res.regionDetailList[i].region_no+'">'+res.regionDetailList[i].region_name
+				    		html +='<input type="checkbox" name="region_no_arr" id="region'+res.regionDetailList[i].region_no+'" value="'+res.regionDetailList[i].region_no+'">'
 				    		html +='</label>'
 				    	$(".region_detail").append(html);
 				}
 			}
 		})
-
 	});
 	//지도소분류 체크css
 	$(document).on("click",".region_detail label",function(){
 		if($(this).find("input[type='checkbox']").is(':checked')){
-			$(this).toggleClass("on")
+			$(this).toggleClass("on");
+			if($(this).hasClass("on")){
+				var html ='<li id='+$(this).attr('for')+'>'+$(this).text();
+				html +='<a onclick="delCondition(\''+$(this).attr('for')+'\')"><i class="fa-solid fa-circle-xmark"></i>';
+				html +='</a>';
+				html +='</li>';
+				$('.region_result').append(html);
+			}
 		}
 	})
-	
+	function delCondition(e){
+		$("li#"+e).remove();
+		$("label[for='"+e+"']").removeClass('on');
+		$("input#"+e).prop("checked",false);
+	}
 </script>
 
 </body>

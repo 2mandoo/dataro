@@ -1,16 +1,16 @@
-
+var regionarr = new Array(); //ajax 비동기처리로 만들어서 변수값을 넣은상태에서 사용할수있게
 function getAllCourse() {
 	var no=$('#board_no').val();  // 방만들기 모달 안에 hidden으로 숨겨진 board_no를 가지고 옴
 
 	$.ajax({
 		url : "/ro/board/getAllCourse.do",
 		type : "post",
+		async:false, 
+		traditional: true,
 		data : {
 			board_no : no,
 		},
 		success : function(res) {
-			console.log(res);
-			console.log(res.course);
 			if(res.course.length != 0) {
 				for(var i=0; i<res.course.length; i++){
 					updatebox(i,res.course[i]);
@@ -18,8 +18,6 @@ function getAllCourse() {
 				}
 				displayCouses(res.course);
 			}
-			console.log(res.hrcategory.length)
-			console.log("지역번호"+res.hrcategory2[1])
 			
 			for(var i=0;i<res.hrcategory.length;i++){
 				var idx = res.hrcategory[i].hashtag_no;
@@ -27,8 +25,12 @@ function getAllCourse() {
 				document.getElementsByName("hashtag_no")[idx].parentElement.className='on';
 			};
 			for(var i=0;i<res.hrcategory2.length;i++){
-				console.log(res.hrcategory2[i].region_no)
+				var newli = document.createElement("li");
+				newli.innerText=res.hrcategory2[i].region_name;
+				document.getElementsByClassName("region_result")[0].appendChild(newli)
+				regionarr.push(res.hrcategory2[i].region_no);
 			}
+				
 		},
 		error : function(e) {
 			console.log("all 가져오기 에러"+e);

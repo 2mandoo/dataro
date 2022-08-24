@@ -14,11 +14,21 @@
     <title>게시판목록</title>
     <link rel="stylesheet" href="/ro/resources/css/login.css"/>
 	<link rel="stylesheet" href="/ro/resources/css/reset.css"/>
+<style>
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    margin: 20px 0;
+}
+</style>
 </head> 
+
 <body>
 <div id="wrap">
-	<div class="content login">
-	    <h1 class="sub_title">참여한 채팅방</h1>
+	<div class="content login border">
+	    <h2>참여한 채팅방</h2>
         <div class="bbs" style="display:inline-block; height:200px; overflow-y:scroll;">
         <div id="area"></div>
        	 	<div>

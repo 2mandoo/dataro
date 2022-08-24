@@ -41,13 +41,22 @@ function myList() {
 	return false;
 };
 </script>
+<style>
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    margin: 20px 0;
+}
+</style>
 </head> 
 <body>
 <div id="wrap">
-	<div class="content login">
+	<div class="content login border">
         <div id="area"></div>
-	        <h1 class="sub_title">내가 쓴 댓글</h1>
        	 	<div>
+	        <h2>내가 쓴 댓글</h2>
                 <form method="post" name="Form" id="searchForm" action="" onsubmit="return myList();"> 
                     <span class="srchSelect">
                         <select id="stype" name="stype" value="${param.stype }">

@@ -5,6 +5,7 @@
 .login table tr{text-align:center; margin: 0 auto;}
 
 .login form h1{text-align:center; padding-bottom:30px; padding-top: 20px;}
+.login form h2 {text-align:center; padding-bottom:30px; padding-top: 20px;}
 #wrap .login {display: block; margin: 0 auto; width: 700;}
 #wrap .page{position:relative; top:180px;}
 #wrap .page #goMain{position:relative; right:310px; bottom:50px;}
@@ -17,6 +18,23 @@
     box-shadow: 2px 2px 5px #d3d3d3, -2px -2px 5px #d3d3d3;
 
 }
+
+
+#wrap .content table tr td{
+     white-space: nowrap; /*nowrap 줄바꿈을 하지 않음.*/
+     overflow: hidden;
+     text-overflow: ellipsis;
+}
+     
+#wrap .border {
+	padding-top: 20px;
+	border-radius: 20px;
+    box-shadow: 2px 2px 5px #d3d3d3, -2px -2px 5px #d3d3d3;
+	padding: 10px;
+	position: relative;
+    top: 50px;
+}
+
 .page .leaveBtn {background-color:#616BEE;
 						color:#fff;
 						border-radius:5px;
@@ -32,10 +50,16 @@
 .content table tr td #btn_leave{height:33px; position:relative; left:300px}
 
 .login #backBtn{width:70px; position:relative; right:200px; display:inline-block;}
-.login #setbtn{width:70px; position:relative; left:140px;}
-.login #idImg{position:relative; right:110px; border-radius:30px; width:300px; display:inline-block;}
+.login #setbtn{width:40px; top:5px; position:relative; left:250px;}
+.login #idImg{position:relative; margin-bottom:30px; right:110px; border-radius:30px; width:300px; display:inline-block;}
 .login #nic{display:inline-block; position:relative; } 
 .login form #lo{display:inline-block; position:relative; top:50px; right:70px;}
+
+
+
+
+
+.login .bt6{width:50px; padding-right: 20px;}
 
 /* 모달 */
 .modal {

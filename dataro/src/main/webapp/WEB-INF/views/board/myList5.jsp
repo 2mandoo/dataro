@@ -58,13 +58,22 @@ function deleteMsg(){
 	});
 }
 </script>
+<style>
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    margin: 20px 0;
+}
+</style>
 </head> 
 <body>
 <div id="wrap">
-	<div class="content login">
+	<div class="content login border">
         <div id="area"></div>
-	        <h1 class="sub_title">보낸 쪽지함</h1>
        	 	<div>
+	        <h2>보낸 쪽지함</h2>
                 <form method="post" name="Frm" id="Frm" onsubmit="return myList();"> 
                     <span class="srchSelect">
                         <select id="stype" name="stype" value="${param.stype }">
@@ -79,8 +88,8 @@ function deleteMsg(){
                     </span>
             	<table class="list">
             	<colgroup>
-                    <col width="100px" />
-                    <col width="100px" />
+                    <col width="80px" />
+                    <col width="80px" />
                     <col width="*" />
                     <col width="150px" />
                     <col width="70px" />
@@ -101,13 +110,13 @@ function deleteMsg(){
                     <tr>
                     	<td>${vo.nickname}</td>
                     	<td>${vo.id}</td>
-                        <td>${vo.message_content}</td>
+                        <td class="MsgContent">${vo.message_content}</td>
                         <td class="date"><fmt:formatDate value="${vo.senddate }" pattern="yyyy-MM-dd"/></td>
                         <td><input type="checkbox" class="selected" name="message_no" value="${vo.message_no }"></td>
                     </tr>
                 </c:forEach>
                 <tr>
-                	<td colspan="5" style="text-align:right;"><a href="javascript:deleteMsg();">삭제하기</a></td>
+                	<td colspan="5" style="text-align:right;"><a href="javascript:deleteMsg();" style="color:red">삭제하기&nbsp</a></td>
                 </tr>
             </table>
             <div>

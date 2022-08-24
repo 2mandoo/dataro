@@ -97,7 +97,8 @@
     		me.message_no,
     		me.message_content
 		from pmessage me join pmember m  
-		on m.member_no = me.send_member_no where receive_member_no=#{receive_member_no} and readdate is null
+		on m.member_no = me.send_member_no where receive_member_no=#{receive_member_no} and readdate is null 
+		order by senddate desc;
 	</select>
 	<!-- 안읽은 쪽지 읽음처리 -->
 	<update id="readUpdate" parameterType="project.data.ro.message.MessageVO">

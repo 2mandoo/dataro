@@ -42,13 +42,22 @@ function myList(){
 	return false;
 }
 </script>
+<style>
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    margin: 20px 0;
+}
+</style>
 </head> 
 <body>
 <div id="wrap">
-	<div class="content login">
+	<div class="content login border">
         <div id="area"></div>
-	        <h1 class="sub_title">좋아요 누른 게시물</h1>
        	 	<div>
+	        <h2>좋아요 누른 게시물</h2>
                 <form method="post" name="Form" id="searchForm" action="" onsubmit="return myList();">
                     <span>
                         <select id="stype" name="stype" value="${param.stype }">

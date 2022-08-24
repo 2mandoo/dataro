@@ -58,13 +58,22 @@ function deleteMsg(){
 	});
 }
 </script>
+<style>
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    margin: 20px 0;
+}
+</style>
 </head> 
 <body>
 <div id="wrap">
-	<div class="content login">
+	<div class="content login border">
         <div id="area"></div>
-	        <h1 class="sub_title">받은 쪽지함</h1>
        	 	<div>
+	        <h2>받은 쪽지함</h2>
                 <form method="post" id="Frm" name ="Frm" onsubmit="return myList();"> 
                     <span class="srchSelect">
                         <select id="stype" name="stype" value="${param.stype }">
@@ -107,7 +116,7 @@ function deleteMsg(){
                     </tr>
                 </c:forEach>
                 	<tr>
-                		<td colspan="5" style="text-align:right;"><a href="javascript:deleteMsg();">삭제하기</a></td>
+                		<td colspan="5" style="text-align:right;"><a href="javascript:deleteMsg();" style="color:red">삭제하기&nbsp</a></td>
                 	</tr>
             </table>
             <div>

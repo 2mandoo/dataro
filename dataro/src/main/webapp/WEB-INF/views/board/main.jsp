@@ -20,7 +20,7 @@
 $(function(){
 	
 	// 로그인 후 변경된 사진 클릭시 마이페이지로 가기(정길)
-	$('#idImg').click(function(){
+	$('#idIm').click(function(){
 		location.href="/ro/member/myPage";
 	});
 	
@@ -69,27 +69,27 @@ function loginAlert(){
 			</form>
             <ul>
             <a href="/ro/fullboard/fullmain.do">
-            	<img src ="/ro/img/freeboard.png" width="50px">
+            	<img src ="/ro/img/freeboard.png" class="mbtn">
             </a> 
           	<c:choose>
           		<c:when test="${empty loginInfo }">
 	            	<a href="/ro/member/login" id="toPic">
-	            		<img src ="/ro/img/profile.png">
+	            		<img src ="/ro/img/profile.png" class="mbtn">
 	            	</a> 
             	</c:when>
             	<c:otherwise>
             		<a href="#">
-		            <img src ="/ro/img/${loginInfo.m_filename_server}" width="50px" id="idImg" style="border-radius:30px;">
+		            <img src ="/ro/img/${loginInfo.m_filename_server}" id="idIm" style="border-radius:30px; width: 50px; margin-right: 20px;">
 		        </a>
             	</c:otherwise>
 			</c:choose>            
             <a href="#" id="alarmForUser">
-            	<img src ="/ro/img/alarm.png" >
-            	<span id="theNumberOfMsg"> ${UnreadMsgs }</span>
+            	<img src ="/ro/img/alarm.png" class="mbtn">
+            	<span id="theNumberOfMsg" style="position:relative; right:20px;"> ${UnreadMsgs }</span>
             </a>
             
             <a href="/ro/board/travelWrite.do" id="wBtn">
-            	<img src ="/ro/img/write.png" >
+            	<img src ="/ro/img/write.png" class="mbtn">
             </a>
 		   
           	</ul>

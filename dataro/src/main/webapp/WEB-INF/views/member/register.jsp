@@ -28,7 +28,6 @@ $(function(){
 	$('#pwd').focusout(function(){
 		if ($('#pwd').val() === '' ){
 			$("#area2").html('비밀번호를 입력해 주세요.').css('color','red').css('font-size','small');
-			$("#pwd").focus();
 			} 
 		})
 	// 아이디 중복체크
@@ -138,29 +137,31 @@ function checkEmail(){
 	<div class="content login page">
 		<a href="/ro/board/main.do"><img src="/ro/img/main.png" id="goMain"></a>
 		<form action="register" method="post" name ="register" enctype="multipart/form-data">
-		<h1>Register</h1>
 			<table>
 				<tr>
-					<td><input type="text" id="id" name="id" placeholder="id" maxlength='20'></td>
+					<td><h1>Register</h1></td>
+				</tr>
+				<tr>
+					<td><input type="text" id="id" name="id" placeholder="Id" maxlength='20'></td>
 				</tr>
 				<tr>
 					<td><div id="area1"></div></td>
 				</tr>
 				<tr>
-					<td><input type="text" id="nickname" name="nickname" placeholder="nickname" maxlength='5' required></td>
+					<td><input type="text" id="nickname" name="nickname" placeholder="Nickname" maxlength='8' required></td>
 				</tr>
 				<tr>
-					<td><input type="text" id="pw1" name="pw1" placeholder="pw"></td>
+					<td><input type="password" id="pw1" name="pw1" placeholder="Password"></td>
 				</tr>
 				<tr>
-					<td><input type="text" id="pwd" name="pwd" placeholder="pw for confirmation"></td>
+					<td><input type="password" id="pwd" name="pwd" placeholder="Confirm Password"></td>
 				</tr>
 				<tr>
 					<td class=""><div id="area2"></div></td>
 				</tr>
 				<tr>
 					<td>
-						<input type="text" id="email" size="10" placeholder="email" name="email"/>@<input type="text" id="email2" name="email2" size="10" />
+						<input type="text" id="email" size="10" placeholder="Email" name="email"/>@<input type="text" id="email2" name="email2" size="10" />
 						<select id="email_select" >
 							<option value="1" selected>선택하기</option>
 							<option value="gmail.com" id="1">gmail.com</option>

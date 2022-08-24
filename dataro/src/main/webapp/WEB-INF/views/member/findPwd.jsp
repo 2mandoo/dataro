@@ -50,18 +50,18 @@ $(function(){
 });
 </script>
 <div id="wrap">
-	<div class="content login">
+	<div class="content login page">
 		<form action="" method="post" name ="" >
-		<h1>비밀번호 찾기</h1>
-			<table>
+			<table style="width:700px;">
+				<tr><td><h1>비밀번호 찾기</h1></td></tr>
 				<tr>
-					<td><input type="text" id="id" name="id" placeholder="id" ></td>
+					<td><input type="text" id="id" name="id" placeholder="Id" ></td>
 				</tr>
 				<tr>
 					<td><div id="area1"></div></td>
 				</tr>
 				<tr>
-					<td><input type="text" id="email" name="email" placeholder="email" maxlength='20'></td>
+					<td><input type="text" id="email" name="email" placeholder="Email" maxlength='40'></td>
 				</tr>
 				<tr>
 					<td><div id="area2"></div></td>

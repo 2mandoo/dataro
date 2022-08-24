@@ -64,14 +64,16 @@ $(function(){
 		checkEmail();
 	});
 	//탈퇴버튼 누르고 모달띄우기
-	$('#btn_leave').click(function(){
-		$('.modal').fadeIn();
-	});
+	
 	$('.btn-close').click(function(){
 		$('.modal').fadeOut();
 	});
 	
 });
+
+function modalFadeIn(){
+	$('.modal').fadeIn();
+}
 
 // 비밀번호 체크 함수
 function checkPw () {
@@ -84,7 +86,6 @@ function checkPw () {
 	}
 	if (pw1 != pwd && pw1 != '' && pwd != ''){
 		$("#area2").html('비밀번호가 같지 않습니다.').css('color','red').css('font-size','small');
-		$("#pwd").focus();
 	} else if (pw1 == pwd && pw1 != '' && pwd != '') {
 		$("#area2").html('비밀번호가 동일합니다.').css('color','green').css('font-size','small')
 	}
@@ -122,31 +123,26 @@ function checkEmail(){
 		<form action="editUserInfo" method="post" name ="register" enctype="multipart/form-data">
 			<table>
 				<tr>
-					<td colspan="3"><h1>회원정보수정</h1></td>
+					<td><h1>회원정보수정</h1></td>
 				</tr>
 				<tr>
-					<th class="right">아이디 : &nbsp</th>
 					<td><input type="text" id="id" name="id" value="${loginInfo.id }" readonly></td>
 				</tr>
 				<tr>
-					<th class="right">닉네임 : &nbsp</th>
-					<td><input type="text" id="nickname" name="nickname" placeholder="nickname"></td>
+					<td><input type="text" id="nickname" name="nickname" placeholder="Nickname" maxlength='8' required></td>
 				</tr>
 				<tr>
-					<th class="right">비밀번호 : &nbsp</th>
-					<td><input type="text" id="pw1" name="pw1" placeholder="pw"></td>
+					<td><input type="password" id="pw1" name="pw1" placeholder="Password"></td>
 				</tr>
 				<tr>
-					<th class="right">비밀번호 확인 : &nbsp</th>
-					<td><input type="text" id="pwd" name="pwd" placeholder="pw for confirmation"></td>
+					<td><input type="password" id="pwd" name="pwd" placeholder="Confirm Password"></td>
 				</tr>
 				<tr>
-					<td colspan="3"><div id="area2"></div></td>
+					<td><div id="area2"></div></td>
 				</tr>
 				<tr>
-					<th class="right">이메일 :</th>
-					<td colspan="3" style="text-align:left;">
-						<input type="text" id="email" size="10" placeholder="email" name="email"/>@<input type="text" id="email2" name="email2" size="10" />
+					<td>
+						<input type="text" id="email" size="10" placeholder="Email" name="email"/>@<input type="text" id="email2" name="email2" size="10" />
 						<select id="email_select" >
 							<option value="1" selected>선택하기</option>
 							<option value="gmail.com" id="1">gmail.com</option>
@@ -159,21 +155,20 @@ function checkEmail(){
 					</td>
 				</tr>
 				<tr>
-					<td colspan="3"><div id="area3"></div></td>
+					<td><div id="area3"></div></td>
 				</tr>
 				<tr>
-					<th class="right">내 사진변경 : &nbsp</th>
-					<td colspan=""><input type="file" name="filename"></td>
+					<td><input type="file" name="filename"></td>
 				</tr>
 				<tr>
-					<td colspan="2" ><h5>&nbsp&nbsp&nbsp&nbsp사진을 첨부하지 않으시면 기본이미지가 적용됩니다.</h5></td>
+					<td><h5>사진을 첨부하지 않으시면 기본이미지가 적용됩니다.</h5></td>
 				</tr>
 				<tr>
-					<td colspan="3"><input type="submit" value="수정하기" class="Btn"></td>
+					<td><input type="submit" value="수정하기" class="Btn"></td>
 				</tr>
 				<tr><td>&nbsp</td></tr>
 				<tr>
-					<td><input type="button" id="btn_leave" value="탈퇴하기"></td>
+					<td style="text-align:right;"><a href="javascript:modalFadeIn();" style="color:blue;">탈퇴하기&nbsp&nbsp&nbsp&nbsp</a></td>
 				</tr>
 			</table>
 		</form>
@@ -184,10 +179,12 @@ function checkEmail(){
 					<h1>회원탈퇴</h1>
 					${loginInfo.nickname } 님, 안녕하세요! <br>
 					계정을 삭제하려고 하신다니 아쉽습니다. <br>
-					<br><img src="/ro/img/sadCat.jpg" style="width:200px; display:block; position:relative; left:70px;"/><br>
+					<br><img src="/ro/img/sadCat.jpg" 
+					style="width:200px; display:block; position:relative; left:70px; border-radius: 20px;" /><br>
 					회원 탈퇴를 원하시면 비밀번호를 입력해 주세요. <br/><br/>
-					<input type="text" placeholder="pwd" id="pwd" name="pwd"> <br>
-					<input type="submit" value="회원탈퇴" id="leaveBtn" >
+					<input type="password" placeholder="Password" id="pwd" name="pwd"> <br>
+					<br/>
+					<input type="submit" value="탈퇴하기" class="leaveBtn">
 				</div>
 			</div>
 		</form>

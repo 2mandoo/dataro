@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="/ro/resources/css/login.css"/>
 <link rel="stylesheet" href="/ro/resources/css/reset.css"/>
+<link rel="stylesheet" href="/ro/resources/css/login.css"/>
 </head>
 <body>
 <script>
@@ -35,7 +35,7 @@ $(function(){
 </script>
 
 <div id="wrap">
-	<div class="content login page">
+	<div class="content login ">
 		<a href="/ro/board/main.do"><img src="/ro/img/main.png" id="goMain"></a>
 		<form action="" method="get" name ="">
 			<table>
@@ -44,19 +44,7 @@ $(function(){
 					<td id="fPwd"><a href="#">비밀번호 찾기</a></td>
 				</tr>
 				<tr>
-					<td>&nbsp</td>
-				</tr>
-				<tr>
-					<td>&nbsp</td>
-				</tr>
-				<tr>
-					<td>&nbsp</td>
-				</tr>
-				<tr>
-					<td>&nbsp</td>
-				</tr>
-				<tr>
-					<td colspan="2">
+					<td colspan="5">
 						<div id="area"></div>
 					</td>
 				</tr>

@@ -37,6 +37,13 @@ function aj(){
 };
 
 </script>
+<style>
+	form table tr td{
+		 white-space: nowrap; /*nowrap 줄바꿈을 하지 않음.*/
+	     overflow: hidden;
+	     text-overflow: ellipsis;
+	}
+</style>
 </head>
 <body>
 <div style="display:inline-block; height:200px; overflow-y:scroll;">

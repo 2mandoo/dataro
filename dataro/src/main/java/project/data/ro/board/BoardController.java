@@ -1,5 +1,6 @@
 package project.data.ro.board;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,24 +68,25 @@ public class BoardController {
 	
 	// 여행코스 글쓰기 from 진콩
 	@PostMapping("/insert.do")
-	public String insert(BoardVO bvo,CategoryVO cvo,@RequestParam List<Integer> hashtag_no,
-				FileVO fvo,@RequestParam MultipartFile[] filename, HttpServletRequest req) {
+	public String insert(BoardVO bvo,CategoryVO cvo,FileVO fvo,@RequestParam MultipartFile[] filename, HttpServletRequest req) {
 		service.insert(bvo);
-		uservice.insert(cvo,bvo,hashtag_no);
+		uservice.insert(cvo,bvo);
 		uservice.fileupload(fvo, filename, req,bvo);
 		mapper.update(bvo);
 		uservice.regionInsert(cvo);
-		System.out.println("내가 누른거"+cvo.getRegion_no_arr());
+		System.out.println("해쉬내가 누른거"+cvo.getHashtag_no_arr());
+		int[] a =cvo.getHashtag_no_arr();
+//		Arrays.toString(cvo)
+		System.out.println("0은뭘까"+cvo);
 		return "redirect:/board/travelWrite.do";
 	}
 	//여행코스 글쓰기 수정화면
 	@RequestMapping("/updateView.do")
-	public String updateView(BoardVO bvo,HttpSession sess,Model model) {
+	public String updateView(BoardVO bvo,HttpSession sess,Model model,FileVO fvo) {
 		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
 		bvo.setMember_no(mvo.getMember_no());
-		//model.addAttribute("ud",service.updateView(bvo)); //등록된코스 정보,타이틀 불러오기
-		model.addAttribute("category",uservice.writeCategory());
-		
+		model.addAttribute("category",uservice.writeCategory()); //카테고리전체 리스트 화면출력
+		//model.addAttribute("file",uservice.fileUpdate(fvo));
 		return "travelboard/update";
 	}
 	//여행코스 글쓰기 수정

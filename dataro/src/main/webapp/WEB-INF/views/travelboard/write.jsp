@@ -17,6 +17,7 @@
     <div id="wrap">
         <div class="content tv_write">
             <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value=${loginInfo.id }>
             <input type="hidden" name="member_no" value=${loginInfo.member_no }>
                 <!--제목-->
                 <div class="title">
@@ -30,7 +31,7 @@
 	                    <div class="hash">
 	                      	<h3>여행테마</h3>
 	                   		<c:forEach var="hash" items="${category.hash}">
-	                   			<label><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
+	                   			<label><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no_arr" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
 	                   		</c:forEach>
 	                    </div>
                     </div>
@@ -42,9 +43,8 @@
                     			<option value="${region.region_name}" >${region.region_name }</option>
                     		</c:forEach>
                     	</select>
-                    	<div class="region_detail">
-                    
-                    	</div>
+                    	<ul class="region_result"></ul>
+                    	<div class="region_detail"></div>
                     </div>
                 </div>
                 <!--지도,글쓰기-->
@@ -102,6 +102,7 @@
 		searchPlaces();
 	})
 	function goSave(){
+		
 		send(courseArr);
 		AH.submit();
 	};
@@ -224,22 +225,34 @@
 				$(".region_detail").find("input").remove();
 				$(".region_detail").find("label").remove();
 				for(var i=0;i<res.regionDetailList.length;i++){
-				    	var html = '<label for="region'+i+'">'+res.regionDetailList[i].region_name
-				    		html +='<input type="checkbox" name="region_no_arr" id="region'+i+'" value="'+res.regionDetailList[i].region_no+'">'
+				    	var html = '<label for="region'+res.regionDetailList[i].region_no+'">'+res.regionDetailList[i].region_name
+				    		html +='<input type="checkbox" name="region_no_arr" id="region'+res.regionDetailList[i].region_no+'" value="'+res.regionDetailList[i].region_no+'">'
 				    		html +='</label>'
 				    	$(".region_detail").append(html);
 				}
 			}
 		})
-
 	});
 	//지도소분류 체크css
 	$(document).on("click",".region_detail label",function(){
 		if($(this).find("input[type='checkbox']").is(':checked')){
-			$(this).toggleClass("on")
+			$(this).toggleClass("on");
+			if($(this).hasClass("on")){
+				var html ='<li id='+$(this).attr('for')+'>'+$(this).text();
+				html +='<a onclick="delCondition(\''+$(this).attr('for')+'\')"><i class="fa-solid fa-circle-xmark"></i>';
+				html +='</a>';
+				html +='</li>';
+				$('.region_result').append(html);
+			}else{
+				$("li#"+$(this).attr('for')).remove();
+			}
 		}
 	})
-	
+	function delCondition(e){
+		$("li#"+e).remove();
+		$("label[for='"+e+"']").removeClass('on');
+		$("input#"+e).prop("checked",false);
+	}
 </script>
 
 </body>

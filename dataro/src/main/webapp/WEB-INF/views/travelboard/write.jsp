@@ -101,6 +101,7 @@
 		searchPlaces();
 	})
 	function goSave(){
+		
 		send(courseArr);
 		AH.submit();
 	};

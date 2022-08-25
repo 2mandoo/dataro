@@ -16,7 +16,9 @@
 <body>
     <div id="wrap">
         <div class="content tv_write">
+            ${file[0].filename_server}
             <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value=${loginInfo.id }>
             <input type="hidden" name="member_no" value=${loginInfo.member_no }>
                 <!--제목-->
                 <div class="title">
@@ -140,7 +142,7 @@
 		}
 	})
 	
-	//글추가 작성용
+	//원래작성된 글불러오는용
 	function updatebox(index,places){
 		count++;
 		var html ='<div class="set">'
@@ -276,6 +278,8 @@
 				html +='</a>';
 				html +='</li>';
 				$('.region_result').append(html);
+			}else{
+				$("li#"+$(this).attr('for')).remove();
 			}
 		}
 	})

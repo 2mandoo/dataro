@@ -13,14 +13,16 @@ function getAllCourse() {
 		success : function(res) {
 			if(res.course.length != 0) {
 				for(var i=0; i<res.course.length; i++){
-					updatebox(i,res.course[i]);
+				//	console.log(res.file.filename_server);
+					updatebox(i,res.course[i],);
 					courseArr.push(res.course[i]);
 				}
 				displayCouses(res.course);
 			}
 			
 			for(var i=0;i<res.hrcategory.length;i++){
-				var idx = res.hrcategory[i].hashtag_no;
+				var idx = res.hrcategory[i].hashtag_no-1;
+				console.log(idx)
 				document.getElementsByName("hashtag_no")[idx].checked=true;
 				document.getElementsByName("hashtag_no")[idx].parentElement.className='on';
 			};

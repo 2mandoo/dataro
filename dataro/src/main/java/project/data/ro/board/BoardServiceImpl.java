@@ -18,6 +18,7 @@ import project.data.ro.room.RoomMapper;
 import project.data.ro.room.RoomVO;
 import project.data.ro.util.CategoryMapper;
 import project.data.ro.util.CategoryVO;
+import project.data.ro.util.FileMapper;
 import project.data.ro.util.FileVO;
 
 @Slf4j
@@ -26,12 +27,10 @@ import project.data.ro.util.FileVO;
 public class BoardServiceImpl implements BoardService {
 	
 	BoardMapper mapper;
-	
 	RoomMapper rmapper;
-	
 	MapMapper pmapper;
-	
 	CategoryMapper cmapper;
+	FileMapper fmapper;
 	
 	//////////////////////////진경//////////////////////
 	//여행코스글쓰기(for문-코스등록)
@@ -53,6 +52,8 @@ public class BoardServiceImpl implements BoardService {
 		ud.put("course",mapper.updateCourse(vo));
 		ud.put("hrcategory",mapper.updateCategory(vo));
 		ud.put("hrcategory2",mapper.updateCategory2(vo));
+		ud.put("file",fmapper.fileUpdate(vo));
+		System.out.println("파일코스명"+fmapper.fileUpdate(vo));
 		
 		System.out.println("해쉬태그"+mapper.updateCategory(vo));
 		System.out.println("지역변호"+mapper.updateCategory2(vo));

@@ -17,6 +17,7 @@
     <div id="wrap">
         <div class="content tv_write">
             <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value=${loginInfo.id }>
             <input type="hidden" name="member_no" value=${loginInfo.member_no }>
                 <!--제목-->
                 <div class="title">
@@ -30,7 +31,7 @@
 	                    <div class="hash">
 	                      	<h3>여행테마</h3>
 	                   		<c:forEach var="hash" items="${category.hash}">
-	                   			<label><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
+	                   			<label><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no_arr" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
 	                   		</c:forEach>
 	                    </div>
                     </div>
@@ -242,6 +243,8 @@
 				html +='</a>';
 				html +='</li>';
 				$('.region_result').append(html);
+			}else{
+				$("li#"+$(this).attr('for')).remove();
 			}
 		}
 	})

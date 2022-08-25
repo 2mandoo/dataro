@@ -123,7 +123,9 @@ function loginAlert(){
 	    <div class="content main">
 	    <c:forEach var ="list" items="${list}">
      	<div class="cnt_set">
-          	<h5>${list.title}</h5>글번호 : ${list.board_no}
+          	<h5>${list.title}</h5>
+          	<div>글번호 : ${list.board_no}</div>
+          	<div>회원ID : ${list.id}</div>
           	<span>
          	<c:forEach var ="hvo" items="${list.hashtagList}">
          	#${hvo.hashtag_name}

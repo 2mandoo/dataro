@@ -4,8 +4,8 @@
 
 	<!-- 게시판 입력 -->
 	<insert id = "insert" parameterType="project.data.ro.fullboard.FullBoardVO"> <!--course_no 일단 뻄 -->
-		insert into pboard(board_name,board_no,id,member_no,title,viewcount,writedate,updatedate)
-		values ('자유게시판',#{board_no},#{id},#{member_no},#{title},#{viewcount},NOW(),NOW())
+		insert into pboard(board_name,board_no,id,member_no,title,viewcount,writedate,updatedate,content)
+		values (#{board_name},#{board_no},#{id},#{member_no},#{title},#{viewcount},NOW(),NOW(),#{content})
 		<selectKey keyProperty="board_no" resultType="int" order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
@@ -19,30 +19,38 @@
 	
 	<!-- 상세 페이지 -->
 	<select id="view" parameterType="project.data.ro.fullboard.FullBoardVO" resultType="project.data.ro.fullboard.FullBoardVO"> <!-- 하나의 객체 -->  <!-- parameterType="int" --> 
-		select * from pboard A left join pfile B 
+		select
+		 *
+		from pboard A left join pfile B 
 		on A.board_no = B.board_no
 		where A.board_no = #{board_no} and A.board_name = '자유게시판'
 	</select>
 
 	<!-- 게시판 페이지 -->
 	<select id="list" resultType="project.data.ro.fullboard.FullBoardVO">
-	select
-	 *
-	 , (select id from pmember where member_no =#{member_no}) as '아이디'
-	from pboard 
+		select
+		 *
+		 , (select id from pmember where member_no = pboard.member_no) as id
+			from pboard 
 		<where>
 			board_name = '자유게시판'
 			<if test ="stype != null or sword != null">
 				<if test ="stype == 'title'">
 				  and title like '%${sword}%'
 				</if>
-				<if test = "stype == 'content'">
+				<if test ="stype == 'id'">
+				  and id like '%${sword}%'
+				</if>
+				<if test ="stype == 'member_no'">
+				  and member_no like '%${sword}%'
+				</if>
+				<if test ="stype == 'content'">
 				  and content like '%${sword}%'
 				</if>
 			</if>
 		</where>
-		ORDER BY writedate DESC
-		LIMIT  ${startIdx},${pageRow};
+		 ORDER BY writedate DESC
+		 LIMIT  ${startIdx},${pageRow}
 	</select>
 	
 	<!-- 게시글 총갯수 페이징처리할떄 필요 -->
@@ -63,7 +71,7 @@
 	<!-- 게시글 제목 수정 -->
 	<update id="update" parameterType="project.data.ro.fullboard.FullBoardVO">
 		UPDATE pboard SET
-			title = #{title}
+			title = #{title}, content = #{content}
 			<if test="filename_org != null">
 			, filename_org = #{filename_org}
 			, filename_server = #{filename_server}

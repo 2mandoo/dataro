@@ -93,7 +93,13 @@
             </a>
 		   
           	</ul>
-      <h2 class="mb-5">[ dataro 자유게시판 ] <td><a href="/ro/member/myPage">☞${loginInfo.id}☜</a></td></h2>
+      <h2 class="mb-5">[ dataro 자유게시판 ]</h2>
+      <td>
+      <choose>
+      <when test = "${loginInfo.id} != ''&&${loginInfo.id} !='null'">${loginInfo.id}로그인 완료!</when>
+      <otherwise>로그인 해주세요!</otherwise>
+      </choose>
+      </td>
       <div class="table-responsive">
         <table class="table table-striped custom-table" style="margin-left: auto; margin-right: auto;">
         <p><span><strong>총 ${flist.totalCount}개</strong>  |  ${fullboardVO.page } ${flist.totalPage}페이지</span></p>
@@ -105,7 +111,7 @@
               <th scope="col" >조회수</th>
               <th scope="col" >게시판</th>
               <th scope="col" >게시일</th>
-              <th scope="col" >작성자ID</th>
+              <th scope="col" >회원ID</th>
             </tr>
           </thead>
           <tbody>
@@ -121,7 +127,7 @@
 	              <td>${vo.viewcount}</td>
 	              <td>${vo.board_name}</td>
 	              <td><a href="view.do?board_no=${vo.board_no}"><fmt:formatDate value="${vo.writedate}" pattern="yyyy-MM-dd HH:mm"/></td>
-	              <td>${loginInfo.id}</td>
+	              <td>${vo.id}</td>
 	            </tr>
 	          </c:forEach>
           </tbody>
@@ -133,7 +139,7 @@
        <div class="pagenate clear"> <!-- 페이징 처리 -->
            <ul class='paging'>
            <c:if test="${flist.prev == true }">
-           	<li><a href="fullmain.do?page=${flist.startPage-1}&stype=${param.stype}&sword=${param.sword}"></a></li>
+           	<li><a href="fullmain.do?page=${flist.startPage-1}&stype=${param.stype}&sword=${param.sword}"><</a></li>
            </c:if>
            <c:forEach var="A" begin="${flist.startPage}" end="${flist.endPage}">
                <a href='fullmain.do?page=${A}&stype=${param.stype}&sword=${param.sword}'
@@ -143,7 +149,7 @@
            </c:forEach>
            <c:if test="${flist.next == true }">
            	<a href="fullmain.do?page=${flist.endPage+1 }
-           	&stype=${param.stype}&sword=${param.sword}"></a>
+           	&stype=${param.stype}&sword=${param.sword}">></a>
            </c:if>
            </ul> 
        </div>
@@ -151,6 +157,9 @@
 	      	<form id="frm" action="fullmain.do" > <!-- 하단부 검색 -->
 			<select id="form" name="stype" class="dSelect" title="검색분류 선택">
 			<option value="title" >제목</option> 
+			<option value="content" >내용</option> 
+			<option value="id" >회원ID</option> 
+			<option value="member_no" >회원번호</option> 
 			</select>
 			<input type="text" id="" name="sword" value="" placeholder="검색">
 			<input type ="submit"  value="검색">

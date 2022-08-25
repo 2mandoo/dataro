@@ -19,37 +19,39 @@ public class FullBoardServiceImple implements FullBoardService {
 	@Autowired
 	FullBoardMapper mapper;
 	
+	//자유게시판 등록
 	@Override
 	public int insert(FullBoardVO vo) {
+		
 		return mapper.insert(vo);
 		
 	}
-
+	//자유게시판 조회수 갱신
 	@Override
 	public FullBoardVO view(FullBoardVO vo) {
 		mapper.viewcountupdate(vo);
 		return mapper.view(vo);
 	}
-
+	//글쓰기 삭제
 	@Override
 	public boolean remove(int num) {
 		
 		return mapper.delete(num) == 1;
 		
 	}
-	
+	//글쓰기 페이지 출력
 	@Override
 	public FullBoardVO modify(FullBoardVO vo) {
 		
 		return mapper.view(vo);
 	}
-	
+	//글쓰기 제목 수정
 	@Override
 	public boolean update(FullBoardVO vo) {
 		
 		return mapper.update(vo) > 0;
 	}
-
+	//자유게시판 페이징 처리
 	@Override
 	public Map index(FullBoardVO vo) {
 		
@@ -88,7 +90,7 @@ public class FullBoardServiceImple implements FullBoardService {
 		
 		return map;
 	}
-
+	//글쓰기 파일등록
 	@Override
 	public boolean fileUpload(FullBoardVO vo, @RequestParam MultipartFile[] filename, HttpServletRequest req) {
 		int a = 1;

@@ -229,9 +229,4 @@ public class BoardController {
 		}
 	}
 	//=================================정현===============================
-	@GetMapping("/test.do")
-	public String test(BoardVO vo) {
-		service.list(vo);
-		return "board/test";
-	}
 }

@@ -33,7 +33,7 @@ public class BoardVO {
 		this.pageRow=pageRow;
 	}
 	public BoardVO (){
-		this(1,5);
+		this(1,10);
 	}
 	
 	private String content; 

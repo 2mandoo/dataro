@@ -43,6 +43,12 @@ function goModifySave() {
                                 <input type="text" name="title" id="title" class="wid100" value="${modify.title}"/>
                             </td>
                         </tr>
+                        <tr>
+                            <th>내용수정</th>
+                            <td>
+                                <input type="text" name="content" id="content" class="wid100" value="${modify.content}"/>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                     <div class="btnSet"  style="text-align:right;">

@@ -41,7 +41,7 @@ public class FullBoardVO {
 	int startIdx;
 	int pageRow;
 	int page;
-	
+	int reply_no;
 	
 
 	public FullBoardVO() {

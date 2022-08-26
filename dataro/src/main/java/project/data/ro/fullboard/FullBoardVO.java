@@ -45,7 +45,7 @@ public class FullBoardVO {
 	
 
 	public FullBoardVO() {
-		this(1,10);
+		this(1,5);
 	}
 	public FullBoardVO(int page, int pageRow) {
 		this.page = page;

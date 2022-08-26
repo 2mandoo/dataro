@@ -4,7 +4,7 @@
 
 	<insert id="insert" parameterType="project.data.ro.comment.CommentVO">
 		INSERT INTO preply (
-			content, member_no, board_no, reply_writedate , reply_no, board_name
+			content, member_no, board_no, reply_writedate ,reply_no, board_name
 		) VALUES (
 			#{content}, #{member_no}, #{board_no},NOW(),#{reply_no},'자유게시판'
 		)
@@ -29,9 +29,10 @@
 		DELETE FROM preply WHERE reply_no= #{reply_no}
 	</delete>
 	
-	
-	
-	
-	
-	
+	<update id="modify" parameterType="project.data.ro.comment.CommentVO">
+		UPDATE preply SET 
+		content = #{content}
+		, reply_updatedate = now()
+		WHERE reply_no = #{reply_no}
+	</update>
 </mapper>

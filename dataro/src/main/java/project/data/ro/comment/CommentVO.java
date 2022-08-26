@@ -14,6 +14,7 @@ public class CommentVO {
 	int reply_no;
 	String board_name;
 	Timestamp reply_writedate;
+	Timestamp reply_updatedate;
 	Timestamp regdate;
 	Timestamp writedate;
 	//private String member_name;

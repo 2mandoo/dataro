@@ -168,14 +168,18 @@
 	<select id="list" resultType="project.data.ro.board.BoardVO"> 
 		select
 		 * 
- 		,(SELECT COUNT(*) FROM plike WHERE pboard.board_no = plike.board_no) AS likecount <!-- 좋아요 갯수 -->
-		,(SELECT COUNT(reply_no) FROM preply WHERE pboard.board_no = preply.board_no) AS replycount <!--  댓글 갯수 -->
-		,(SELECT filename_server  FROM pfile where pboard.board_name='여행게시판' 
-			and pboard.board_no = pfile.board_no limit 1) AS filename_server <!-- 글쓰기할떄 넣은 사진 메인페이지에 불러오기 -->
+ 		,(SELECT COUNT(*) FROM plike WHERE pboard.board_no = plike.board_no) AS likecount    -- 좋아요 갯수 --
+		,(SELECT COUNT(reply_no) FROM preply WHERE pboard.board_no = preply.board_no) AS replycount --  댓글 갯수 --
+		,(SELECT filename_server  FROM pfile where pboard.board_name='여행게시판'
+			and pboard.board_no = pfile.board_no limit 1) AS filename_server -- 글쓰기할떄 넣은 사진 메인페이지에 불러오기 --
+		,(select id from pmember where member_no = pboard.member_no) as id -- 아이디 검색 --
 		from pboard where board_name = '여행게시판'
 			<if test ="stype != null or sword != null"> 
 				<if test ="stype == 'title'">
 				  and title like '%${sword}%'
+				</if>
+				<if test ="stype == 'id'">
+				  and id like '%${sword}%'
 				</if>
 			</if>
 			<if test = "stag != '' and stag != null">

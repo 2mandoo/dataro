@@ -88,7 +88,14 @@
             </a>
           </ul>
       <h2 class="mb-5">[ dataro 자유게시판 ]</h2>
-      <div>나의 ID : ${loginInfo.id}</div>
+      <div>나의 ID : 
+		<choose>
+			<when test="loginInfo.id==null"> 로그인해주세요 </when>
+
+			<otherwise>  </otherwise>
+		</choose>
+      	${loginInfo.id}
+      </div>
       <div class="table-responsive">
         <table class="table table-striped custom-table" style="margin-left: auto; margin-right: auto;">
         <p><span><strong>총 ${flist.totalCount}개</strong>  |  ${fullboardVO.page } ${flist.totalPage}페이지</span></p>
@@ -116,7 +123,7 @@
 	              <td>${vo.viewcount}</td>
 	              <td>${vo.board_name}</td>
 	              <td><a href="view.do?board_no=${vo.board_no}"><fmt:formatDate value="${vo.writedate}" pattern="yyyy-MM-dd HH:mm"/></td>
-	              <td>${vo.id} <c:if test="${loginInfo.member_no == vo.member_no }"> <strong>[내가 쓴글]</strong></c:if></td>
+	              <td>${vo.id}</td>
 	            </tr>
 	          </c:forEach>
           </tbody>
@@ -137,8 +144,8 @@
                </c:if>>${A}</a>
            </c:forEach>
            <c:if test="${flist.next == true }">
-           	<a href="fullmain.do?page=${flist.endPage+1 }
-           	&stype=${param.stype}&sword=${param.sword}">></a>
+           	<a href="fullmain.do?page=${flist.endPage+1}
+			&stype=${param.stype}&sword=${param.sword}">></a>
            </c:if>
            </ul> 
        </div>

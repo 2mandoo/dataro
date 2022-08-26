@@ -2,12 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<p><span><strong>총 ${comment.totalCount}개</strong>  |  ${commentVO.page }/${comment.totalPage }페이지</span></p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
                     <table class="list">
                       <div>[댓글목록]</div>
                       <div>[나의 회원번호 : <b>${loginInfo.member_no}</b>]</div>
                       <div>[나의 회원ID :<b>${loginInfo.id}</b>]</div>
                       <br>
+                      <p><span><strong>총 ${comment.totalCount}개</strong>  |  ${commentVO.page }/${comment.totalPage }페이지</span></p>
                       <thead>
 			            <tr>
 			            	  <th scope="col" >회원번호</th>
@@ -15,6 +17,7 @@
 			              <th scope="col" >댓글번호</th>
 			              <th scope="col" >댓글내용</th>
 			              <th scope="col" >댓글등록일</th>
+			              <th scope="col" >댓글수정일</th>
 			            </tr>
 			            	<colgroup>
                             <col width="100px" />
@@ -45,8 +48,14 @@
      							</td>
                                 <td class ="reply">${vo.reply_no}</td>
                                 <td class="txt_l" style="text-align:left;">
-                                ${vo.content}<c:if test="${loginInfo.member_no == vo.member_no }"><a href="javascript:commentDel(${vo.reply_no });">[삭제]</a></c:if></td>
-                                <td class="date"><fmt:formatDate value="${vo.reply_writedate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                ${vo.content}
+                                <c:if test="${loginInfo.member_no == vo.member_no }">
+                                <a href="javascript:commentDel(${vo.reply_no });">[삭제]</a>
+                                <a href="javascript:fullsetReply_no(${vo.reply_no });">[수정]</a>
+                                </c:if>
+                                </td>
+                                <td class="date"><fmt:formatDate value="${vo.reply_writedate}" pattern="yyyy-MM-dd HH:mm"/></td>
+                                <td class="date"><fmt:formatDate value="${vo.reply_updatedate}" pattern="yyyy-MM-dd HH:mm"/></td>
                             </tr>
                         </c:forEach>
                         </c:if>

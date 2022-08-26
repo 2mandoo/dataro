@@ -11,10 +11,10 @@
 		select * from preply where room_no = #{room_no}
 	</select>
 	<update id="update">
-		update preply set content=#{content} where memer_no=#{member_no}
+		update preply set content=#{content} where member_no=#{member_no}
 	</update>
 	<delete id="delete">
-		delete * from preply where reply_no=#{reply_no} and member_no = #{member_no};
+		delete * from preply where reply_no=#{reply_no} and member_no = #{member_no}
 	</delete>
 	
 	

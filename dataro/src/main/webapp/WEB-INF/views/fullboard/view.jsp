@@ -38,6 +38,10 @@
 	}
 	$(function(){
 		getComment(1);
+		
+		$(".btn-close").click(function(){
+			$(".modal").fadeOut();
+		})
 	});
 	function goSave() {
 		<c:if test="${empty loginInfo}">
@@ -89,7 +93,38 @@
 					console.log("***************************");
 				},
 				error: function() {
-  		          alert("에러 발생");
+  		          alert("제목수정 에러발생!!");
+				}
+			})
+		}
+	}
+	
+	function fullsetReply_no(reply_no){
+		$('.modal').fadeIn();
+		$("#fullmodal").val(reply_no);
+	}
+	function fullcommentEdit() {
+		
+		var reply_no = $("#fullmodal").val();
+		var content = $("#commentUpdate").val();
+		var page = $("#page").val();
+		
+		if(confirm("댓글을 수정하시겠습니까?")) {
+			$.ajax({
+				url : '/ro/comment/modify.do',
+				data : {
+					reply_no : reply_no,
+					content : content
+				},
+				success : function(res) {
+					if(res === 1) {
+						alert('댓글이 정삭적으로 수정되었습니다.');
+						getComment(page);
+						$('.modal').fadeOut();
+					}
+				},
+				error : function() {
+					alert("댓글수정 에러 발생!!");
 				}
 			})
 		}
@@ -149,9 +184,19 @@
                             </tbody>
                         </table>
                         </form>
-
+						<!-- 댓글 게시판 -->
                         <div id="commentArea"></div>
                     </div>
+                    	<!-- 댓글 수정 모달 -->
+					<div class="modal">
+				   		<div class="modal-content">
+							<a class="btn-close" href="javascript:"><img src="/ro/img/close.png"></a>
+							<h3>댓글수정</h3>
+							<input type="text" id="commentUpdate" placeholder="수정할 내용을 입력하세요." style="width:100%">
+							<input type="hidden" id="fullmodal" value="">
+							<a class="btn-edit" href="javascript:fullcommentEdit();">수정</a>
+						</div>
+					</div> 
                 </div>
             </div>
             

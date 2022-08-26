@@ -21,7 +21,6 @@ function goModifySave() {
 		alert("제목수정시 공백은 안됩니다 ㅠㅠ");
 		$("#title").focus();
 	} else {
-		alert("제목수정 완료 입니다!!");
 		update.submit();
 	}
 }
@@ -30,12 +29,12 @@ function goModifySave() {
 <body> 
         <div class="sub">
             <div class="size">
-                <h3 class="sub_title">수정게시판</h3>
+                <h3 class="sub_title">댓글수정 게시판</h3>
     
                 <div class="bbs">
                 <form method="post" name="update" id="frm" action="update.do"><!-- enctype="multipart/form-data" -->
                 <input type="hidden" name="board_no" value="${modify.board_no}">
-                    <table class="board_write">
+                    <table class="reply_write">
                         <tbody>
                         <tr>
                             <th>제목수정</th>

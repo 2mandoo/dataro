@@ -5,7 +5,7 @@
 	<!-- 게시판 입력 -->
 	<insert id = "insert" parameterType="project.data.ro.fullboard.FullBoardVO"> <!--course_no 일단 뻄 -->
 		insert into pboard(board_name,board_no,id,member_no,title,viewcount,writedate,updatedate,content)
-		values (#{board_name},#{board_no},#{id},#{member_no},#{title},#{viewcount},NOW(),NOW(),#{content})
+		values ('자유게시판',#{board_no},#{id},#{member_no},#{title},#{viewcount},NOW(),NOW(),#{content})
 		<selectKey keyProperty="board_no" resultType="int" order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
@@ -55,7 +55,7 @@
 	
 	<!-- 게시글 총갯수 페이징처리할떄 필요 -->
 	<select id="count" parameterType="project.data.ro.fullboard.FullBoardVO" resultType="java.lang.Integer">
-		SELECT COUNT(*) FROM pboard
+		SELECT COUNT(*) FROM pboard where board_name = '자유게시판'
 	</select>
 	
 	<!-- 게시글 조회수 -->

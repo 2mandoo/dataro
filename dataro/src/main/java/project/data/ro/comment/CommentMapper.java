@@ -10,4 +10,5 @@ public interface CommentMapper {
 	int count(CommentVO vo);
 	List<CommentVO> list(CommentVO vo);
 	int delete(int num);
+	int modify(CommentVO vo);
 }

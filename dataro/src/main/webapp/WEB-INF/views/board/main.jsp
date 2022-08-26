@@ -62,7 +62,8 @@ function loginAlert(){
 	        <form id="frm" action="main.do" > 
 		        	<input type="hidden" name="stag" id="stag">
 				<select id="form" name="stype" class="dSelect" title="검색분류 선택">
-					<option value="title" >제목</option> 
+					<option value="title">제목</option>
+					<option value="id">회원ID</option>
 				</select>
 					<input type="text" id="" name="sword" value="" placeholder="검색">
 					<input type ="submit"  value="검색">
@@ -124,8 +125,9 @@ function loginAlert(){
 	    <c:forEach var ="list" items="${list}">
      	<div class="cnt_set">
           	<h5>${list.title}</h5>
-          	<div>글번호 : ${list.board_no}</div>
-          	<div>회원ID : ${list.id}</div>
+          	</br>
+          	<div><strong>글번호 : ${list.board_no} ㅣ 회원ID : ${list.id}</strong></div>
+          	</br>
           	<span>
          	<c:forEach var ="hvo" items="${list.hashtagList}">
          	#${hvo.hashtag_name}
@@ -133,7 +135,7 @@ function loginAlert(){
          	</span>
          	<div class="img_area">
             <a href="view.do?board_no=${list.board_no}&board_name=${list.board_name}">
-             <img src ="/ro/upload/${list.filename_server }" width="100px" id="idImg" style="border-radius:100px;">
+             <img src ="/ro/img/${list.filename_server }" width="100px" id="idImg" style="border-radius:100px;">
             </a>
             <ul>
               <li>

@@ -64,15 +64,15 @@ public class FullBoardServiceImple implements FullBoardService {
 		if (totalCount % vo.getPageRow() > 0) totalPage++;
 		
 		// 시작인덱스
-		int startIdx = (vo.getPage()-1) * vo.getPage();
+		int startIdx = (vo.getPage()-1) * vo.getPageRow();
 		vo.setStartIdx(startIdx);
 		
 		List<FullBoardVO> list = mapper.list(vo);
 
 		
 		//페이징처리
-		int endPage = (int) (Math.ceil(vo.getPage()/10.0)*10);
-		int startPage = endPage-9;
+		int endPage = (int) (Math.ceil(vo.getPage()/5.0)*5);
+		int startPage = endPage-4;
 		if (endPage > totalPage) endPage = totalPage;
 		boolean prev = startPage > 1 ? true : false;
 		boolean next = endPage < totalPage ? true : false;
@@ -87,6 +87,11 @@ public class FullBoardServiceImple implements FullBoardService {
 		map.put("next", next);
 		map.put("list", list);
 		
+		System.out.println("totalpage"+totalPage);
+		System.out.println("스타트페이지"+startPage);
+		System.out.println("엔드페이지"+endPage);
+		System.out.println("prev"+prev);
+		System.out.println("next"+next);
 		
 		return map;
 	}

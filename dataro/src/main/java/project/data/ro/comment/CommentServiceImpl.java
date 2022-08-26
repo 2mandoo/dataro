@@ -53,4 +53,9 @@ public class CommentServiceImpl implements CommentService {
 		return mapper.delete(num);
 	}
 
+	@Override
+	public boolean modify(CommentVO vo) {
+		return mapper.modify(vo) > 0 ? true:false;
+	}
+
 }

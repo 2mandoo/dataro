@@ -4,7 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class CommentController {
@@ -28,4 +29,14 @@ public class CommentController {
 		model.addAttribute("result", service.delete(vo.getReply_no()));
 		return "common/result";
 	}
+	@RequestMapping("/comment/modify.do")
+	@ResponseBody
+	public int modify(CommentVO vo, Model model) {
+		if(service.modify(vo)) {
+			return 1; 
+		} else {
+			return 0;
+		}
+	}
+		
 }

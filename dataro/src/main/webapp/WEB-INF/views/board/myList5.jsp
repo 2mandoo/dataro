@@ -57,14 +57,21 @@ function deleteMsg(){
 		}
 	});
 }
+function modalFadeIn(msgContent){
+	$('.modal').fadeIn();
+	console.log(msgContent);
+	$('#message_content').text(msgContent);
+	
+}
+function modalFadeOut(){
+	$('.modal').fadeOut();
+}
+</script>
 </script>
 <style>
-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    table-layout: fixed;
-    margin: 20px 0;
+#wrap .modal-content table tr td {
+    white-space: initial;
+    text-overflow: initial;
 }
 </style>
 </head> 
@@ -110,7 +117,7 @@ table {
                     <tr>
                     	<td>${vo.nickname}</td>
                     	<td>${vo.id}</td>
-                        <td class="MsgContent">${vo.message_content}</td>
+                        <td><a href="javascript:modalFadeIn('${vo.message_content}')">${vo.message_content}</a></td>
                         <td class="date"><fmt:formatDate value="${vo.senddate }" pattern="yyyy-MM-dd"/></td>
                         <td><input type="checkbox" class="selected" name="message_no" value="${vo.message_no }"></td>
                     </tr>
@@ -133,6 +140,19 @@ table {
                	</ul> 
             </div>
          </form>
+         <form action="leave" method="post">
+			<div class="modal">
+				<div class="modal-content">
+					<a class="btn-close" href="javascript:modalFadeOut();">X</a>
+					<table style="all:none;">
+						<tr><td>내용</td></tr>
+						<tr>
+							<td id="message_content" name="message_content"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</form>
         </div>
     </div>
 </div>

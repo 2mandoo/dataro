@@ -19,12 +19,17 @@
 
 }
 
+#wrap .Fidpw table {
+	position:relative;
+	right:260px;
+}
 
 #wrap .content table tr td{
      white-space: nowrap; /*nowrap 줄바꿈을 하지 않음.*/
      overflow: hidden;
      text-overflow: ellipsis;
 }
+
     
 #wrap .border {
 	padding-top: 20px;
@@ -58,9 +63,10 @@ a img #gohome {
 						position:relative;
 						left:140px;}
 
+#wrap .Fidpw table tr td input{height:35px; border-width: thin; border-radius: 5px; margin: 3px; padding: 3px;}
 
 .login table .Btn{width: 150px; height:30px;}
-.content table tr td input{height:33px}
+.content table tr td input{height:35px; border-width: thin; border-radius: 5px; margin: 0 3px; padding: 3px;}
 .content table tr td #btn_leave{height:33px; position:relative; left:300px}
 
 .login #backBtn{width:70px; position:relative; right:200px; display:inline-block;}

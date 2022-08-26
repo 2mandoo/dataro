@@ -20,6 +20,23 @@ $(function(){
 	$('#searchBtn').click(function(){
 		myList();
 	})
+	
+	// 답장하기 버튼 클릭시, 텍스트, 전송하기버튼 보이기.
+	$('#btn-send').click(function(){
+		$('#msgbox').show();
+		$('#btn-send').hide();
+		$('#btnSend').show();
+		
+	})
+	
+	$('#btnSend').click(function(){
+		confirm('쪽지를 보내시겠습니까?');
+		if (true) {
+			$('#thisForm').submit();
+		} else {
+			alert('쪽지 보내는데 실패하셨습니다.');
+		};
+	})
 });
 
 function myList() {
@@ -57,14 +74,21 @@ function deleteMsg(){
 		}
 	});
 }
+function modalFadeIn(msgContent, nick, no){
+	console.log(no);
+	$('.modal').fadeIn();
+	$('#message_C').text(msgContent);
+	$('#nick').text(nick);
+	$('#receive_member_no').val(no);
+}
+function modalFadeOut(){
+	$('.modal').fadeOut();
+}
 </script>
 <style>
-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    table-layout: fixed;
-    margin: 20px 0;
+#wrap .modal-content table tr td {
+    white-space: initial;
+    text-overflow: initial;
 }
 </style>
 </head> 
@@ -88,8 +112,8 @@ table {
                     </span>
             	<table class="list">
             	<colgroup>
-                    <col width="100px" />
-                    <col width="100px" />
+                    <col width="80px" />
+                    <col width="80px" />
                     <col width="*" />
                     <col width="150px" />
                     <col width="70px" />
@@ -110,13 +134,13 @@ table {
                     <tr>
                     	<td>${vo.nickname}</td>
                     	<td>${vo.id}</td>
-                        <td>${vo.message_content}</td>
+                        <td><a href="javascript:modalFadeIn('${vo.message_content}', '${vo.nickname}', '${vo.send_member_no}')">${vo.message_content}</a></td>
                         <td class="date"><fmt:formatDate value="${vo.senddate }" pattern="yyyy-MM-dd"/></td>
                         <td><input type="checkbox" class="selected" name="message_no" value="${vo.message_no }"></td>
                     </tr>
                 </c:forEach>
                 	<tr>
-                		<td colspan="5" style="text-align:right;"><a href="javascript:deleteMsg();" style="color:red">삭제하기&nbsp</a></td>
+                		<td colspan="5" style="text-align:right;"><a href="javascript:deleteMsg();" style="color:red;">삭제하기&nbsp</a></td>
                 	</tr>
             </table>
             <div>
@@ -133,6 +157,35 @@ table {
                	</ul> 
             </div>
          </form>
+         <form action="/ro/message/SM" method="post" id="thisForm">
+			<div class="modal">
+				<div class="modal-content">
+					<a class="btn-close" href="javascript:modalFadeOut();">X</a>
+					<table>
+						<input type="hidden" id="send_member_no" name="send_member_no" value="${loginInfo.member_no }" >
+						<input type="hidden" id="receive_member_no" name="receive_member_no" value="">
+						<tr>
+							<td style="text-align:right">From&nbsp</td>
+							<td style="text-align:left" id="nick" name="nick"></td>
+						</tr>
+						
+						<tr>
+							<td colspan="2" id="message_C" name="message_C"></td>
+						</tr>
+						<tr>
+							<td colspan="2"><textarea style="display:none" id="msgbox" name="message_content" cols="30" rows="5"/></td>
+						</tr>
+						<tr><td></td></tr>
+						<tr>
+							<td colspan="2">
+								<a href="#" id="btn-send">답장하기</a>
+								<input type="button" id="btnSend" style="display:none" value="전송하기">
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</form>
         </div>
     </div>
 </div>

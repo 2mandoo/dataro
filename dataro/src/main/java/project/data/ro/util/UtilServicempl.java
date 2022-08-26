@@ -38,6 +38,7 @@ public class UtilServicempl implements UtilService {
 	@Override
 	public boolean fileupload(FileVO fvo, @RequestParam MultipartFile[] filename, HttpServletRequest req,BoardVO bvo) {
 		int a = 1;
+		System.out.println("filename.length:"+filename.length);
 		for(MultipartFile files :filename) {
 			a++;
 			if(!files.isEmpty()) {
@@ -91,11 +92,6 @@ public class UtilServicempl implements UtilService {
 			cmapper.regionInsert(cvo);
 		}
 		return 0;
-	}
-	
-	//여행글수정 화면 파일출력
-	public List<FileVO> fileUpdate(BoardVO bvo){
-		return fmapper.fileUpdate(bvo);
 	}
 
 	///////////////////////////////진경끝///////////////////////////////////////////

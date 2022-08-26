@@ -13,10 +13,15 @@ function getAllCourse() {
 		success : function(res) {
 			if(res.course.length != 0) {
 				for(var i=0; i<res.course.length; i++){
-				//	console.log(res.file.filename_server);
-					updatebox(i,res.course[i],);
+					if(res.course[i].fileList.length == 0){
+						updatebox(i,res.course[i],'no-image.jpg', 'no-image.jpg');
+					}if(res.course[i].fileList.length == 1){
+						updatebox(i,res.course[i],res.course[i].fileList[0].filename_server, 'no-image.jpg');
+					}if(res.course[i].fileList.length == 2){
+						updatebox(i,res.course[i],res.course[i].fileList[0].filename_server,res.course[i].fileList[1].filename_server);
+					}
 					courseArr.push(res.course[i]);
-				}
+				} ;
 				displayCouses(res.course);
 			}
 			

@@ -1,6 +1,9 @@
 package project.data.ro.map;
 
+import java.util.List;
+
 import lombok.Data;
+import project.data.ro.util.FileVO;
 
 @Data
 public class MapVO {
@@ -20,4 +23,6 @@ public class MapVO {
 	
 	//글수정에서 사용하기위해 추가함-진경
 	private String content;
+	//코스별로 파일리스트형식으로 저장-진경
+	private List<FileVO> fileList; 
 }

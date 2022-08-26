@@ -18,8 +18,6 @@
         <div class="content tv_write">
             ${file[0].filename_server}
             <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id" value=${loginInfo.id }>
-            <input type="hidden" name="member_no" value=${loginInfo.member_no }>
                 <!--제목-->
                 <div class="title">
                 	<div class="title_top">
@@ -143,7 +141,7 @@
 	})
 	
 	//원래작성된 글불러오는용
-	function updatebox(index,places){
+	function updatebox(index,places,img1,img2){
 		count++;
 		var html ='<div class="set">'
 			html +='<span class="jk"></span>'
@@ -159,12 +157,12 @@
 	        html +='        <div class="pic">'
             html +='           <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
             pic++;
-	        html +='       		<img src="/ro/img/no-image.jpg">'
+	        html +='       		<img src="/ro/img/'+img1+'">'
         	html +='       		<span class="delete" ><i class="fa-solid fa-circle-minus"></i></span>'
 	        html +='     	</div>'
 	        html +='   	 	<div class="pic">'
             html +='            <input type="file" class="file_input'+ pic +'" name="filename" id="'+pic+'" onchange="readInputFile(this)">'
-            html +='       		<img src="/ro/img/no-image.jpg">'
+            html +='       		<img src="/ro/img/'+img2+'">'
             html +='        	<span class="delete" ><i class="fa-solid fa-circle-minus"></i></span>'
 	        html +='      	</div>'
 	        html +='    </div>'

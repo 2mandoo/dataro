@@ -6,12 +6,12 @@
                     <table class="list">
                       <div>[댓글목록]</div>
                       <div>[나의 회원번호 : <b>${loginInfo.member_no}</b>]</div>
-                      <div>[나의 회원ID : <b>${loginInfo.id}</b>]</div>
+                      <div>[나의 회원ID :<b>${loginInfo.id}</b>]</div>
                       <br>
                       <thead>
 			            <tr>
 			            	  <th scope="col" >회원번호</th>
-			            	<th scope="col" >회원ID</th>
+			            	  <th scope="col" >회원ID</th>
 			              <th scope="col" >댓글번호</th>
 			              <th scope="col" >댓글내용</th>
 			              <th scope="col" >댓글등록일</th>
@@ -31,13 +31,22 @@
                         <c:if test="${!empty comment.list}">
                         <c:forEach var="vo" items="${comment.list}">     
                             <tr>
-                                <td>${vo.member_no}</td>
-                                <td class="writer">${loginInfo.id}</td>
-                                <td>${vo.reply_no}</td>
+                                <td class ="member_no">${vo.member_no}</td>
+                                <td class="id">
+                                <!--  test ="${loginInfo.member_no == vo.member_no} -->
+                                <c:choose>
+                         			<c:when test="${not empty loginInfo.id && loginInfo.member_no == vo.member_no}">
+                         			${loginInfo.id }
+                         			</c:when>
+                         			<c:otherwise>
+                         			${vo.id}
+                         			</c:otherwise>
+                                </c:choose>
+     							</td>
+                                <td class ="reply">${vo.reply_no}</td>
                                 <td class="txt_l" style="text-align:left;">
-                                    ${vo.content}  <c:if test="${loginInfo.member_no == vo.member_no }"><a href="javascript:commentDel(${vo.reply_no });">[삭제]</a></c:if>
-                                </td>
-                                <td class="date"><fmt:formatDate value="${vo.reply_writedate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                ${vo.content}<c:if test="${loginInfo.member_no == vo.member_no }"><a href="javascript:commentDel(${vo.reply_no });">[삭제]</a></c:if></td>
+                                <td class="date"><fmt:formatDate value="${vo.reply_writedate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                             </tr>
                         </c:forEach>
                         </c:if>

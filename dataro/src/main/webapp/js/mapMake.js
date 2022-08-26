@@ -1,8 +1,6 @@
 // ^^ map.js를 앞에 넣어야함.
 // ^^ 마커보기 눌렀는지 아닌지
 var markerShow = false;
-
-
    
 // ^^ java 컨트롤러로 코스주소들 보내기
 function send(courseArr){
@@ -16,7 +14,6 @@ function send(courseArr){
 		success : function(res){
 			console.log(res);
 			console.log(typeof res);
-
 
 		},
 		error: function(){
@@ -288,6 +285,8 @@ function displayCouses(places){
 	map.setBounds(bounds);
 	
 	markerShow = true;
+	
+	console.log(courseArr);
 }
 
 // 검색결과 항목을 Element로 반환하는 함수입니다

@@ -24,16 +24,16 @@ public class UtilServicempl implements UtilService {
 	///////////////////////////////진경시작///////////////////////////////////////////
 	//해쉬태그등록
 	@Override
-	public boolean insert(CategoryVO cvo,BoardVO bvo,@RequestParam List<Integer> hashtag_no) {
-		for(int hashtag:hashtag_no) {
+	public boolean insert(CategoryVO cvo,BoardVO bvo) {
+		for(int hashtag:cvo.getHashtag_no_arr()) {
 			cvo.setBoard_no(bvo.getBoard_no());
 			cvo.setHashtag_no(hashtag);
+			System.out.println("mpl등록되는값"+cvo);
 			cmapper.insert(cvo);
-			cmapper.regionInsert(cvo);
 		}
+		cmapper.regionInsert(cvo);
 		return true;
 	}
-	
 	//파일업로드
 	@Override
 	public boolean fileupload(FileVO fvo, @RequestParam MultipartFile[] filename, HttpServletRequest req,BoardVO bvo) {
@@ -62,6 +62,7 @@ public class UtilServicempl implements UtilService {
 		}
 		return true;
 	}
+
 	//해시태그,지역대분류 출력
 	@Override
 	public Map writeCategory() {
@@ -85,10 +86,16 @@ public class UtilServicempl implements UtilService {
 	public int regionInsert(CategoryVO cvo) {
 		System.out.println("등록"+cvo.getRegion_no_arr());
 		for(int region:cvo.getRegion_no_arr()) {
+			//arr에 체크하기
 			cvo.setRegion_no(region);
 			cmapper.regionInsert(cvo);
 		}
 		return 0;
+	}
+	
+	//여행글수정 화면 파일출력
+	public List<FileVO> fileUpdate(BoardVO bvo){
+		return fmapper.fileUpdate(bvo);
 	}
 
 	///////////////////////////////진경끝///////////////////////////////////////////

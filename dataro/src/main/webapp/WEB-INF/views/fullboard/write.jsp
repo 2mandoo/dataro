@@ -51,6 +51,12 @@
                             </td>
                         </tr>
                         <tr>
+                            <th>내용</th>
+                            <td>
+                                <input type="text" name="content" id="content" class="content" value=""/>
+                            </td>
+                        </tr>
+                        <tr>
                         	<th>첨부파일</th>
                         	<td>
                         		<input type="file" name="filename">

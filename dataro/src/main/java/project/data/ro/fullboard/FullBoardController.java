@@ -1,6 +1,7 @@
 package project.data.ro.fullboard;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import project.data.ro.board.BoardVO;
+import project.data.ro.comment.CommentVO;
+import project.data.ro.member.MemberVO;
 import project.data.ro.util.FileVO;
 import project.data.ro.util.UtilService;
 
@@ -25,11 +28,13 @@ public class FullBoardController {
 	
 	// 자유게시판
 	@RequestMapping("/fullboard/fullmain.do")
-	public String mainfullboardGet(FullBoardVO vo, Model model ) {
-		model.addAttribute("flist",service.index(vo)); 
+	public String mainfullboardGet(FullBoardVO vo, Model model) {
+		System.out.println("****************************2");
+		model.addAttribute("flist",service.index(vo));
+		System.out.println("****************************3");
 		return "fullboard/fullmain";
 	}
-	
+		
 	//글쓰기
 	@GetMapping("/fullboard/write.do")
 	public String write(Model model) {
@@ -38,7 +43,14 @@ public class FullBoardController {
 	
 	//상세
 	@GetMapping("/fullboard/view.do")
-	public String view(FullBoardVO vo, Model model) {
+	public String view(FullBoardVO vo, Model model,HttpSession sess ) {
+		CommentVO cvo = (CommentVO) sess.getAttribute("commentInfo");
+		if(cvo != null) {
+			cvo.getReply_no();
+			cvo.getBoard_no();
+			vo.setReply_no(cvo.getReply_no());
+			vo.setBoard_no(cvo.getBoard_no());
+		}
 		model.addAttribute("view",service.view(vo));
 		return "fullboard/view";
 	}
@@ -65,7 +77,14 @@ public class FullBoardController {
 	//등록
 	@RequestMapping("/fullboard/insert.do")
 	public String insert(FullBoardVO vo,
-		@RequestParam MultipartFile[] filename, HttpServletRequest re) {
+		@RequestParam MultipartFile[] filename, HttpServletRequest re,HttpSession sess) {
+		MemberVO avo = (MemberVO) sess.getAttribute("loginInfo");
+		if(avo != null) {
+			avo.getMember_no();
+			avo.getId();
+			vo.setMember_no(avo.getMember_no()); // 자유게시판에 회원번호 등록해서 불러오기
+			vo.setId(avo.getId()); // 자유게시판에 회원ID 등록해서 불러오기
+		} 
 		service.insert(vo);
 		service.fileUpload(vo, filename, re);
 		return "redirect:/fullboard/fullmain.do";

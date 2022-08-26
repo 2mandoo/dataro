@@ -200,7 +200,7 @@
 	</select>
 	
 	
-	
+	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ진경ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	
 	<!-- 여행글쓰기 from 진경 -->
 	<insert id="insert" parameterType="project.data.ro.board.BoardVO">
@@ -228,9 +228,14 @@
 		where board_no = #{board_no} and hashtag_no is not null;
 	</select>
 	<select id="updateCategory2" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.util.CategoryVO">
+		<!-- 
 		select region_no
 		from pcategory
 		where board_no = #{board_no} and region_no is not null;
+		 -->
+		SELECT c.region_no,c.board_no,r.region_name
+		FROM pregion r,pcategory c 
+		WHERE board_no = #{board_no} and r.region_no = c.region_no
 	</select>
 	
 	<!-- 여행글쓰기 수정 -->
@@ -323,11 +328,5 @@
 	<select id="dislikeCheck" parameterType="project.data.ro.board.BoardVO" resultType="int">
 		SELECT COUNT(*) FROM pdislike WHERE board_name = #{board_name} AND board_no = #{board_no} AND member_no = #{member_no}
 	</select>
-
-
-
-
-
-
 
 </mapper>

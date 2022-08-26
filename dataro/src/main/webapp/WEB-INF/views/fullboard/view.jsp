@@ -19,8 +19,8 @@
  	function remove(board_no) {
   		if (confirm('삭제하시겠습니까?')) {
   			location.href='delete.do?board_no='+board_no;
-  		}
-  	}
+  			}
+ 		} 
 	function getComment(page) {
 		console.log(1);
 		
@@ -33,7 +33,6 @@
 			},
 			success : function(res) {
 				$("#commentArea").html(res);
-				console.log(1111111111111111);
 			}
 		});
 	}
@@ -66,21 +65,31 @@
 		    					$("#contents").val('');
 		    					getComment(1);
 			    			}
+			    			
 			    		}
 			    	});
 			}	
 		}
 		</c:if>
 	}
-	function commentDel(board_no) {
+	function commentDel(reply_no) {
 		if (confirm("댓글을 삭제하시겠습니까?")) {
+			console.log("***************************");
 			$.ajax({
-				url : '/ro/comment/delete.do?board_no='+board_no,
+				url : '/ro/comment/delete.do',
+				data : {
+					board_no : ${view.board_no},
+					reply_no : reply_no
+				},
 				success : function(res) {
 					if (res.trim() == '1') {
 						alert('댓글이 정상적으로 삭제되었습니다.');
 						getComment(1);
 					}
+					console.log("***************************");
+				},
+				error: function() {
+  		          alert("에러 발생");
 				}
 			})
 		}
@@ -100,7 +109,7 @@
                                 <dt>게시일 : ${view.writedate}</dt>
                             </dl>
                         </div>
-                        <div class="cont"><p>${view.content}</p> </div>
+                        <div class="cont">글내용 : ${view.content}</div>
                         <dl class="file">
                             <dt>첨부파일 </dt>
                             <dd>
@@ -110,8 +119,8 @@
                         <div class="btnSet clear">
                             <div class="fl_l">
                             	<a href="fullmain.do" class="btn">목록으로</a>
-                            	<a href="modify.do?board_no=${view.board_no}" class="btn">수정</a>
-                            	<a href="javascript:remove(${view.board_no});" class="btn">삭제</a>
+                            	<c:if test="${loginInfo.member_no == view.member_no }"><a href="modify.do?board_no=${view.board_no}" class="btn">수정</a></c:if>
+                            	<c:if test="${loginInfo.member_no == view.member_no }"><a href="javascript:remove(${view.board_no});" class="btn">삭제</a></c:if>
                             </div>
                         </div>
                          <div>

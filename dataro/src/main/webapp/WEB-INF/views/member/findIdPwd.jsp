@@ -53,10 +53,8 @@ $(function(){
 					<td id="fId"><a href="#">아이디 찾기</a></td>
 					<td id="fPwd"><a href="#">비밀번호 찾기</a></td>
 				</tr>
-				<tr>
-					<td colspan="2" id="area"></td>
-				</tr>
 			</table>
+			<div id="area"></div>
 		</form>
 	</div>
 </div>

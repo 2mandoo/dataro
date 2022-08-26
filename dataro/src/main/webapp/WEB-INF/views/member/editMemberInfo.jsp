@@ -63,16 +63,16 @@ $(function(){
 	$('#email2').focusout(function (){
 		checkEmail();
 	});
-	//탈퇴버튼 누르고 모달띄우기
 	
-	$('.btn-close').click(function(){
-		$('.modal').fadeOut();
-	});
+	
 	
 });
 
 function modalFadeIn(){
 	$('.modal').fadeIn();
+}
+function modalFadeOut(){
+	$('.modal').fadeOut();
 }
 
 // 비밀번호 체크 함수
@@ -126,7 +126,7 @@ function checkEmail(){
 					<td><h1>회원정보수정</h1></td>
 				</tr>
 				<tr>
-					<td><input type="text" id="id" name="id" value="${loginInfo.id }" readonly ></td>
+					<td><input type="text" id="id" name="id" value="${loginInfo.id }" readonly style="background-color: #ced4da"></td>
 				</tr>
 				<tr>
 					<td><input type="text" id="nickname" name="nickname" placeholder="Nickname" maxlength='8' required></td>
@@ -175,7 +175,7 @@ function checkEmail(){
 		<form action="leave" method="post">
 			<div class="modal">
 				<div class="modal-content">
-					<a class="btn-close" href="#none">X</a>
+					<a class= "btn-close" href="javascript:modalFadeOut();">X</a>
 					<h1>회원탈퇴</h1>
 					${loginInfo.nickname } 님, 안녕하세요! <br>
 					계정을 삭제하려고 하신다니 아쉽습니다. <br>

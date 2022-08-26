@@ -79,10 +79,7 @@ if(${empty data.list}){
     text-overflow: initial;
 }
 
-.titlee a:hover{
-	cursor:pointer;
-	color: #0fbcf9;
-}
+
 </style>
 </head> 
 <body>

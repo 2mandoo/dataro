@@ -22,11 +22,7 @@ table {
     table-layout: fixed;
     margin: 20px 0;
 }
-.titlee a:hover{
-	cursor:pointer;
-	color: #0fbcf9;
-	
-}
+
 </style>
 </head> 
 

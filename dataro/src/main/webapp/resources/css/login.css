@@ -19,6 +19,12 @@
 
 }
 
+.titlee a:hover{
+	cursor:pointer;
+	color: #3c40c6;
+	
+}
+
 #wrap .Fidpw table {
 	position:relative;
 	right:260px;

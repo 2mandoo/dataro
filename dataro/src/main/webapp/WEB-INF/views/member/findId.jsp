@@ -48,7 +48,7 @@ $(function(){
 });
 </script>
 <div id="wrap">
-	<div class="content login ">
+	<div class="content login Fidpw">
 		<form action="" method="post" name ="">
 			<table>
 				<tr><td><h1>아이디 찾기</h1></td></tr>

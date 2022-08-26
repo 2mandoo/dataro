@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import project.data.ro.map.MapMapper;
+import project.data.ro.map.MapVO;
 import project.data.ro.member.MemberService;
 import project.data.ro.member.MemberVO;
 import project.data.ro.message.MessageVO;
@@ -46,7 +47,7 @@ public class BoardController {
 	// +++진귀
 	
 	@RequestMapping("/getAllCourse.do")
-	@ResponseBody
+	@ResponseBody  // board_no넘어옴
 	public Map vview(BoardVO bvo,HttpSession sess,Model model) {
 		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
 		if(mvo != null) {  
@@ -74,15 +75,14 @@ public class BoardController {
 		uservice.fileupload(fvo, filename, req,bvo);
 		mapper.update(bvo);
 		uservice.regionInsert(cvo);
-		System.out.println("해쉬내가 누른거"+cvo.getHashtag_no_arr());
 		int[] a =cvo.getHashtag_no_arr();
 //		Arrays.toString(cvo)
 		System.out.println("0은뭘까"+cvo);
 		return "redirect:/board/travelWrite.do";
 	}
-	//여행코스 글쓰기 수정화면
+	//여행코스 글쓰기 수정화면  // board_no넘어옴
 	@RequestMapping("/updateView.do")
-	public String updateView(BoardVO bvo,HttpSession sess,Model model,FileVO fvo) {
+	public String updateView(BoardVO bvo,HttpSession sess,Model model) {
 		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
 		bvo.setMember_no(mvo.getMember_no());
 		model.addAttribute("category",uservice.writeCategory()); //카테고리전체 리스트 화면출력

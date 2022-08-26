@@ -47,16 +47,24 @@ public class BoardServiceImpl implements BoardService {
 	//여행코스글수정 화면 불러오기
 	@Override
 	public Map updateView(BoardVO vo) {
+		//vo에 board_no가 담겨있음
+		List<MapVO> mapList = mapper.updateCourse(vo); //board_no에 맞는 코스내용,map테이블내용불러옴
+		for (int i=0; i<mapList.size(); i++) {//MapVO가 배열로 담겨있음
+			vo.setCourse_no(mapList.get(i).getCourse_no()); //BoardVO의 course_no에  MapVO의 course_no를 set해줌
+			mapList.get(i).setFileList(fmapper.fileUpdate(vo));//maplist의 i번쨰에 filelist필드에 vo(board_no,위에서set한 코스번호를 사용해서 파일을 조회한 값을 set함)
+		}
 		Map ud = new HashMap();
 		ud.put("view",mapper.updateView(vo));
-		ud.put("course",mapper.updateCourse(vo));
+		ud.put("course",mapList);
 		ud.put("hrcategory",mapper.updateCategory(vo));
 		ud.put("hrcategory2",mapper.updateCategory2(vo));
-		ud.put("file",fmapper.fileUpdate(vo));
+		
+		
+		//System.out.println("코스번호담기는지확인"+vo.getCourse_no());
 		System.out.println("파일코스명"+fmapper.fileUpdate(vo));
 		
-		System.out.println("해쉬태그"+mapper.updateCategory(vo));
-		System.out.println("지역변호"+mapper.updateCategory2(vo));
+		//System.out.println("해쉬태그"+mapper.updateCategory(vo));
+		//System.out.println("지역변호"+mapper.updateCategory2(vo));
 		return ud;
 	}
 	//여행코스글수정

@@ -165,7 +165,7 @@ function loginAlert(){
   </div>
   	<div class="modal">
 		<div class="modal-content">
-			<a class="btn-close" href="#none">X</a>
+			<a class="btn-close" href="#none">x</a>
 			<div id="areaForUser"></div>
 		</div>
 	</div>

@@ -19,6 +19,30 @@ $(function (){
 	if (${empty list }) {
 		$('#btn').hide();
 	}
+	
+/* 	$('#all').click(function() {
+		$("input[type=checkbox][name=message_no]").prop("checked", true);
+		if ($("input[type=checkbox][name=message_no]").prop("checked", true)) {
+			$('#all').click(function(){
+				$("input[type=checkbox][name=message_no]").prop("checked", false);
+			})
+		}
+		
+	}); */
+	
+	$("#all").click(function() {
+        if ($("#all").prop("checked")) {
+            $(".selected").prop("checked", true);
+        } else {
+            $(".selected").prop("checked", false);
+        }
+    });
+	
+	
+		
+	
+
+
 });
 
 // 안읽은 쪽지 화면에서 체크표시한 값들을 ajax로 해당 url로 넘김. 
@@ -36,12 +60,23 @@ function aj(){
 	});
 };
 
+if (${empty list }) {
+	$('#all').hide();
+	$('#td').hide();
+} else {
+	$('#all').show();
+	$('#td').show();
+
+}
+
+
 </script>
 <style>
 	form table tr td{
 		 white-space: nowrap; /*nowrap 줄바꿈을 하지 않음.*/
 	     overflow: hidden;
 	     text-overflow: ellipsis;
+	     padding: 5px 10px;
 	}
 </style>
 </head>
@@ -76,8 +111,8 @@ function aj(){
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-	<tr><td>&nbsp</td></tr>
-	<tr><td colspan="3"><input type="button" value="읽음처리하기" id="btn"></td></tr>
+	<tr><td id="td" colspan="3" style="text-align:right; position: relative; right:33px; color:gray;">전체 선택하기&nbsp<input type="checkbox" id="all" ></td></tr>
+	<tr><td colspan="3"><input type="button" value="읽음처리하기" id="btn" ></td></tr>
 	</table>
 </form>
 </div>

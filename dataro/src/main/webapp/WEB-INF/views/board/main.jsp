@@ -131,7 +131,7 @@ function loginAlert(){
          	</span>
          	<div class="img_area">
             <a href="view.do?board_no=${list.board_no}&board_name=${list.board_name}">
-             <img src ="/ro/upload/${list.filename_server }" width="100px" id="idImg" style="border-radius:100px;">
+             <img src ="/ro/img/${list.filename_server }" width="100px" id="idImg" style="border-radius:100px;">
             </a>
             <ul>
               <li>
@@ -161,7 +161,7 @@ function loginAlert(){
   </div>
   	<div class="modal">
 		<div class="modal-content">
-			<a class="btn-close" href="#none">X</a>
+			<a class="btn-close" href="#none">x</a>
 			<div id="areaForUser"></div>
 		</div>
 	</div>

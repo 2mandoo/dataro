@@ -66,12 +66,22 @@ function modalFadeIn(msgContent){
 function modalFadeOut(){
 	$('.modal').fadeOut();
 }
-</script>
+
+if(${empty data.list}){
+	$('#delAtag').hide();
+} else {
+	$('#delAtag').show();
+}
 </script>
 <style>
 #wrap .modal-content table tr td {
     white-space: initial;
     text-overflow: initial;
+}
+
+.titlee a:hover{
+	cursor:pointer;
+	color: #0fbcf9;
 }
 </style>
 </head> 
@@ -117,13 +127,17 @@ function modalFadeOut(){
                     <tr>
                     	<td>${vo.nickname}</td>
                     	<td>${vo.id}</td>
-                        <td><a href="javascript:modalFadeIn('${vo.message_content}')">${vo.message_content}</a></td>
+                        <td class="titlee"><a href="javascript:modalFadeIn('${vo.message_content}')">${vo.message_content}</a></td>
                         <td class="date"><fmt:formatDate value="${vo.senddate }" pattern="yyyy-MM-dd"/></td>
                         <td><input type="checkbox" class="selected" name="message_no" value="${vo.message_no }"></td>
                     </tr>
                 </c:forEach>
                 <tr>
-                	<td colspan="5" style="text-align:right;"><a href="javascript:deleteMsg();" style="color:red">삭제하기&nbsp</a></td>
+                	<td colspan="5" style="text-align:right;">
+                	<a id ="delAtag" href="javascript:deleteMsg();" >
+                		<img src="/ro/img/trashcan.png" width="30px;" style="position: relative; right: 9px; bottom: 10px;">
+                	</a>
+                	</td>
                 </tr>
             </table>
             <div>
@@ -140,10 +154,10 @@ function modalFadeOut(){
                	</ul> 
             </div>
          </form>
-         <form action="leave" method="post">
+         <form action="" method="post">
 			<div class="modal">
 				<div class="modal-content">
-					<a class="btn-close" href="javascript:modalFadeOut();">X</a>
+					<a class="btn-close" href="javascript:modalFadeOut();">x</a>
 					<table style="all:none;">
 						<tr><td>내용</td></tr>
 						<tr>

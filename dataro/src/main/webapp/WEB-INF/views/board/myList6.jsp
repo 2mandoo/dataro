@@ -22,6 +22,11 @@ table {
     table-layout: fixed;
     margin: 20px 0;
 }
+.titlee a:hover{
+	cursor:pointer;
+	color: #0fbcf9;
+	
+}
 </style>
 </head> 
 
@@ -57,7 +62,7 @@ table {
                     <tr>
                     	<td>${vo.board_name}</td>
                     	<td>${vo.room_no}</td>
-                        <td>${vo.room_title}</td>
+                        <td class="titlee"><a href="/ro/room/room.do?room_no=${vo.room_no}">${vo.room_title}</a></td>
                         <td>${vo.roommaker_id}</td>
                         <td>${vo.room_startdate }</td>
                     </tr>

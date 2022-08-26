@@ -175,7 +175,26 @@ $(function(){
 			}
  		});
  	});
+ 	
+
+ 	$('#lo').hover(function(){
+ 		$('#lo').find('img').hide();
+ 		$('#red').show();
+ 	},function(){
+ 		$('#lo').find('img').hide();
+ 		$('#green').show();
+ 	});
+ 
+ 	
 });
+
+function logout(){
+	if(confirm('로그아웃 하시겠습니까?')) {
+		location.href = "/ro/member/logout";
+	} else {
+		location.reload();
+	}
+}
 </script>
 <div id="wrap" >
 	<div class="content login pa">
@@ -185,7 +204,11 @@ $(function(){
 		<h1>MY PAGE</h1>
 			<img src ="/ro/img/${loginInfo.m_filename_server}" id="idImg" >
 			<h1 id="nic">${loginInfo.nickname}</h1>
-			<a href="/ro/member/logout" id="lo">로그아웃</a>
+			<a href="javascript:logout();" id="lo">
+			<!-- <a href="/ro/member/logout" id="lo"> -->
+				<img id="green" src="/ro/img/read.png" width="30px">
+				<img id="red" src="/ro/img/unread.png" width="30px" style="display:none;">
+			</a>
 			<input type="hidden" value="${loginInfo.member_no}" name="member_no" id="no"> 
 			<div id = "bts">
 				<img src="/ro/img/myArticle.png" id="bt1" class="bt6" title="내가 쓴 글">

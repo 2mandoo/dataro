@@ -22,6 +22,8 @@ $(function(){
 	$('#searchBtn').click(function(){
 		myList();
 	})
+	
+	
 });
 
 function myList() {
@@ -53,6 +55,13 @@ table {
     table-layout: fixed;
     margin: 20px 0;
 }
+
+.titlee a:hover{
+	cursor:pointer;
+	color: #0fbcf9;
+	
+}
+
 </style>
 </head> 
 <body>
@@ -95,7 +104,7 @@ table {
                     <tr>
                     	<td>${vo.board_name}</td>
                     	<td name="board_no">${vo.board_no}</td>
-                        <td class="title" > <a href="/ro/board/view.do?board_no=${vo.board_no}">${vo.title}</a></td>
+                        <td class="titlee" > <a href="/ro/board/view.do?board_no=${vo.board_no}&board_name=여행게시판 ">${vo.title}</a></td>
                         <td>${vo.viewcount }</td>
                         <td class="date"><fmt:formatDate value="${vo.writedate }" pattern="yyyy-MM-dd"/></td>
                     </tr>

@@ -64,7 +64,9 @@ $(function(){
 		checkEmail();
 	});
 	
-	
+	$('#goMain').click(function (){
+		location.href="/ro/board/main.do";
+	})
 	
 });
 
@@ -119,7 +121,7 @@ function checkEmail(){
 </script>
 <div id="wrap">
 	<div class="content login page">
-		<a href="/ro/board/main.do"><img src="/ro/img/main.png" id="goMain"></a>
+		<img src="/ro/img/main.png" id="goMain">
 		<form action="editUserInfo" method="post" name ="register" enctype="multipart/form-data">
 			<table>
 				<tr>

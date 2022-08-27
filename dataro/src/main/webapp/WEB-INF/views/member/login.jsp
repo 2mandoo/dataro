@@ -29,15 +29,19 @@ $(function(){
 			} 
 	});
 	
-	
+	$('#goMain').click(function (){
+		location.href="/ro/board/main.do";
+	})
 });
+
+
 
 
 </script>
 <div id="wrap">
 	<div class="content login page">
 		<form action="login" method="post" name ="login">
-		<a href="/ro/board/main.do"><img src="/ro/img/main.png" id="goMain"></a>
+		<img src="/ro/img/main.png" id="goMain">
 		<table>
 			<tr><th><h1>DataRo</h1></th></tr>
 			<tr>

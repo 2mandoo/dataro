@@ -22,28 +22,30 @@
                 <!--제목-->
                 <div class="title">
                 	<div class="title_top">
-	                    <span class="user">
-	                        <div class="user_img"><img src="/ro/img/${loginInfo.m_filename_server}"></div>
-	                        <p>${loginInfo.nickname }</p>
-	                    </span>
-	                    <input type="text" name="title" id="title" class="title_text" value="코스 타이틀">
-	                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
+                		<div class="title_write">
+		                    <span class="user">
+		                        <span class="user_img" style="background-image:url(/ro/img/${loginInfo.m_filename_server})"></span>
+		                        <p>${loginInfo.nickname }</p>
+		                    </span>
+		                    <input type="text" name="title" id="title" class="title_text gmarket" value="코스 제목">
+		                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
+	                    </div>
 	                    <div class="hash">
-	                      	<h3>여행테마</h3>
+	                      	<h3 class="gmarket">여행테마</h3>
 	                   		<c:forEach var="hash" items="${category.hash}">
-	                   			<label><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no_arr" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
+	                   			<label class="gmarket"><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no_arr" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
 	                   		</c:forEach>
 	                    </div>
                     </div>
                     <div class="region">
-                    	<input type="hidden" name="region_name" value="">
-                    	<select name="region" id="region">
-                    		<option value="0" selected>지역</option>
-                    		<c:forEach var="region" items="${category.region}">
-                    			<option value="${region.region_name}" >${region.region_name }</option>
-                    		</c:forEach>
-                    	</select>
-                    	<ul class="region_result"></ul>
+	                    	<input type="hidden" name="region_name" value="">
+	                    	<select name="region" id="region" class="gmarket">
+	                    		<option value="0" selected>지역</option>
+	                    		<c:forEach var="region" items="${category.region}">
+	                    			<option value="${region.region_name}" >${region.region_name }</option>
+	                    		</c:forEach>
+	                    	</select>
+	                    	<ul class="region_result"></ul>
                     	<div class="region_detail"></div>
                     </div>
                 </div>
@@ -67,8 +69,9 @@
 				<!-- 지도 검색 엔터도 가능-->
 				<div class="seracLocation">
 					<div>
-						<input type="text" value="종각역 맛집" id="keyword" onkeyup="enterkey()" size="15"> 
-						<a onclick="jacascript:searchPlaces()"><i class="fa-solid fa-magnifying-glass"></i></a>
+						<input type="text" value="종각역 맛집" id="keyword" onkeyup="enterkey()" size="15" class="gmarket" placeholder="지역을 검색하세요"> 
+						<a onclick="jacascript:searchPlaces()" class="find_btn"><i class="fa-solid fa-magnifying-glass"></i></a>
+						<a href="javascript:displayCouses(courseArr);" class="marker gmarket">[마커표시]</a>&nbsp;&nbsp;
 					</div>
 				</div>
 				
@@ -77,8 +80,8 @@
 					<div class="scroll"></div>
 				</div>
                 <!--//지도,글쓰기-->
-				<a href="javascript:displayCouses(courseArr);">[마커표시]</a>&nbsp;&nbsp;
-                <a href="javascript:goSave()">[등록]</a>
+
+                <a href="javascript:goSave()" class="save">등록<i class="fa-solid fa-plus"></i></a>
             </form>
         </div>
     </div>

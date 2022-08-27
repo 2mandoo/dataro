@@ -22,10 +22,10 @@
                 <div class="title">
                 	<div class="title_top">
 	                    <span class="user">
-	                        <div class="user_img"><img src="/ro/img/${loginInfo.m_filename_server}"></div>
+	                         <span class="user_img" style="background-image:url(/ro/img/${loginInfo.m_filename_server})"></span>
 	                        <p>${loginInfo.nickname }</p>
 	                    </span>
-	                    <input type="text" name="title" id="title" class="title_text" value="${ud.view.title }">
+	                    <input type="text" name="title" id="title" class="title_text gmarket" value=res.view.title>
 	                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
 	                    <div class="hash">
 	                      	<h3>여행테마</h3>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="region">
                     	<input type="hidden" name="region_name" value="">
-                    	<select name="region" id="region">
+                    	<select name="region" id="region" class="gmarket">
                     		<option value="0" selected>지역</option>
                     		<c:forEach var="region" items="${category.region}">
                     			<option value="${region.region_name}" >${region.region_name }</option>
@@ -66,8 +66,9 @@
 				<!-- 지도 검색 엔터도 가능-->
 				<div class="seracLocation">
 					<div>
-						<input type="text" value="종각역 맛집" id="keyword" onkeyup="enterkey()" size="15"> 
-						<a onclick="jacascript:searchPlaces()"><i class="fa-solid fa-magnifying-glass"></i></a>
+						<input type="text" value="종각역 맛집" id="keyword" onkeyup="enterkey()" size="15" class="gmarket" placeholder="지역을 검색하세요"> 
+						<a onclick="jacascript:searchPlaces()"  class="find_btn"><i class="fa-solid fa-magnifying-glass"></i></a>
+						<a href="javascript:displayCouses(courseArr);" class="marker gmarket">[마커표시]</a>&nbsp;&nbsp;
 					</div>
 				</div>
 				
@@ -102,8 +103,7 @@
 					</div>
 				</div>
                 <!--//지도,글쓰기-->
-				<a href="javascript:displayCouses(courseArr);">[마커표시]</a>&nbsp;&nbsp;
-                <a href="javascript:goSave()">[등록]</a>
+                <a href="javascript:goSave()" class="save">등록<i class="fa-solid fa-plus"></i></a>
             </form>
         </div>
     </div>
@@ -126,6 +126,7 @@
 		getAllCourse();
 		console.log('regionarr:'+regionarr.indexOf(1));
 		console.log('regionarr:'+regionarr.indexOf(2));
+		document.getElement
 	});
 	
 	function goSave(){

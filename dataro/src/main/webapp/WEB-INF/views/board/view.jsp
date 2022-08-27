@@ -54,7 +54,7 @@
             </div>
             <div id="mapRoom">
 	            	<div id="map" style="width:500px;height:500px;float:left;"></div>
-	            <div id="section">
+	           		<div id="section">
 	            	<div class="mkroom btn-makeclick"> 방 만들기
 	            	</div>
 	            	<c:if test="${empty data.roomList }">

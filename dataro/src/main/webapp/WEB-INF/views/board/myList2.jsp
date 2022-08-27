@@ -41,17 +41,6 @@ function myList() {
 	return false;
 };
 </script>
-<style>
-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    table-layout: fixed;
-    margin: 20px 0;
-}
-
-
-</style>
 </head> 
 <body>
 <div id="wrap">

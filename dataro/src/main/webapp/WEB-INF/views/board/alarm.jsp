@@ -20,16 +20,7 @@ $(function (){
 		$('#btn').hide();
 	}
 	
-/* 	$('#all').click(function() {
-		$("input[type=checkbox][name=message_no]").prop("checked", true);
-		if ($("input[type=checkbox][name=message_no]").prop("checked", true)) {
-			$('#all').click(function(){
-				$("input[type=checkbox][name=message_no]").prop("checked", false);
-			})
-		}
-		
-	}); */
-	
+	// 체크박스 전체 체크하기.
 	$("#all").click(function() {
         if ($("#all").prop("checked")) {
             $(".selected").prop("checked", true);
@@ -37,11 +28,6 @@ $(function (){
             $(".selected").prop("checked", false);
         }
     });
-	
-	
-		
-	
-
 
 });
 
@@ -52,7 +38,7 @@ function aj(){
 		type : 'post',
 		data : $("#messageFrm").serialize(),
 		success : function(e) {
-			alert("읽음 처리가 완료되었습니다.");
+			if (e === 1) alert("읽음 처리가 완료되었습니다.");
 		},
 		error : function(e){
 			alert(`쪽지를 읽지 않으셨습니다.`);

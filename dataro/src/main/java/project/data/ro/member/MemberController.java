@@ -279,19 +279,23 @@ public class MemberController {
 	
 	// 메인화면에 종 아이콘 클릭시 안읽은 쪽지내용 읽음처리
 	@PostMapping("/readProcess")
-	public String readProcess(MessageVO vo,  HttpSession sess, Model model, HttpServletRequest req) {
+	@ResponseBody
+	public int readProcess(MessageVO vo,  HttpSession sess, Model model, HttpServletRequest req) {
 		MemberVO vo1 = (MemberVO)sess.getAttribute("loginInfo");
 		String[] message_noArr = req.getParameterValues("message_no");
+		int count = 0;
 		for (int i=0; i<message_noArr.length; i++) {
 			int message_no = Integer.parseInt(message_noArr[i]);
 			int num = vo1.getMember_no();
 			vo.setReceive_member_no(num);
 			vo.setMessage_no(message_no);
-			service.readUpdate(vo);
+			count += service.readUpdate(vo);
 		}
-		model.addAttribute("msg",  "읽음처리가 완료되었습니다.");
-		model.addAttribute("url", "/ro/board/main.do");
-		return "common/alert";
+		if (message_noArr.length == count) {
+			return 1; 
+		} else {
+			return 0; 
+		}
 	}
 	
 	

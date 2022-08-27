@@ -22,8 +22,6 @@ $(function(){
 	$('#searchBtn').click(function(){
 		myList();
 	})
-	
-	
 });
 
 function myList() {
@@ -47,16 +45,6 @@ function myList() {
 }
 </script>
 
-<style>
-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    table-layout: fixed;
-    margin: 20px 0;
-}
-
-</style>
 </head> 
 <body>
 <div id="wrap">

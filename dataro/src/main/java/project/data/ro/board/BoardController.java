@@ -162,7 +162,6 @@ public class BoardController {
 			list.get(i).setPlaceList(service.place(list.get(i).getBoard_no())); // 장소이름
 			list.get(i).setHashtagList(service.hashtag(list.get(i).getBoard_no())); // 해쉬태그
 			list.get(i).setGetTravPic(service.getTravPic(list.get(i).getBoard_no())); // 게시글 사진
-			
 		}
 		model.addAttribute("list",list);
 		if (vo1 != null) {

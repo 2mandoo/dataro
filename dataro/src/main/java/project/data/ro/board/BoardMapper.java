@@ -47,11 +47,13 @@ public interface BoardMapper {
 	int insert(BoardVO vo);
 	// 여행코스글쓰기/코스등록-진경
 	int insertCourse(BoardVO vo);
-	// 여행코스수정/화면출력-진경
+	// 여행코스수정 화면출력-진경
 	BoardVO updateView(BoardVO vo);
 	List<MapVO> updateCourse(BoardVO vo);
 	List<CategoryVO> updateCategory(BoardVO vo);
 	List<CategoryVO> updateCategory2(BoardVO vo);
+	//여행코스글수정 -진경
+	int edit(BoardVO vo);
 
 	
 	//=================================정현===============================

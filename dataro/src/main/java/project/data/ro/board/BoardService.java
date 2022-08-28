@@ -14,10 +14,9 @@ import project.data.ro.util.FileVO;
 
 public interface BoardService {
 	
-	boolean update(BoardVO vo); 
 	boolean delete(int no); 
 //	BoardVO view(int no); 
-//	BoardVO edit(int no); 
+
 	// 마이페이지 관련(정길)
 	Map myList1(BoardVO vo,  HttpSession sess);
 	Map myList2(BoardVO vo, HttpSession sess);
@@ -36,6 +35,8 @@ public interface BoardService {
 	// write(진경)
 	boolean insert(BoardVO bvo);
 	Map updateView(BoardVO bvo);
+	//여행글쓰기 글수정(진경)
+	boolean edit(BoardVO bvo); 
 
 
 	

@@ -16,8 +16,7 @@
 <body>
     <div id="wrap">
         <div class="content tv_write">
-            ${file[0].filename_server}
-            <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data">
+            <form action="edit.do" name="AH" id="edit" method="post" enctype="multipart/form-data">
                 <!--제목-->
                 <div class="title">
                 	<div class="title_top">
@@ -25,7 +24,7 @@
 	                         <span class="user_img" style="background-image:url(/ro/img/${loginInfo.m_filename_server})"></span>
 	                        <p>${loginInfo.nickname }</p>
 	                    </span>
-	                    <input type="text" name="title" id="title" class="title_text gmarket" value=res.view.title>
+	                    <input type="text" name="title" id="title" class="title_text gmarket" value=${bvo.view.title }>
 	                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
 	                    <div class="hash">
 	                      	<h3>여행테마</h3>
@@ -103,7 +102,7 @@
 					</div>
 				</div>
                 <!--//지도,글쓰기-->
-                <a href="javascript:goSave()" class="save">등록<i class="fa-solid fa-plus"></i></a>
+                <a href="javascript:goSave()" class="edit_btn">수정<i class="fa-solid fa-plus"></i></a>
             </form>
         </div>
     </div>
@@ -241,7 +240,7 @@
             	searchPlaces();
             }
         }
-	})
+	});
 		//지도 소분류 ajax로 바로 가져오기
 	$("#region").change(function(){
 		console.log($(this).val())
@@ -262,8 +261,6 @@
 			    		html +='</label>'
 			    	$(".region_detail").append(html);
 				}
-				
-
 			}
 		})
 	});
@@ -287,6 +284,9 @@
 		$("label[for='"+e+"']").removeClass('on');
 		$("input#"+e).prop("checked",false);
 	}
+	$('.region_result li i').click(function(){
+		$("input#"+e).prop("checked",false);
+	})
 </script>
 
 </body>

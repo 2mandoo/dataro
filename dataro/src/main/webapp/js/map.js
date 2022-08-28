@@ -34,8 +34,12 @@ function getAllCourse() {
 				document.getElementsByName("hashtag_no")[idx].parentElement.className='on';
 			};
 			for(var i=0;i<res.hrcategory2.length;i++){
+				var ii = document.createElement("i");
 				var newli = document.createElement("li");
 				newli.innerText=res.hrcategory2[i].region_name;
+				newli.appendChild(ii);
+				ii.classList.add('fa\-solid', 'fa\-circle\-xmark');
+				newli.id=res.hrcategory2[i].region_no;
 				document.getElementsByClassName("region_result")[0].appendChild(newli)
 				regionarr.push(res.hrcategory2[i].region_no);
 			}

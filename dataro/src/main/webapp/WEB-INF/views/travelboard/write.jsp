@@ -16,7 +16,7 @@
 <body>
     <div id="wrap">
         <div class="content tv_write">
-            <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data">
+            <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data"  onsubmit="return goSave()";>
             <input type="hidden" name="id" value=${loginInfo.id }>
             <input type="hidden" name="member_no" value=${loginInfo.member_no }>
                 <!--제목-->
@@ -100,13 +100,21 @@
 	$(function(){
 		$("#hash0").parent("label").css("background","#eee")
 		$("#hash0").prop("disabled",true)
-
 		// 키워드로 장소를 검색합니다
 		searchPlaces();
+		
+		
 	})
 	function goSave(){
-		send(courseArr);
-		AH.submit();
+		console.log($("#region option:selected"))
+		if($("#region option:selected").val() == 0){
+			alert("지역을 선택해주세요.");
+			return false;
+		}else{
+			send(courseArr);
+			AH.submit();
+		}
+		
 	};
 	var pic =1;
 	//체크박스on

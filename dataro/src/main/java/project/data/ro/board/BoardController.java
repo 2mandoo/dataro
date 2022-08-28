@@ -83,17 +83,21 @@ public class BoardController {
 	//여행코스 글쓰기 수정화면  // board_no넘어옴
 	@RequestMapping("/updateView.do")
 	public String updateView(BoardVO bvo,HttpSession sess,Model model) {
+		System.out.println("타이틀확인"+bvo.getBoard_no());
 		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
 		bvo.setMember_no(mvo.getMember_no());
 		model.addAttribute("category",uservice.writeCategory()); //카테고리전체 리스트 화면출력
+		model.addAttribute("bvo",service.updateView(bvo));
 		//model.addAttribute("file",uservice.fileUpdate(fvo));
 		return "travelboard/update";
 	}
 	//여행코스 글쓰기 수정
-//	@RequestMapping("/update.do")
-//	public String update(BoardVO bvo) {
-//		return "travelboard/update";
-//	}
+	@RequestMapping("/edit.do")
+	public String update(BoardVO bvo) {
+		System.out.println("글쓴거"+bvo.getTitle());
+		service.edit(bvo);
+		return "redirect:/board/view.do?board_no="+bvo.getBoard_no()+"&board_name='여행게시판'";
+	}
 	//지역나오게
 	@RequestMapping("/region_detail")
 	@ResponseBody

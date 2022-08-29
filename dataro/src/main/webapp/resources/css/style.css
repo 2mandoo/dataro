@@ -66,6 +66,8 @@
 .tv_write .write_detail{background:#eee;width:100%;height:500px;padding:20px;overflow-x: scroll;}
 .tv_write .write_detail .scroll{width:2080px}
 .tv_write .write_detail .set{padding:20px;background:#fff;width:400px;float:left;margin-right:15px}
+.tv_write .write_detail .set h5{font-size:22px;font-family:'GmarketSansMedium','sans serif';margin-bottom:11px}
+.tv_write .write_detail .set .map_list span{text-ali}
 .tv_write .write_detail #courseList{float:initial;overflow:hidden}
 .tv_write .write_detail #courseList li{display:inline-block;float:left;width:400px;background:#fff;padding:15px;margin-right:15px;height:80px}
 .tv_write .write_detail .seracLocation{display:inline-block;width:100%;border:1px solid #000;}

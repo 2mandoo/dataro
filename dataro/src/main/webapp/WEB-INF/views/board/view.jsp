@@ -14,12 +14,10 @@
     <title>view</title>
 </head>
 
-
 <body>
 	<a href="/ro/board/main.do"><h1>DATARO</h1></a>
 	<a href="/ro/member/login">login</a>
     <div id="wrap">
-    	<%@ include file="/WEB-INF/views/common/subheader.jsp" %>
         <div class="content view">
             <div>
                 <div class="title">

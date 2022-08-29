@@ -77,7 +77,7 @@ public class BoardController {
 		int[] a =cvo.getHashtag_no_arr();
 //		Arrays.toString(cvo)
 		System.out.println("0은뭘까"+cvo);
-		return "redirect:/main.do";
+		return "redirect:/board/main.do";
 	}
 	//여행코스 글쓰기 수정화면  // board_no넘어옴
 	@RequestMapping("/updateView.do")

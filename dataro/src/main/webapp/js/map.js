@@ -27,11 +27,10 @@ function getAllCourse() {
 			}
 			
 			for(var i=0;i<res.hrcategory.length;i++){
-				console.log(res.hrcategory[i].hashtag_no)
 				var idx = res.hrcategory[i].hashtag_no-1;
 				console.log(idx)
-				document.getElementsByName("hashtag_no")[idx].checked=true;
-				document.getElementsByName("hashtag_no")[idx].parentElement.className='on';
+				document.getElementsByName("hashtag_no_arr")[idx].checked=true;
+				document.getElementsByName("hashtag_no_arr")[idx].parentElement.className='on';
 			};
 			for(var i=0;i<res.hrcategory2.length;i++){
 				var ii = document.createElement("i");

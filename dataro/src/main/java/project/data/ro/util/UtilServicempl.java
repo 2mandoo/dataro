@@ -36,10 +36,8 @@ public class UtilServicempl implements UtilService {
 	}
 	//해쉬태그 수정
 	@Override
-	public boolean hashEdit(CategoryVO cvo) {
-		for(int hashtag:cvo.getRegion_no_arr()) {
-			System.out.println("+++++++++++++++"+hashtag);
-		}
+	public boolean hashRegionEdit(CategoryVO cvo) {
+		cmapper.hashRegionEdit(cvo);
 		return true;
 	}
 

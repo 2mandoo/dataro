@@ -12,6 +12,7 @@
 </head>
 <body>
  <div id="wrap">
+ 		<%@ include file="/WEB-INF/views/common/subheader.jsp" %>
         <div class="content room_view">
         	<article>
 	        	<h3>${view.room_title }</h3>

@@ -1,6 +1,7 @@
 var regionarr = new Array(); //ajax 비동기처리로 만들어서 변수값을 넣은상태에서 사용할수있게
+var no=$('#board_no').val();  // 방만들기 모달 안에 hidden으로 숨겨진 board_no를 가지고 옴
+
 function getAllCourse() {
-	var no=$('#board_no').val();  // 방만들기 모달 안에 hidden으로 숨겨진 board_no를 가지고 옴
 	console.log(no);
 	$.ajax({
 		url : "/ro/board/getAllCourse.do",
@@ -27,12 +28,15 @@ function getAllCourse() {
 
 			}
 			
+			// 선택한 해쉬태그 불러오기  
 			for(var i=0;i<res.hrcategory.length;i++){
 				var idx = res.hrcategory[i].hashtag_no-1;
 				console.log(idx)
 				document.getElementsByName("hashtag_no_arr")[idx].checked=true;
 				document.getElementsByName("hashtag_no_arr")[idx].parentElement.className='on';
 			};
+			
+			// 선택한 지역 불러오기
 			for(var i=0;i<res.hrcategory2.length;i++){
 				var ii = document.createElement("i");
 				var newli = document.createElement("li");

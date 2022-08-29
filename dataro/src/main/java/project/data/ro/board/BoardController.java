@@ -57,6 +57,20 @@ public class BoardController {
 		System.out.println("진귀 확인:" + bvo);
 		return service.updateView(bvo);
 	}
+	
+	@GetMapping("/view2.do")
+	public String view2(BoardVO vo, RoomVO rvo, Model model, HttpSession sess) {
+		MemberVO mvo = (MemberVO)sess.getAttribute("loginInfo");
+		//글 보고있는 사람(로그인 한 사람)
+		if(mvo!= null) {
+			vo.setLogin_member_no(mvo.getMember_no());
+		}
+		System.out.println("=+=++++++++== "+vo);
+		Map map = new HashMap();
+		map = service.view(vo);
+		model.addAttribute("data", map);
+		return "board/view2";
+	}
 	// 진귀++++++
 	
 	

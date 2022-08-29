@@ -150,8 +150,8 @@
 			html += '<span class="markerbg marker_' + (index+1) + '"></span>'+
 						'<h5>' + places.place_name + '</h5>'+
 							'<span class="info">'+
-							'<span><i class="fa-solid fa-location-dot"></i>' +  places.address_name  + '</span>'+
-						'<span class="tel"><i class="fa\-solid fa\-phone"></i>' + places.phone  + '</span>' 
+							'<span class="tel"><i class="fa\-solid fa\-phone"></i>' + places.phone  + '</span>' +
+							'<span><i class="fa-solid fa-location-dot"></i>' +  places.address_name  + '</span>'
 			html +=	'</span>' ;
 			html +="</div>"
 	        html +='    <textarea placeholder="내용 입력" name="contents">'+places.content+'</textarea>'

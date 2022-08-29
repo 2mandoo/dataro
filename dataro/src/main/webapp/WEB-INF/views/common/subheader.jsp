@@ -31,11 +31,10 @@ window.onload=function(){
   		});	
 		//상단 아이콘 호버시 말풍선 나오게
 		$('.menu li').hover(function(){
-			$(this).find(".btn_ex").fadeIn()
+			$(this).find(".btn_ex").stop().fadeIn()
 		},function(){
-			$(".btn_ex").fadeOut();
+			$(".btn_ex").stop().fadeOut();
 		})
-
   	// 미로그인시 아이콘 클릭시 뜨는 얼럿(정길)
   	function loginAlert(){
   		alert("로그인 후 이용해주세요 : )");

@@ -19,7 +19,6 @@ public interface BoardMapper {
 //	BoardVO view(int no);
 //	int updateViewcount(int no); 
 	int update(BoardVO vo);
-	//? delete boardmapper.xml 엔 없던데 머임요? 
 	int delete(int no);
 	
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길(마이페이지) ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
@@ -52,8 +51,9 @@ public interface BoardMapper {
 	List<MapVO> updateCourse(BoardVO vo);
 	List<CategoryVO> updateCategory(BoardVO vo);
 	List<CategoryVO> updateCategory2(BoardVO vo);
-	//여행코스글수정 -진경
-	int edit(BoardVO vo);
+	// 여행코스글,타이틀 수정 -진경
+	int titleEdit(BoardVO vo);
+	int courseEdit(BoardVO vo);
 
 	
 	//=================================정현===============================

@@ -54,9 +54,9 @@ window.onload=function(){
 		            	</a> 
 	            	</c:when>
 	            	<c:otherwise>
-	            		<a href="#">
-			            <img src ="/ro/img/${loginInfo.m_filename_server}" id="idIm" style="border-radius:30px; width: 50px;">
-			        </a>
+	            		<a href="#" style="background:url(/ro/img/${loginInfo.m_filename_server})">
+			            	<img src ="/ro/img/${loginInfo.m_filename_server}" id="idIm" style="border-radius:30px; width: 50px;">
+			        	</a>
 	            	</c:otherwise>
 				</c:choose>
 			</li>

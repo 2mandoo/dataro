@@ -36,7 +36,7 @@ public interface BoardService {
 	boolean insert(BoardVO bvo);
 	Map updateView(BoardVO bvo);
 	//여행글쓰기 글수정(진경)
-	boolean edit(BoardVO bvo); 
+	boolean titcouEdit(BoardVO bvo); 
 
 
 	

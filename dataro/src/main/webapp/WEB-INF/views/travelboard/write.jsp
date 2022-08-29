@@ -103,9 +103,8 @@
 		$("#hash0").prop("disabled",true)
 		// 키워드로 장소를 검색합니다
 		searchPlaces();
-		
-		
 	})
+	
 	function goSave(){
 		console.log($("#region option:selected"))
 		if($("#region option:selected").val() == 0){

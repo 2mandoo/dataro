@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/ro/resources/css/reset.css" rel="stylesheet">
     <link href="/ro/resources/css/view.css" rel="stylesheet">
+    <link rel="stylesheet" href="/ro/resources/css/style.css"/>
     <link rel="shortcut icon" href="#"> <!-- favicon.ico 에러나서 넣어줌 -->
     <title>view</title>
 </head>
@@ -20,6 +21,7 @@
 	<a href="/ro/board/main.do"><h1>DATARO</h1></a>
 	<a href="/ro/member/login">login</a>
     <div id="wrap">
+    	<%@ include file="/WEB-INF/views/common/subheader.jsp" %>
         <div class="content view">
             <div>
                 <div class="title">
@@ -53,7 +55,7 @@
             </c:forEach>
             </div>
             <div id="mapRoom">
-	            	<div id="map" style="width:500px;height:500px;float:left;"></div>
+	            	<div id="map" style="width:660px;height:500px;float:left;"></div>
 	           		<div id="section">
 	            	<div class="mkroom btn-makeclick"> 방 만들기
 	            	</div>

@@ -27,8 +27,8 @@ function goModifySave() {
 </script>
 </head>
 <body> 
-        <div class="sub">
-            <div class="size">
+        <div id="wrap">
+            <div class="content modify">
                 <h3 class="sub_title">댓글수정 게시판</h3>
     
                 <div class="bbs">

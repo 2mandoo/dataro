@@ -96,11 +96,12 @@
           <thead>
             <tr>
               <th scope="col" >번호</th>
+              <th scope="col" >회원ID</th>
               <th scope="col" >제목</th>
               <th scope="col" >조회수</th>
-              <th scope="col" >게시판</th>
               <th scope="col" >게시일</th>
-              <th scope="col" >회원ID</th>
+              <th scope="col" >수정일</th>
+            
             </tr>
           </thead>
           <tbody>
@@ -112,11 +113,11 @@
 	          <c:forEach var ="vo" items="${flist.list}" varStatus="status">
 	            <tr scope="row">
 	            <td>${flist.totalCount-status.index-(fullBoardVO.page-1)*fullBoardVO.pageRow }</td>
+	            	  <td>${vo.id} <c:if test="${loginInfo.member_no == vo.member_no }"> <strong>[내가 쓴글]</strong></c:if></td>
 	              <td><a href="view.do?board_no=${vo.board_no}">${vo.title}</a></td>
 	              <td>${vo.viewcount}</td>
-	              <td>${vo.board_name}</td>
-	              <td><a href="view.do?board_no=${vo.board_no}"><fmt:formatDate value="${vo.writedate}" pattern="yyyy-MM-dd HH:mm"/></td>
-	              <td>${vo.id} <c:if test="${loginInfo.member_no == vo.member_no }"> <strong>[내가 쓴글]</strong></c:if></td>
+	              <td><fmt:formatDate value="${vo.writedate}" pattern="yyyy-MM-dd HH:mm"/></td>
+	              <td><fmt:formatDate value="${vo.updatedate}" pattern="yyyy-MM-dd HH:mm"/></td>
 	            </tr>
 	          </c:forEach>
           </tbody>

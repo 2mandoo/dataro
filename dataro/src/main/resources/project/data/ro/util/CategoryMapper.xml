@@ -13,9 +13,9 @@
 		select * from phashtag order by hashtag_no
 	</select>
 	
-	<!-- 해쉬코드 수정/진경 -->
+	<!-- 해쉬코드 수정(삭제후 다시 등록하는방식)/진경 -->
 	<update id="hashEdit" parameterType="project.data.ro.util.CategoryVO">
-		UPDATE pcategory SET hashtag_no=${hashtag_no} where board_no=${board_no}
+		delete from pcategory where board_no=#{board_no}
 	</update>
 
 	<!-- 글쓰기 지역정보 대분류 출력/진경 -->

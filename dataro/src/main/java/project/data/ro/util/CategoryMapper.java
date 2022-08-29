@@ -12,7 +12,7 @@ public interface CategoryMapper {
 	int insert(CategoryVO vo);
 	//해쉬태그 출력
 	List<CategoryVO> hash();
-	//해쉬태그 수정
+	//해쉬태그 수정()
 	int hashEdit(CategoryVO vo);
 	//지역 출력
 	List<CategoryVO> regionSelect();

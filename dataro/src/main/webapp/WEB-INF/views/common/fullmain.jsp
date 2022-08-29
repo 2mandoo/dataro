@@ -155,7 +155,6 @@
 			<option value="title" >제목</option> 
 			<option value="content" >내용</option> 
 			<option value="id" >회원ID</option> 
-			<option value="member_no" >회원번호</option> 
 			</select>
 			<input type="text" id="" name="sword" value="" placeholder="검색">
 			<input type ="submit"  value="검색">

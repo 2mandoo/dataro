@@ -133,15 +133,15 @@
 </script>
 </head>
 <body>
-        <div class="sub">
-            <div class="size">
+        <div id="wrap">
+            <div class="content view">
                 <h3 class="sub_title">상세 게시판</h3>
                 <div class="bbs">
                     <div class="view">
                         <div class="title">
                             <dl>
                                 <dt>제목 : ${view.title}</dt><br>
-                                <dt>게시일 : ${view.writedate}</dt>
+                                <dt>게시일 : <fmt:formatDate value="${view.writedate }" pattern="yyyy-MM-dd HH:mm"/></dt>
                             </dl>
                         </div>
                         <div class="cont">글내용 : ${view.content}</div>

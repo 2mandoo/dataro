@@ -71,16 +71,12 @@
 	<!-- 게시글 제목 수정 -->
 	<update id="update" parameterType="project.data.ro.fullboard.FullBoardVO">
 		UPDATE pboard SET
-			title = #{title}, content = #{content}
+			title = #{title}, content = #{content}, 
+			updatedate = now()
+			WHERE board_no = #{board_no}
 			<if test="filename_org != null">
 			, filename_org = #{filename_org}
 			, filename_server = #{filename_server}
 			</if>
-			<!-- <if test ="content == null">
-			select * from pboard b join pboardcourse p
-			on b.board_no = p.board_no and b.board_name = p.board_name
-			where content = #{content}
-			</if> -->
-		WHERE board_no = #{board_no}
 	</update>
 </mapper>

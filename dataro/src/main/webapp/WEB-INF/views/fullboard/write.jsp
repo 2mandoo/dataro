@@ -28,8 +28,8 @@
  </script>
 </head>
 <body>
-        <div class="content main">
-        <div class="sub">
+       <div id="wrap">
+        <div class="content write">
             <div class="size">
                 <h3 class="sub_title">글작성</h3>
                 <div class="bbs">

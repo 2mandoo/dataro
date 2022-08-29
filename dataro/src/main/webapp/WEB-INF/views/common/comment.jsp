@@ -40,7 +40,7 @@
                          			${loginInfo.id }
                          			</c:when>
                          			<c:otherwise>
-                         			${vo.id}
+                         			${vo.member_id}
                          			</c:otherwise>
                                 </c:choose>
      							</td>
@@ -97,7 +97,8 @@
                 				board_no : ${commentVO.board_no}, 
                 				board_name : '자유게시판',
                 				gno : gno,
-                				member_no : ${loginInfo.member_no}
+                				member_no : ${loginInfo.member_no},
+                				member_id : "${loginInfo.id}"
                 			},
                 			success : function(res){
                 					console.log(res.length);
@@ -156,7 +157,7 @@
 	                					member_id : '${loginInfo.id}'
 	                				},
 	                				success : function(res){
-	                						if(res=="success"){
+	                						if(res==="success"){
 	                							alert('답글이 정상적으로 등록되었습니다.');
 	                						} else{
 	                							alert('답글 등록 실패');

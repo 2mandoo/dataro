@@ -46,8 +46,6 @@ public class FullBoardController {
 	public String view(FullBoardVO vo, Model model,HttpSession sess ) {
 		CommentVO cvo = (CommentVO) sess.getAttribute("commentInfo");
 		if(cvo != null) {
-			cvo.getReply_no();
-			cvo.getBoard_no();
 			vo.setReply_no(cvo.getReply_no());
 			vo.setBoard_no(cvo.getBoard_no());
 		}
@@ -80,8 +78,6 @@ public class FullBoardController {
 		@RequestParam MultipartFile[] filename, HttpServletRequest re,HttpSession sess) {
 		MemberVO avo = (MemberVO) sess.getAttribute("loginInfo");
 		if(avo != null) {
-			avo.getMember_no();
-			avo.getId();
 			vo.setMember_no(avo.getMember_no()); // 자유게시판에 회원번호 등록해서 불러오기
 			vo.setId(avo.getId()); // 자유게시판에 회원ID 등록해서 불러오기
 		} 

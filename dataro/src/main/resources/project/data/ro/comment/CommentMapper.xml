@@ -5,9 +5,9 @@
 	<!-- 댓글 입력 -->
 	<insert id="insert" parameterType="project.data.ro.comment.CommentVO">
 		INSERT INTO preply (
-			content, member_no, board_no, reply_writedate ,reply_no, board_name,gno,id
+			content, member_no, board_no, reply_writedate ,reply_no, board_name,gno,member_id
 		) VALUES (
-			#{content}, #{member_no}, #{board_no},NOW(),#{reply_no},'자유게시판',#{gno},#{id}
+			#{content}, #{member_no}, #{board_no},NOW(),#{reply_no},'자유게시판',#{gno},#{member_id}
 		)
 		<selectKey keyProperty="board_no" resultType="int" order="AFTER">
 			SELECT LAST_INSERT_ID()
@@ -24,7 +24,7 @@
 	<select id="list" parameterType="project.data.ro.comment.CommentVO" resultType="project.data.ro.comment.CommentVO">
 		SELECT
 		 *
-		 , (select id from pmember where member_no = preply.member_no) as id
+		 , (select id from pmember where member_no = preply.member_no) as member_id
 		FROM preply
 		WHERE board_no = #{board_no} AND board_name = '자유게시판' and ono = 0
 		ORDER BY reply_writedate DESC
@@ -70,15 +70,15 @@
 	<!-- 댓글에 답글달기 -->
 	<insert id="reply" parameterType="project.data.ro.comment.CommentVO">
 		INSERT INTO preply (
-			board_name, board_no, room_no, id, content, member_no, reply_likecount, reply_writedate, gno, ono
+			board_name, board_no, room_no, member_id, content, member_no, reply_likecount, reply_writedate, gno, ono
 		) VALUES (
-			#{board_name}, #{board_no}, #{room_no}, #{id}, #{content}, #{member_no}, 0, NOW(), #{gno}, #{ono}
+			#{board_name}, #{board_no}, #{room_no}, #{member_id}, #{content}, #{member_no}, 0, NOW(), #{gno}, #{ono}
 		)
 	</insert>
 	
 	<!-- 댓글 ono = 0 총 개수 (답글이 아닌 원댓글)-->
 	<select id="pagingCount" resultType="int" parameterType="project.data.ro.comment.CommentVO">
-		SELECT COUNT(*) FROM preply WHERE board_name = #{board_name} 
+		SELECT COUNT(*) FROM preply WHERE board_name = '자유게시판'
 		AND board_no = #{board_no} AND ono = 0
 	</select>
 	

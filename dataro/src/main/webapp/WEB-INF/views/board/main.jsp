@@ -105,11 +105,7 @@ function loginAlert(){
 	    		})
 	    	})
 	    	</script>
-<<<<<<< HEAD
-	    		<span class='hashtag' data-no=''>[#전체]</span>
-=======
-	    	<span class='hashtag' data-no=''>[#전체]</span> <!-- 값이 없는애들 -->
->>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
+	    	<span class='hashtag' data-no=''>[#전체]</span>
 		    <span class='hashtag' data-no='1'>[#자전거코스]</span>
 		    <span class='hashtag' data-no='2'>[#드라이브코스]</span>
 		    <span class='hashtag' data-no='3'>[#뚜벅이코스]</span>

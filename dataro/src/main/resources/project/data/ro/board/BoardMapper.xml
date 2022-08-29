@@ -246,8 +246,8 @@
 	<!-- 여행코스 등록 -->
 	<insert id="insertCourse" parameterType="project.data.ro.board.BoardVO">
 		INSERT 
-			INTO pboardcourse(board_name,board_no,content)
-		VALUES (#{board_name},#{board_no},#{content})
+			INTO pboardcourse(board_name,board_no,content,course_no)
+		VALUES (#{board_name},#{board_no},#{content},#{course_no})
 
 	</insert>
 

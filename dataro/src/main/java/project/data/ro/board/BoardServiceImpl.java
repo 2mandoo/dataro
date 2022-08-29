@@ -44,6 +44,7 @@ public class BoardServiceImpl implements BoardService {
 		for(int i=0; i<bvo.getContents().length; i++) {
 			bvo.setContent(bvo.getContents()[i]);
 			bvo.setCourse_no(i+1);
+			System.out.println("ㅋㅋㅋ:"+(i+1)+bvo);
 			mapper.insertCourse(bvo);
 		}
 		return true;

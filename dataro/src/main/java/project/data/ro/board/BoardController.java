@@ -54,6 +54,7 @@ public class BoardController {
 			// 로그인 안해도 view 에서 널포인트에러 안나게 바꿈
 			bvo.setMember_no(mvo.getMember_no());
 		}
+		System.out.println("진귀 확인:" + bvo);
 		return service.updateView(bvo);
 	}
 	// 진귀++++++

@@ -56,6 +56,7 @@ public class CommentController {
 	
 	//답글 작성
 	@GetMapping("/comment/reply.do")
+	@ResponseBody
 	public String reply(CommentVO vo, Model model) {
 		if(service.reply(vo)) {
 			System.out.println("성공 : ###################################");

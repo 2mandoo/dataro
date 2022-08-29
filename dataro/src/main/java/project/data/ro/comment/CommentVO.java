@@ -12,6 +12,7 @@ public class CommentVO {
 	String id;
 	int board_no;
 	int reply_no;
+	String member_id;
 	String board_name;
 	Timestamp reply_writedate;
 	Timestamp reply_updatedate;

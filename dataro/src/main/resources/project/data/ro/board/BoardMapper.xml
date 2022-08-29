@@ -248,9 +248,12 @@
 		INSERT 
 			INTO pboardcourse(board_name,board_no,content,course_no)
 		VALUES (#{board_name},#{board_no},#{content},#{course_no})
-
 	</insert>
 
+	<!-- 여행코스 수정/ 진경끝 -->
+	
+	
+	
 	<!-- 정현 -->
 	<select id="view2" parameterType="project.data.ro.board.BoardVO" resultType="project.data.ro.board.BoardVO">
 		SELECT *,

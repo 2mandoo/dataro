@@ -135,7 +135,7 @@ function loginAlert(){
          	</span>
          	<div class="img_area">
             <a href="view.do?board_no=${list.board_no}&board_name=${list.board_name}">
-             <img src ="/ro/img/${list.filename_server }" width="100px" id="idImg" style="max-width: 100%; height: auto;">
+             <img src ="/ro/img/${list.filename_server }" height="250px" width="400px" id="idImg" style="border-radius:100px;">
             </a>
             <ul>
               <li>

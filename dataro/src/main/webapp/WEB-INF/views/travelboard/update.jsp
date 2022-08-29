@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/ro/resources/css/reset.css"/>
 <link rel="stylesheet" href="/ro/resources/css/style.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <link rel="shortcut icon" href="#"> <!-- favicon.ico 에러나서 넣어줌 -->
 </head>
 <body>
@@ -146,13 +146,13 @@
 	function updatebox(index,places,img1,img2){
 		count++;
 		var html ='<div class="set">'
-			html +='<span class="jk"></span>'
 			html +='<div class="map_list">'
-			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
-					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';
-			html += '    <span>' +  places.address_name  + '</span>'; 
-				    
-   			html += '  <span class="tel">' + places.phone  + '</span>'     
+			html += '<span class="markerbg marker_' + (index+1) + '"></span>'+
+						'<h5>' + places.place_name + '</h5>'+
+							'<span class="info">'+
+							'<span class="tel"><i class="fa\-solid fa\-phone"></i>' + places.phone  + '</span>' +
+							'<span><i class="fa-solid fa-location-dot"></i>' +  places.address_name  + '</span>'
+			html +=	'</span>' ;
 			html +="</div>"
 	        html +='    <textarea placeholder="내용 입력" name="contents">'+places.content+'</textarea>'
 	        html +='    <div class="pic_wrap">'
@@ -179,13 +179,13 @@
 	function writebox(index,places){
 		count++;
 		var html ='<div class="set">'
-			html +='<span class="jk"></span>'
 			html +='<div class="map_list">'
-			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
-					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';
-			html += '    <span>' +  places.address_name  + '</span>'; 
-				    
-   			html += '  <span class="tel">' + places.phone  + '</span>'     
+			html += '<span class="markerbg marker_' + (index+1) + '"></span>'+
+						'<h5>' + places.place_name + '</h5>'+
+							'<span class="info">'+
+							'<span><i class="fa-solid fa-location-dot"></i>' +  places.address_name  + '</span>'+
+						'<span class="tel"><i class="fa\-solid fa\-phone"></i>' + places.phone  + '</span>' 
+			html +=	'</span>' ;
 			html +="</div>"
 	        html +='    <textarea placeholder="내용 입력" name="contents"></textarea>'
 	        html +='    <div class="pic_wrap">'

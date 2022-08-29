@@ -9,15 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/ro/resources/css/reset.css" rel="stylesheet">
+    <link rel="stylesheet" href="/ro/resources/css/style.css"/>
     <link href="/ro/resources/css/view.css" rel="stylesheet">
     <link rel="shortcut icon" href="#"> <!-- favicon.ico 에러나서 넣어줌 -->
     <title>view</title>
 </head>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b93e1f37ba26daefa16850e15e3b7c31"></script>
 
 <body>
-	<a href="/ro/board/main.do"><h1>DATARO</h1></a>
-	<a href="/ro/member/login">login</a>
     <div id="wrap">
     	<%@ include file="/WEB-INF/views/common/subheader.jsp" %>
         <div class="content view">
@@ -53,7 +53,7 @@
             </c:forEach>
             </div>
             <div id="mapRoom">
-	            	<div id="map" style="width:500px;height:500px;float:left;"></div>
+	            	<div id="map" style="width:660px;height:500px;float:left;"></div>
 	           		<div id="section">
 	            	<div class="mkroom btn-makeclick"> 방 만들기
 	            	</div>
@@ -210,8 +210,6 @@
 
 -->	
 	
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b93e1f37ba26daefa16850e15e3b7c31"></script>
 	
 	<script type='text/javascript' src="/ro/js/map.js"></script>
 	<script type='text/javascript' src="/ro/js/mapView.js"></script>
@@ -230,7 +228,6 @@
 	function updatebox(index,places){
 		count++;
 		var html ='<div class="set">'
-			html +='<span class="jk"></span>'
 			html +='<div class="map_list">'
 			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
 					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';

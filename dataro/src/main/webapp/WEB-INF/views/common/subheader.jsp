@@ -1,6 +1,8 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
  <script>
 window.onload=function(){
  		// 로그인 후 변경된 사진 클릭시 마이페이지로 가기(정길)
@@ -29,11 +31,10 @@ window.onload=function(){
   		});	
 		//상단 아이콘 호버시 말풍선 나오게
 		$('.menu li').hover(function(){
-			$(this).find(".btn_ex").fadeIn()
+			$(this).find(".btn_ex").stop().fadeIn()
 		},function(){
-			$(".btn_ex").fadeOut();
+			$(".btn_ex").stop().fadeOut();
 		})
-
   	// 미로그인시 아이콘 클릭시 뜨는 얼럿(정길)
   	function loginAlert(){
   		alert("로그인 후 이용해주세요 : )");

@@ -63,9 +63,9 @@
 .tv_write .seracLocation input{height:36px;border:none;border-bottom:2px solid #000;font-size:21px;width:450px}
 .tv_write .seracLocation .find_btn{background:#00939b;display:inline-block;width:36px;height:36px;line-height:36px;color:#fff;border-radius:50px;margin-right:10px}
 .tv_write .seracLocation .marker{font-size:18px;font-weight:bold;margin-left:10px}
-.tv_write .write_detail{background:#eee;width:100%;padding:20px;overflow-x: scroll;}
+.tv_write .write_detail{background:#eee;width:100%;overflow-x: scroll;}
 .tv_write .write_detail .scroll{width:2080px}
-.tv_write .write_detail .set{padding:20px;background:#fff;width:400px;float:left;margin-right:15px}
+.tv_write .write_detail .set{margin:20px;padding:20px;background:#fff;width:400px;float:left;margin-right:15px}
 .tv_write .write_detail .set textarea{resize:none}
 .tv_write .write_detail .set h5{font-size:22px;font-family:'GmarketSansMedium','sans serif';margin:10px 0 21px}
 .tv_write .write_detail .set .map_list{margin-bottom:8px}

@@ -105,7 +105,7 @@ function loginAlert(){
 	    		})
 	    	})
 	    	</script>
-	    	<span class='hashtag' data-no=''>[#전체]</span>
+	    		<span class='hashtag' data-no=''>[#전체]</span>
 		    <span class='hashtag' data-no='1'>[#자전거코스]</span>
 		    <span class='hashtag' data-no='2'>[#드라이브코스]</span>
 		    <span class='hashtag' data-no='3'>[#뚜벅이코스]</span>
@@ -135,7 +135,7 @@ function loginAlert(){
          	</span>
          	<div class="img_area">
             <a href="view.do?board_no=${list.board_no}&board_name=${list.board_name}">
-             <img src ="/ro/img/${list.filename_server }" width="100px" id="idImg" style="border-radius:100px;">
+             <img src ="/ro/img/${list.filename_server }" width="100px" id="idImg" style="max-width: 100%; height: auto;">
             </a>
             <ul>
               <li>

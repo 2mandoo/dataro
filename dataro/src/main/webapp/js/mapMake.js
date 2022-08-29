@@ -7,6 +7,7 @@ function send(courseArr){
 	$.ajax({
 		url : "../map/mapinsert.do",
 		type : "post",
+		async: false,
 		data: {
 			'json' : JSON.stringify(courseArr)
 		},

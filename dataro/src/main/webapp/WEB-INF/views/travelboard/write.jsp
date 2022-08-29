@@ -111,8 +111,11 @@
 			alert("지역을 선택해주세요.");
 			return false;
 		}else{
-			send(courseArr);
-			AH.submit();
+			if(confirm('등록하시겠습니까?')){
+				send(courseArr);
+				
+				AH.submit();
+			}
 		}
 		
 	};

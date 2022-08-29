@@ -73,7 +73,6 @@ public class BoardController {
 		service.insert(bvo);
 		uservice.insert(cvo,bvo);
 		uservice.fileupload(fvo, filename, req,bvo);
-		mapper.update(bvo);
 		uservice.regionInsert(cvo);
 		int[] a =cvo.getHashtag_no_arr();
 //		Arrays.toString(cvo)

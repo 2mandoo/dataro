@@ -106,7 +106,7 @@ public class FullBoardServiceImple implements FullBoardService {
 				String ext=org.substring(org.lastIndexOf('.'));
 				String sever = new Date().getTime()+ext;
 				
-				String path = req.getRealPath("/upload/");
+				String path = req.getRealPath("/img/");
 				try {
 					files.transferTo(new File(path+sever));
 				}catch(Exception e) {}

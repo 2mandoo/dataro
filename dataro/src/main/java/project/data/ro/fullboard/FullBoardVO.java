@@ -18,6 +18,7 @@ public class FullBoardVO {
 	int viewcount;
 	Timestamp writedate;
 	Timestamp updatedate;
+	int replycount;
 	//int course_no;
 	int member_no;
 	String nickname;

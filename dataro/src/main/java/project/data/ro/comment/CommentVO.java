@@ -1,6 +1,7 @@
 package project.data.ro.comment;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import lombok.Data;
 
@@ -32,5 +33,10 @@ public class CommentVO {
 	public CommentVO() {
 		this.pageRow = 10;
 		this.page = 1;
+	}
+	
+	public String getReply_writedate_str() {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		return df.format(reply_writedate);
 	}
 }

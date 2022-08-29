@@ -40,7 +40,7 @@
                          			${loginInfo.id }
                          			</c:when>
                          			<c:otherwise>
-                         			${vo.member_id}
+                         			${vo.id}
                          			</c:otherwise>
                                 </c:choose>
      							</td>
@@ -51,15 +51,16 @@
 				                  	 <form id="commentFrm${vo.gno }" >
 									    <input type="text" class="content2" style="width:70%" placeholder="답글을 작성해주세요."><a href="javascript:goSave2(${vo.gno });">작성 </a>
 								   	</form>
-									    <div id="commentList${vo.gno }"></div>
+									    <div id="commentList${vo.gno}"></div>
 								</div>
-								<c:if test="${loginInfo.member_no == vo.member_no }">
+                                </td>
+                                <td class="date"><fmt:formatDate value="${vo.reply_writedate}" pattern="yyyy-MM-dd HH:mm"/></td>
+                                <td class="date"><fmt:formatDate value="${vo.reply_updatedate}" pattern="yyyy-MM-dd HH:mm"/>
+                                <c:if test="${loginInfo.member_no == vo.member_no }">
                                 <a href="javascript:commentDel(${vo.reply_no });">[삭제]</a>
                                 <a href="javascript:fullsetReply_no(${vo.reply_no });">[수정]</a>
                                 </c:if>
                                 </td>
-                                <td class="date"><fmt:formatDate value="${vo.reply_writedate}" pattern="yyyy-MM-dd HH:mm"/></td>
-                                <td class="date"><fmt:formatDate value="${vo.reply_updatedate}" pattern="yyyy-MM-dd HH:mm"/></td>
                                 <%-- <td>
                                   ${vo.content }
 				                   <a href="javascript:replyList(${vo.gno })" class="replyList">[답글]<c:if test="${vo.replycount>0 }">(${vo.replycount })</c:if></a>
@@ -121,7 +122,7 @@
                 							if(login_member_no == res[i].member_no){
                 								html += "	<a href='javascript:commentDel("+res[i].reply_no +");'>[삭제]</a></td>";
                 							}
-                							html += "	<td style='text-align:center; height:50px;'>" + res[i].reply_writedate + "</td>";
+                							html += "	<td style='text-align:center; height:50px;'>" + res[i].reply_writedate_str + "</td>";
                 							
                 							html += "</tr>";
                 						}
@@ -173,7 +174,17 @@
 	                				
 	                			});
 	                		} 
-	                	}        
+	                	}    
+	                	
+	                	var login_member_no;
+	                	<c:if test="${empty loginInfo.member_no }">
+	                    	login_member_no = -1
+	                	</c:if>
+	                	<c:if test="${!empty loginInfo.member_no }">
+	                    	login_member_no = ${loginInfo.member_no}
+	                	</c:if>
+	                	console.log(login_member_no);
+	                	
 	                //댓글 누르면 답글 보였다 숨기기
 	                	$('.commentList').click(function(){
 	                		$(this).next().toggle();

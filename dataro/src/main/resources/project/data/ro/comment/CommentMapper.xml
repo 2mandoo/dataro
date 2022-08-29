@@ -5,10 +5,9 @@
 	<!-- 댓글 입력 -->
 	<insert id="insert" parameterType="project.data.ro.comment.CommentVO">
 		INSERT INTO preply (
-			content, member_no, board_no, reply_writedate ,reply_no, board_name,gno,member_id
-		) VALUES (
-			#{content}, #{member_no}, #{board_no},NOW(),#{reply_no},'자유게시판',#{gno},#{member_id}
-		)
+			content, member_no, board_no, reply_writedate ,reply_no, board_name,gno,member_id )
+			 VALUES 
+			( #{content}, #{member_no}, #{board_no},NOW(),#{reply_no},'자유게시판',#{gno},#{member_id} )
 		<selectKey keyProperty="board_no" resultType="int" order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
@@ -24,7 +23,7 @@
 	<select id="list" parameterType="project.data.ro.comment.CommentVO" resultType="project.data.ro.comment.CommentVO">
 		SELECT
 		 *
-		 , (select id from pmember where member_no = preply.member_no) as member_id
+		 , (select id from pmember where member_no = preply.member_no) as id
 		FROM preply
 		WHERE board_no = #{board_no} AND board_name = '자유게시판' and ono = 0
 		ORDER BY reply_writedate DESC

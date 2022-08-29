@@ -114,7 +114,7 @@
 	            <tr scope="row">
 	            <td>${flist.totalCount-status.index-(fullBoardVO.page-1)*fullBoardVO.pageRow }</td>
 	            	  <td>${vo.id} <c:if test="${loginInfo.member_no == vo.member_no }"> <strong>[내가 쓴글]</strong></c:if></td>
-	              <td><a href="view.do?board_no=${vo.board_no}">${vo.title}</a></td>
+	              <td><a href="view.do?board_no=${vo.board_no}">${vo.title} <b>[${vo.replycount}]</b></a></td>
 	              <td>${vo.viewcount}</td>
 	              <td><fmt:formatDate value="${vo.writedate}" pattern="yyyy-MM-dd HH:mm"/></td>
 	              <td><fmt:formatDate value="${vo.updatedate}" pattern="yyyy-MM-dd HH:mm"/></td>

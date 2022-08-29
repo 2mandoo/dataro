@@ -30,7 +30,8 @@
 	<select id="list" resultType="project.data.ro.fullboard.FullBoardVO">
 		select
 		 *
-		 , (select id from pmember where member_no = pboard.member_no) as id
+		 ,(SELECT id FROM pmember WHERE member_no = pboard.member_no) AS id
+		 ,(SELECT COUNT(reply_no) FROM preply WHERE pboard.board_no = preply.board_no) AS replycount
 			from pboard 
 		<where>
 			board_name = '자유게시판'

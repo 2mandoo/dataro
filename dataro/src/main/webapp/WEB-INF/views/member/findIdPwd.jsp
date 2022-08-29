@@ -40,11 +40,14 @@ $(function(){
 			}
 		})
 	});
+	$('#goMain').click(function (){
+		location.href="/ro/board/main.do";
+	})
 });
 </script>
 
 
-<a href="/ro/board/main.do"><img src="/ro/img/main.png" id="gohome"></a>
+<img src="/ro/img/main.png" id="goMain" style="position: relative; left:700px; width: 40px; top:20px; ">
 <div id="wrap">
 	<div class="content login bord">
 		<form action="" method="get" name ="">

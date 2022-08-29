@@ -54,6 +54,7 @@ public class BoardController {
 			// 로그인 안해도 view 에서 널포인트에러 안나게 바꿈
 			bvo.setMember_no(mvo.getMember_no());
 		}
+		System.out.println("진귀 확인:" + bvo);
 		return service.updateView(bvo);
 	}
 	// 진귀++++++
@@ -73,27 +74,34 @@ public class BoardController {
 		service.insert(bvo);
 		uservice.insert(cvo,bvo);
 		uservice.fileupload(fvo, filename, req,bvo);
-		mapper.update(bvo);
 		uservice.regionInsert(cvo);
 		int[] a =cvo.getHashtag_no_arr();
 //		Arrays.toString(cvo)
 		System.out.println("0은뭘까"+cvo);
-		return "redirect:/board/travelWrite.do";
+		return "redirect:/board/main.do";
 	}
 	//여행코스 글쓰기 수정화면  // board_no넘어옴
 	@RequestMapping("/updateView.do")
 	public String updateView(BoardVO bvo,HttpSession sess,Model model) {
+		System.out.println("타이틀확인"+bvo.getBoard_no());
 		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
 		bvo.setMember_no(mvo.getMember_no());
 		model.addAttribute("category",uservice.writeCategory()); //카테고리전체 리스트 화면출력
+		model.addAttribute("bvo",service.updateView(bvo));
 		//model.addAttribute("file",uservice.fileUpdate(fvo));
 		return "travelboard/update";
 	}
 	//여행코스 글쓰기 수정
-//	@RequestMapping("/update.do")
-//	public String update(BoardVO bvo) {
-//		return "travelboard/update";
-//	}
+	@RequestMapping("/edit.do")
+	public String update(BoardVO bvo,CategoryVO cvo) {
+		System.out.println("글번호 넘어오나"+bvo);
+		System.out.println("글번호 넘어오나cvo"+cvo);
+		service.edit(bvo);
+		uservice.hashRegionEdit(cvo);//태그,지역삭제후
+		uservice.insert(cvo,bvo);//태그재등록
+		uservice.regionInsert(cvo);//지역
+		return "redirect:/board/view.do?board_no="+bvo.getBoard_no()+"&board_name='여행게시판'";
+	}
 	//지역나오게
 	@RequestMapping("/region_detail")
 	@ResponseBody
@@ -162,7 +170,6 @@ public class BoardController {
 			list.get(i).setPlaceList(service.place(list.get(i).getBoard_no())); // 장소이름
 			list.get(i).setHashtagList(service.hashtag(list.get(i).getBoard_no())); // 해쉬태그
 			list.get(i).setGetTravPic(service.getTravPic(list.get(i).getBoard_no())); // 게시글 사진
-			
 		}
 		model.addAttribute("list",list);
 		if (vo1 != null) {

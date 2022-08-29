@@ -14,20 +14,7 @@
     <title>게시판목록</title>
     <link rel="stylesheet" href="/ro/resources/css/login.css"/>
 	<link rel="stylesheet" href="/ro/resources/css/reset.css"/>
-<style>
-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    table-layout: fixed;
-    margin: 20px 0;
-}
-.titlee a:hover{
-	cursor:pointer;
-	color: #0fbcf9;
-	
-}
-</style>
+
 </head> 
 
 <body>

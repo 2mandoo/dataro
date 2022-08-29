@@ -7,13 +7,14 @@ function send(courseArr){
 	$.ajax({
 		url : "../map/mapinsert.do",
 		type : "post",
+		async: false,
 		data: {
 			'json' : JSON.stringify(courseArr)
 		},
 		dataType: 'json',
 		success : function(res){
-			console.log(res);
-			console.log(typeof res);
+			
+			AH.submit();
 
 		},
 		error: function(){

@@ -38,25 +38,11 @@ function myList(){
 		error : function(e){
 			alert(`error`);
 		}
-		});
+	});
 	return false;
 }
 </script>
-<style>
-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    table-layout: fixed;
-    margin: 20px 0;
-}
 
-.titlee a:hover{
-	cursor:pointer;
-	color: #0fbcf9;
-	
-}
-</style>
 </head> 
 <body>
 <div id="wrap">

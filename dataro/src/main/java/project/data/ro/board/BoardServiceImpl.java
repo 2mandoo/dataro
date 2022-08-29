@@ -36,10 +36,15 @@ public class BoardServiceImpl implements BoardService {
 	//여행코스글쓰기(for문-코스등록)
 	@Override
 	public boolean insert(BoardVO bvo) {
+		System.out.println("ㅋㅋㅋ1:"+bvo);
 		mapper.insert(bvo);
+		System.out.println("ㅋㅋㅋ2:"+bvo);
+		pmapper.update(bvo);  // 진귀: board_no 가지고 오자마자 업데이트하기.
+		System.out.println("ㅋㅋㅋ3:"+bvo);
 		for(int i=0; i<bvo.getContents().length; i++) {
 			bvo.setContent(bvo.getContents()[i]);
 			bvo.setCourse_no(i+1);
+			System.out.println("ㅋㅋㅋ:"+(i+1)+bvo);
 			mapper.insertCourse(bvo);
 		}
 		return true;
@@ -58,8 +63,6 @@ public class BoardServiceImpl implements BoardService {
 		ud.put("course",mapList);
 		ud.put("hrcategory",mapper.updateCategory(vo));
 		ud.put("hrcategory2",mapper.updateCategory2(vo));
-		
-		
 		//System.out.println("코스번호담기는지확인"+vo.getCourse_no());
 		System.out.println("파일코스명"+fmapper.fileUpdate(vo));
 		
@@ -69,9 +72,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 	//여행코스글수정
 	@Override
-	public boolean update(BoardVO vo) { 
-		return mapper.update(vo) > 0 ? true : false;
+	public boolean edit(BoardVO bvo) {
+		return mapper.edit(bvo) > 0 ? true : false;
 	}
+
 	//여행코스글삭제
 	@Override
 	public boolean delete(int no) {
@@ -314,5 +318,8 @@ public class BoardServiceImpl implements BoardService {
 	public List<CategoryVO> hashtag(int board_no) {
 		return mapper.hashtag(board_no);
 	}
+
+
+
 
 }

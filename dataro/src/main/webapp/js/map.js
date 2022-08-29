@@ -1,7 +1,7 @@
 var regionarr = new Array(); //ajax 비동기처리로 만들어서 변수값을 넣은상태에서 사용할수있게
 function getAllCourse() {
 	var no=$('#board_no').val();  // 방만들기 모달 안에 hidden으로 숨겨진 board_no를 가지고 옴
-
+	console.log(no);
 	$.ajax({
 		url : "/ro/board/getAllCourse.do",
 		type : "post",
@@ -11,6 +11,7 @@ function getAllCourse() {
 			board_no : no,
 		},
 		success : function(res) {
+			console.log(res.course);
 			if(res.course.length != 0) {
 				for(var i=0; i<res.course.length; i++){
 					if(res.course[i].fileList.length == 0){
@@ -23,17 +24,22 @@ function getAllCourse() {
 					courseArr.push(res.course[i]);
 				} ;
 				displayCouses(res.course);
+
 			}
 			
 			for(var i=0;i<res.hrcategory.length;i++){
 				var idx = res.hrcategory[i].hashtag_no-1;
 				console.log(idx)
-				document.getElementsByName("hashtag_no")[idx].checked=true;
-				document.getElementsByName("hashtag_no")[idx].parentElement.className='on';
+				document.getElementsByName("hashtag_no_arr")[idx].checked=true;
+				document.getElementsByName("hashtag_no_arr")[idx].parentElement.className='on';
 			};
 			for(var i=0;i<res.hrcategory2.length;i++){
+				var ii = document.createElement("i");
 				var newli = document.createElement("li");
 				newli.innerText=res.hrcategory2[i].region_name;
+				newli.appendChild(ii);
+				ii.classList.add('fa\-solid', 'fa\-circle\-xmark');
+				newli.id=res.hrcategory2[i].region_no;
 				document.getElementsByClassName("region_result")[0].appendChild(newli)
 				regionarr.push(res.hrcategory2[i].region_no);
 			}

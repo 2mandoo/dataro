@@ -157,12 +157,7 @@
 		where board_no = #{board_no} limit 1;
 	</select>
 	
-	
-	
-	
-	
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ정길ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-
 	
 	<!-- 호윤 메인 페이지 -->
 	<select id="list" resultType="project.data.ro.board.BoardVO"> 
@@ -243,15 +238,15 @@
 	</select>
 	
 	<!-- 여행글쓰기 수정 -->
-	<update id="update" parameterType="project.data.ro.board.BoardVO">
+	<update id="edit" parameterType="project.data.ro.board.BoardVO">
 		UPDATE pboard SET title=#{title},updatedate=NOW()
-		WHERE member_no=#{member_no}
+		WHERE board_no=#{board_no} and board_name="여행게시판";
 	</update>
 	
 	<!-- 여행코스 등록 -->
 	<insert id="insertCourse" parameterType="project.data.ro.board.BoardVO">
 		INSERT 
-			INTO pboardcourse(board_name,board_no,content, course_no)
+			INTO pboardcourse(board_name,board_no,content,course_no)
 		VALUES (#{board_name},#{board_no},#{content},#{course_no})
 
 	</insert>

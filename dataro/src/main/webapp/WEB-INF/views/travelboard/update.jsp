@@ -15,28 +15,29 @@
 </head>
 <body>
     <div id="wrap">
+   		 <%@ include file="/WEB-INF/views/common/subheader.jsp" %>
         <div class="content tv_write">
-            ${file[0].filename_server}
-            <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data">
+            <form action="edit.do" name="AH" id="edit" method="post" enctype="multipart/form-data">
                 <!--제목-->
                 <div class="title">
                 	<div class="title_top">
 	                    <span class="user">
-	                        <div class="user_img"><img src="/ro/img/${loginInfo.m_filename_server}"></div>
+	                         <span class="user_img" style="background-image:url(/ro/img/${loginInfo.m_filename_server})"></span>
 	                        <p>${loginInfo.nickname }</p>
 	                    </span>
-	                    <input type="text" name="title" id="title" class="title_text" value="${ud.view.title }">
+	                    <input type="text" name="title" id="title" class="title_text gmarket" value=${bvo.view.title }>
 	                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
+	                    <input type="hidden" id="board_no" name="board_no" value="${boardVO.board_no }">
 	                    <div class="hash">
 	                      	<h3>여행테마</h3>
 	                   		<c:forEach var="hash" items="${category.hash}">
-	                   			<label><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
+	                   				<label class="gmarket"><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no_arr" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
 	                   		</c:forEach>
 	                    </div>
                     </div>
                     <div class="region">
                     	<input type="hidden" name="region_name" value="">
-                    	<select name="region" id="region">
+                    	<select name="region" id="region" class="gmarket">
                     		<option value="0" selected>지역</option>
                     		<c:forEach var="region" items="${category.region}">
                     			<option value="${region.region_name}" >${region.region_name }</option>
@@ -66,8 +67,9 @@
 				<!-- 지도 검색 엔터도 가능-->
 				<div class="seracLocation">
 					<div>
-						<input type="text" value="종각역 맛집" id="keyword" onkeyup="enterkey()" size="15"> 
-						<a onclick="jacascript:searchPlaces()"><i class="fa-solid fa-magnifying-glass"></i></a>
+						<input type="text" value="종각역 맛집" id="keyword" onkeyup="enterkey()" size="15" class="gmarket" placeholder="지역을 검색하세요"> 
+						<a onclick="jacascript:searchPlaces()"  class="find_btn"><i class="fa-solid fa-magnifying-glass"></i></a>
+						<a href="javascript:displayCouses(courseArr);" class="marker gmarket">[마커표시]</a>&nbsp;&nbsp;
 					</div>
 				</div>
 				
@@ -102,13 +104,12 @@
 					</div>
 				</div>
                 <!--//지도,글쓰기-->
-				<a href="javascript:displayCouses(courseArr);">[마커표시]</a>&nbsp;&nbsp;
-                <a href="javascript:goSave()">[등록]</a>
+                <a href="javascript:goSave()" class="edit_btn">수정<i class="fa-solid fa-plus"></i></a>
             </form>
         </div>
     </div>
     
-<input type="hidden" id="board_no" name="board_no" value="${boardVO.board_no }">
+
 <!-- 사용하다가 에러 안나면 지우자 
 <script type='text/javascript' src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
 <script type='text/javascript' src="https://cdn.rawgit.com/abdmob/x2js/master/xml2json.js"></script>
@@ -129,8 +130,9 @@
 	});
 	
 	function goSave(){
-		send(courseArr);
-		AH.submit();
+		if(confirm('등록하시겠습니까?')){
+				send(courseArr);
+		}
 	};
 	var pic =1;
 	//체크박스on
@@ -240,7 +242,7 @@
             	searchPlaces();
             }
         }
-	})
+	});
 		//지도 소분류 ajax로 바로 가져오기
 	$("#region").change(function(){
 		console.log($(this).val())
@@ -261,8 +263,6 @@
 			    		html +='</label>'
 			    	$(".region_detail").append(html);
 				}
-				
-
 			}
 		})
 	});
@@ -286,6 +286,11 @@
 		$("label[for='"+e+"']").removeClass('on');
 		$("input#"+e).prop("checked",false);
 	}
+	$(document).on('click',".region_result li",function(){
+		var id = $(this).attr('id')
+		$(".region_detail input").val(id).prop("checked",false);
+		$(this).remove()
+	})
 </script>
 
 </body>

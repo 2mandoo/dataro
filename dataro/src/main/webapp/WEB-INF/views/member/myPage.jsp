@@ -175,7 +175,6 @@ $(function(){
 			}
  		});
  	});
- 	
 
  	$('#lo').hover(function(){
  		$('#lo').find('img').hide();
@@ -184,7 +183,10 @@ $(function(){
  		$('#lo').find('img').hide();
  		$('#green').show();
  	});
- 
+ 	
+ 	$('#goMain').click(function (){
+		location.href="/ro/board/main.do";
+	})
  	
 });
 
@@ -199,13 +201,12 @@ function logout(){
 <div id="wrap" >
 	<div class="content login pa">
 		<form action="" method="post" >
-		<a href="/ro/board/main.do"><img src="/ro/img/main.png" id="goMain"></a>
+		<img src="/ro/img/main.png" id="goMain">
 		<img src="/ro/img/setting.png" id="setbtn" ><br>
 		<h1>MY PAGE</h1>
 			<img src ="/ro/img/${loginInfo.m_filename_server}" id="idImg" >
 			<h1 id="nic">${loginInfo.nickname}</h1>
 			<a href="javascript:logout();" id="lo">
-			<!-- <a href="/ro/member/logout" id="lo"> -->
 				<img id="green" src="/ro/img/read.png" width="30px">
 				<img id="red" src="/ro/img/unread.png" width="30px" style="display:none;">
 			</a>

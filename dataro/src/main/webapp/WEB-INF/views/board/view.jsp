@@ -19,7 +19,7 @@
 	<a href="/ro/board/main.do"><h1>DATARO</h1></a>
 	<a href="/ro/member/login">login</a>
     <div id="wrap">
-   
+    	<%@ include file="/WEB-INF/views/common/subheader.jsp" %>
         <div class="content view">
             <div>
                 <div class="title">
@@ -54,7 +54,7 @@
             </div>
             <div id="mapRoom">
 	            	<div id="map" style="width:500px;height:500px;float:left;"></div>
-	            <div id="section">
+	           		<div id="section">
 	            	<div class="mkroom btn-makeclick"> 방 만들기
 	            	</div>
 	            	<c:if test="${empty data.roomList }">

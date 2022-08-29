@@ -41,15 +41,6 @@ function myList() {
 	return false;
 };
 </script>
-<style>
-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    table-layout: fixed;
-    margin: 20px 0;
-}
-</style>
 </head> 
 <body>
 <div id="wrap">
@@ -91,7 +82,7 @@ table {
                     <tr>
                     	<td>${vo.board_name}</td>
                         <td>${vo.board_no }</td>
-                        <td>${vo.title}</td>
+                        <td class="titlee" > <a href="/ro/board/view.do?board_no=${vo.board_no}&board_name=여행게시판 ">${vo.title}</a></td>
                         <td>${vo.content}</td>
                         <td class="date"><fmt:formatDate value="${vo.reply_writedate }" pattern="yyyy-MM-dd"/></td>
                     </tr>

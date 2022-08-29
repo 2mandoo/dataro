@@ -9,8 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/ro/resources/css/reset.css" rel="stylesheet">
-    <link href="/ro/resources/css/view.css" rel="stylesheet">
     <link rel="stylesheet" href="/ro/resources/css/style.css"/>
+    <link href="/ro/resources/css/view.css" rel="stylesheet">
     <link rel="shortcut icon" href="#"> <!-- favicon.ico 에러나서 넣어줌 -->
     <title>view</title>
 </head>
@@ -18,8 +18,6 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b93e1f37ba26daefa16850e15e3b7c31"></script>
 
 <body>
-	<a href="/ro/board/main.do"><h1>DATARO</h1></a>
-	<a href="/ro/member/login">login</a>
     <div id="wrap">
     	<%@ include file="/WEB-INF/views/common/subheader.jsp" %>
         <div class="content view">

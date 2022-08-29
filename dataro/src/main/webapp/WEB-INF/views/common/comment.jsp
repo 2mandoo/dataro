@@ -46,18 +46,16 @@
      							</td>
                                 <td class="txt_l" style="text-align:center;">
                                 ${vo.content}
-                                
-                               <%--  <a href="javascript:commentList(${vo.gno});" class="commentList">[답글]</a>
+                                <a href="javascript:commentList(${vo.gno});" class="commentList">[답글]</a>
                                 	<div class="messageBox" style="display:none;" >
 				                  	 <form id="commentFrm${vo.gno }" >
 									    <input type="text" class="content2" style="width:70%" placeholder="답글을 작성해주세요."><a href="javascript:goSave2(${vo.gno });">작성 </a>
 								   	</form>
 									    <div id="commentList${vo.gno }"></div>
-								</div> --%>
+								</div>
 								<c:if test="${loginInfo.member_no == vo.member_no }">
                                 <a href="javascript:commentDel(${vo.reply_no });">[삭제]</a>
                                 <a href="javascript:fullsetReply_no(${vo.reply_no });">[수정]</a>
-                                	<a href="reply.do?no=${vo.reply_no}" class="btn">[답글]</a>
                                 </c:if>
                                 </td>
                                 <td class="date"><fmt:formatDate value="${vo.reply_writedate}" pattern="yyyy-MM-dd HH:mm"/></td>
@@ -169,7 +167,7 @@
 	                				},
 	                				error : function(e){
 	                					console.log(e);
-	                					console.log("답글 작성 에러!!");
+	                					alert("답글 작성 에러!!");
 	                				}
 	                				
 	                			});

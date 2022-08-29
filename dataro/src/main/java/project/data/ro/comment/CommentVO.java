@@ -19,6 +19,7 @@ public class CommentVO {
 	Timestamp writedate;
 	int gno;
 	int ono;
+	int room_no;
 	private int commentcount;
 	//private String member_name;
 	String member_name;

@@ -59,7 +59,7 @@ public class BoardServiceImpl implements BoardService {
 			mapList.get(i).setFileList(fmapper.fileUpdate(vo));//maplist의 i번쨰에 filelist필드에 vo(board_no,위에서set한 코스번호를 사용해서 파일을 조회한 값을 set함)
 		}
 		Map ud = new HashMap();
-		ud.put("view",mapper.updateView(vo));
+		//ud.put("view",mapper.updateView(vo));
 		ud.put("course",mapList);
 		ud.put("hrcategory",mapper.updateCategory(vo));
 		ud.put("hrcategory2",mapper.updateCategory2(vo));
@@ -72,8 +72,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 	//여행코스글수정
 	@Override
-	public boolean edit(BoardVO bvo) {
-		return mapper.edit(bvo) > 0 ? true : false;
+	public boolean titcouEdit(BoardVO bvo) {
+		mapper.titleEdit(bvo);
+		mapper.courseEdit(bvo);
+		return mapper.titleEdit(bvo) > 0 ? true : false;
 	}
 
 	//여행코스글삭제

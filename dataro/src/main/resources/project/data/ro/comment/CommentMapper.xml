@@ -5,9 +5,9 @@
 	<!-- 댓글 입력 -->
 	<insert id="insert" parameterType="project.data.ro.comment.CommentVO">
 		INSERT INTO preply (
-			content, member_no, board_no, reply_writedate ,reply_no, board_name,gno
+			content, member_no, board_no, reply_writedate ,reply_no, board_name,gno,id
 		) VALUES (
-			#{content}, #{member_no}, #{board_no},NOW(),#{reply_no},'자유게시판',#{gno}
+			#{content}, #{member_no}, #{board_no},NOW(),#{reply_no},'자유게시판',#{gno},#{id}
 		)
 		<selectKey keyProperty="board_no" resultType="int" order="AFTER">
 			SELECT LAST_INSERT_ID()
@@ -70,9 +70,9 @@
 	<!-- 댓글에 답글달기 -->
 	<insert id="reply" parameterType="project.data.ro.comment.CommentVO">
 		INSERT INTO preply (
-			board_name, board_no, room_no, member_id, content, member_no, reply_likecount, reply_writedate, gno, ono
+			board_name, board_no, room_no, id, content, member_no, reply_likecount, reply_writedate, gno, ono
 		) VALUES (
-			#{board_name}, #{board_no}, #{room_no}, #{member_id}, #{content}, #{member_no}, 0, NOW(), #{gno}, #{ono}
+			#{board_name}, #{board_no}, #{room_no}, #{id}, #{content}, #{member_no}, 0, NOW(), #{gno}, #{ono}
 		)
 	</insert>
 	

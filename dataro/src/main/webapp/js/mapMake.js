@@ -13,8 +13,8 @@ function send(courseArr){
 		},
 		dataType: 'json',
 		success : function(res){
-			console.log(res);
-			console.log(typeof res);
+			
+			AH.submit();
 
 		},
 		error: function(){

@@ -26,10 +26,11 @@
 	                    </span>
 	                    <input type="text" name="title" id="title" class="title_text gmarket" value=${bvo.view.title }>
 	                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
+	                    <input type="hidden" id="board_no" name="board_no" value="${boardVO.board_no }">
 	                    <div class="hash">
 	                      	<h3>여행테마</h3>
 	                   		<c:forEach var="hash" items="${category.hash}">
-	                   			<label><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
+	                   			<label><input type="checkbox" id="hash${hash.hashtag_no}" name="hashtag_no" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
 	                   		</c:forEach>
 	                    </div>
                     </div>
@@ -107,7 +108,7 @@
         </div>
     </div>
     
-<input type="hidden" id="board_no" name="board_no" value="${boardVO.board_no }">
+
 <!-- 사용하다가 에러 안나면 지우자 
 <script type='text/javascript' src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
 <script type='text/javascript' src="https://cdn.rawgit.com/abdmob/x2js/master/xml2json.js"></script>
@@ -125,7 +126,6 @@
 		getAllCourse();
 		console.log('regionarr:'+regionarr.indexOf(1));
 		console.log('regionarr:'+regionarr.indexOf(2));
-		document.getElement
 	});
 	
 	function goSave(){
@@ -284,8 +284,10 @@
 		$("label[for='"+e+"']").removeClass('on');
 		$("input#"+e).prop("checked",false);
 	}
-	$('.region_result li i').click(function(){
-		$("input#"+e).prop("checked",false);
+	$(document).on('click',".region_result li",function(){
+		var id = $(this).attr('id')
+		$(".region_detail input").val(id).prop("checked",false);
+		$(this).remove()
 	})
 </script>
 

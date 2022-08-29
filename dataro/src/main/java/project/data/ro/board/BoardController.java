@@ -78,7 +78,7 @@ public class BoardController {
 		int[] a =cvo.getHashtag_no_arr();
 //		Arrays.toString(cvo)
 		System.out.println("0은뭘까"+cvo);
-		return "redirect:/board/travelWrite.do";
+		return "board/main";
 	}
 	//여행코스 글쓰기 수정화면  // board_no넘어옴
 	@RequestMapping("/updateView.do")
@@ -93,9 +93,11 @@ public class BoardController {
 	}
 	//여행코스 글쓰기 수정
 	@RequestMapping("/edit.do")
-	public String update(BoardVO bvo) {
-		System.out.println("글쓴거"+bvo.getTitle());
+	public String update(BoardVO bvo,CategoryVO cvo) {
+		System.out.println("글번호 넘어오나"+bvo);
+		System.out.println("글번호 넘어오나cvo"+cvo);
 		service.edit(bvo);
+		uservice.hashEdit(cvo);
 		return "redirect:/board/view.do?board_no="+bvo.getBoard_no()+"&board_name='여행게시판'";
 	}
 	//지역나오게

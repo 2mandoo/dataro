@@ -58,7 +58,7 @@
 .tv_write .write_detail .set .pic_wrap .pic img{width:100%}
 .tv_write .write_detail .set .pic_wrap .pic .delete{position:absolute;display:inline-block;top:0;right:0;z-index:5;width:auto;transform: translate(50%,-50%);cursor:pointer}
 .tv_write .write_detail .set .pic_wrap .plus{float:left;line-height:100px}
-.tv_write .save{display:inline-block;padding:0 35px;height:56px;line-height: 54px;border-radius: 56px;border:1px solid #000;margin:35px 0}
+.tv_write .save,.tv_write .edit_btn{display:inline-block;padding:0 35px;height:56px;line-height: 54px;border-radius: 56px;border:1px solid #000;margin:35px 0}
 
 /*지도*/
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}

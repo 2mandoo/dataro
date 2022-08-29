@@ -11,7 +11,6 @@ function getAllCourse() {
 			board_no : no,
 		},
 		success : function(res) {
-			console.log(res.view.title)
 			if(res.course.length != 0) {
 				for(var i=0; i<res.course.length; i++){
 					if(res.course[i].fileList.length == 0){
@@ -28,6 +27,7 @@ function getAllCourse() {
 			}
 			
 			for(var i=0;i<res.hrcategory.length;i++){
+				console.log(res.hrcategory[i].hashtag_no)
 				var idx = res.hrcategory[i].hashtag_no-1;
 				console.log(idx)
 				document.getElementsByName("hashtag_no")[idx].checked=true;

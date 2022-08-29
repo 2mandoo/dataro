@@ -34,6 +34,13 @@ public class UtilServicempl implements UtilService {
 		cmapper.regionInsert(cvo);
 		return true;
 	}
+	//해쉬태그 수정
+	@Override
+	public boolean hashEdit(CategoryVO cvo) {
+		System.out.println("해쉬태그"+cvo.getHashtag_no());
+		return true;
+	}
+
 	//파일업로드
 	@Override
 	public boolean fileupload(FileVO fvo, @RequestParam MultipartFile[] filename, HttpServletRequest req,BoardVO bvo) {

@@ -30,7 +30,7 @@
 	                    <div class="hash">
 	                      	<h3>여행테마</h3>
 	                   		<c:forEach var="hash" items="${category.hash}">
-	                   			<label><input type="checkbox" id="hash${hash.hashtag_no}" name="hashtag_no" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
+	                   				<label class="gmarket"><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no_arr" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
 	                   		</c:forEach>
 	                    </div>
                     </div>

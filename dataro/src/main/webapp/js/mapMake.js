@@ -4,9 +4,13 @@ var markerShow = false;
    
 // ^^ java 컨트롤러로 코스주소들 보내기
 function send(courseArr){
+	if(typeof(no) === "undefined"){
+		no = 0;		
+	}
 	alert(no);
+
 	$.ajax({
-		url : "../map/mapinsert.do",
+		url : "/ro/map/mapinsert.do",
 		type : "post",
 		async: false,
 		data: {

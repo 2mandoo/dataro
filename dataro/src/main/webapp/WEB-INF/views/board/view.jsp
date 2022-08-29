@@ -13,6 +13,8 @@
     <link rel="shortcut icon" href="#"> <!-- favicon.ico 에러나서 넣어줌 -->
     <title>view</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b93e1f37ba26daefa16850e15e3b7c31"></script>
 
 <body>
 	<a href="/ro/board/main.do"><h1>DATARO</h1></a>
@@ -208,8 +210,6 @@
 
 -->	
 	
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b93e1f37ba26daefa16850e15e3b7c31"></script>
 	
 	<script type='text/javascript' src="/ro/js/map.js"></script>
 	<script type='text/javascript' src="/ro/js/mapView.js"></script>
@@ -228,7 +228,6 @@
 	function updatebox(index,places){
 		count++;
 		var html ='<div class="set">'
-			html +='<span class="jk"></span>'
 			html +='<div class="map_list">'
 			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
 					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';

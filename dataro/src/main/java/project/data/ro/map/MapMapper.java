@@ -10,6 +10,7 @@ import project.data.ro.board.BoardVO;
 public interface MapMapper {
    public int insert(MapVO vo);
    public List<MapVO> list(MapVO vo);
-   public int update(BoardVO vo);
+   public int updateBoardNo(BoardVO vo);
+   public boolean delete(int board_no);
    public String place(BoardVO vo);
 }

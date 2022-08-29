@@ -39,7 +39,7 @@ public class BoardServiceImpl implements BoardService {
 		System.out.println("ㅋㅋㅋ1:"+bvo);
 		mapper.insert(bvo);
 		System.out.println("ㅋㅋㅋ2:"+bvo);
-		pmapper.update(bvo);  // 진귀: board_no 가지고 오자마자 업데이트하기.
+		pmapper.updateBoardNo(bvo);  // 진귀: board_no 가지고 오자마자 업데이트하기.
 		System.out.println("ㅋㅋㅋ3:"+bvo);
 		for(int i=0; i<bvo.getContents().length; i++) {
 			bvo.setContent(bvo.getContents()[i]);

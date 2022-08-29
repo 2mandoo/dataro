@@ -180,16 +180,6 @@ a {
 	text-align : center;
 }
 
-#header {
-   background-color:lightgrey;
-   height:100px;
-}
-#nav {
-   background-color:#339999;
-   width:500px;
-   height:500px;
-   float:left;
-}
 #section {
    width:700px;
    height:500px;

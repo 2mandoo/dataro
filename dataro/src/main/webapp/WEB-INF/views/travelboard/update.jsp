@@ -15,6 +15,7 @@
 </head>
 <body>
     <div id="wrap">
+   		 <%@ include file="/WEB-INF/views/common/subheader.jsp" %>
         <div class="content tv_write">
             <form action="edit.do" name="AH" id="edit" method="post" enctype="multipart/form-data">
                 <!--제목-->

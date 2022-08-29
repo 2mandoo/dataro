@@ -1,7 +1,6 @@
 /*common*/
 #wrap{text-align: center;}
-#wrap .content{display: inline-block;width: 1200px;}
-
+#wrap .content{display: inline-block;width:1360px;}
  .content{width: 1020px; margin:0 auto;}
  .view .title{width: 80%;display:block; border: 1px black solid; margin:0 auto; line-height: 80px;}
  .view .user{display: inline-block;}
@@ -9,7 +8,7 @@
  .view .user span{vertical-align: middle;}
  .view #count{float: right; display:inline-block; padding-top: 35px;}
  .view .category{margin:10px 0;}
- .view .course{ margin:10px 0;}
+ .view .course{ margin:10px 0;display:inline-block;width:100%}
  .view #mapRoom{ height:500px;}
  .view .reply{height: 100px; margin:10px 0;}
  
@@ -216,7 +215,7 @@ a {
  
  
  
- <!-- 지도 마커라인 긋기-->
+/* 지도 마커라인 긋기 */
 .dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
 .dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#ffffffb8;}
 .dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
@@ -226,9 +225,9 @@ a {
 .distanceInfo .label {display:inline-block;width:50px;}
 .distanceInfo:after {content:none;}
 
-<!-- 코스 가로 스크롤-->
-.write_detail {background:#eee;width:100%;height:1500px;padding:20px;overflow-x: scroll;}
-.write_detail .scroll{width:2080px}
+/* 코스 가로 스크롤*/
+.view .course .write_detail{background:#eee;width:100%;height:500px;padding:20px;overflow-x: scroll;}
+.write_detail .scroll{width:2080px;display:inline-block}
 .write_detail .set{padding:20px;background:#fff;width:400px;float:left;margin-right:15px}
 .write_detail #courseList{float:initial;overflow:hidden}
 .write_detail #courseList li{display:inline-block;float:left;width:400px;background:#fff;padding:15px;margin-right:15px;height:80px}

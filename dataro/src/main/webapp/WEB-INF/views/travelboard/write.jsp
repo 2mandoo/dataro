@@ -15,6 +15,7 @@
 </head>
 <body>
     <div id="wrap">
+    	<%@ include file="/WEB-INF/views/common/subheader.jsp" %>
         <div class="content tv_write">
             <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data"  onsubmit="return goSave()";>
             <input type="hidden" name="id" value=${loginInfo.id }>

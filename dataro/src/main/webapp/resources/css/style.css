@@ -9,6 +9,26 @@
     font-style: normal;
 }
 .gmarket{font-family:GmarketSansMedium}/*폰트사용하고싶은사람 이클래스 태그에 붙이기*/
+/*subheader*/
+.sub_header{background: #00939b; padding: 20px 0;color:#fff}
+.sub_header .content{display:flex !important;justify-content: space-between;margin:0 auto}
+.sub_header .content h1 a{display:inline-block;color:#fff}
+.sub_header .content ul li{position:relative;vertical-align: middle;margin-left: 22px;}
+.sub_header .content ul li .btn_ex{display:none;position:absolute;top:36px;left:-11px;background:#c1d7d9;color:#575757;padding:6px;border-radius:50px;font-size:12px;width:67px;line-height: 15px;}
+.sub_header .content ul li .btn_ex::after {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 31px;
+    height: 10px;
+    border-left: 10px solid #c1d7d9;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    box-sizing: border-box;
+    right: 10px;
+    top: 0px;
+    transform: translateY(-50%);}
+.sub_header .content ul li a i{color:#fff;font-size:26px}
 /*여행코스 글쓰기*/
 .tv_write form{display: inline-block;width: 100%;}
 .tv_write .title{border-bottom: 1px solid #eee;padding:40px 0}
@@ -17,8 +37,8 @@
 .tv_write .title .user{display: inline-block;margin:0 20px;text-align: center;vertical-align:middle}
 .tv_write .title .user .user_img{display: inline-block;width: 80px;height: 80px;background: gray;vertical-align: middle;border-radius:50px;overflow:hidden;background-size:cover;border:1px solid #eee}
 .tv_write .title .user p{font-weight: 500;font-size:20px;margin-top:10px}
-.tv_write .title .title_text{width: 500px;height:86px;font-size:25px;padding:15px}
-.tv_write .title .region{width: 100%;border-top: 2px solid #000;padding:20px 0;}
+.tv_write .title .title_text{width: 500px;height:86px;font-size:25px;padding:15px;margin-left:20px}
+.tv_write .title .region{width: 100%;border-top: 2px solid #00939b;padding:20px 0;}
 .tv_write .title .region #region{padding:10px;font-size:21px;font-weight:bold;float:left;border:none;cursor:pointer}
 .tv_write .title .region #region option{cursor:pointer}
 .tv_write .title .region .region_result{float:right;text-align:left;margin-top:10px}
@@ -26,10 +46,10 @@
 .tv_write .title .region .region_result li .fa-circle-xmark{color:#00939b;margin-left:5px;cursor:pointer}
 .tv_write .title .region .region_detail{display: flex;flex-wrap: wrap;padding:20px 0;width:100%;}
 .tv_write .title .region .region_detail input[type="checkbox"]{opacity: 0;position:absolute;top:0;left:0}
-.tv_write .title .region .region_detail label{position:relative;cursor:pointer;display:inline-block;border-right:1px solid #00939b;border-bottom:1px solid #00939b;width:136px;padding:15px 0;font-family:GmarketSansMedium;background:#f6f6f6}
-.tv_write .title .region .region_detail label:nth-child(-n+10){border-top:1px solid #00939b}
-.tv_write .title .region .region_detail label:first-child{border-left:1px solid #00939b}
-.tv_write .title .region .region_detail label:nth-child(10n+1){border-left:1px solid #00939b}
+.tv_write .title .region .region_detail label{position:relative;cursor:pointer;display:inline-block;border-right:1px solid #cbdbdc;border-bottom:1px solid #cbdbdc;width:136px;padding:15px 0;font-family:GmarketSansMedium;background:#f6f6f6}
+.tv_write .title .region .region_detail label:nth-child(-n+10){border-top:1px solid #cbdbdc}
+.tv_write .title .region .region_detail label:first-child{border-left:1px solid #cbdbdc}
+.tv_write .title .region .region_detail label:nth-child(10n+1){border-left:1px solid #cbdbdc}
 .tv_write .title .region .region_detail label.on{background:#00939b;color:#fff}
 .tv_write .title .hash{width:45%}
 .tv_write .title .hash h3{margin-bottom:22px}
@@ -41,7 +61,7 @@
 .tv_write .map{width:500px;height:100%;float:left;background:#eee}
 .tv_write .seracLocation{padding:40px 0}
 .tv_write .seracLocation input{height:36px;border:none;border-bottom:2px solid #000;font-size:21px;width:450px}
-.tv_write .seracLocation .find_btn{background:#00939b;display:inline-block;width:36px;height:36px;line-height:36px;color:#fff;border-radius:50px}
+.tv_write .seracLocation .find_btn{background:#00939b;display:inline-block;width:36px;height:36px;line-height:36px;color:#fff;border-radius:50px;margin-right:10px}
 .tv_write .seracLocation .marker{font-size:18px;font-weight:bold;margin-left:10px}
 .tv_write .write_detail{background:#eee;width:100%;height:500px;padding:20px;overflow-x: scroll;}
 .tv_write .write_detail .scroll{width:2080px}

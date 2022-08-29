@@ -13,8 +13,8 @@ import project.data.ro.board.BoardVO;
 public interface UtilService {
 	//해시태그 등록/진경
 	boolean insert(CategoryVO cvo,BoardVO bvo);
-	//해시태그 수정/진경
-	boolean hashEdit(CategoryVO cvo);
+	//해시,지역 수정/진경
+	boolean hashRegionEdit(CategoryVO cvo);
 	//글쓰기 사진등록/진경
 	boolean fileupload(FileVO fvo,@RequestParam MultipartFile[] filename, HttpServletRequest re,BoardVO bvo);
 	//해시태그,지역정보 출력/진경

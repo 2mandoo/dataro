@@ -97,7 +97,9 @@ public class BoardController {
 		System.out.println("글번호 넘어오나"+bvo);
 		System.out.println("글번호 넘어오나cvo"+cvo);
 		service.edit(bvo);
-		uservice.hashEdit(cvo);
+		uservice.hashRegionEdit(cvo);//태그,지역삭제후
+		uservice.insert(cvo,bvo);//태그재등록
+		uservice.regionInsert(cvo);//지역
 		return "redirect:/board/view.do?board_no="+bvo.getBoard_no()+"&board_name='여행게시판'";
 	}
 	//지역나오게

@@ -12,24 +12,24 @@
 	
 	<!-- Application Loggers -->
 	<logger name="a.b.c">
-		<level value="info" />
+		<level value="warning" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="info" />
+		<level value="warning" />
 	</logger>
 	
 	<logger name="org.springframework.beans">
-		<level value="info" />
+		<level value="warning" />
 	</logger>
 	
 	<logger name="org.springframework.context">
-		<level value="info" />
+		<level value="warning" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="info" />
+		<level value="warning" />
 	</logger>
 
 	<!-- Root Logger -->

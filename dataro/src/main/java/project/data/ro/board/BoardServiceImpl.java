@@ -36,7 +36,11 @@ public class BoardServiceImpl implements BoardService {
 	//여행코스글쓰기(for문-코스등록)
 	@Override
 	public boolean insert(BoardVO bvo) {
+		System.out.println("ㅋㅋㅋ1:"+bvo);
 		mapper.insert(bvo);
+		System.out.println("ㅋㅋㅋ2:"+bvo);
+		pmapper.update(bvo);  // 진귀: board_no 가지고 오자마자 업데이트하기.
+		System.out.println("ㅋㅋㅋ3:"+bvo);
 		for(int i=0; i<bvo.getContents().length; i++) {
 			bvo.setContent(bvo.getContents()[i]);
 			bvo.setCourse_no(i+1);

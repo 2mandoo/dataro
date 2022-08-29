@@ -129,8 +129,10 @@
 	});
 	
 	function goSave(){
-		send(courseArr);
-		AH.submit();
+		if(confirm('등록하시겠습니까?')){
+				send(courseArr);
+				AH.submit();
+		}
 	};
 	var pic =1;
 	//체크박스on

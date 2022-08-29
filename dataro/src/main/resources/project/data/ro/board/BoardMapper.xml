@@ -237,8 +237,8 @@
 		WHERE board_no = #{board_no} and r.region_no = c.region_no
 	</select>
 	
-	<!-- 여행글쓰기 수정 -->
-	<update id="edit" parameterType="project.data.ro.board.BoardVO">
+	<!-- 여행글쓰기 타이들 수정 -->
+	<update id="titleEdit" parameterType="project.data.ro.board.BoardVO">
 		UPDATE pboard SET title=#{title},updatedate=NOW()
 		WHERE board_no=#{board_no} and board_name="여행게시판";
 	</update>
@@ -250,8 +250,10 @@
 		VALUES (#{board_name},#{board_no},#{content},#{course_no})
 	</insert>
 
-	<!-- 여행코스 수정/ 진경끝 -->
-	
+	<!-- 여행코스 수정(삭제후다시등록)/ 진경끝 -->
+	<delete id="courseEdit" parameterType="project.data.ro.board.BoardVO">
+		delete FROM pboardcourse where board_no=${board_no};
+	</delete>
 	
 	
 	<!-- 정현 -->

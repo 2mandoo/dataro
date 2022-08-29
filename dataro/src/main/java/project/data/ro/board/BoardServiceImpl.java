@@ -72,8 +72,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 	//여행코스글수정
 	@Override
-	public boolean edit(BoardVO bvo) {
-		return mapper.edit(bvo) > 0 ? true : false;
+	public boolean titcouEdit(BoardVO bvo) {
+		mapper.titleEdit(bvo);
+		mapper.courseEdit(bvo);
+		return mapper.titleEdit(bvo) > 0 ? true : false;
 	}
 
 	//여행코스글삭제

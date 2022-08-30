@@ -43,6 +43,7 @@ public class BoardController {
 	
 	@Autowired
 	MapMapper mapper;
+	
 
 	// +++진귀
 	
@@ -101,7 +102,7 @@ public class BoardController {
 		uservice.regionInsert(cvo);//등록
 		uservice.hashRegionEdit(cvo);//태그,지역삭제후
 		uservice.insert(cvo,bvo);//태그재등록
-		uservice.regionInsert(cvo);//지역재등록
+		service.insert(bvo);//지역재등록
 		return "redirect:/board/view.do?board_no="+bvo.getBoard_no()+"&board_name='여행게시판'";
 	}
 	//지역나오게

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/ro/resources/css/reset.css" rel="stylesheet">
+    <link rel="stylesheet" href="/ro/resources/css/reset.css"/>
     <link rel="stylesheet" href="/ro/resources/css/style.css"/>
     <link href="/ro/resources/css/view.css" rel="stylesheet">
     <link rel="shortcut icon" href="#"> <!-- favicon.ico 에러나서 넣어줌 -->
@@ -17,80 +18,129 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b93e1f37ba26daefa16850e15e3b7c31"></script>
 
 <body>
-	<div id="wrap">
+    <div id="wrap">
     	<%@ include file="/WEB-INF/views/common/subheader.jsp" %>
-        <div class="content tv_write">
-            <form action="insert.do" name="AH" id="save" method="post" enctype="multipart/form-data"  onsubmit="return goSave()";>
-            <input type="hidden" name="id" value=${loginInfo.id }>
-            <input type="hidden" name="member_no" value=${loginInfo.member_no }>
-                <!--제목-->
-                <div class="title">
-                	<div class="title_top">
-                		<div class="title_write">
-		                    <span class="user">
-		                        <span class="user_img" style="background-image:url(/ro/img/${loginInfo.m_filename_server})"></span>
-		                        <p>${loginInfo.nickname }</p>
-		                    </span>
-		                    <input type="text" name="title" id="title" class="title_text gmarket" value="코스 제목">
-		                    <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
-	                    </div>
-	                    <div class="hash">
-	                      	<h3 class="gmarket">여행테마</h3>
-	                   		<c:forEach var="hash" items="${category.hash}">
-	                   			<label class="gmarket"><input type="checkbox" id="hash${hash.hashtag_no }" name="hashtag_no_arr" value="${hash.hashtag_no}">#${hash.hashtag_name}</label>
-	                   		</c:forEach>
-	                    </div>
-                    </div>
-                    <div class="region">
-	                    	<input type="hidden" name="region_name" value="">
-	                    	<select name="region" id="region" class="gmarket">
-	                    		<option value="0" selected>지역</option>
-	                    		<c:forEach var="region" items="${category.region}">
-	                    			<option value="${region.region_name}" >${region.region_name }</option>
-	                    		</c:forEach>
-	                    	</select>
-	                    	<ul class="region_result"></ul>
-                    	<div class="region_detail"></div>
-                    </div>
-                </div>
-                <!--지도,글쓰기-->
-				<div class="map_wrap">
-					
-					<!-- 지도 나오는 곳 -->
-				    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-				    
-				    <!-- 검색 목록 -->
-				    <div id="menu_wrap" class="bg_white" style="display:;">
-				        <div class="option">
-				        </div>
-				        <hr>
-				        <ul id="placesList"></ul>
-				        <div id="pagination"></div>
-				    </div>
-				    
-				</div>
-				
-				<!-- 지도 검색 엔터도 가능-->
-				<div class="seracLocation">
-					<div>
-						<input type="text" value="종각역 맛집" id="keyword" onkeyup="enterkey()" size="15" class="gmarket" placeholder="지역을 검색하세요"> 
-						<a onclick="jacascript:searchPlaces()" class="find_btn"><i class="fa-solid fa-magnifying-glass"></i></a>
-						<a href="javascript:displayCouses(courseArr);" class="marker gmarket">[마커표시]</a>&nbsp;&nbsp;
-					</div>
-				</div>
-				
+        <div class="content view">
+	        <!--제목-->
+	        <div class="title">
+	        	<div class="title_top">
+		             <span class="user">
+		             	<!-- 수정할거: 로그인한 사람 이미지가 아니라 글쓴사람 이미지가져오기 -->
+		                 <span class="user_img" style="background-image:url(/ro/img/${loginInfo.m_filename_server})"></span>
+		                 <p>${data.board.id }</p>
+		             </span>
+		             <input type="text" name="title" id="title" class="title_text gmarket" value="${data.board.title}" readonly>
+		             <input type="hidden" name="board_name" id="title" class="title_text" value="여행게시판">
+		             <input type="hidden" id="board_no" name="board_no" value="${boardVO.board_no }">
+		            	<div id="count">
+	                       <span><img src="/ro/img/viewCount.png"></span>
+	                       <span>${data.board.viewcount }</span>
+	
+	                       <a href="javascript:clickBoardLike();" id="likeCount"></a>
+								
+	                       <a href="javascript:clickDislike();" id="dislikeCount"></a>
+	                	</div>
+	            </div>
+	            <div class="category">
+            		<c:forEach items="${data.categoryList }" var="cate">
+	                <c:if test="${!empty cate.region_name }">
+	                #${cate.region_name } <br>
+	                </c:if>
+	                <c:if test="${!empty cate.hashtag_name }">
+	                #${cate.hashtag_name }<br>
+	                </c:if>
+            		</c:forEach>
+            	</div>
+	        </div>            
+
+            <div id="mapRoom">
+	            	<div id="map" style="width:660px;height:500px;float:left;"></div>
+	           		<div id="section">
+	            	<div class="mkroom btn-makeclick"> 방 만들기
+	            	</div>
+	            	<c:if test="${empty data.roomList }">
+	            	 <br>등록된 방이 없습니다.<br>
+	            	 방을 생성하여 새로운 여행 친구들을 만나보세요:D
+	            	</c:if>
+	            	<c:if test="${!empty data.roomList }">
+			            <div class="tt">
+			            <table>
+			            <colgroup>
+                            <col width="*" />
+                            <col width="80px" />
+                            <col width="100px" />
+                            <col width="100px" />
+                            <col width="100px" />
+                        </colgroup>
+			             	<tr>
+			               		<th>방제목</th>
+			               		<th>방장</th>
+			               		<th>시작일</th>
+			               		<th>종료일</th>
+			               		<th>참여인원</th>
+			               	</tr>
+			               	<c:forEach items="${data.roomList }" var="room">
+			                <tr>
+			                	<td>
+			                		${room.room_title}
+			                		<c:if test="${empty room.room_pwd }">
+				                	<img src="/ro/img/openRoom.png">
+				                	</c:if>
+				                	<c:if test="${!empty room.room_pwd }">
+				                	<img src="/ro/img/secretRoom.png">
+				                	</c:if>
+			                	</td>
+			                	<td>${room.roommaker_id}</td>
+			                	<td>${room.room_startdate}</td>
+			                	<td>${room.room_enddate}</td>
+			                	<td>
+				                	${room.room_participant_count }명
+				                	<input type="hidden" value="room.room_no" class="no">
+				                	<input type="button" value="${room.room_participant_no > 0 ? '참여중' : '참여하기'  }" onClick='joinRoom("${room.room_pwd }", ${room.room_no });'>
+			                	</td>
+			                </tr>
+			               	</c:forEach>
+			            </table>
+			            </div>
+	            	</c:if>
+	            </div>
+            </div>
+
+            <div class="course">
+                코스
 				<!-- 코스 설명 들어갈 부분 -->      
 				<div class="write_detail">
 					<div class="scroll"></div>
 				</div>
-                <!--//지도,글쓰기-->
+            </div>
+            
+				
 
-                <a href="javascript:goSave()" class="save">등록<i class="fa-solid fa-plus"></i></a>
-            </form>
-        </div>
-    </div>
-    
+            <div id="footer" class="reply">
+	            <c:if test="${empty loginInfo.member_no}">
+		        	<input type="text" placeholder="댓글은 로그인 후 작성 가능합니다." style="width:80%" readonly>
+	            </c:if>
+	            <c:if test="${!empty loginInfo.member_no}">
+			    	<input type="text" name="content" id="content"  placeholder="댓글을 작성해주세요." style="width:80%">
+			        <div style="text-align:right;">
+			        <a href="javascript:goSave();"><img src="/ro/img/replyWrite.png" title="댓글 작성"></a>
+			        </div>
+		        </c:if>
+		        
+            	<!-- 댓글 나오는 부분 -->
+	           	<div id="commentArea"></div>
+            </div>
 
+			<c:if test="${loginInfo.member_no == data.board.member_no }">
+			<a href="/ro/board/updateView.do?board_no=${data.board.board_no}">수정</a>
+	        <form name="delFrm" method="post" action="/ro/board/viewDelete.do">
+	        	<input type="hidden" name="board_no" value="${boardVO.board_no }">
+            	<input type="hidden" name="board_name" value="${boardVO.board_name }">
+	            <a href="javascript:viewDel()"><img src="/ro/img/delete.png" title="게시글 삭제"></a>
+         	</form>
+			</c:if> 
+   		</div>
+	</div>
 	
 	<!-- 방비밀번호 모달 -->
 	<div class="roompwdmodal">

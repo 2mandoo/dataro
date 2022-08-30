@@ -1,5 +1,42 @@
 // ^^ map.js를 앞에 넣어야함.
 // ^^ 들어오자마자 코스 마커랑 직선 지도위에 올리기
+var no=$('#board_no').val();  // 방만들기 모달 안에 hidden으로 숨겨진 board_no를 가지고 옴
+
+function getAllCourse() {
+	console.log(no);
+	$.ajax({
+		url : "/ro/board/getAllCourse.do",
+		type : "post",
+		async:false, 
+		traditional: true,
+		data : {
+			board_no : no,
+		},
+		success : function(res) {
+			console.log(res.course);
+			if(res.course.length != 0) {
+				for(var i=0; i<res.course.length; i++){
+					if(res.course[i].fileList.length == 0){
+						updatebox(i,res.course[i],'no-image.jpg', 'no-image.jpg');
+					}if(res.course[i].fileList.length == 1){
+						updatebox(i,res.course[i],res.course[i].fileList[0].filename_server, 'no-image.jpg');
+					}if(res.course[i].fileList.length == 2){
+						updatebox(i,res.course[i],res.course[i].fileList[0].filename_server,res.course[i].fileList[1].filename_server);
+					}
+					courseArr.push(res.course[i]);
+				} ;
+				displayCouses(res.course);
+
+			}
+			
+			
+		},
+		error : function(e) {
+			console.log("all 가져오기 에러"+e);
+		}
+	});
+	
+}
 
 //^^ 코스에 담은거 마커로 지도에 표시
 function displayCouses(places) {

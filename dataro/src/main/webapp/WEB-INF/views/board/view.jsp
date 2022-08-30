@@ -223,30 +223,35 @@
    	
    		getAllCourse(); 
    	});
-
-  //등록한글 불러오기(수정용)
-	function updatebox(index,places){
+    
+    var pic =1;
+	//원래작성된 글불러오는용
+	function updatebox(index,places,img1,img2){
 		count++;
 		var html ='<div class="set">'
 			html +='<div class="map_list">'
-			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
-					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';
-			html += '    <span>' +  places.address_name  + '</span>'; 
-   			html += '  <span class="tel">' + places.phone  + '</span>'     
+			html += '<span class="markerbg marker_' + (index+1) + '"></span>'+
+						'<h5>' + places.place_name + '</h5>'+
+							'<span class="info">'+
+							'<span class="tel"><i class="fa\-solid fa\-phone"></i>' + places.phone  + '</span>' +
+							'<span><i class="fa-solid fa-location-dot"></i>' +  places.address_name  + '</span>'
+			html +=	'</span>' ;
 			html +="</div>"
 	        html +='    <textarea placeholder="내용 입력" name="contents" readonly>'+places.content+'</textarea>'
 	        html +='    <div class="pic_wrap">'
 	        html +='        <div class="pic">'
-	        html +='       		<img src="/ro/img/no-image.jpg">'
+            pic++;
+	        html +='       		<img src="/ro/img/'+img1+'">'
 	        html +='     	</div>'
 	        html +='   	 	<div class="pic">'
-            html +='       		<img src="/ro/img/no-image.jpg">'
+            html +='       		<img src="/ro/img/'+img2+'">'
 	        html +='      	</div>'
 	        html +='    </div>'
 	        html +='</div>'
+	        pic++;
 			$('.scroll').append(html);
-			 
-	};
+	}
+	
 	$('.btn-makeclick').click(function(){
 		$('.roommodal').fadeIn();
 	})

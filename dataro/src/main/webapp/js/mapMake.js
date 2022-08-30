@@ -1,62 +1,6 @@
 // ^^ map.js를 앞에 넣어야함.
 // ^^ 마커보기 눌렀는지 아닌지
 var markerShow = false;
-var no=$('#board_no').val();  //^^ 방만들기 모달 안에 hidden으로 숨겨진 board_no를 가지고 옴
-
-function getAllCourse() {
-	console.log(no);
-	$.ajax({
-		url : "/ro/board/getAllCourse.do",
-		type : "post",
-		async:false, 
-		traditional: true,
-		data : {
-			board_no : no,
-		},
-		success : function(res) {
-			console.log(res.course);
-			if(res.course.length != 0) {
-				for(var i=0; i<res.course.length; i++){
-					if(res.course[i].fileList.length == 0){
-						updatebox(i,res.course[i],'no-image.jpg', 'no-image.jpg');
-					}if(res.course[i].fileList.length == 1){
-						updatebox(i,res.course[i],res.course[i].fileList[0].filename_server, 'no-image.jpg');
-					}if(res.course[i].fileList.length == 2){
-						updatebox(i,res.course[i],res.course[i].fileList[0].filename_server,res.course[i].fileList[1].filename_server);
-					}
-					courseArr.push(res.course[i]);
-				} ;
-				displayCouses(res.course);
-
-			}
-			
-			// 선택한 해쉬태그 불러오기  
-			for(var i=0;i<res.hrcategory.length;i++){
-				var idx = res.hrcategory[i].hashtag_no-1;
-				console.log(idx)
-				document.getElementsByName("hashtag_no_arr")[idx].checked=true;
-				document.getElementsByName("hashtag_no_arr")[idx].parentElement.className='on';
-			};
-			
-			// 선택한 지역 불러오기
-			for(var i=0;i<res.hrcategory2.length;i++){
-				var ii = document.createElement("i");
-				var newli = document.createElement("li");
-				newli.innerText=res.hrcategory2[i].region_name;
-				newli.appendChild(ii);
-				ii.classList.add('fa\-solid', 'fa\-circle\-xmark');
-				newli.id=res.hrcategory2[i].region_no;
-				document.getElementsByClassName("region_result")[0].appendChild(newli)
-				regionarr.push(res.hrcategory2[i].region_no);
-			}
-				
-		},
-		error : function(e) {
-			console.log("all 가져오기 에러"+e);
-		}
-	});
-	
-}   
 
 // ^^ java 컨트롤러로 코스주소들 보내기
 function send(courseArr){

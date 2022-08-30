@@ -26,6 +26,7 @@
                     ${data.board.title}
                 </div>
                 <div class="user">
+                	<!-- 로그인한 사람 사진 말고 글쓴사람 사진으로 수정하기 -->
                     <span class="user_img"><img src="/ro/img/${loginInfo.m_filename_server}"></span>
                     <span>${data.board.id }</span>
                 </div>

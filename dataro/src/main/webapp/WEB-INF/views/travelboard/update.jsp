@@ -124,7 +124,7 @@
 	$(function(){
 		$("#hash0").parent("label").css("background","#eee");
 		$("#hash0").prop("disabled",true);
-		getAllCourse();
+		getAllCourse('update');
 		console.log('regionarr:'+regionarr.indexOf(1));
 		console.log('regionarr:'+regionarr.indexOf(2));
 	});

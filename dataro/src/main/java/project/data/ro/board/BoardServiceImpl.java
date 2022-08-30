@@ -45,6 +45,7 @@ public class BoardServiceImpl implements BoardService {
 			bvo.setContent(bvo.getContents()[i]);
 			bvo.setCourse_no(i+1);
 			System.out.println("ㅋㅋㅋ:"+(i+1)+bvo);
+			System.out.println("aaaaaaaaaaa"+bvo);
 			mapper.insertCourse(bvo);
 		}
 		return true;
@@ -59,7 +60,7 @@ public class BoardServiceImpl implements BoardService {
 			mapList.get(i).setFileList(fmapper.fileUpdate(vo));//maplist의 i번쨰에 filelist필드에 vo(board_no,위에서set한 코스번호를 사용해서 파일을 조회한 값을 set함)
 		}
 		Map ud = new HashMap();
-		//ud.put("view",mapper.updateView(vo));
+		ud.put("view",mapper.updateView(vo));
 		ud.put("course",mapList);
 		ud.put("hrcategory",mapper.updateCategory(vo));
 		ud.put("hrcategory2",mapper.updateCategory2(vo));

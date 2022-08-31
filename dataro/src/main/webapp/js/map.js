@@ -22,7 +22,7 @@ function getAllCourse(use) {
 						updatebox(i,res.course[i],res.course[i].fileList[0].filename_server,res.course[i].fileList[1].filename_server);
 					}
 					courseArr.push(res.course[i]);
-				} ;
+				};
 				displayCouses(res.course);
 
 			}

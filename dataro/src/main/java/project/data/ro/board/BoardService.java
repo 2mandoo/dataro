@@ -34,6 +34,7 @@ public interface BoardService {
 	List<CategoryVO> hashtag(int board_no);
 	// write(진경)
 	boolean insert(BoardVO bvo);
+	boolean editInsert(BoardVO bvo);
 	Map updateView(BoardVO bvo);
 	//여행글쓰기 글수정(진경)
 	boolean titcouEdit(BoardVO bvo); 

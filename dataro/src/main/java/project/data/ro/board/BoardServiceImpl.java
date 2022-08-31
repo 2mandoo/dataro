@@ -74,19 +74,7 @@ public class BoardServiceImpl implements BoardService {
 	//여행코스글수정
 	@Override
 	public boolean titcouEdit(BoardVO bvo) {
-		mapper.titleEdit(bvo);
-		mapper.courseEdit(bvo);
-		return mapper.titleEdit(bvo) > 0 ? true : false;
-	}
-
-	//여행코스글삭제
-	@Override
-	public boolean delete(int no) {
-		return mapper.delete(no) > 0 ? true : false;
-	}
-	//여행코스삭제후 다시글쓰기(수정업데이트)()
-	@Override
-	public boolean editInsert(BoardVO bvo) {
+		mapper.courseEdit(bvo);  // content 삭제
 		for(int i=0; i<bvo.getContents().length; i++) {
 			bvo.setContent(bvo.getContents()[i]);
 			bvo.setCourse_no(i+1);
@@ -94,7 +82,13 @@ public class BoardServiceImpl implements BoardService {
 			//System.out.println("aaaaaaaaaaa"+bvo);
 			mapper.insertCourse(bvo);
 		}
-		return true;
+		return mapper.titleEdit(bvo) > 0 ? true : false;
+	}
+
+	//여행코스글삭제
+	@Override
+	public boolean delete(int no) {
+		return mapper.delete(no) > 0 ? true : false;
 	}
 
 

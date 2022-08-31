@@ -96,14 +96,13 @@ public class BoardController {
 	//여행코스 글쓰기 수정
 	@RequestMapping("/edit.do")
 	public String update(BoardVO bvo,CategoryVO cvo) {
-		//System.out.println("글번호 넘어오나"+bvo);
-		//System.out.println("글번호 넘어오나cvo"+cvo);
+		System.out.println("글번호 넘어오나"+bvo);
+		System.out.println("글번호 넘어오나cvo"+cvo);
 		service.titcouEdit(bvo);//타이틀,코스삭제후
-		uservice.regionInsert(cvo);//등록
 		uservice.hashRegionEdit(cvo);//태그,지역삭제후
+		uservice.regionInsert(cvo);//등록
 		uservice.insert(cvo,bvo);//태그재등록
-		service.editInsert(bvo);//지역재등록
-		return "redirect:/board/view.do?board_no="+bvo.getBoard_no()+"&board_name='여행게시판'";
+		return "redirect:/board/view.do?board_no="+bvo.getBoard_no();
 	}
 	//지역나오게
 	@RequestMapping("/region_detail")

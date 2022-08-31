@@ -84,6 +84,18 @@ public class BoardServiceImpl implements BoardService {
 	public boolean delete(int no) {
 		return mapper.delete(no) > 0 ? true : false;
 	}
+	//여행코스삭제후 다시글쓰기(수정업데이트)()
+	@Override
+	public boolean editInsert(BoardVO bvo) {
+		for(int i=0; i<bvo.getContents().length; i++) {
+			bvo.setContent(bvo.getContents()[i]);
+			bvo.setCourse_no(i+1);
+			//System.out.println("ㅋㅋㅋ:"+(i+1)+bvo);
+			//System.out.println("aaaaaaaaaaa"+bvo);
+			mapper.insertCourse(bvo);
+		}
+		return true;
+	}
 
 
 //	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 정길 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ

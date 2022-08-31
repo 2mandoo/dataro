@@ -36,16 +36,16 @@ public class BoardServiceImpl implements BoardService {
 	//여행코스글쓰기(for문-코스등록)
 	@Override
 	public boolean insert(BoardVO bvo) {
-		System.out.println("ㅋㅋㅋ1:"+bvo);
+		//System.out.println("ㅋㅋㅋ1:"+bvo);
 		mapper.insert(bvo);
-		System.out.println("ㅋㅋㅋ2:"+bvo);
+		//System.out.println("ㅋㅋㅋ2:"+bvo);
 		pmapper.updateBoardNo(bvo);  // 진귀: board_no 가지고 오자마자 업데이트하기.
-		System.out.println("ㅋㅋㅋ3:"+bvo);
+		//System.out.println("ㅋㅋㅋ3:"+bvo);
 		for(int i=0; i<bvo.getContents().length; i++) {
 			bvo.setContent(bvo.getContents()[i]);
 			bvo.setCourse_no(i+1);
-			System.out.println("ㅋㅋㅋ:"+(i+1)+bvo);
-			System.out.println("aaaaaaaaaaa"+bvo);
+			//System.out.println("ㅋㅋㅋ:"+(i+1)+bvo);
+			//System.out.println("aaaaaaaaaaa"+bvo);
 			mapper.insertCourse(bvo);
 		}
 		return true;
@@ -65,7 +65,7 @@ public class BoardServiceImpl implements BoardService {
 		ud.put("hrcategory",mapper.updateCategory(vo));
 		ud.put("hrcategory2",mapper.updateCategory2(vo));
 		//System.out.println("코스번호담기는지확인"+vo.getCourse_no());
-		System.out.println("파일코스명"+fmapper.fileUpdate(vo));
+		//System.out.println("파일코스명"+fmapper.fileUpdate(vo));
 		
 		//System.out.println("해쉬태그"+mapper.updateCategory(vo));
 		//System.out.println("지역변호"+mapper.updateCategory2(vo));

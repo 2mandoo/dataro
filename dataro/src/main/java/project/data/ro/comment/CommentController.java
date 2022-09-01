@@ -14,6 +14,9 @@ public class CommentController {
 	@Autowired
 	CommentService service;
 	
+	@Autowired
+	CommentMapper mapper;
+	
 	//댓글 리스트
 	@GetMapping("/comment/list.do")
 	public String list(CommentVO vo, Model model) {

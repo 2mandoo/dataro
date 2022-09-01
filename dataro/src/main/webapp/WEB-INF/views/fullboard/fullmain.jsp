@@ -67,7 +67,7 @@
     <title>DATARO</title>
   </head>
   <body>
-  <a href="/ro/board/main.do"><h1>☞메인페이지로 이동☜</h1></a>
+  <a href="/ro/board/main.do"><h1>DATARO</h1></a>
   <div id="wrap">
     <div class="content">
     		<ul>

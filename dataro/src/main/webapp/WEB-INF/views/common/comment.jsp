@@ -46,7 +46,7 @@
      							</td>
                                 <td class="txt_l" style="text-align:center;">
                                 ${vo.content}
-                                <a href="javascript:commentList(${vo.gno});" class="commentList">[답글]</a>
+                                <a href="javascript:commentList(${vo.gno});" class="commentList">[답글](${vo.replycount})</a>
                                 	<div class="messageBox" style="display:none;" >
 				                  	 <form id="commentFrm${vo.gno }" >
 									    <input type="text" class="content2" style="width:70%" placeholder="답글을 작성해주세요."><a href="javascript:goSave2(${vo.gno });">작성 </a>

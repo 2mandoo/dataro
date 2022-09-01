@@ -19,6 +19,7 @@ public class CommentVO {
 	Timestamp reply_updatedate;
 	Timestamp regdate;
 	Timestamp writedate;
+	int replycount;
 	int gno;
 	int ono;
 	int room_no;

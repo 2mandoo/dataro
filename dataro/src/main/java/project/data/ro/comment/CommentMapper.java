@@ -23,7 +23,7 @@ public interface CommentMapper {
 	
 	
 	//답글달때 gno값을 reply_no값으로 업뎃
-	public int gnoUpdate(int no);
+	public int gnoUpdate(int num);
 	//답글달때 기존답글 ono + 1 업뎃
 	public int onoUpdate(CommentVO vo);
 	//댓글에 답글달기

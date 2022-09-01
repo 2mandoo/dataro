@@ -71,8 +71,8 @@ public class FullBoardServiceImple implements FullBoardService {
 
 		
 		//페이징처리
-		int endPage = (int) (Math.ceil(vo.getPage()/5.0)*5);
-		int startPage = endPage-4;
+		int endPage = (int) (Math.ceil(vo.getPage()/10.0)*10);
+		int startPage = endPage-9;
 		if (endPage > totalPage) endPage = totalPage;
 		boolean prev = startPage > 1 ? true : false;
 		boolean next = endPage < totalPage ? true : false;

@@ -12,6 +12,7 @@ import project.data.ro.reply.ReplyVO;
 
 @Service
 public class CommentServiceImpl implements CommentService {
+	
 	@Autowired
 	CommentMapper mapper;
 	
@@ -48,10 +49,12 @@ public class CommentServiceImpl implements CommentService {
 		map.put("list", list);
 		return map;
 	}
-
+	// 정현이꺼 따라함
 	@Override
-	public int insert(CommentVO vo) {
-		return mapper.insert(vo);
+	public boolean insert(CommentVO vo) {
+		boolean r = mapper.insert(vo) > 0 ? true:false;
+		if (r) mapper.gnoUpdate(vo.getReply_no());
+		return r;
 	}
 
 	@Override

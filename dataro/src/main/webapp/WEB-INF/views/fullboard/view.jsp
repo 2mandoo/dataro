@@ -141,7 +141,7 @@
                         <div class="title">
                             <dl>
                                 <dt>제목 : ${view.title}</dt><br>
-                                <dt>게시일 : <fmt:formatDate value="${view.writedate }" pattern="yyyy-MM-dd HH:mm"/></dt>
+                                <dt>게시일 : <fmt:formatDate value="${view.writedate}" pattern="yyyy-MM-dd HH:mm"/></dt>
                             </dl>
                         </div>
                         <div class="cont">글내용 : ${view.content}</div>

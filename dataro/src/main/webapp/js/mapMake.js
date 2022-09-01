@@ -1,7 +1,7 @@
 // ^^ map.js를 앞에 넣어야함.
 // ^^ 마커보기 눌렀는지 아닌지
 var markerShow = false;
-   
+
 // ^^ java 컨트롤러로 코스주소들 보내기
 function send(courseArr){
 	if(typeof(no) === "undefined"){

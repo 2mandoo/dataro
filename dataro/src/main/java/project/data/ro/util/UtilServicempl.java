@@ -92,7 +92,6 @@ public class UtilServicempl implements UtilService {
 	//resion_no 카테고리 테이블에 등록
 	@Override
 	public int regionInsert(CategoryVO cvo) {
-		System.out.println("등록"+cvo.getRegion_no_arr());
 		for(int region:cvo.getRegion_no_arr()) {
 			//arr에 체크하기
 			cvo.setRegion_no(region);

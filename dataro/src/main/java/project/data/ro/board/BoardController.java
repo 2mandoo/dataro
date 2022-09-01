@@ -43,34 +43,22 @@ public class BoardController {
 	
 	@Autowired
 	MapMapper mapper;
+	
 
 	// +++진귀
 	
 	@RequestMapping("/getAllCourse.do")
 	@ResponseBody  // board_no넘어옴
-	public Map vview(BoardVO bvo,HttpSession sess,Model model) {
-		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
-		if(mvo != null) {  
-			// 로그인 안해도 view 에서 널포인트에러 안나게 바꿈
-			bvo.setMember_no(mvo.getMember_no());
-		}
-		System.out.println("진귀 확인:" + bvo);
+	public Map vview(BoardVO bvo) {
+//		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
+//		if(mvo != null) {  
+//			// 로그인 안해도 view 에서 널포인트에러 안나게 바꿈
+//			bvo.setMember_no(mvo.getMember_no());
+//		}
+		//System.out.println("진귀 확인:" + bvo);
 		return service.updateView(bvo);
 	}
 	
-	@GetMapping("/view2.do")
-	public String view2(BoardVO vo, RoomVO rvo, Model model, HttpSession sess) {
-		MemberVO mvo = (MemberVO)sess.getAttribute("loginInfo");
-		//글 보고있는 사람(로그인 한 사람)
-		if(mvo!= null) {
-			vo.setLogin_member_no(mvo.getMember_no());
-		}
-		System.out.println("=+=++++++++== "+vo);
-		Map map = new HashMap();
-		map = service.view(vo);
-		model.addAttribute("data", map);
-		return "board/view2";
-	}
 	// 진귀++++++
 	
 	
@@ -91,13 +79,13 @@ public class BoardController {
 		uservice.regionInsert(cvo);
 		int[] a =cvo.getHashtag_no_arr();
 //		Arrays.toString(cvo)
-		System.out.println("0은뭘까"+cvo);
+		//System.out.println("0은뭘까"+cvo);
 		return "redirect:/board/main.do";
 	}
 	//여행코스 글쓰기 수정화면  // board_no넘어옴
 	@RequestMapping("/updateView.do")
 	public String updateView(BoardVO bvo,HttpSession sess,Model model) {
-		System.out.println("타이틀확인"+bvo.getBoard_no());
+		//System.out.println("타이틀확인"+bvo.getBoard_no());
 		MemberVO mvo =(MemberVO)sess.getAttribute("loginInfo");
 		bvo.setMember_no(mvo.getMember_no());
 		model.addAttribute("category",uservice.writeCategory()); //카테고리전체 리스트 화면출력
@@ -111,11 +99,10 @@ public class BoardController {
 		System.out.println("글번호 넘어오나"+bvo);
 		System.out.println("글번호 넘어오나cvo"+cvo);
 		service.titcouEdit(bvo);//타이틀,코스삭제후
-		uservice.regionInsert(cvo);//등록
 		uservice.hashRegionEdit(cvo);//태그,지역삭제후
+		uservice.regionInsert(cvo);//등록
 		uservice.insert(cvo,bvo);//태그재등록
-		uservice.regionInsert(cvo);//지역재등록
-		return "redirect:/board/view.do?board_no="+bvo.getBoard_no()+"&board_name='여행게시판'";
+		return "redirect:/board/view.do?board_no="+bvo.getBoard_no();
 	}
 	//지역나오게
 	@RequestMapping("/region_detail")
@@ -206,7 +193,7 @@ public class BoardController {
 		if(mvo!= null) {
 			vo.setLogin_member_no(mvo.getMember_no());
 		}
-		System.out.println("=+=++++++++== "+vo);
+		//System.out.println("=+=++++++++== "+vo);
 		Map map = new HashMap();
 		map = service.view(vo);
 		model.addAttribute("data", map);
@@ -242,7 +229,7 @@ public class BoardController {
 	
 	@PostMapping("/viewDelete.do")
 	public String viewDelete(BoardVO vo, Model model) {
-		System.out.println(vo);
+		//System.out.println(vo);
 		if(service.delete(vo)==1) {
 			model.addAttribute("msg", "정상적으로 삭제되었습니다.");
 			model.addAttribute("url", "/ro/board/main.do");

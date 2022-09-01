@@ -36,15 +36,16 @@ public class BoardServiceImpl implements BoardService {
 	//여행코스글쓰기(for문-코스등록)
 	@Override
 	public boolean insert(BoardVO bvo) {
-		System.out.println("ㅋㅋㅋ1:"+bvo);
+		//System.out.println("ㅋㅋㅋ1:"+bvo);
 		mapper.insert(bvo);
-		System.out.println("ㅋㅋㅋ2:"+bvo);
+		//System.out.println("ㅋㅋㅋ2:"+bvo);
 		pmapper.updateBoardNo(bvo);  // 진귀: board_no 가지고 오자마자 업데이트하기.
-		System.out.println("ㅋㅋㅋ3:"+bvo);
+		//System.out.println("ㅋㅋㅋ3:"+bvo);
 		for(int i=0; i<bvo.getContents().length; i++) {
 			bvo.setContent(bvo.getContents()[i]);
 			bvo.setCourse_no(i+1);
-			System.out.println("ㅋㅋㅋ:"+(i+1)+bvo);
+			//System.out.println("ㅋㅋㅋ:"+(i+1)+bvo);
+			//System.out.println("aaaaaaaaaaa"+bvo);
 			mapper.insertCourse(bvo);
 		}
 		return true;
@@ -59,12 +60,12 @@ public class BoardServiceImpl implements BoardService {
 			mapList.get(i).setFileList(fmapper.fileUpdate(vo));//maplist의 i번쨰에 filelist필드에 vo(board_no,위에서set한 코스번호를 사용해서 파일을 조회한 값을 set함)
 		}
 		Map ud = new HashMap();
-		//ud.put("view",mapper.updateView(vo));
+		ud.put("view",mapper.updateView(vo));
 		ud.put("course",mapList);
 		ud.put("hrcategory",mapper.updateCategory(vo));
 		ud.put("hrcategory2",mapper.updateCategory2(vo));
 		//System.out.println("코스번호담기는지확인"+vo.getCourse_no());
-		System.out.println("파일코스명"+fmapper.fileUpdate(vo));
+		//System.out.println("파일코스명"+fmapper.fileUpdate(vo));
 		
 		//System.out.println("해쉬태그"+mapper.updateCategory(vo));
 		//System.out.println("지역변호"+mapper.updateCategory2(vo));
@@ -73,8 +74,14 @@ public class BoardServiceImpl implements BoardService {
 	//여행코스글수정
 	@Override
 	public boolean titcouEdit(BoardVO bvo) {
-		mapper.titleEdit(bvo);
-		mapper.courseEdit(bvo);
+		mapper.courseEdit(bvo);  // content 삭제
+		for(int i=0; i<bvo.getContents().length; i++) {
+			bvo.setContent(bvo.getContents()[i]);
+			bvo.setCourse_no(i+1);
+			//System.out.println("ㅋㅋㅋ:"+(i+1)+bvo);
+			//System.out.println("aaaaaaaaaaa"+bvo);
+			mapper.insertCourse(bvo);
+		}
 		return mapper.titleEdit(bvo) > 0 ? true : false;
 	}
 

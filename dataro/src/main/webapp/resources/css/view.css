@@ -2,8 +2,8 @@
 #wrap{text-align: center;}
 #wrap .content{display: inline-block;width:1360px;}
  .content{width: 1020px; margin:0 auto;}
- .view .title{width: 80%;display:block; border: 1px black solid; margin:0 auto; line-height: 80px;}
- .view .user{display: inline-block;}
+ .view .title{margin:0 auto; display:inline-block; line-height: 80px;}
+ .view .user{display: inline-block; float:left;}
  .view .user .user_img img{display: inline-block;border:1px solid black;width: 50px;height: 50px;border-radius: 50px;}
  .view .user span{vertical-align: middle;}
  .view #count{float: right; display:inline-block; padding-top: 35px;}
@@ -216,9 +216,18 @@ a {
 .distanceInfo:after {content:none;}
 
 /* 코스 가로 스크롤*/
-.view .course .write_detail{background:#eee;width:100%;height:500px;padding:20px;overflow-x: scroll;}
+.view .course .write_detail{background:#eee;width:100%;height:600px;padding:20px;overflow-x: scroll;}
 .write_detail .scroll{width:2080px;display:inline-block}
 .write_detail .set{padding:20px;background:#fff;width:400px;float:left;margin-right:15px}
+.write_detail .set textarea{resize:none}
+.write_detail .set h5{font-size:22px;font-family:'GmarketSansMedium','sans serif';margin:10px 0 21px}
+.write_detail .set .map_list{margin-bottom:8px}
+.write_detail .set .info{display:inline-block;width:90%;text-align:left}
+.write_detail .set .info span{display:block;margin-bottom:11px;height:36px}
+.write_detail .set .info span.tel{height:auto}
+.write_detail .set .info span i{margin-right:7px;color:#00939b;margin-left:-19px}
+.write_detail .set .course_delete{display:inline-block;border:1px solid #000;height: 33px;line-height: 31px;padding: 0 20px;font-size: 16px;border-radius:50px;cursor: pointer}
+.write_detail .set .course_delete:hover{background:#00939b;color:#fff;border-color:#00939b}
 .write_detail #courseList{float:initial;overflow:hidden}
 .write_detail #courseList li{display:inline-block;float:left;width:400px;background:#fff;padding:15px;margin-right:15px;height:80px}
 .write_detail .seracLocation{display:inline-block;width:100%;border:1px solid #000;}

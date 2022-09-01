@@ -22,22 +22,26 @@
     	<%@ include file="/WEB-INF/views/common/subheader.jsp" %>
         <div class="content view">
             <div>
-                <div class="title">
-                    ${data.board.title}
-                </div>
-                <div class="user">
+                <span class="user">
+                	<!-- 로그인한 사람 사진 말고 글쓴사람 사진으로 수정하기 -->
+                	<h4 style="padding-top: 20px;">
                     <span class="user_img"><img src="/ro/img/${loginInfo.m_filename_server}"></span>
                     <span>${data.board.id }</span>
-                </div>
+                    </h4>
+                </span>
+
+                <span class="title">
+                    <h1>${data.board.title}</h1>
+                </span>
                 
-                <div id="count">
+                <span id="count">
                         <span><img src="/ro/img/viewCount.png"></span>
                         <span>${data.board.viewcount }</span>
 
                         <a href="javascript:clickBoardLike();" id="likeCount"></a>
 							
                         <a href="javascript:clickDislike();" id="dislikeCount"></a>
-                </div>
+                </span>
             </div>
 
             <hr style="border: solid 1px black;">
@@ -204,7 +208,6 @@
 
 <!--  사용하다가 에러 안나면 지우자.
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
->>>>>>> branch 'main' of https://github.com/2mandoo/dataro.git
 	<script type='text/javascript' src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
 	<script type='text/javascript' src="https://cdn.rawgit.com/abdmob/x2js/master/xml2json.js"></script>
 
@@ -221,32 +224,37 @@
    		clickBoardLike();
    		clickDislike();
    	
-   		getAllCourse(); 
+   		getAllCourse('view'); 
    	});
-
-  //등록한글 불러오기(수정용)
-	function updatebox(index,places){
+    
+    var pic =1;
+	//원래작성된 글불러오는용
+	function updatebox(index,places,img1,img2){
 		count++;
 		var html ='<div class="set">'
 			html +='<div class="map_list">'
-			html += '<span class="markerbg marker_' + (index+1) + '"></span>'
-					+'<span class="info">'+'<h5>' + places.place_name + '</h5>'+'</span>';
-			html += '    <span>' +  places.address_name  + '</span>'; 
-   			html += '  <span class="tel">' + places.phone  + '</span>'     
+			html += '<span class="markerbg marker_' + (index+1) + '"></span>'+
+						'<h5>' + places.place_name + '</h5>'+
+							'<span class="info">'+
+							'<span class="tel"><i class="fa\-solid fa\-phone"></i>' + places.phone  + '</span>' +
+							'<span><i class="fa-solid fa-location-dot"></i>' +  places.address_name  + '</span>'
+			html +=	'</span>' ;
 			html +="</div>"
 	        html +='    <textarea placeholder="내용 입력" name="contents" readonly>'+places.content+'</textarea>'
 	        html +='    <div class="pic_wrap">'
 	        html +='        <div class="pic">'
-	        html +='       		<img src="/ro/img/no-image.jpg">'
+            pic++;
+	        html +='       		<img src="/ro/img/'+img1+'">'
 	        html +='     	</div>'
 	        html +='   	 	<div class="pic">'
-            html +='       		<img src="/ro/img/no-image.jpg">'
+            html +='       		<img src="/ro/img/'+img2+'">'
 	        html +='      	</div>'
 	        html +='    </div>'
 	        html +='</div>'
+	        pic++;
 			$('.scroll').append(html);
-			 
-	};
+	}
+	
 	$('.btn-makeclick').click(function(){
 		$('.roommodal').fadeIn();
 	})

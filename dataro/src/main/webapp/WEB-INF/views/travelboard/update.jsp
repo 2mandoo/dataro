@@ -124,9 +124,7 @@
 	$(function(){
 		$("#hash0").parent("label").css("background","#eee");
 		$("#hash0").prop("disabled",true);
-		getAllCourse();
-		console.log('regionarr:'+regionarr.indexOf(1));
-		console.log('regionarr:'+regionarr.indexOf(2));
+		getAllCourse('update');
 	});
 	
 	function goSave(){
@@ -245,25 +243,28 @@
 	});
 		//지도 소분류 ajax로 바로 가져오기
 	$("#region").change(function(){
-		console.log($(this).val())
-		var region_name = $(this).val()
+		var region_name = $(this).val()//지역이름
 		$.ajax({
 			url:"/ro/board/region_detail",
 			data:{
 				rs:region_name
 			},
 			success:function(res){
+				console.log(res);
+				console.log('regionarr:'+regionarr);
 				$(".region_detail").find("input").remove();
 				$(".region_detail").find("label").remove();
+				
 				for(var i=0;i<res.regionDetailList.length;i++){
-					var isClass = regionarr.indexOf(i) >= 0 ? "class='on'" : "";
-					var isChecked = regionarr.indexOf(i) >= 0 ? "checked" : "";
+					//console.log(regionarr.indexOf(i));
+					var isClass = regionarr.indexOf(res.regionDetailList[i].region_no) >= 0 ? "class='on'" : "";
+					var isChecked = regionarr.indexOf(res.regionDetailList[i].region_no) >= 0 ? "checked" : "";
 			    	var html = '<label for="region'+res.regionDetailList[i].region_no+'" '+isClass+'>'+res.regionDetailList[i].region_name
 			    		html +='<input type="checkbox" name="region_no_arr" id="region'+res.regionDetailList[i].region_no+'" value="'+res.regionDetailList[i].region_no+'" '+isChecked+'>'
 			    		html +='</label>'
 			    	$(".region_detail").append(html);
 				}
-			}
+			}  
 		})
 	});
 	//지도소분류 체크css
